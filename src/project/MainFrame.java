@@ -25,7 +25,7 @@ public class MainFrame extends JFrame {
 		for(int i = 0; i < btnNames2.length; ++i) {
 			add(new Buttons2(btnNames2[i]));
 		}
-			
+		
 		setLayout(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 700);
