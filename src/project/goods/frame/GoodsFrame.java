@@ -9,14 +9,13 @@ public class GoodsFrame extends JFrame {
 
 	public GoodsFrame() {
 		ContentsPanel contents = new ContentsPanel();
-		add(new GoodsGnbPanel(contents));
+		add(new GnbPanel(contents));
 		add(contents);
 		
 		String[] snbButtons = {"상품", "영수증", "직원", "회원", "업무가이드"};
 		for (int i = 0; i < snbButtons.length; ++i) {
 			add(new Buttons1(snbButtons[i]));
 		}
-
 		
 		setLayout(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

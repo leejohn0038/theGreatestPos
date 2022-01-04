@@ -7,14 +7,15 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
 import project.goods.components.BasicGnbButton;
+import project.goods.components.BasicTextArea;
 
-public class GoodsGnbPanel extends JPanel {
+public class GnbPanel extends JPanel {
 	BasicGnbButton manageBtn;
 	BasicGnbButton lookupBtn;
 	BasicGnbButton supplierBtn;
 	BasicGnbButton assetBtn;
 	
-	public GoodsGnbPanel(ContentsPanel contents) {
+	public GnbPanel(ContentsPanel contents) {
 		
 		manageBtn = new BasicGnbButton("상품관리");
 		manageBtn.setLocation(0, 20);
@@ -66,3 +67,32 @@ public class GoodsGnbPanel extends JPanel {
 		
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
