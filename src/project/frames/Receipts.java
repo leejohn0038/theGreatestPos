@@ -1,3 +1,4 @@
+
 package project.frames;
 
 import javax.swing.JFrame;
@@ -30,3 +31,4 @@ public class Receipts extends JFrame {
 		setResizable(false);
 	}
 }
+
