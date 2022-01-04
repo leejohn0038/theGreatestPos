@@ -18,19 +18,13 @@ public class Buttons1 extends JButton {
 	JFrame emp = new Employees();
 	
 	static {
-<<<<<<< HEAD
+
 		BUTTON_MAP.put("íŒë§¤", new Point(100, 100));
 		BUTTON_MAP.put("ì˜ìˆ˜ì¦", new Point(100, 200));
 		BUTTON_MAP.put("ì§ì›", new Point(100, 300));
 		BUTTON_MAP.put("íšŒì›", new Point(100, 400));
 		BUTTON_MAP.put("ì—…ë¬´ê°€ì´ë“œ", new Point(100, 500));
-=======
-		BUTTON_MAP.put("»óÇ°", new Point(100, 100));
-		BUTTON_MAP.put("¿µ¼öÁõ", new Point(100, 200));
-		BUTTON_MAP.put("Á÷¿ø", new Point(100, 300));
-		BUTTON_MAP.put("È¸¿ø", new Point(100, 400));
-		BUTTON_MAP.put("¾÷¹«°¡ÀÌµå", new Point(100, 500));
->>>>>>> refs/heads/jang
+
 	}
 	
 	public Buttons1(String btn) {
