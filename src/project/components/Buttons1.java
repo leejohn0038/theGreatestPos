@@ -2,26 +2,42 @@ package project.components;
 
 import java.awt.Font;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
+
+import project.components.employees.Employees;
+import project.components.employees.Actions.FrameVisible;
 
 public class Buttons1 extends JButton {
 	
-private final static HashMap<String, Point> BUTTON_MAP = new HashMap<String, Point>();
+	private final static HashMap<String, Point> BUTTON_MAP = new HashMap<String, Point>();
+	JFrame emp = new Employees();
 	
 	static {
-		BUTTON_MAP.put("ÆÇ¸Å", new Point(100, 100));
-		BUTTON_MAP.put("¿µ¼öÁõ", new Point(100, 200));
-		BUTTON_MAP.put("Á÷¿ø", new Point(100, 300));
-		BUTTON_MAP.put("È¸¿ø", new Point(100, 400));
-		BUTTON_MAP.put("¾÷¹«°¡ÀÌµå", new Point(100, 500));
+		BUTTON_MAP.put("íŒë§¤", new Point(100, 100));
+		BUTTON_MAP.put("ì˜ìˆ˜ì¦", new Point(100, 200));
+		BUTTON_MAP.put("ì§ì›", new Point(100, 300));
+		BUTTON_MAP.put("íšŒì›", new Point(100, 400));
+		BUTTON_MAP.put("ì—…ë¬´ê°€ì´ë“œ", new Point(100, 500));
 	}
 	
 	public Buttons1(String btn) {
 		setText(btn);
-		setFont(Font.getFont("µ¸À½"));
+		setFont(Font.getFont("ï¿½ï¿½ï¿½ï¿½"));
 		setSize(100, 50);
 		setLocation(BUTTON_MAP.get(btn));
+		
+		switch (btn) {
+		case "ì§ì›":
+			addActionListener(new FrameVisible(emp));
+			break;
+		default:
+			//System.out.println("");
+			break;
+		}
 	}
 }
