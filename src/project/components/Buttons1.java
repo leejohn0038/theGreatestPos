@@ -2,6 +2,8 @@ package project.components;
 
 import java.awt.Font;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 import javax.swing.JButton;
@@ -9,9 +11,16 @@ import javax.swing.JFrame;
 
 import project.actions.ButtonActionListener;
 
+import project.components.employees.Employees;
+import project.components.employees.Actions.FrameVisible;
+
+
 public class Buttons1 extends JButton {
 	
 	private final static HashMap<String, Point> BUTTON_MAP = new HashMap<String, Point>();
+
+	JFrame emp = new Employees();
+
 	
 	static {
 		BUTTON_MAP.put("상품", new Point(100, 100));
@@ -27,5 +36,14 @@ public class Buttons1 extends JButton {
 		setFont(Font.getFont("돋음"));
 		setSize(100, 50);
 		setLocation(BUTTON_MAP.get(btn));
+		
+		switch (btn) {
+		case "직원":
+			addActionListener(new FrameVisible(emp));
+			break;
+		default:
+			//System.out.println("");
+			break;
+		}
 	}
 }
