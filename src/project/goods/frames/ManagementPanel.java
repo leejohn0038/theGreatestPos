@@ -7,6 +7,7 @@ import project.goods.components.BasicTextArea;
 import project.goods.components.GoodsTable;
 
 public class ManagementPanel extends JPanel {
+	
 	public ManagementPanel() {
 		
 		add(new BasicLnbButton("입고") {
@@ -17,19 +18,19 @@ public class ManagementPanel extends JPanel {
 		
 		add(new BasicLnbButton("출고") {
 			{
-				setLocation(100, 0);
+				setLocation(70, 0);
 			}
 		});
 		
 		add(new BasicLnbButton("폐기") {
 			{
-				setLocation(200, 0);
+				setLocation(140, 0);
 			}
 		});
 		
 		add(new BasicLnbButton("반품") {
 			{
-				setLocation(300, 0);
+				setLocation(210, 0);
 			}
 		});
 		
