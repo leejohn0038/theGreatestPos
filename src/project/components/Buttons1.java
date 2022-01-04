@@ -34,18 +34,16 @@ public class Buttons1 extends JButton {
 	public Buttons1(JFrame main, String btn) {
 		addActionListener(new ButtonActionListener(main, btn));
 		setText(btn);
-		setFont(Font.getFont("����"));
+		setFont(Font.getFont("돋움"));
 		setSize(100, 50);
 		setLocation(BUTTON_MAP.get(btn));
 		
 		switch (btn) {
 
 		case "직원":
-
 			addActionListener(new FrameVisible(emp));
 			break;
 		default:
-			System.out.println("askdjnaskjdn");
 			break;
 		}
 	}
