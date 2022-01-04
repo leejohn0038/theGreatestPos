@@ -14,20 +14,20 @@ public class Toppanel extends JPanel{
 	JLabel label;
 	JButton btn;
 	
-	public Toppanel() {
+	public Toppanel(String name) {
 		textField = new JTextField();
-		label = new JLabel("  판매");
+		label = new JLabel(name);
 		btn = new JButton("검색");
 		
-		label.setBounds(50, 20, 100, 40);
+		label.setBounds(0, 20, 150, 40);
 		label.setFont(new Font("돋음", Font.BOLD, 30));
-		textField.setBounds(600, 20, 270, 40);
-		btn.setBounds(900, 20, 70, 40);
+		textField.setBounds(500, 20, 270, 40);
+		btn.setBounds(800, 20, 70, 40);
 		
 		add(label);
 		add(textField);
 		add(btn);
-		setBounds(0, 0, 1000, 100);
-		setLayout(null);
+		setBounds(100, 0, 930, 100);
+		setLayout(null);		
 	}
 }
