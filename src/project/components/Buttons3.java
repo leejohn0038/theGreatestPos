@@ -1,3 +1,4 @@
+
 package project.components;
 
 import java.awt.Font;
@@ -27,3 +28,4 @@ private final static HashMap<String, Point> BUTTON_MAP = new HashMap<String, Poi
 		setLocation(BUTTON_MAP.get(btn));
 	}
 }
+
