@@ -18,8 +18,8 @@ public class Buttons1 extends JButton {
 	JFrame emp = new Employees();
 	
 	static {
-
-		BUTTON_MAP.put("판매", new Point(100, 100));
+		
+		BUTTON_MAP.put("상품", new Point(100, 100));
 		BUTTON_MAP.put("영수증", new Point(100, 200));
 		BUTTON_MAP.put("직원", new Point(100, 300));
 		BUTTON_MAP.put("회원", new Point(100, 400));
