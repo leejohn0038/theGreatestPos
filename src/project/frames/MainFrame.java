@@ -11,7 +11,7 @@ public class MainFrame extends JFrame {
 	
 	
 	public MainFrame() {
-		add(new Toppanel());
+		add(new Toppanel("판매"));
 	
 		add(new Tables());
 		
@@ -19,7 +19,7 @@ public class MainFrame extends JFrame {
 		String[] btnNames2 = {"포인트 적립", "현금 영수증", "영수증 발급"};
 		
 		for (int i = 0; i < btnNames1.length; ++i) {
-			add(new Buttons1(btnNames1[i]));
+			add(new Buttons1(this, btnNames1[i]));
 		}
 		
 		for(int i = 0; i < btnNames2.length; ++i) {
