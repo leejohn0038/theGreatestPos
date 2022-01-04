@@ -9,21 +9,20 @@ import java.util.HashMap;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+
 import project.actions.ButtonActionListener;
 
 import project.components.employees.Employees;
 import project.components.employees.Actions.FrameVisible;
 
 
-
 public class Buttons1 extends JButton {
 	
 	private final static HashMap<String, Point> BUTTON_MAP = new HashMap<String, Point>();
 
-
 	JFrame emp = new Employees();
 
-	
+
 	static {
 		BUTTON_MAP.put("상품", new Point(100, 100));
 		BUTTON_MAP.put("영수증", new Point(100, 200));
