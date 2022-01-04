@@ -15,9 +15,11 @@ import project.components.employees.Employees;
 import project.components.employees.Actions.FrameVisible;
 
 
+
 public class Buttons1 extends JButton {
 	
 	private final static HashMap<String, Point> BUTTON_MAP = new HashMap<String, Point>();
+
 
 	JFrame emp = new Employees();
 
