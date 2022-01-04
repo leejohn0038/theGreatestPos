@@ -1,6 +1,6 @@
 package project.goods;
 
-import project.goods.frame.GoodsFrame;
+import project.goods.frames.GoodsFrame;
 
 public class goods {
 

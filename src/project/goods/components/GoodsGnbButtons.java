@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
-import project.goods.frame.ContentsPanel;
+import project.goods.frames.ContentsPanel;
 
 public class GoodsGnbButtons extends JPanel {
 	BasicGnbButton manageBtn;

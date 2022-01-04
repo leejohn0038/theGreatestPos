@@ -1,4 +1,4 @@
-package project.goods.frame;
+package project.goods.frames;
 
 import javax.swing.JPanel;
 
