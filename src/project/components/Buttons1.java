@@ -32,7 +32,9 @@ public class Buttons1 extends JButton {
 		setLocation(BUTTON_MAP.get(btn));
 		
 		switch (btn) {
+
 		case "직원":
+
 			addActionListener(new FrameVisible(emp));
 			break;
 		default:
