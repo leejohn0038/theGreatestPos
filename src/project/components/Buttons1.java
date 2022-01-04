@@ -36,7 +36,7 @@ public class Buttons1 extends JButton {
 			addActionListener(new FrameVisible(emp));
 			break;
 		default:
-			//System.out.println("");
+			System.out.println("askdjnaskjdn");
 			break;
 		}
 	}
