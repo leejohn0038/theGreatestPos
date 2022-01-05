@@ -1,4 +1,4 @@
-package project.goods.frames;
+package project.frames.goods_frames;
 
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
-import project.goods.components.BasicGnbButton;
-import project.goods.components.BasicTextArea;
+import project.components.goods_components.BasicGnbButton;
+import project.components.goods_components.BasicTextArea;
 
 public class GnbPanel extends JPanel {
 	BasicGnbButton manageBtn;

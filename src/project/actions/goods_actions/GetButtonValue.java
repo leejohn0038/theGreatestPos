@@ -1,4 +1,4 @@
-package project.goods.actions;
+package project.actions.goods_actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -1,4 +1,4 @@
-package project.goods.frames;
+package project.frames.goods_frames;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,10 +6,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-import project.goods.actions.GetComboBoxValue;
-import project.goods.components.BasicLnbButton;
-import project.goods.components.BasicTextArea;
-import project.goods.components.SupplierTable;
+import project.actions.goods_actions.GetComboBoxValue;
+import project.components.goods_components.BasicLnbButton;
+import project.components.goods_components.BasicTextArea;
+import project.components.goods_components.SupplierTable;
 
 public class SupplierPanel extends JPanel {
 	String val;

@@ -1,4 +1,4 @@
-package project.goods.actions;
+package project.actions.goods_actions;
 
 import javax.swing.JComboBox;
 

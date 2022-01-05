@@ -1,9 +1,9 @@
-package project.goods.frames;
+package project.frames.goods_frames;
 
 import javax.swing.JFrame;
 
 import project.components.Buttons1;
-import project.goods.components.BasicGnbButton;
+import project.components.goods_components.BasicGnbButton;
 
 public class GoodsFrame extends JFrame {
 

@@ -1,4 +1,4 @@
-package project.goods.components;
+package project.components.goods_components;
 
 import java.awt.Color;
 import java.awt.Font;

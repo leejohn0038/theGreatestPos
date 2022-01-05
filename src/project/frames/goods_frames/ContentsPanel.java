@@ -1,4 +1,4 @@
-package project.goods.frames;
+package project.frames.goods_frames;
 
 import java.awt.CardLayout;
 import java.awt.Color;
