@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-import project.goods.actions.GetComboValue;
+import project.goods.actions.GetComboBoxValue;
 import project.goods.components.BasicLnbButton;
 import project.goods.components.BasicTextArea;
 import project.goods.components.GoodsTable;
@@ -15,7 +15,7 @@ import project.goods.components.GoodsTable;
 public class LookupPanel extends JPanel {
 	String val;
 	public LookupPanel() {
-		
+		setLayout(null);
 		add(new BasicLnbButton("ÀüÃ¼") {
 			{
 				setLocation(0, 0);
@@ -44,7 +44,7 @@ public class LookupPanel extends JPanel {
 		JComboBox<String> cb = new JComboBox<>(combo);
 		cb.setSelectedIndex(0);
 		cb.setBounds(325, 0, 100, 25);
-		GetComboValue cv = new GetComboValue();
+		GetComboBoxValue cv = new GetComboBoxValue();
 		val = cv.getComboValue(cb);
 		cb.addActionListener(new ActionListener() {
 			@Override
@@ -67,7 +67,7 @@ public class LookupPanel extends JPanel {
 			}
 		});
 		
-		setLayout(null);
+		
 		setBounds(300, 100, 760, 500);
 		add(new GoodsTable());
 		setVisible(true);

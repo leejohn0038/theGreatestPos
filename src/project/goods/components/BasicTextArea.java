@@ -20,13 +20,13 @@ public class BasicTextArea extends JTextArea {
 				BorderFactory.createLineBorder(Color.BLACK, 0),
 				BorderFactory.createLineBorder(Color.BLACK, 1)
 				));
-		setVisible(true);
 		addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
 				setText("");
 			}
 		});
+		setVisible(true);
 		
 	}
 
