@@ -133,6 +133,12 @@ public class CustomerInputButton extends JFrame {
 		
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		setLayout(null);
+		setTitle("JPanel");
+		setBounds(100, 100, 1000, 700);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setVisible(true);
 	}
 	public static void main(String[] args) {
 		new CustomerInputButton();
