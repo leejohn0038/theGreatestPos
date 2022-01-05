@@ -3,7 +3,7 @@ package project.frames.goods_frames;
 import javax.swing.JFrame;
 
 import project.components.Buttons1;
-import project.components.goods_components.BasicGnbButton;
+import project.components.goods_components.BasicBigButton;
 
 public class GoodsFrame extends JFrame {
 

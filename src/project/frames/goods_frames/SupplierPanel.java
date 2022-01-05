@@ -7,7 +7,7 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 import project.actions.goods_actions.GetComboBoxValue;
-import project.components.goods_components.BasicLnbButton;
+import project.components.goods_components.BasicSmallButton;
 import project.components.goods_components.BasicTextArea;
 import project.components.goods_components.SupplierTable;
 
@@ -36,7 +36,7 @@ public class SupplierPanel extends JPanel {
 			}
 		});
 		
-		add(new BasicLnbButton("검색") {
+		add(new BasicSmallButton("검색") {
 			{
 				setLocation(600, 0);
 			}

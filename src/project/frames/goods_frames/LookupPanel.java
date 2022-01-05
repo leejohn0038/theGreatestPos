@@ -8,7 +8,7 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 import project.actions.goods_actions.GetComboBoxValue;
-import project.components.goods_components.BasicLnbButton;
+import project.components.goods_components.BasicSmallButton;
 import project.components.goods_components.BasicTextArea;
 import project.components.goods_components.GoodsTable;
 
@@ -16,25 +16,25 @@ public class LookupPanel extends JPanel {
 	String val;
 	public LookupPanel() {
 		setLayout(null);
-		add(new BasicLnbButton("전체") {
+		add(new BasicSmallButton("전체") {
 			{
 				setLocation(0, 0);
 			}
 		});
 		
-		add(new BasicLnbButton("카테고리") {
+		add(new BasicSmallButton("카테고리") {
 			{
 				setLocation(70, 0);
 			}
 		});
 		
-		add(new BasicLnbButton("유통기한") {
+		add(new BasicSmallButton("유통기한") {
 			{
 				setLocation(140, 0);
 			}
 		});
 		
-		add(new BasicLnbButton("거래처") {
+		add(new BasicSmallButton("거래처") {
 			{
 				setLocation(210, 0);
 			}
@@ -61,7 +61,7 @@ public class LookupPanel extends JPanel {
 			}
 		});
 		
-		add(new BasicLnbButton("검색") {
+		add(new BasicSmallButton("검색") {
 			{
 				setLocation(600, 0);
 			}

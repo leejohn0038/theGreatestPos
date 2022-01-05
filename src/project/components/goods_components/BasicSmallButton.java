@@ -7,9 +7,9 @@ import java.awt.Insets;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
-public class BasicLnbButton extends JButton {
+public class BasicSmallButton extends JButton {
 
-	public BasicLnbButton(String name) {
+	public BasicSmallButton(String name) {
 		setText(name);
 		setSize(60, 25);
 		setFont(Font.getFont("µ¸¿ò"));

@@ -7,9 +7,9 @@ import java.awt.Insets;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
-public class BasicGnbButton extends JButton {
+public class BasicBigButton extends JButton {
 
-	public BasicGnbButton(String btn) {
+	public BasicBigButton(String btn) {
 		setText(btn);
 		setFont(Font.getFont("µ¸¿ò"));
 		setSize(100, 50);

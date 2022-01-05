@@ -6,18 +6,18 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
-import project.components.goods_components.BasicGnbButton;
+import project.components.goods_components.BasicBigButton;
 import project.components.goods_components.BasicTextArea;
 
 public class GnbPanel extends JPanel {
-	BasicGnbButton manageBtn;
-	BasicGnbButton lookupBtn;
-	BasicGnbButton supplierBtn;
-	BasicGnbButton assetBtn;
+	BasicBigButton manageBtn;
+	BasicBigButton lookupBtn;
+	BasicBigButton supplierBtn;
+	BasicBigButton assetBtn;
 	
 	public GnbPanel(ContentsPanel contents) {
 		
-		manageBtn = new BasicGnbButton("상품관리");
+		manageBtn = new BasicBigButton("상품관리");
 		manageBtn.setLocation(0, 20);
 		manageBtn.addActionListener(new ActionListener() {
 			@Override
@@ -28,7 +28,7 @@ public class GnbPanel extends JPanel {
 		});
 		add(manageBtn);
 		
-		lookupBtn = new BasicGnbButton("조회");
+		lookupBtn = new BasicBigButton("조회");
 		lookupBtn.setLocation(150, 20);
 		lookupBtn.addActionListener(new ActionListener() {
 			@Override
@@ -39,7 +39,7 @@ public class GnbPanel extends JPanel {
 		});
 		add(lookupBtn);
 		
-		supplierBtn = new BasicGnbButton("거래처");
+		supplierBtn = new BasicBigButton("거래처");
 		supplierBtn.setLocation(300, 20);
 		supplierBtn.addActionListener(new ActionListener() {
 			@Override
@@ -50,7 +50,7 @@ public class GnbPanel extends JPanel {
 		});
 		add(supplierBtn);
 		
-		assetBtn = new BasicGnbButton("자산관리");
+		assetBtn = new BasicBigButton("자산관리");
 		assetBtn.setLocation(450, 20);
 		assetBtn.addActionListener(new ActionListener() {
 			@Override
