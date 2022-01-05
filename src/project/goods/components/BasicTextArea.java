@@ -15,7 +15,7 @@ public class BasicTextArea extends JTextArea {
 		
 		setSize(175, 25);
 		setText("검색어를 입력해주세요");
-		setFont(Font.getFont("돋음"));
+		setFont(Font.getFont("돋움"));
 		setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createLineBorder(Color.BLACK, 0),
 				BorderFactory.createLineBorder(Color.BLACK, 1)

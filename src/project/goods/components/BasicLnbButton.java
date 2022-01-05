@@ -12,7 +12,7 @@ public class BasicLnbButton extends JButton {
 	public BasicLnbButton(String name) {
 		setText(name);
 		setSize(60, 25);
-		setFont(Font.getFont("µ¸À½"));
+		setFont(Font.getFont("µ¸¿ò"));
 		setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createLineBorder(Color.BLACK, 0),
 				BorderFactory.createLineBorder(Color.BLACK, 1)

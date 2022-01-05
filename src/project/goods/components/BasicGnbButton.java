@@ -11,7 +11,7 @@ public class BasicGnbButton extends JButton {
 
 	public BasicGnbButton(String btn) {
 		setText(btn);
-		setFont(Font.getFont("µ¸À½"));
+		setFont(Font.getFont("µ¸¿ò"));
 		setSize(100, 50);
 		setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createLineBorder(Color.BLACK, 0),
