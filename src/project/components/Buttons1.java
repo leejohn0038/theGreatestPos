@@ -15,6 +15,10 @@ import project.components.employees.Actions.FrameVisible;
 
 import project.actions.ButtonActionListener;
 
+import project.components.employees.Employees;
+import project.components.employees.Actions.FrameVisible;
+
+
 
 public class Buttons1 extends JButton {
 	
