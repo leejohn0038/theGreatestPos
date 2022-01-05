@@ -7,10 +7,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
-
-import project.components.Buttons1;
 import project.components.employees.Actions.FrameVisible;
-import project.frames.Receipts;
+import project.frames.receipts_frames.*;
 
 
 public class SideBar_layout extends JPanel{
