@@ -1,12 +1,12 @@
 
-package project.frames;
+package project.frames.receipts_frames;
 
 import javax.swing.JFrame;
 
 import project.components.Tables;
 import project.components.Toppanel;
-import project.components.receipt.Buttons2;
-import project.components.receipt.Buttons3;
+import project.components.receipts_components.Buttons2;
+import project.components.receipts_components.Buttons3;
 
 public class Receipts extends JFrame {
 	

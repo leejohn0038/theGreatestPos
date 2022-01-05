@@ -1,12 +1,12 @@
 
-package project.frames;
+package project;
 
 import javax.swing.JFrame;
 
 import project.components.Buttons1;
 import project.components.Tables;
 import project.components.Toppanel;
-import project.components.receipt.Buttons2;
+import project.components.receipts_components.Buttons2;
 
 public class MainFrame extends JFrame {
 	
