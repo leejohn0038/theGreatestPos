@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 public class CustomerMainFrame extends JFrame {
 	
 	public CustomerMainFrame() {
-		new CustomerInputFieldUi();
+		new CustomerInputButton();
 		
 		String[] CIbtn = {"ID : ", "이름 : ", "휴대폰 번호 : ", "주소 : ", "가입일자 : ", "멤버십 포인트 : "};
 
