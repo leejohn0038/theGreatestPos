@@ -2,13 +2,15 @@ package project.components.employees.main.top.view;
 
 import java.awt.Color;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 //프레임의 상단 레이아웃 (logo / 조회 / 등록 / 편집 버튼)
 public class Top_layout extends JPanel{
-	public Top_layout(int fw, int fh) {
+	public Top_layout(JFrame emp) {
+		int fw = emp.getSize().width, fh = emp.getSize().height;
 		
 		//top_layout
 		int height = (int)(fh*0.2);

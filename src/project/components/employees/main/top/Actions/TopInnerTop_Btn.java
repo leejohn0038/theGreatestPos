@@ -10,22 +10,21 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import project.components.employees.Guide_manual;
-import project.components.employees.addEmployees;
+import project.components.employees.Actions.DelectValue;
 import project.components.employees.Actions.FrameVisible;
+import project.components.employees.frame.Guide_manual;
+import project.components.employees.frame.AddEmployees;
 
 //여긴 직원프레임의 상단 버튼입니다.
 
 public class TopInnerTop_Btn extends JButton{
 	final private static HashMap<Integer, String> BTN_MAP = new HashMap<>();
 	
-	JFrame guide = new Guide_manual();
-	JFrame addEmp = new addEmployees();
+	JFrame addEmp = new AddEmployees();
 	
 	static {
 		BTN_MAP.put(0, "등록");
 		BTN_MAP.put(1, "삭제");
-		BTN_MAP.put(2, "업무가이드");
 	}
 
 	public TopInnerTop_Btn(int num, int lh) {
@@ -39,19 +38,19 @@ public class TopInnerTop_Btn extends JButton{
 		//x 좌표는 
 		setLocation((btnX+num)*150,btnY);
 		
-		btnEvent(num);
-		
+		btnEvent(num);	
 	}
 	
 	
-	public void btnEvent(int num) { 
+	public void btnEvent(int num) {
+		
 		switch (num) {
-		case 1:
+		case 0:
 			addActionListener(new FrameVisible(addEmp));
 			break;
-		case 2:
-			addActionListener(new FrameVisible(guide));
-		break;
+		case 1:
+			addActionListener(new DelectValue());
+			break;
 		default:
 			break;
 		}

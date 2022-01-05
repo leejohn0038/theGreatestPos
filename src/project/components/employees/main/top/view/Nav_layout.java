@@ -10,15 +10,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-import project.components.employees.Guide_manual;
 import project.components.employees.Actions.SelectBtn;
+import project.components.employees.frame.Guide_manual;
 import project.components.employees.main.top.Actions.TopInnerTop_Btn;
 
 public class Nav_layout extends JPanel{
 	
 	public Nav_layout(int lL_w, int lR_w, int height) {
 		
-		for(int i = 0; i<3; i++) {
+		for(int i = 0; i<2; i++) {
 			add(new TopInnerTop_Btn(i, height));
 		}
 		

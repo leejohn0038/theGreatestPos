@@ -1,4 +1,4 @@
-package project.components.employees;
+package project.components.employees.frame;
 
 import javax.swing.JFrame;
 
@@ -29,11 +29,9 @@ public class Employees extends JFrame{
 		setBounds(700,500,1000,700);
 		
 		// 0, 1 은 프레임의 크기를 담는다.
-		fw = getSize().width-20;
-		fh = getSize().height;
 		
-		add(new Top_layout(fw,fh));
-		add(new Bottom_layout(fw,fh));
+		add(new Top_layout(this));
+		add(new Bottom_layout(this));
 	}
 	
 }

@@ -8,9 +8,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 
-import project.components.employees.Employees;
-import project.components.employees.Actions.FrameVisible;
-
 import project.actions.ButtonActionListener;
 
 

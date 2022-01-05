@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
-import project.components.employees.Employees;
+import project.components.employees.frame.Employees;
 import project.frames.Receipts;
 
 
@@ -29,6 +29,7 @@ public class ButtonActionListener implements ActionListener {
 			break;	
 		case "Á÷¿ø":
 			new Employees().setVisible(true);
+			break;
 		default:
 			break;
 		}

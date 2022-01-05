@@ -2,6 +2,7 @@ package project.components.employees.main.bottom.view;
 
 import java.awt.BorderLayout;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -10,6 +11,8 @@ import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
 
 public class Table_layout extends JPanel{
+	DefaultTableModel dtm;
+	
 	public Table_layout(int lw) {
 		String[] columnNames = {
 				"ID", "이름", "전화번호", "주소", "직책"
@@ -24,7 +27,6 @@ public class Table_layout extends JPanel{
 		// 테이블은 ScrollPane에 붙여야 재대로 나옴.
 		JTable jt;
 		JScrollPane sp;
-		DefaultTableModel dtm;
 		
 		dtm = new DefaultTableModel(rowData, columnNames);
 		jt = new JTable(dtm);
@@ -40,7 +42,12 @@ public class Table_layout extends JPanel{
  			추가할 땐 addRow() / 삭제할땐 removeRow() 
 		 */
 		
+		
 		setBounds(lw, 30, 1000-lw, 490);
 		setVisible(true);
+	}
+	
+	public void addRowData(Object[] obj) {
+		dtm.addRow(obj);
 	}
 }
