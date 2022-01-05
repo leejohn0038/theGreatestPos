@@ -26,7 +26,8 @@ public class ButtonActionListener implements ActionListener {
 			main.dispose();
 			break;	
 		case "Á÷¿ø":
-			new Employees().setVisible(true);
+			new Employees();
+			main.dispose();
 			break;
 		default:
 			break;

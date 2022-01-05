@@ -27,7 +27,7 @@ public class Bottom_layout extends JPanel{
 		inner_layout.setLayout(null);
 		inner_layout.setBounds(0, 0, layoutBounds[2], layoutBounds[3]-height);
 		
-		side = new SideBar_layout(layoutBounds[2], layoutBounds[3]);
+		side = new SideBar_layout(emp, layoutBounds[2], layoutBounds[3]);
 		inner_layout.add(side);
 		inner_layout.add(new Table_layout(side.getSize().width));
 		

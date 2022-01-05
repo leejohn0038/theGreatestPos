@@ -24,7 +24,7 @@ public class Employees extends JFrame{
 		// 레이아웃을 깔끔하게 계산하기 위해서 만든 친구입니다 :D
 		int fw= 0, fh = 0;
 	
-		setVisible(false);
+		setVisible(true);
 		setLayout(null);
 		setBounds(700,500,1000,700);
 		
