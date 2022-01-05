@@ -20,15 +20,21 @@ public class Bottom_layout extends JPanel{
 		
 		add(select);
 		height = select.getSize().height;
+		System.out.println();
 		
 		inner_layout.setLayout(null);
 		inner_layout.setBounds(0, 0, layoutBounds[2], layoutBounds[3]-height);
 		
-		side = new SideBar_layout(inner_layout.getSize().width, inner_layout.getSize().height);
+		side = new SideBar_layout(layoutBounds[2], layoutBounds[3]-height);
 		inner_layout.add(side);
 		inner_layout.add(new Table_layout(side.getSize().width));
 		
 		add(inner_layout);
+		
+		for(int i = 0; i< layoutBounds.length; i++) {
+			System.out.println(layoutBounds[i]);
+		}
+		System.out.println(inner_layout);
 		
 		setLayout(null);
 		setBounds(layoutBounds[0], layoutBounds[1], layoutBounds[2], layoutBounds[3]);

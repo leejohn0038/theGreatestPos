@@ -43,6 +43,7 @@ public class TopInnerTop_Btn extends JButton{
 		
 	}
 	
+	
 	public void btnEvent(int num) { 
 		switch (num) {
 		case 1:

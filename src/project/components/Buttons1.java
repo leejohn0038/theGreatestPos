@@ -17,7 +17,6 @@ import project.actions.ButtonActionListener;
 public class Buttons1 extends JButton {
 	
 	private final static HashMap<String, Point> BUTTON_MAP = new HashMap<String, Point>();
-	JFrame emp = new Employees();
 
 	static {
 		
@@ -35,14 +34,5 @@ public class Buttons1 extends JButton {
 		setFont(Font.getFont("돋움"));
 		setSize(100, 50);
 		setLocation(BUTTON_MAP.get(btn));
-		
-		switch (btn) {
-
-		case "직원":
-			addActionListener(new FrameVisible(emp));
-			break;
-		default:
-			break;
-		}
 	}
 }

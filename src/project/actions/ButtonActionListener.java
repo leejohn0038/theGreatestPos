@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
+import project.components.employees.Employees;
 import project.frames.Receipts;
 
 
@@ -23,9 +24,11 @@ public class ButtonActionListener implements ActionListener {
 		switch (btnName) {
 		case "영수증": 
 			new Receipts();
-			//메인화면 크고 화면전환하기
+			//메인화면 크고 화면전환하기=
 			main.dispose();
 			break;	
+		case "직원":
+			new Employees().setVisible(true);
 		default:
 			break;
 		}
