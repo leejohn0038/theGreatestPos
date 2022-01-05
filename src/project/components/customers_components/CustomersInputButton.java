@@ -1,4 +1,4 @@
-package project.customer.customerUi;
+package project.components.customers_components;
 
 import java.awt.Font;
 import java.awt.Panel;
@@ -22,7 +22,7 @@ import project.components.Tables;
 //	CustomerButtonMap.put("멤버십 포인트 : ", new Point(300, 350));
 //	
 //}
-public class CustomerInputButton extends JFrame {
+public class CustomersInputButton extends JFrame {
 	
 	
 	
@@ -40,7 +40,7 @@ public class CustomerInputButton extends JFrame {
 	JButton c_date;
 	JButton m_point;
 	
-	public CustomerInputButton() {
+	public CustomersInputButton() {
 		
 		
 		// 기존 상품 테이블 위치에 패널을 하나 새로 만들기
@@ -141,7 +141,7 @@ public class CustomerInputButton extends JFrame {
 		setVisible(true);
 	}
 	public static void main(String[] args) {
-		new CustomerInputButton();
+		new CustomersInputButton();
 	}
 	
 }

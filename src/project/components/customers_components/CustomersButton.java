@@ -15,8 +15,8 @@ import javax.swing.JTextField;
 //add(customer_id);
 
 
-public class CustomerButton extends JFrame {
-	public CustomerButton() {
+public class CustomersButton extends JFrame {
+	public CustomersButton() {
 		//new DefaultFrame_c();
 		//setLayout(new GridLayout(6, 6, 10, 10));
 //		for (int i = 1; i < 7; ++i) {
@@ -33,7 +33,7 @@ public class CustomerButton extends JFrame {
 		// 바운드가 일정간격으로 연속으로 들어가게 할 수 있어야한다...
 		// 하지만 어떻게,,
 		JPanel panel = new JPanel();
-		CustomerButtonSet cbs = new CustomerButtonSet();
+		CustomersButtonSet cbs = new CustomersButtonSet();
 		
 		JLabel idLabel = new JLabel("ID : ");
 		JTextField idField = new JTextField(30);
@@ -81,6 +81,6 @@ public class CustomerButton extends JFrame {
 
 	public static void main(String[] args) {
 		
-		new CustomerButton();
+		new CustomersButton();
 	}
 }

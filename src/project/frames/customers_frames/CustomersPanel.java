@@ -1,4 +1,4 @@
-package project.components.customers_components;
+package project.frames.customers_frames;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -10,9 +10,9 @@ import javax.swing.JPanel;
 
 
 
-public class CustomerPanel extends JFrame {
+public class CustomersPanel extends JFrame {
 	
-	public CustomerPanel() {
+	public CustomersPanel() {
 		JPanel panel1 = new JPanel();
 		panel1.setLayout(new BorderLayout());
 		
@@ -42,6 +42,6 @@ public class CustomerPanel extends JFrame {
 		
 	}
 	public static void main(String[] args) {
-		new CustomerPanel();
+		new CustomersPanel();
 	}
 }

@@ -4,13 +4,13 @@ import java.awt.Font;
 
 import javax.swing.JFrame;
 
-public class CustomerButtonSet extends JFrame {
+public class CustomersButtonSet extends JFrame {
 	
-	public CustomerButtonSet() {
+	public CustomersButtonSet() {
 		
 	}
 	
-	public CustomerButtonSet(int x,int y) {
+	public CustomersButtonSet(int x,int y) {
 		setFont(Font.getFont("µ¸¿ò"));
 		setSize(100, 50);
 		setLocation(x, y);
