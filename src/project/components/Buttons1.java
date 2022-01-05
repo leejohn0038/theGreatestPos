@@ -23,7 +23,7 @@ public class Buttons1 extends JButton {
 
 	static {
 		
-		BUTTON_MAP.put("판매", new Point(100, 100));
+		BUTTON_MAP.put("상품", new Point(100, 100));
 		BUTTON_MAP.put("영수증", new Point(100, 200));
 		BUTTON_MAP.put("직원", new Point(100, 300));
 		BUTTON_MAP.put("회원", new Point(100, 400));
@@ -34,7 +34,7 @@ public class Buttons1 extends JButton {
 	public Buttons1(JFrame main, String btn) {
 		addActionListener(new ButtonActionListener(main, btn));
 		setText(btn);
-		setFont(Font.getFont("����"));
+		setFont(Font.getFont("돋움"));
 		setSize(100, 50);
 		setLocation(BUTTON_MAP.get(btn));
 		

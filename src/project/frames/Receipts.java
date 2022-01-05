@@ -3,10 +3,10 @@ package project.frames;
 
 import javax.swing.JFrame;
 
-import project.components.Buttons2;
-import project.components.Buttons3;
 import project.components.Tables;
 import project.components.Toppanel;
+import project.components.receipt.Buttons2;
+import project.components.receipt.Buttons3;
 
 public class Receipts extends JFrame {
 	
