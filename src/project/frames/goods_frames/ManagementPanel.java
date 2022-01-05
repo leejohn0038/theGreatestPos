@@ -1,6 +1,5 @@
 package project.frames.goods_frames;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,21 +7,56 @@ import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import project.actions.goods_actions.GetValues;
 import project.components.goods_components.BasicPopupPanel;
 import project.components.goods_components.BasicSmallButton;
 import project.components.goods_components.BasicTextArea;
 import project.components.goods_components.GoodsTable;
 
 public class ManagementPanel extends JPanel {
+	int qty;
 	
 	public ManagementPanel() {
+				
 		BasicPopupPanel store = new BasicPopupPanel();
-		store.add(new BasicTextArea() {
+		// 테스트용 버튼을 만들어 렌덤물품이 추가되게 확인하기
+		store.add(new JLabel("상품추가") {
 			{
-				setLocation(100, 20);
+				setBounds(20, 10, 100, 50);
+				setFont(new Font("돋움", Font.BOLD, 20));
+			}
+		});
+		store.add(new BasicTextArea("상품의 이름을 입력해주세요") {
+			{
+				setLocation(20, 75);
+			}
+		});
+		BasicTextArea qtyTxt = new BasicTextArea("수량을 입력해주세요");
+		qtyTxt.setLocation(20, 120);
+		store.add(qtyTxt);
+		store.add(new BasicSmallButton("추가") {
+			{
+				setLocation(140, 240);
+				addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						qty = new GetValues().getTextNumValue(qtyTxt);
+					}
+				});
 			}
 		});
 		add(store);
+		store.add(new BasicSmallButton("취소") {
+			{
+				setLocation(220, 240);
+				addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						store.setVisible(false);
+					}
+				});
+			}
+		});
 		
 		add(new BasicSmallButton("입고") {
 			{
@@ -54,7 +88,7 @@ public class ManagementPanel extends JPanel {
 			}
 		});
 		
-		add(new BasicTextArea() {
+		add(new BasicTextArea("검색어를 입력해주세요") {
 			{
 				setLocation(400, 0);
 			}

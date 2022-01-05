@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-import project.actions.goods_actions.GetComboBoxValue;
+import project.actions.goods_actions.GetValues;
 import project.components.goods_components.BasicSmallButton;
 import project.components.goods_components.BasicTextArea;
 import project.components.goods_components.SupplierTable;
@@ -18,14 +18,14 @@ public class SupplierPanel extends JPanel {
 		
 		String[] combo = {"거래처명", "담당자"};
 		JComboBox<String> cb = new JComboBox<>(combo);
-		GetComboBoxValue cv = new GetComboBoxValue();
+		GetValues cv = new GetValues();
 		cb.setBounds(325, 0, 75, 25);
 		cb.setVisible(true);
-		val = cv.getComboValue(cb);
+		val = cv.getComboBoxValue(cb);
 		cb.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				val = cv.getComboValue(cb);
+				val = cv.getComboBoxValue(cb);
 			}
 		});
 		add(cb);

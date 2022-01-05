@@ -1,13 +1,12 @@
 package project.frames.goods_frames;
 
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-import project.actions.goods_actions.GetComboBoxValue;
+import project.actions.goods_actions.GetValues;
 import project.components.goods_components.BasicSmallButton;
 import project.components.goods_components.BasicTextArea;
 import project.components.goods_components.GoodsTable;
@@ -44,12 +43,12 @@ public class LookupPanel extends JPanel {
 		JComboBox<String> cb = new JComboBox<>(combo);
 		cb.setSelectedIndex(0);
 		cb.setBounds(325, 0, 100, 25);
-		GetComboBoxValue cv = new GetComboBoxValue();
-		val = cv.getComboValue(cb);
+		GetValues cv = new GetValues();
+		val = cv.getComboBoxValue(cb);
 		cb.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				val = cv.getComboValue(cb);
+				val = cv.getComboBoxValue(cb);
 			}
 		});
 		add(cb);
@@ -73,3 +72,29 @@ public class LookupPanel extends JPanel {
 		setVisible(true);
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
