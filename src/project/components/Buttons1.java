@@ -21,6 +21,16 @@ public class Buttons1 extends JButton {
 	private final static HashMap<String, Point> BUTTON_MAP = new HashMap<String, Point>();
 	JFrame emp = new Employees();
 
+	private final static HashMap<String, Point> BUTTON_MAP = new HashMap<String, Point>();
+
+	JFrame emp = new Employees();
+
+
+	private final static HashMap<String, Point> BUTTON_MAP = new HashMap<String, Point>();
+
+	JFrame emp = new Employees();
+
+
 	static {
 		
 		BUTTON_MAP.put("판매", new Point(100, 100));
@@ -45,6 +55,61 @@ public class Buttons1 extends JButton {
 			addActionListener(new FrameVisible(emp));
 			break;
 		default:
+			break;
+		}
+		
+		switch (btn) {
+		case "����":
+			addActionListener(new FrameVisible(emp));
+			break;
+		default:
+			//System.out.println("");
+			break;
+		}
+		
+		switch (btn) {
+		case "����":
+			addActionListener(new FrameVisible(emp));
+			break;
+		default:
+			//System.out.println("");
+			break;
+		}
+		
+		switch (btn) {
+		case "����":
+			addActionListener(new FrameVisible(emp));
+			break;
+		default:
+			//System.out.println("");
+			break;
+		}
+		
+		switch (btn) {
+		case 
+		
+		switch (btn) {
+		case "����":
+			addActionListener(new FrameVisible(emp));
+			break;
+		default:
+			//System.out.println("");
+			break;
+		}
+		
+		switch (btn) {
+		case "����":
+			addActionListener(new FrameVisible(emp));
+			break;
+		default:
+			//System.out.println("");
+			break;
+		}
+"����":
+			addActionListener(new FrameVisible(emp));
+			break;
+		default:
+			//System.out.println("");
 			break;
 		}
 	}
