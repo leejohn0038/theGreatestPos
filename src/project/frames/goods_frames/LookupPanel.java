@@ -7,23 +7,68 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 import project.actions.goods_actions.GetValues;
+import project.components.goods_components.BasicPopupPanel;
 import project.components.goods_components.BasicSmallButton;
 import project.components.goods_components.BasicTextArea;
 import project.components.goods_components.GoodsTable;
+import project.components.goods_components.cancelButton;
 
 public class LookupPanel extends JPanel {
-	String val;
+	String[] combo = {"전체", "카테고리", "거래처"};
+	JComboBox<String> searchCb = new JComboBox<>(combo);
+	JComboBox<String> categoryCb = new JComboBox<>(combo);
+	String comboVal;
+	String sql = "";
+	
 	public LookupPanel() {
-		setLayout(null);
+		
+//		LookupStatement pstmt = new LookupStatement();
+		sql = "SELECT * FROM goods";
+//		try (
+//			ResultSet rs = pstmt.goodsStatment(sql).executeQuery();
+//		) {
+//			add(new BasicSmallButton("전체") {
+//				{
+//					setLocation(0, 0);
+//					
+//				}
+//			});
+//		} catch (SQLException e1) {
+//			e1.printStackTrace();
+//		}
+		
+		BasicPopupPanel category = new BasicPopupPanel();
+		categoryCb.setSelectedIndex(0);
+		categoryCb.setBounds(20, 20, 200, 50);
+		GetValues cv = new GetValues();
+		categoryCb.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				comboVal = cv.getComboBoxValue(categoryCb);
+				System.out.println(comboVal);
+			}
+		});
+		category.add(categoryCb);
+		category.add(new cancelButton(category, 200, 200));
+		add(category);
+		
 		add(new BasicSmallButton("전체") {
 			{
 				setLocation(0, 0);
+				
 			}
 		});
 		
 		add(new BasicSmallButton("카테고리") {
 			{
 				setLocation(70, 0);
+				addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						category.setVisible(true);
+					}
+				});
 			}
 		});
 		
@@ -39,20 +84,18 @@ public class LookupPanel extends JPanel {
 			}
 		});
 		
-		String[] combo = {"전체", "카테고리", "거래처"};
-		JComboBox<String> cb = new JComboBox<>(combo);
-		cb.setSelectedIndex(0);
-		cb.setBounds(325, 0, 100, 25);
-		GetValues cv = new GetValues();
-		val = cv.getComboBoxValue(cb);
-		cb.addActionListener(new ActionListener() {
+		searchCb.setSelectedIndex(0);
+		searchCb.setBounds(325, 0, 100, 25);
+		comboVal = cv.getComboBoxValue(searchCb);
+		searchCb.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				val = cv.getComboBoxValue(cb);
+				comboVal = cv.getComboBoxValue(searchCb);
+				System.out.println(comboVal);
 			}
 		});
-		add(cb);
-		cb.setVisible(true);
+		add(searchCb);
+		searchCb.setVisible(true);
 		
 		add(new BasicTextArea() {
 			{
@@ -66,7 +109,7 @@ public class LookupPanel extends JPanel {
 			}
 		});
 		
-		
+		setLayout(null);
 		setBounds(300, 100, 760, 500);
 		add(new GoodsTable());
 		setVisible(true);
