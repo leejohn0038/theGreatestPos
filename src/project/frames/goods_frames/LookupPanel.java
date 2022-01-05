@@ -11,7 +11,7 @@ import project.components.goods_components.BasicPopupPanel;
 import project.components.goods_components.BasicSmallButton;
 import project.components.goods_components.BasicTextArea;
 import project.components.goods_components.GoodsTable;
-import project.components.goods_components.cancelButton;
+import project.components.goods_components.CancelButton;
 
 public class LookupPanel extends JPanel {
 	String[] combo = {"전체", "카테고리", "거래처"};
@@ -21,21 +21,6 @@ public class LookupPanel extends JPanel {
 	String sql = "";
 	
 	public LookupPanel() {
-		
-//		LookupStatement pstmt = new LookupStatement();
-		sql = "SELECT * FROM goods";
-//		try (
-//			ResultSet rs = pstmt.goodsStatment(sql).executeQuery();
-//		) {
-//			add(new BasicSmallButton("전체") {
-//				{
-//					setLocation(0, 0);
-//					
-//				}
-//			});
-//		} catch (SQLException e1) {
-//			e1.printStackTrace();
-//		}
 		
 		BasicPopupPanel category = new BasicPopupPanel();
 		categoryCb.setSelectedIndex(0);
@@ -49,7 +34,7 @@ public class LookupPanel extends JPanel {
 			}
 		});
 		category.add(categoryCb);
-		category.add(new cancelButton(category, 200, 200));
+		category.add(new CancelButton(category, 200, 200));
 		add(category);
 		
 		add(new BasicSmallButton("전체") {

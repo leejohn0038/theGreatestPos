@@ -10,9 +10,9 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class cancelButton extends JButton {
+public class CancelButton extends JButton {
 
-	public cancelButton(JPanel panel, int x, int y) {
+	public CancelButton(JPanel panel, int x, int y) {
 		setText("Ãë¼Ò");
 		setSize(60, 25);
 		setFont(Font.getFont("µ¸¿ò"));
