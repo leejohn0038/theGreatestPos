@@ -11,7 +11,8 @@ public class GetValues {
 	}
 	
 	public int getTextNumValue(JTextArea ta) {
-		String temp = ta.getText();
+		String tempStr = ta.getText();
+		Object temp = Integer.parseInt(tempStr);
 		val = Integer.parseInt(temp);
 		return val;
 	}
