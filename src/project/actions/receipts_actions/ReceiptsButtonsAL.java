@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import project.frames.receipts_frames.CashReceipt;
+import project.frames.receipts_frames.PointCollect;
 
 public class ReceiptsButtonsAL implements ActionListener {
 	
@@ -16,6 +17,9 @@ public class ReceiptsButtonsAL implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch(btn) {
+		case "포인트 적립" :
+			new PointCollect();
+			break;
 		case "현금 영수증":
 			new CashReceipt();
 			break;

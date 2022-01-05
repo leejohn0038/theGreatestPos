@@ -4,11 +4,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class CashReceiptComp extends JPanel {
+public class CashReceiptPanel extends JPanel {
 	JTextField field;
 	JLabel label;
 	
-	public CashReceiptComp() {
+	public CashReceiptPanel() {
 		label = new JLabel("전화번호:");
 		field = new JTextField();
 		
