@@ -24,8 +24,6 @@ public class ButtonActionListener implements ActionListener {
 		switch (btnName) {
 		case "영수증": 
 			new Receipts();
-			//메인화면 크고 화면전환하기
-			main.dispose();
 			break;
 		default:
 			break;
