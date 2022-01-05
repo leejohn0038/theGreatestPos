@@ -1,5 +1,6 @@
 package project.goods.frames;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -41,9 +42,9 @@ public class LookupPanel extends JPanel {
 		
 		String[] combo = {"전체", "카테고리", "거래처"};
 		JComboBox<String> cb = new JComboBox<>(combo);
+		cb.setSelectedIndex(0);
+		cb.setBounds(325, 0, 100, 25);
 		GetComboValue cv = new GetComboValue();
-		cb.setBounds(325, 0, 75, 25);
-		cb.setVisible(true);
 		val = cv.getComboValue(cb);
 		cb.addActionListener(new ActionListener() {
 			@Override
@@ -52,10 +53,11 @@ public class LookupPanel extends JPanel {
 			}
 		});
 		add(cb);
+		cb.setVisible(true);
 		
 		add(new BasicTextArea() {
 			{
-				setLocation(400, 0);
+				setLocation(425, 0);
 			}
 		});
 		
