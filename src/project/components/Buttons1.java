@@ -9,15 +9,14 @@ import java.util.HashMap;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-
 import project.components.employees.Employees;
 import project.components.employees.Actions.FrameVisible;
 
 import project.actions.ButtonActionListener;
 
-
 public class Buttons1 extends JButton {
 	
+
 	private final static HashMap<String, Point> BUTTON_MAP = new HashMap<String, Point>();
 	JFrame emp = new Employees();
 
@@ -34,17 +33,17 @@ public class Buttons1 extends JButton {
 	public Buttons1(JFrame main, String btn) {
 		addActionListener(new ButtonActionListener(main, btn));
 		setText(btn);
-		setFont(Font.getFont("돋음"));
+		setFont(Font.getFont("돋움"));
 		setSize(100, 50);
 		setLocation(BUTTON_MAP.get(btn));
 		
 		switch (btn) {
 
 		case "직원":
-
 			addActionListener(new FrameVisible(emp));
 			break;
 		default:
+			System.out.println("");
 			break;
 		}
 	}

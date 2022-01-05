@@ -1,12 +1,11 @@
-
-package project.frames;
+package project;
 
 import javax.swing.JFrame;
 
 import project.components.Buttons1;
-import project.components.Buttons2;
 import project.components.Tables;
 import project.components.Toppanel;
+import project.components.receipts_components.Buttons2;
 
 public class MainFrame extends JFrame {
 	
@@ -38,3 +37,4 @@ public class MainFrame extends JFrame {
 		new MainFrame();
 	}
 }
+

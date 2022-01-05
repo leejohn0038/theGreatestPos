@@ -9,11 +9,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
-import project.components.Buttons1;
-import project.components.Buttons2;
-import project.components.Tables;
-
-
 public class CustomerInputFieldUi extends JFrame {
 	JTextField customer_id;
 	JTextField customer_name;

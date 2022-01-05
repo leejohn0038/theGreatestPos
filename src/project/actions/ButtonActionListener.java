@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
-import project.frames.Receipts;
+import project.frames.receipts_frames.Receipts;
 
 
 public class ButtonActionListener implements ActionListener {
@@ -26,10 +26,9 @@ public class ButtonActionListener implements ActionListener {
 			new Receipts();
 			//메인화면 크고 화면전환하기
 			main.dispose();
-			break;	
+			break;
 		default:
 			break;
-		}
-		
+		}		
 	}
-}
+}	
