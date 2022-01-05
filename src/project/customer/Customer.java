@@ -2,8 +2,6 @@ package project.customer;
 
 import javax.swing.JFrame;
 
-import project.components.Buttons1;
-import project.components.Buttons2;
 import project.components.Tables;
 
 import java.awt.event.MouseAdapter;
@@ -43,7 +41,7 @@ public class Customer {
 	}
 	// 표로 이동시키고 버튼을 눌렀을때 연동이 되어야 한다. 
 	public static void main(String[] args) {
-		Customer c = new Customer(1, "박찬호", "010-1234-1234", "퇴계원", 5);
+		Customer c = new Customer(1, "박찬호", "010-1234-1235", "퇴계원", 5);
 		System.out.println(c);
 
 	}

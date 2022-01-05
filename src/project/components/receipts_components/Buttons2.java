@@ -1,4 +1,4 @@
-package project.components;
+package project.components.receipts_components;
 
 import java.awt.Font;
 import java.awt.Point;

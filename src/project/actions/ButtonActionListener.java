@@ -2,12 +2,10 @@ package project.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
 
 import project.components.employees.frame.Employees;
 import project.frames.Receipts;
-
 
 public class ButtonActionListener implements ActionListener {
 	JFrame main;
@@ -32,7 +30,7 @@ public class ButtonActionListener implements ActionListener {
 			break;
 		default:
 			break;
-		}
-		
+		}		
 	}
 }
+

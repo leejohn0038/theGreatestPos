@@ -1,4 +1,4 @@
-package project.goods.components;
+package project.frames.goods_frames;
 
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
@@ -6,16 +6,16 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
-import project.goods.frame.ContentsPanel;
+import project.components.goods_components.BasicGnbButton;
+import project.components.goods_components.BasicTextArea;
 
-public class GoodsGnbButtons extends JPanel {
+public class GnbPanel extends JPanel {
 	BasicGnbButton manageBtn;
 	BasicGnbButton lookupBtn;
 	BasicGnbButton supplierBtn;
 	BasicGnbButton assetBtn;
 	
-	public GoodsGnbButtons() {
-		ContentsPanel contents = new ContentsPanel();
+	public GnbPanel(ContentsPanel contents) {
 		
 		manageBtn = new BasicGnbButton("상품관리");
 		manageBtn.setLocation(0, 20);
@@ -67,3 +67,32 @@ public class GoodsGnbButtons extends JPanel {
 		
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
