@@ -14,7 +14,7 @@ public class PosDBConnector {
 	static {
 		try {
 			Class.forName(driverName);
-			System.out.println("driver loaded");
+//			System.out.println("driver loaded");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}

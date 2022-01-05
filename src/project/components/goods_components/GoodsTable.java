@@ -15,7 +15,6 @@ import javax.swing.table.DefaultTableModel;
 public class GoodsTable extends JPanel {
 	private static final String[] COLUMN_NAME = {"상품번호", "이름", "수량", "가격", "거래처", "담당자"};
 	Object[][] rowData;
-//	Object[] temp = {};
 	JTable table;
 	JScrollPane sp; 
 	int gid;
@@ -25,8 +24,7 @@ public class GoodsTable extends JPanel {
 	String supplier;
 	int picid;
 	
-	public GoodsTable() {
-		String sql = "SELECT * FROM goods";
+	public GoodsTable(String sql) {
 		DefaultTableModel model = new DefaultTableModel(rowData, COLUMN_NAME);
 		table = new JTable(model);
 		sp = new JScrollPane(table); 
