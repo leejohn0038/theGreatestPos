@@ -15,7 +15,7 @@ public class Employees extends JFrame{
 		// 레이아웃을 깔끔하게 계산하기 위해서 만든 친구입니다 :D
 		setVisible(false);
 		setLayout(null);
-		setBounds(700,500,1000,700);
+		setBounds(100,100,1000,700);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		// 0, 1 은 프레임의 크기를 담는다.

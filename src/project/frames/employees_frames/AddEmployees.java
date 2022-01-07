@@ -107,7 +107,7 @@ public class AddEmployees extends JFrame{
 		
 		btn.setSize(100,50);
 		btn.setLocation(frame_size[0]-btn.getSize().width-100, frame_size[1]-btn.getSize().height-50);
-		btn.addActionListener(new AddBtn(txts, title_labs));
+		btn.addActionListener(new AddBtn(this,txts, title_labs));
 		
 		inner.add(exLab);
 		inner.add(btn);

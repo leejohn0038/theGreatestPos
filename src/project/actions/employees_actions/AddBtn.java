@@ -2,28 +2,24 @@ package project.actions.employees_actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import project.actions.employees_actions.main.SQLs;
-
 public class AddBtn implements ActionListener {
 	
+	JFrame f;
 	String[] title;
 	JLabel lab;
 	ArrayList<JTextField> txt = new ArrayList<>();
 	HashMap<String,Object> txts = new HashMap<>();
 
-	public AddBtn(HashMap<String,Object> txts, String[] labs) {
+	public AddBtn(JFrame f, HashMap<String,Object> txts, String[] labs) {
+		this.f = f;
 		this.title = labs;
 		this.txts = txts;
 	}	
@@ -35,11 +31,20 @@ public class AddBtn implements ActionListener {
 				lab = (JLabel) txts.get(title[i]);
 				System.out.println(lab.getText());
 			}else {
-				txt.add((JTextField)txts.get(title[i]));
-				System.out.println(txt.get(i-1).getText());
+				JTextField tempTxt = (JTextField)txts.get(title[i]);
+				if(i == 2 && Pattern.matches("010\\-\\d{4}\\-\\d{4}", txt.get(i-1).getText())){
+					txt.add(tempTxt);
+				}else {	
+					i = i <= 0 ? i : i--;
+				}
+				System.out.println();
 				//if()
 			}
 		}
 		//new SQLs("µî·Ï");
+		
+		
+		f.dispose();
+		
 	}
 }
