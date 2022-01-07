@@ -14,13 +14,15 @@ import project.components.goods_components.GoodsTable;
 import project.components.goods_components.CancelButton;
 
 public class LookupPanel extends JPanel {
+	String comboVal;
 	String[] combo = {"전체", "카테고리", "거래처"};
 	JComboBox<String> searchCb = new JComboBox<>(combo);
 	JComboBox<String> categoryCb = new JComboBox<>(combo);
-	String comboVal;
+	String sql = "";
 	
 	public LookupPanel() {
 		
+		// 카테고리 선택용 팝업창
 		BasicPopupPanel category = new BasicPopupPanel();
 		categoryCb.setSelectedIndex(0);
 		categoryCb.setBounds(20, 20, 200, 50);
@@ -35,7 +37,8 @@ public class LookupPanel extends JPanel {
 		category.add(categoryCb);
 		category.add(new CancelButton(category, 200, 200));
 		add(category);
-		
+
+		// 상단 버튼 생성
 		add(new BasicSmallButton("전체") {
 			{
 				setLocation(0, 0);
@@ -68,6 +71,7 @@ public class LookupPanel extends JPanel {
 			}
 		});
 		
+		// 검색창 생성
 		searchCb.setSelectedIndex(0);
 		searchCb.setBounds(325, 0, 100, 25);
 		comboVal = cv.getComboBoxValue(searchCb);
@@ -75,7 +79,6 @@ public class LookupPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				comboVal = cv.getComboBoxValue(searchCb);
-				System.out.println(comboVal);
 			}
 		});
 		add(searchCb);
@@ -92,11 +95,34 @@ public class LookupPanel extends JPanel {
 				setLocation(600, 0);
 			}
 		});
-		add(new GoodsTable());
+		
+		
+		
+		GoodsTable gt = new GoodsTable(sql);
+		
+		add(gt);
 		setLayout(null);
 		setBounds(300, 100, 760, 500);
 		setVisible(true);
 	}
+	
+	public String getComboVal() {
+		return comboVal;
+	}
+	
+	void choicCategory() {
+		switch (comboVal) {
+		case "전체":
+			sql = "SELECT * FROM goods";
+			break;
+		case "카테고리":
+			
+			break;
+		case "거래처":
+			break;
+		}
+	}
+	
 	
 	public static void main(String[] args) {
 		new GoodsFrame();
