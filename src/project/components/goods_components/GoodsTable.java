@@ -34,7 +34,6 @@ public class GoodsTable extends JPanel {
 		DefaultTableModel model = new DefaultTableModel(rowData, COLUMN_NAME);
 		table = new JTable(model);
 		sp = new JScrollPane(table); 
-		
 		try (
 			Connection conn = PosDBConnector.getConnection();	
 			PreparedStatement pstmt = conn.prepareStatement(sql);
