@@ -3,6 +3,8 @@ package project.frames.employees_frames;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,6 +18,7 @@ import javax.swing.border.LineBorder;
 import org.w3c.dom.Text;
 
 import project.actions.employees_actions.AddBtn;
+import project.actions.employees_actions.main.SQLs;
 
 public class AddEmployees extends JFrame{
 	
@@ -72,7 +75,7 @@ public class AddEmployees extends JFrame{
 			
 			JLabel lab = new JLabel();
 			JLabel idLab = new JLabel();
-			JTextField txt = new JTextField();
+			JTextField txt = new JTextField(20);
 			int txtLoc[] = new int[2];
 			
 			//라벨로 정보 표시
@@ -89,7 +92,7 @@ public class AddEmployees extends JFrame{
 			
 			//아이디 값은 db에 넣은 순서대로 배정할할 예정
 			if(i==0) {
-				idLab.setText("101");
+				idLab.setText("new SQLs(\"검색\")");
 				idLab.setBounds(txtLoc[0], txtLoc[1], 300, 50);
 				txts.put(title_labs[i], idLab);
 				inner.add(idLab);
@@ -99,11 +102,12 @@ public class AddEmployees extends JFrame{
 				inner.add(txt);
 			}
 			inner.add(lab);
+			
 		}
 		
 		btn.setSize(100,50);
 		btn.setLocation(frame_size[0]-btn.getSize().width-100, frame_size[1]-btn.getSize().height-50);
-		btn.addActionListener(new AddBtn());
+		btn.addActionListener(new AddBtn(txts, title_labs));
 		
 		inner.add(exLab);
 		inner.add(btn);

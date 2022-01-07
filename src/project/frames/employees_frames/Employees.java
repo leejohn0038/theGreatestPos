@@ -1,23 +1,12 @@
 package project.frames.employees_frames;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import project.components.employees_companents.main.Bottom_layout;
 import project.components.employees_companents.main.Top_layout;
 
 public class Employees extends JFrame{
-	
-	final String[] EMPOLYEES_NAME = {
-			"department_id",
-			"employee_id",
-			"employee_name",
-			"hire_date",
-			"rank",
-			"commission",
-			"phone_number",
-			"salary"
-	};
-	
 	
 	public Employees() {
 		// employees 프레임의 위치, 사이즈 정보 배열

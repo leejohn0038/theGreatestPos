@@ -4,6 +4,7 @@ public class Employee {
 	private Object[] obj;
 	public Employee(Object[] obj) {
 		this.obj = obj;
+		
 	}
 	
 	Object[] getDate() {

@@ -3,6 +3,7 @@ package project.components.employees_companents.main;
 import java.awt.BorderLayout;
 import java.io.File;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -17,7 +18,8 @@ public class Table_layout extends JPanel{
 	DefaultTableModel dtm;
 	
 	public Table_layout(int lw) {
-		final SQLs DB_DATA = new SQLs(null); 
+		
+		final SQLs DB_DATA = new SQLs("¸®¼Â"); 
 		String[] columnNames = DB_DATA.getTitle();
 		Object[][] rowData = DB_DATA.getRowData();
 		JTable jt;
