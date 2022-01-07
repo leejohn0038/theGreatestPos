@@ -18,7 +18,7 @@ public class LookupPanel extends JPanel {
 	String[] combo = {"전체", "카테고리", "거래처"};
 	JComboBox<String> searchCb = new JComboBox<>(combo);
 	JComboBox<String> categoryCb = new JComboBox<>(combo);
-	String sql = "";
+	String sql = "SELECT * FROM goods";
 	
 	public LookupPanel() {
 		
@@ -99,6 +99,15 @@ public class LookupPanel extends JPanel {
 		
 		
 		GoodsTable gt = new GoodsTable(sql);
+		switch (comboVal) {
+		case "전체":
+			sql = "SELECT * FROM goods";
+			break;
+		case "카테고리":
+			break;
+		case "거래처":
+			break;
+		}
 		
 		add(gt);
 		setLayout(null);
