@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
 
 import project.actions.goods_actions.GetValues;
 import project.components.goods_components.BasicPopupPanel;
@@ -80,9 +80,9 @@ public class LookupPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				comboVal = cv.getComboBoxValue(searchCb);
-				System.out.println(comboVal);
-				System.out.println(choiceCategory(comboVal));
-				
+				sql = choiceCategory(comboVal);
+				gt.model.fireTableDataChanged();
+				add(gt);
 			}
 		});
 		add(searchCb);
@@ -100,7 +100,7 @@ public class LookupPanel extends JPanel {
 			}
 		});
 		
-		add(gt);
+//		add(gt);
 		setLayout(null);
 		setBounds(300, 100, 760, 500);
 		setVisible(true);

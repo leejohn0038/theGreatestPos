@@ -18,8 +18,6 @@ import project.frames.goods_frames.LookupPanel;
 public class GoodsTable extends JPanel {
 	private static final String[] COLUMN_NAME = {"상품번호", "이름", "수량", "가격", "분류", "거래처", "담당자"};
 	Object[][] rowData;
-	JTable table;
-	JScrollPane sp; 
 	int gid;
 	String gname;
 	int gqty;
@@ -29,11 +27,11 @@ public class GoodsTable extends JPanel {
 	Date expiration;
 	String pic_name;
 	String pic_tel;
+	public DefaultTableModel model = new DefaultTableModel(rowData, COLUMN_NAME);
 	
 	public GoodsTable(String sql) {
-		DefaultTableModel model = new DefaultTableModel(rowData, COLUMN_NAME);
-		table = new JTable(model);
-		sp = new JScrollPane(table); 
+		JTable table = new JTable(model);
+		JScrollPane sp = new JScrollPane(table); 
 		try (
 			Connection conn = PosDBConnector.getConnection();	
 			PreparedStatement pstmt = conn.prepareStatement(sql);
