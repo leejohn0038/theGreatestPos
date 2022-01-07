@@ -13,6 +13,8 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
+import project.frames.goods_frames.LookupPanel;
+
 public class GoodsTable extends JPanel {
 	private static final String[] COLUMN_NAME = {"상품번호", "이름", "수량", "가격", "분류", "거래처", "담당자"};
 	Object[][] rowData;
@@ -28,9 +30,7 @@ public class GoodsTable extends JPanel {
 	String pic_name;
 	String pic_tel;
 	
-	String sql = "SELECT * FROM goods WHERE ? = ?";
-	
-	public GoodsTable() {
+	public GoodsTable(String sql) {
 		DefaultTableModel model = new DefaultTableModel(rowData, COLUMN_NAME);
 		table = new JTable(model);
 		sp = new JScrollPane(table); 
@@ -39,11 +39,6 @@ public class GoodsTable extends JPanel {
 			Connection conn = PosDBConnector.getConnection();	
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 		) {
-			String word = "'''gid'''";
-			int num = 1;
-			
-			pstmt.setString(1, word);
-			pstmt.setInt(2, num);
 			try (
 				ResultSet rs = pstmt.executeQuery();		
 			) {
