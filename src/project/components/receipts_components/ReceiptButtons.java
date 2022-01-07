@@ -9,7 +9,7 @@ import javax.swing.JButton;
 import project.MainFrame;
 import project.actions.receipts_actions.ReceiptsButtonsAL;
 
-public class Buttons2 extends JButton{
+public class ReceiptButtons extends JButton{
 	
 	private final static HashMap<String, Point> BUTTON_MAP = new HashMap<String, Point>();
 	
@@ -20,7 +20,7 @@ public class Buttons2 extends JButton{
 		BUTTON_MAP.put("¹ÝÇ°¾÷¹«", new Point(750, 500));
 	}
 	
-	public Buttons2(MainFrame main, String btn) {
+	public ReceiptButtons(MainFrame main, String btn) {
 		addActionListener(new ReceiptsButtonsAL(main, btn));
 		setText(btn);
 		setFont(Font.getFont("µ¸¿ò"));
@@ -28,7 +28,7 @@ public class Buttons2 extends JButton{
 		setLocation(BUTTON_MAP.get(btn));
 	}
 	
-	public Buttons2(MainFrame main, String btn, int minusX) {
+	public ReceiptButtons(MainFrame main, String btn, int minusX) {
 		addActionListener(new ReceiptsButtonsAL(main, btn));
 		setText(btn);
 		setFont(Font.getFont("µ¸¿ò"));

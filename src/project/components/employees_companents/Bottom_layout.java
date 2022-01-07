@@ -1,4 +1,4 @@
-package project.components.employees_companents.main;
+package project.components.employees_companents;
 
 import java.awt.Color;
 
@@ -6,8 +6,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
+import project.MainFrame;
+
 public class Bottom_layout extends JPanel{
-	public Bottom_layout(JFrame emp) {
+	public Bottom_layout(MainFrame main, JFrame emp) {
 		
 		int fw = emp.getSize().width, fh = emp.getSize().height;
 		
@@ -27,7 +29,7 @@ public class Bottom_layout extends JPanel{
 		inner_layout.setLayout(null);
 		inner_layout.setBounds(0, 0, layoutBounds[2], layoutBounds[3]-height);
 		
-		side = new SideBar_layout(emp, layoutBounds[2], layoutBounds[3]);
+		side = new SideBar_layout(main, layoutBounds[2], layoutBounds[3]);
 		inner_layout.add(side);
 		inner_layout.add(new Table_layout(side.getSize().width));
 		

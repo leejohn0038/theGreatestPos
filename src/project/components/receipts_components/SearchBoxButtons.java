@@ -1,5 +1,5 @@
 
-package project.components;
+package project.components.receipts_components;
 
 import java.awt.Font;
 import java.awt.Point;
@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 import javax.swing.JButton;
 
-public class Buttons3 extends JButton {	
+public class SearchBoxButtons extends JButton {	
 	
 private final static HashMap<String, Point> BUTTON_MAP = new HashMap<String, Point>();
 	
@@ -20,7 +20,7 @@ private final static HashMap<String, Point> BUTTON_MAP = new HashMap<String, Poi
 		BUTTON_MAP.put("영수증번호", new Point(750, 100));
 	}
 	
-	public Buttons3(String btn) {
+	public SearchBoxButtons(String btn) {
 		setFont(Font.getFont("돋음"));
 		//버튼에 텍스트 2줄 보이게하기 위한 문자열
 		setText( "<html>" + btn + "<br></html>");
@@ -28,3 +28,4 @@ private final static HashMap<String, Point> BUTTON_MAP = new HashMap<String, Poi
 		setLocation(BUTTON_MAP.get(btn));
 	}
 }
+

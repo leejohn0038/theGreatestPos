@@ -1,4 +1,4 @@
-package project.components.employees_companents.main;
+package project.components.employees_companents;
 
 import java.awt.Color;
 import java.awt.FlowLayout;

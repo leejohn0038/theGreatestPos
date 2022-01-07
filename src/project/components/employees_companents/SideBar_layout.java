@@ -1,22 +1,18 @@
-package project.components.employees_companents.main;
+package project.components.employees_companents;
 
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
-import project.actions.employees_actions.FrameVisible;
-import project.components.Buttons1;
-import project.frames.receipts_frames.*;
+import project.MainFrame;
+import project.components.MainButtons;
 
 
 public class SideBar_layout extends JPanel{
 	
-	public SideBar_layout(JFrame emp, int lw, int lh) {
+	public SideBar_layout(MainFrame main, int lw, int lh) {
 		
 		String[] btnNames1 = {"상품", "영수증", "회원", "업무가이드"};
 		
@@ -25,7 +21,7 @@ public class SideBar_layout extends JPanel{
 		setBorder(new LineBorder(Color.black));
 		
 		for (int i = 0; i < btnNames1.length; ++i) {
-			JButton btn = new Buttons1(emp, btnNames1[i]);
+			JButton btn = new MainButtons(main, btnNames1[i]);
 			btn.setBounds((int)((getBounds().width-100)/2), ((i+1)*80), 100,50);
 			add(btn);
 			

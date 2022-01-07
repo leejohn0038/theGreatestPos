@@ -8,15 +8,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import project.MainFrame;
-import project.actions.ButtonActionListener;
-import project.components.employees.Employees;
-import project.components.employees.Actions.FrameVisible;
+import project.actions.MainButtonAL;
 
-public class Buttons1 extends JButton {
+public class MainButtons extends JButton {
 	
 
 	private final static HashMap<String, Point> BUTTON_MAP = new HashMap<String, Point>();
-	JFrame emp = new Employees();
 
 	static {
 		
@@ -28,21 +25,11 @@ public class Buttons1 extends JButton {
 
 	}
 	
-	public Buttons1(MainFrame main, String btn) {
-		addActionListener(new ButtonActionListener(main, btn));
+	public MainButtons(MainFrame main, String btn) {
+		addActionListener(new MainButtonAL(main, btn));
 		setText(btn);
 		setFont(Font.getFont("돋움"));
 		setSize(100, 50);
 		setLocation(BUTTON_MAP.get(btn));
-		
-		switch (btn) {
-
-		case "직원":
-			addActionListener(new FrameVisible(emp));
-			break;
-		default:
-			System.out.println("");
-			break;
-		}
 	}
 }

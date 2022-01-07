@@ -2,10 +2,10 @@ package project;
 
 import javax.swing.JFrame;
 
-import project.components.Buttons1;
+import project.components.MainButtons;
 import project.components.Tables;
 import project.components.Toppanel;
-import project.components.receipts_components.Buttons2;
+import project.components.receipts_components.ReceiptButtons;
 import project.frames.Frames;
 
 public class MainFrame extends JFrame {
@@ -21,11 +21,11 @@ public class MainFrame extends JFrame {
 		String[] btnNames2 = {"포인트 적립", "현금 영수증", "영수증 발급"};
 		
 		for (int i = 0; i < btnNames1.length; ++i) {
-			add(new Buttons1(this, btnNames1[i]));
+			add(new MainButtons(this, btnNames1[i]));
 		}
 		
 		for(int i = 0; i < btnNames2.length; ++i) {
-			add(new Buttons2(this, btnNames2[i]));
+			add(new ReceiptButtons(this, btnNames2[i]));
 		}
 			
 		setLayout(null);

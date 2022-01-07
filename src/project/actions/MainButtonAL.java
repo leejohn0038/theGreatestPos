@@ -7,11 +7,11 @@ import java.awt.event.ActionListener;
 import project.MainFrame;
 
 
-public class ButtonActionListener implements ActionListener {
+public class MainButtonAL implements ActionListener {
 	MainFrame main;
 	String btnName;
 	
-	public ButtonActionListener(MainFrame main, String btnName) {
+	public MainButtonAL(MainFrame main, String btnName) {
 		this.main = main;
 		this.btnName = btnName;
 	}
@@ -21,6 +21,12 @@ public class ButtonActionListener implements ActionListener {
 		// 스위치문으로 버튼별 알맞은 기능을 실행
 		switch (btnName) {
 		case "영수증": 
+			main.getFrame(btnName).setVisible(true);
+			break;
+		case "상품":
+			main.getFrame(btnName).setVisible(true);
+			break;
+		case "직원": 
 			main.getFrame(btnName).setVisible(true);
 			break;
 		default:
