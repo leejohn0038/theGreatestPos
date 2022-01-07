@@ -26,7 +26,8 @@ public class Employees extends JFrame{
 	
 		setVisible(true);
 		setLayout(null);
-		setBounds(700,500,1500,700);
+		setBounds(700,500,1000,700);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		// 0, 1 은 프레임의 크기를 담는다.
 		

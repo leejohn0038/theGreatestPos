@@ -9,6 +9,7 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
+import project.actions.employees_actions.main.SQLs;
 import project.actions.employees_actions.main.TableSelectData;
 
 public class Table_layout extends JPanel{
@@ -25,6 +26,8 @@ public class Table_layout extends JPanel{
 				};
 		JTable jt;
 		JScrollPane sp;
+		
+		new SQLs(null);
 		
 		dtm = new DefaultTableModel(rowData, columnNames);
 		jt = new JTable(dtm);

@@ -22,6 +22,7 @@ public class TableSelectData implements MouseListener{
 	public void mouseClicked(MouseEvent e) {
 		row = jt.getSelectedRow();
 		column = jt.getSelectedColumn();
+		//new SQLs();
 	}
 	
 	public int getColumn() {
