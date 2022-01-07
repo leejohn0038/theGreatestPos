@@ -1,4 +1,4 @@
-package project.employees.main.top.Actions;
+package project.employees.main.top.actions;
 
 import java.awt.Dimension;
 import java.awt.Point;

@@ -9,7 +9,7 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
-import project.employees.main.bottom.Actions.TableSelectData;
+import project.employees.main.bottom.actions.TableSelectData;
 
 public class Table_layout extends JPanel{
 	

@@ -12,7 +12,7 @@ import javax.swing.border.LineBorder;
 
 import project.employees.actions.SelectBtn;
 import project.employees.frame.Guide_manual;
-import project.employees.main.top.Actions.TopInnerTop_Btn;
+import project.employees.main.top.actions.TopInnerTop_Btn;
 
 public class Nav_layout extends JPanel{
 	

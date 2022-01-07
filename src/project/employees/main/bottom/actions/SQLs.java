@@ -1,4 +1,4 @@
-package project.employees.main.bottom.Actions;
+package project.employees.main.bottom.actions;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
