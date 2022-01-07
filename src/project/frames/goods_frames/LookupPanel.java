@@ -5,20 +5,21 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import project.actions.goods_actions.GetValues;
 import project.components.goods_components.BasicPopupPanel;
 import project.components.goods_components.BasicSmallButton;
 import project.components.goods_components.BasicTextArea;
-import project.components.goods_components.GoodsTable;
 import project.components.goods_components.CancelButton;
+import project.components.goods_components.GoodsTable;
 
 public class LookupPanel extends JPanel {
 	String comboVal;
-	String[] combo = {"전체", "카테고리", "거래처"};
+	String[] combo = {"이름", "카테고리", "거래처"};
 	JComboBox<String> searchCb = new JComboBox<>(combo);
 	JComboBox<String> categoryCb = new JComboBox<>(combo);
-	String sql = "";
+	String sql = "SELECT * FROM goods";
 	
 	public LookupPanel() {
 		
@@ -31,7 +32,6 @@ public class LookupPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				comboVal = cv.getComboBoxValue(categoryCb);
-				System.out.println(comboVal);
 			}
 		});
 		category.add(categoryCb);
@@ -39,7 +39,7 @@ public class LookupPanel extends JPanel {
 		add(category);
 
 		// 상단 버튼 생성
-		add(new BasicSmallButton("전체") {
+		add(new BasicSmallButton("이름") {
 			{
 				setLocation(0, 0);
 				
@@ -72,13 +72,17 @@ public class LookupPanel extends JPanel {
 		});
 		
 		// 검색창 생성
-		searchCb.setSelectedIndex(0);
+		GoodsTable gt = new GoodsTable(sql);
+//		searchCb.setSelectedIndex(0);
 		searchCb.setBounds(325, 0, 100, 25);
 		comboVal = cv.getComboBoxValue(searchCb);
 		searchCb.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				comboVal = cv.getComboBoxValue(searchCb);
+				System.out.println(comboVal);
+				System.out.println(choiceCategory(comboVal));
+				
 			}
 		});
 		add(searchCb);
@@ -96,10 +100,6 @@ public class LookupPanel extends JPanel {
 			}
 		});
 		
-		
-		
-		GoodsTable gt = new GoodsTable(sql);
-		
 		add(gt);
 		setLayout(null);
 		setBounds(300, 100, 760, 500);
@@ -110,17 +110,18 @@ public class LookupPanel extends JPanel {
 		return comboVal;
 	}
 	
-	void choicCategory() {
+	String choiceCategory(String comboVal) {
 		switch (comboVal) {
-		case "전체":
-			sql = "SELECT * FROM goods";
+		case "이름":
+			sql = "SELECT * FROM goods WHERE pic_name LIKE \'%김%\'";
 			break;
 		case "카테고리":
-			
+			sql = "SELECT * FROM goods WHERE gcategory LIKE \'%전자%\'";
 			break;
 		case "거래처":
 			break;
 		}
+		return sql;
 	}
 }
 

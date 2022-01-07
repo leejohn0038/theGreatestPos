@@ -15,6 +15,7 @@ import project.components.goods_components.GoodsTable;
 
 public class ManagementPanel extends JPanel {
 	int qty;
+	String sql = "SELECT * FROM goods";
 	
 	public ManagementPanel() {
 				
@@ -102,7 +103,7 @@ public class ManagementPanel extends JPanel {
 		
 		setLayout(null);
 		setBounds(300, 100, 760, 500);
-		add(new GoodsTable());
+		add(new GoodsTable(sql));
 		setVisible(true);
 		
 	}

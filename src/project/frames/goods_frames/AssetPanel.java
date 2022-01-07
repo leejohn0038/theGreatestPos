@@ -7,6 +7,8 @@ import project.components.goods_components.BasicTextArea;
 import project.components.goods_components.GoodsTable;
 
 public class AssetPanel extends JPanel {
+	String sql = "SELECT * FROM goods";
+	
 	public AssetPanel() {
 		
 		add(new BasicTextArea() {
@@ -23,7 +25,7 @@ public class AssetPanel extends JPanel {
 		
 		setLayout(null);
 		setBounds(300, 100, 760, 500);
-		add(new GoodsTable());
+		add(new GoodsTable(sql));
 		setVisible(true);
 	}
 }
