@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import javax.swing.JButton;
 
+import project.MainFrame;
 import project.actions.receipts_actions.ReceiptsButtonsAL;
 
 public class Buttons2 extends JButton{
@@ -19,18 +20,18 @@ public class Buttons2 extends JButton{
 		BUTTON_MAP.put("¹ÝÇ°¾÷¹«", new Point(750, 500));
 	}
 	
-	public Buttons2(String btn) {
-		addActionListener(new ReceiptsButtonsAL(btn));
+	public Buttons2(MainFrame main, String btn) {
+		addActionListener(new ReceiptsButtonsAL(main, btn));
 		setText(btn);
-		setFont(Font.getFont("µ¸À½"));
+		setFont(Font.getFont("µ¸¿ò"));
 		setSize(100, 50);
 		setLocation(BUTTON_MAP.get(btn));
 	}
 	
-	public Buttons2(String btn, int minusX) {
-		addActionListener(new ReceiptsButtonsAL(btn));
+	public Buttons2(MainFrame main, String btn, int minusX) {
+		addActionListener(new ReceiptsButtonsAL(main, btn));
 		setText(btn);
-		setFont(Font.getFont("µ¸À½"));
+		setFont(Font.getFont("µ¸¿ò"));
 		setSize(100, 50);
 		setLocation(BUTTON_MAP.get(btn).x - minusX, BUTTON_MAP.get(btn).y);
 	}

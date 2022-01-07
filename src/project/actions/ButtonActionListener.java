@@ -4,16 +4,14 @@ package project.actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
-
-import project.frames.receipts_frames.Receipts;
+import project.MainFrame;
 
 
 public class ButtonActionListener implements ActionListener {
-	JFrame main;
+	MainFrame main;
 	String btnName;
 	
-	public ButtonActionListener(JFrame main, String btnName) {
+	public ButtonActionListener(MainFrame main, String btnName) {
 		this.main = main;
 		this.btnName = btnName;
 	}
@@ -23,7 +21,7 @@ public class ButtonActionListener implements ActionListener {
 		// 스위치문으로 버튼별 알맞은 기능을 실행
 		switch (btnName) {
 		case "영수증": 
-			new Receipts();
+			main.getFrame(btnName).setVisible(true);
 			break;
 		default:
 			break;

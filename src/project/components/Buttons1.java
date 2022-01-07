@@ -2,17 +2,15 @@ package project.components;
 
 import java.awt.Font;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import project.MainFrame;
+import project.actions.ButtonActionListener;
 import project.components.employees.Employees;
 import project.components.employees.Actions.FrameVisible;
-
-import project.actions.ButtonActionListener;
 
 public class Buttons1 extends JButton {
 	
@@ -30,7 +28,7 @@ public class Buttons1 extends JButton {
 
 	}
 	
-	public Buttons1(JFrame main, String btn) {
+	public Buttons1(MainFrame main, String btn) {
 		addActionListener(new ButtonActionListener(main, btn));
 		setText(btn);
 		setFont(Font.getFont("돋움"));
