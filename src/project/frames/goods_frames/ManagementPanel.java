@@ -102,7 +102,7 @@ public class ManagementPanel extends JPanel {
 		
 		setLayout(null);
 		setBounds(300, 100, 760, 500);
-		add(new GoodsTable("SELECT * FROM goods"));
+		add(new GoodsTable());
 		setVisible(true);
 		
 	}
