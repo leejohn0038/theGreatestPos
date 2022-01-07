@@ -12,6 +12,7 @@ import project.components.employees.main.bottom.view.Table_layout;
 public class TableSelectData implements MouseListener{
 
 	JTable jt;
+	int row, column;
 	
 	public TableSelectData(JTable jt) {
 		this.jt = jt;
@@ -19,9 +20,16 @@ public class TableSelectData implements MouseListener{
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		int row = jt.getSelectedRow();
-		int column = jt.getSelectedColumn();
-		System.out.print(jt.getSelectedRow() + " ");
+		row = jt.getSelectedRow();
+		column = jt.getSelectedColumn();
+	}
+	
+	public int getColumn() {
+		return column;
+	}
+	
+	public int getRow() {
+		return row;
 	}
 
 	@Override

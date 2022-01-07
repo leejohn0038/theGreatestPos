@@ -13,7 +13,6 @@ import project.components.employees.main.bottom.Actions.TableSelectData;
 
 public class Table_layout extends JPanel{
 	
-	File dbTest = new File("Test_employees.txt");
 	DefaultTableModel dtm;
 	
 	public Table_layout(int lw) {

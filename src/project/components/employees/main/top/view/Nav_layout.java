@@ -10,9 +10,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-import project.components.employees.Actions.SelectBtn;
 import project.components.employees.frame.Guide_manual;
 import project.components.employees.main.top.Actions.TopInnerTop_Btn;
+import project.employees.components.Actions.SelectBtn;
 
 public class Nav_layout extends JPanel{
 	

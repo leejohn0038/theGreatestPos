@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import project.components.Buttons1;
-import project.components.employees.Actions.FrameVisible;
+import project.employees.components.Actions.FrameVisible;
 import project.frames.receipts_frames.*;
 
 

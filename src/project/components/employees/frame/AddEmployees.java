@@ -15,7 +15,7 @@ import javax.swing.border.LineBorder;
 
 import org.w3c.dom.Text;
 
-import project.components.employees.Actions.AddBtn;
+import project.employees.components.Actions.AddBtn;
 
 public class AddEmployees extends JFrame{
 	

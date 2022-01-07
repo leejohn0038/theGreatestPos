@@ -10,9 +10,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import project.components.employees.Actions.DelectValue;
-import project.components.employees.Actions.FrameVisible;
 import project.components.employees.frame.Guide_manual;
+import project.employees.components.Actions.DelectValue;
+import project.employees.components.Actions.FrameVisible;
 import project.components.employees.frame.AddEmployees;
 
 //여긴 직원프레임의 상단 버튼입니다.
