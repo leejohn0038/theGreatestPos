@@ -1,4 +1,4 @@
-package project.components.goods_components;
+package project.goods_components;
 
 import javax.swing.JComboBox;
 

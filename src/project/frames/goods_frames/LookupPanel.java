@@ -8,9 +8,9 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 import project.actions.goods_actions.GetComboBoxValue;
-import project.components.goods_components.BasicLnbButton;
-import project.components.goods_components.BasicTextArea;
-import project.components.goods_components.GoodsTable;
+import project.goods_components.BasicLnbButton;
+import project.goods_components.BasicTextArea;
+import project.goods_components.GoodsTable;
 
 public class LookupPanel extends JPanel {
 	String val;
