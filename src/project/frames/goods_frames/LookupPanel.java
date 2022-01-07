@@ -97,10 +97,6 @@ public class LookupPanel extends JPanel {
 		setBounds(300, 100, 760, 500);
 		setVisible(true);
 	}
-	
-	public static void main(String[] args) {
-		new GoodsFrame();
-	}
 }
 
 

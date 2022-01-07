@@ -2,13 +2,9 @@ package project.frames.goods_frames;
 
 import javax.swing.JFrame;
 
-<<<<<<< HEAD
-import project.components.Buttons1;
-import project.components.goods_components.BasicBigButton;
-=======
 import project.MainFrame;
 import project.components.MainButtons;
->>>>>>> refs/heads/jo
+
 
 public class GoodsFrame extends JFrame {
 
