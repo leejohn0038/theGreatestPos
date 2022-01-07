@@ -1,4 +1,4 @@
-package project.customer;
+package project.actions.customers_actions;
 
 import javax.swing.JFrame;
 
@@ -17,7 +17,7 @@ import java.awt.event.MouseEvent;
 	2. 
 */
 	
-public class Customer {
+public class Customers {
 	int customer_id;
 	String customer_name;
 	String customer_phone;
@@ -26,12 +26,12 @@ public class Customer {
 	double point_ratio; // 적립되는 포인트 비율에 사용할 예정
 	String custmer_date; //등록 날짜
 	
-	// 모든 정보를 하나로 엮기 위해서 맵이나 리스트를 사용해야 할 것 같다
-	public Customer() {
+
+	public Customers() {
 
 	}
 
-	public Customer(int customer_id, String customer_name, String customer_phone, String customer_adress, double membership_point) {
+	public Customers(int customer_id, String customer_name, String customer_phone, String customer_adress, double membership_point) {
 		super();
 		this.customer_id = customer_id;
 		this.customer_name = customer_name;
@@ -41,7 +41,7 @@ public class Customer {
 	}
 	// 표로 이동시키고 버튼을 눌렀을때 연동이 되어야 한다. 
 	public static void main(String[] args) {
-		Customer c = new Customer(1, "박찬호", "010-1234-1235", "퇴계원", 5);
+		Customers c = new Customers(1, "박찬호", "010-1234-1235", "퇴계원", 5);
 		System.out.println(c);
 
 	}
