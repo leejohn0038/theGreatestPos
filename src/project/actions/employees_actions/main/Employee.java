@@ -9,4 +9,8 @@ public class Employee {
 	Object[] getDate() {
 		return obj;
 	}
+	
+	int objSize() {
+		return obj.length;
+	}
 }

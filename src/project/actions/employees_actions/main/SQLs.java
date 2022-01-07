@@ -1,20 +1,24 @@
 package project.actions.employees_actions.main;
 
+import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SQLs {
-	public SQLs(String sql) {
-		sql = "select * from mart_employees";
-		ArrayList<Employee> employees = new ArrayList<>();
+	ArrayList<Employee> employees = new ArrayList<>();
+	private final String SQL = "select * from mart_employees";
+	private int row;
+	public SQLs(final String addSql) {
 		String[] title;
+		
 		try (
 				Connection conn = DBConnector.getConnection();
-				PreparedStatement pstmt = conn.prepareStatement(sql);
+				PreparedStatement pstmt = conn.prepareStatement(SQL+addSql);
 				ResultSet rs = pstmt.executeQuery();
 			) {
 			ResultSetMetaData meta = rs.getMetaData();
@@ -30,6 +34,7 @@ public class SQLs {
 			while(rs.next()) {		
 				
 				Object[] objs = new Object[meta.getColumnCount()];
+				row = objs.length;
 				
 				for(int col = 1; col<=meta.getColumnCount(); col++) {
 					if(rs.getString(meta.getColumnName(col)) != null) {
@@ -37,15 +42,29 @@ public class SQLs {
 					}else {
 						objs[col - 1] = "null";
 					}
-					
-					System.out.print(objs[col-1]);
 				}
-				
+				employees.add(new Employee(objs));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.exit(0);
 		}
+	}
+	
+	ArrayList<Employee> getEmplotees() {
+		return employees;
+	}
+	
+	Object[][] getRowData(){
+		int col = employees.size();
+		Object[][] rowData = new Object[col][row];
+		
+		for(int i = 0; i<col; i++) {
+			for(int j=0; i<)
+			rowData[i] = employees.get(i);
+		}
+		
+		return rowData;
 	}
 }
