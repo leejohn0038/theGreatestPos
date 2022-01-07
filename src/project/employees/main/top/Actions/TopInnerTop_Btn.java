@@ -1,4 +1,4 @@
-package project.components.employees.main.top.Actions;
+package project.employees.main.top.Actions;
 
 import java.awt.Dimension;
 import java.awt.Point;
@@ -10,10 +10,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import project.components.employees.frame.Guide_manual;
-import project.employees.components.Actions.DelectValue;
-import project.employees.components.Actions.FrameVisible;
-import project.components.employees.frame.AddEmployees;
+import project.employees.actions.DelectValue;
+import project.employees.actions.FrameVisible;
+import project.employees.frame.AddEmployees;
+import project.employees.frame.Guide_manual;
 
 //여긴 직원프레임의 상단 버튼입니다.
 

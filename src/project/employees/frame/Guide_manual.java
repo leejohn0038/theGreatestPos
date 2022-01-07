@@ -1,4 +1,4 @@
-package project.components.employees.frame;
+package project.employees.frame;
 
 import javax.swing.JFrame;
 

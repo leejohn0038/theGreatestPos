@@ -1,4 +1,4 @@
-package project.components.employees.main.bottom.Actions;
+package project.employees.main.bottom.Actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,7 +7,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JTable;
 
-import project.components.employees.main.bottom.view.Table_layout;
+import project.employees.main.bottom.view.Table_layout;
 
 public class TableSelectData implements MouseListener{
 

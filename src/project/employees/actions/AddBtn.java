@@ -1,4 +1,4 @@
-package project.employees.components.Actions;
+package project.employees.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

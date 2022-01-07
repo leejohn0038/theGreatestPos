@@ -1,4 +1,4 @@
-package project.components.employees.main.top.view;
+package project.employees.main.top.view;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -10,9 +10,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-import project.components.employees.frame.Guide_manual;
-import project.components.employees.main.top.Actions.TopInnerTop_Btn;
-import project.employees.components.Actions.SelectBtn;
+import project.employees.actions.SelectBtn;
+import project.employees.frame.Guide_manual;
+import project.employees.main.top.Actions.TopInnerTop_Btn;
 
 public class Nav_layout extends JPanel{
 	
