@@ -2,9 +2,9 @@ package project.frames.goods_frames;
 
 import javax.swing.JPanel;
 
-import project.goods_components.BasicLnbButton;
-import project.goods_components.BasicTextArea;
-import project.goods_components.GoodsTable;
+import project.components.goods_components.BasicLnbButton;
+import project.components.goods_components.BasicTextArea;
+import project.components.goods_components.GoodsTable;
 
 public class AssetPanel extends JPanel {
 	public AssetPanel() {

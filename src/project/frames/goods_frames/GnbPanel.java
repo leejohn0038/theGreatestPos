@@ -6,8 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
-import project.goods_components.BasicGnbButton;
-import project.goods_components.BasicTextArea;
+import project.components.goods_components.BasicGnbButton;
 
 public class GnbPanel extends JPanel {
 	BasicGnbButton manageBtn;

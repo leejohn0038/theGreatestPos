@@ -1,4 +1,4 @@
-package project.goods_components;
+package project.components.goods_components;
 
 import java.awt.BorderLayout;
 
