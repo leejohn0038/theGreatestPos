@@ -2,8 +2,6 @@ package project.customer;
 
 import javax.swing.JFrame;
 
-import project.components.Buttons1;
-import project.components.Buttons2;
 import project.components.Tables;
 
 import java.awt.event.MouseAdapter;

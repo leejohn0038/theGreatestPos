@@ -12,6 +12,4 @@ public class BackButton extends JButton {
 		addActionListener(new BackButtonAL());
 		setBounds(10, 20, 50, 40);
 	}
-	
 }
-

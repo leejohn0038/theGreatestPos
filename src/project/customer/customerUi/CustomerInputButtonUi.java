@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 import javax.swing.JButton;
 
-import project.components.Buttons1;
+import project.components.MainButtons;
 
 public class CustomerInputButtonUi extends JButton {
 	
