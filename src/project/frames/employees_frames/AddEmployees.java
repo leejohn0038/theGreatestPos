@@ -53,7 +53,7 @@ public class AddEmployees extends JFrame{
 		JLabel exLab = new JLabel("등록하실 직원 정보를 입력해주세요");
 		JButton btn = new JButton("등록");
 		
-		String[] title_labs = {"ID", "이름", "전화번호", "주소"}; 
+		String[] title_labs = {"ID", "이름", "전화번호", "직책"}; 
 		ArrayList<JLabel> labs = new ArrayList<>();
 		HashMap<String,Object> txts = new HashMap<>();
 		

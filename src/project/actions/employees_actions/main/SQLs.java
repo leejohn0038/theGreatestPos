@@ -10,15 +10,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class SQLs {
+	
 	ArrayList<Employee> employees = new ArrayList<>();
 	private final String SQL = "select * from mart_employees";
 	private int row;
+	private String[] title;
+	
 	public SQLs(final String addSql) {
-		String[] title;
 		
 		try (
 				Connection conn = DBConnector.getConnection();
-				PreparedStatement pstmt = conn.prepareStatement(SQL+addSql);
+				PreparedStatement pstmt = conn.prepareStatement(SQL + " order by employee_id");
 				ResultSet rs = pstmt.executeQuery();
 			) {
 			ResultSetMetaData meta = rs.getMetaData();
@@ -29,7 +31,6 @@ public class SQLs {
 				title[i] =meta.getColumnName(i+1);
 				//System.out.println(title[i]);
 			}
-			
 			
 			while(rs.next()) {		
 				
@@ -56,13 +57,18 @@ public class SQLs {
 		return employees;
 	}
 	
-	Object[][] getRowData(){
+	public String[] getTitle() {
+		return title;
+	}
+	
+	public Object[][] getRowData(){
 		int col = employees.size();
 		Object[][] rowData = new Object[col][row];
 		
 		for(int i = 0; i<col; i++) {
-			for(int j=0; i<)
-			rowData[i] = employees.get(i);
+			for(int j=0; j<row; j++) {
+				rowData[i] = employees.get(i).getDate();
+			}
 		}
 		
 		return rowData;
