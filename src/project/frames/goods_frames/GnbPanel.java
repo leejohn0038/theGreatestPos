@@ -6,8 +6,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
+<<<<<<< HEAD
 import project.components.goods_components.BasicBigButton;
 import project.components.goods_components.BasicTextArea;
+=======
+import project.components.goods_components.BasicGnbButton;
+>>>>>>> refs/heads/jo
 
 public class GnbPanel extends JPanel {
 	BasicBigButton manageBtn;

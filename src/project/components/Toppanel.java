@@ -1,6 +1,5 @@
 package project.components;
 
-import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JButton;
@@ -10,24 +9,16 @@ import javax.swing.JTextField;
 
 public class Toppanel extends JPanel{
 	
-	JTextField textField;
-	JLabel label;
-	JButton btn;
-	
-	public Toppanel() {
-		textField = new JTextField();
-		label = new JLabel("  ÆÇ¸Å");
-		btn = new JButton("°Ë»ö");
+	public Toppanel(String name) {
 		
-		label.setBounds(50, 20, 100, 40);
-		label.setFont(new Font("µ¸À½", Font.BOLD, 30));
-		textField.setBounds(600, 20, 270, 40);
-		btn.setBounds(900, 20, 70, 40);
-		
-		add(label);
-		add(textField);
-		add(btn);
-		setBounds(0, 0, 1000, 100);
-		setLayout(null);
+		add(new Label(name, 0, 20, 300, 40) {
+			{
+				setFont(new Font("µ¸À½", Font.BOLD, 30));
+			}
+		});
+		add(new TextField(500, 20, 270, 40));
+		add(new Button("°Ë»ö", 800, 20, 70, 40));
+		setBounds(100, 0, 930, 100);
+		setLayout(null);		
 	}
 }
