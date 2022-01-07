@@ -99,15 +99,7 @@ public class LookupPanel extends JPanel {
 		
 		
 		GoodsTable gt = new GoodsTable(sql);
-		switch (comboVal) {
-		case "전체":
-			sql = "SELECT * FROM goods";
-			break;
-		case "카테고리":
-			break;
-		case "거래처":
-			break;
-		}
+		choiceCategory();
 		
 		add(gt);
 		setLayout(null);
@@ -119,7 +111,7 @@ public class LookupPanel extends JPanel {
 		return comboVal;
 	}
 	
-	void choicCategory() {
+	String choiceCategory() {
 		switch (comboVal) {
 		case "전체":
 			sql = "SELECT * FROM goods";
@@ -130,6 +122,7 @@ public class LookupPanel extends JPanel {
 		case "거래처":
 			break;
 		}
+		return sql;
 	}
 	
 	
