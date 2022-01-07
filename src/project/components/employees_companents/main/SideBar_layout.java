@@ -1,4 +1,4 @@
-package project.employees.main.bottom.view;
+package project.components.employees_companents.main;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -9,8 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
+import project.actions.employees_actions.FrameVisible;
 import project.components.Buttons1;
-import project.employees.actions.FrameVisible;
 import project.frames.receipts_frames.*;
 
 

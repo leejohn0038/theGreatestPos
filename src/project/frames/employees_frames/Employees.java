@@ -1,9 +1,9 @@
-package project.employees.frame;
+package project.frames.employees_frames;
 
 import javax.swing.JFrame;
 
-import project.employees.main.bottom.view.Bottom_layout;
-import project.employees.main.top.view.Top_layout;
+import project.components.employees_companents.main.Bottom_layout;
+import project.components.employees_companents.main.Top_layout;
 
 public class Employees extends JFrame{
 	

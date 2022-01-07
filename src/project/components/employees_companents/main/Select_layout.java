@@ -1,4 +1,4 @@
-package project.employees.main.bottom.view;
+package project.components.employees_companents.main;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-import project.employees.actions.SelectBtn;
+import project.actions.employees_actions.SelectBtn;
 
 public class Select_layout extends JPanel{
 	

@@ -1,4 +1,4 @@
-package project.employees.main.bottom.actions;
+package project.actions.employees_actions.main;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

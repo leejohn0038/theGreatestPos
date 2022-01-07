@@ -1,4 +1,4 @@
-package project.employees.main.top.view;
+package project.components.employees_companents.main;
 
 import java.awt.Color;
 

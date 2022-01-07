@@ -1,4 +1,4 @@
-package project.employees.frame;
+package project.frames.employees_frames;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -15,7 +15,7 @@ import javax.swing.border.LineBorder;
 
 import org.w3c.dom.Text;
 
-import project.employees.actions.AddBtn;
+import project.actions.employees_actions.AddBtn;
 
 public class AddEmployees extends JFrame{
 	

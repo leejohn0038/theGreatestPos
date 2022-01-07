@@ -1,4 +1,4 @@
-package project.employees.main.bottom.view;
+package project.components.employees_companents.main;
 
 import java.awt.BorderLayout;
 import java.io.File;
@@ -9,7 +9,7 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
-import project.employees.main.bottom.actions.TableSelectData;
+import project.actions.employees_actions.main.TableSelectData;
 
 public class Table_layout extends JPanel{
 	

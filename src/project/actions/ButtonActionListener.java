@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
-import project.employees.frame.Employees;
+import project.frames.employees_frames.Employees;
 import project.frames.receipts_frames.*;
 
 public class ButtonActionListener implements ActionListener {
