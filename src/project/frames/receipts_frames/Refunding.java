@@ -2,15 +2,17 @@ package project.frames.receipts_frames;
 
 import javax.swing.JFrame;
 
+import project.components.Tables;
 import project.components.Toppanel;
-import project.components.receipts_components.PointCollectPanel;
+import project.components.receipts_components.RefundingPanel;
 import project.components.receipts_components.SubmitBtn;
 
-public class PointCollect extends JFrame {
-	
-	public PointCollect() {
-		add(new Toppanel("포인트 적립"));
-		add(new PointCollectPanel());
+public class Refunding extends JFrame {
+
+	public Refunding() {
+		add(new Toppanel("반품업무"));
+		add(new Tables(100, 100, 200));
+		add(new RefundingPanel());
 		add(new SubmitBtn());
 		
 		setLayout(null);
@@ -18,9 +20,5 @@ public class PointCollect extends JFrame {
 		setBounds(100, 100, 1000, 700);
 		setVisible(false);
 		setResizable(false);
-	}
-	
-	public static void main(String[] args) {
-		new PointCollect();
 	}
 }

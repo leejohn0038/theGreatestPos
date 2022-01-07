@@ -1,46 +1,100 @@
 package project.frames.goods_frames;
 
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import project.goods_components.BasicLnbButton;
-import project.goods_components.BasicTextArea;
-import project.goods_components.GoodsTable;
+import project.actions.goods_actions.GetValues;
+import project.components.goods_components.BasicPopupPanel;
+import project.components.goods_components.BasicSmallButton;
+import project.components.goods_components.BasicTextArea;
+import project.components.goods_components.GoodsTable;
 
 public class ManagementPanel extends JPanel {
+	int qty;
 	
 	public ManagementPanel() {
-		
-		add(new BasicLnbButton("입고") {
+				
+		BasicPopupPanel store = new BasicPopupPanel();
+		// 테스트용 버튼을 만들어 렌덤물품이 추가되게 확인하기
+		store.add(new JLabel("상품추가") {
 			{
-				setLocation(0, 0);
+				setBounds(20, 10, 100, 50);
+				setFont(new Font("돋움", Font.BOLD, 20));
+			}
+		});
+		store.add(new BasicTextArea("상품의 이름을 입력해주세요") {
+			{
+				setLocation(20, 75);
+			}
+		});
+		BasicTextArea qtyTxt = new BasicTextArea("수량을 입력해주세요");
+		qtyTxt.setLocation(20, 120);
+		store.add(qtyTxt);
+		store.add(new BasicSmallButton("추가") {
+			{
+				setLocation(140, 240);
+				addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						qty = new GetValues().getTextNumValue(qtyTxt);
+					}
+				});
+			}
+		});
+		add(store);
+		store.add(new BasicSmallButton("취소") {
+			{
+				setLocation(220, 240);
+				addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						store.setVisible(false);
+					}
+				});
 			}
 		});
 		
-		add(new BasicLnbButton("출고") {
+		add(new BasicSmallButton("입고") {
+			{
+				setLocation(0, 0);
+				addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						store.setVisible(true);;
+					}
+				});
+			}
+		});
+		
+		add(new BasicSmallButton("출고") {
 			{
 				setLocation(70, 0);
 			}
 		});
 		
-		add(new BasicLnbButton("폐기") {
+		add(new BasicSmallButton("폐기") {
 			{
 				setLocation(140, 0);
 			}
 		});
 		
-		add(new BasicLnbButton("반품") {
+		add(new BasicSmallButton("반품") {
 			{
 				setLocation(210, 0);
 			}
 		});
 		
-		add(new BasicTextArea() {
+		add(new BasicTextArea("검색어를 입력해주세요") {
 			{
 				setLocation(400, 0);
 			}
 		});
 		
-		add(new BasicLnbButton("검색") {
+		add(new BasicSmallButton("검색") {
 			{
 				setLocation(600, 0);
 			}
@@ -48,7 +102,7 @@ public class ManagementPanel extends JPanel {
 		
 		setLayout(null);
 		setBounds(300, 100, 760, 500);
-		add(new GoodsTable());
+		//add(new GoodsTable());
 		setVisible(true);
 		
 	}

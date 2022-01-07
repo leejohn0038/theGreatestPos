@@ -2,9 +2,9 @@ package project.frames.goods_frames;
 
 import javax.swing.JPanel;
 
-import project.goods_components.BasicLnbButton;
-import project.goods_components.BasicTextArea;
-import project.goods_components.GoodsTable;
+import project.components.goods_components.BasicSmallButton;
+import project.components.goods_components.BasicTextArea;
+import project.components.goods_components.GoodsTable;
 
 public class AssetPanel extends JPanel {
 	public AssetPanel() {
@@ -15,7 +15,7 @@ public class AssetPanel extends JPanel {
 			}
 		});
 		
-		add(new BasicLnbButton("검색") {
+		add(new BasicSmallButton("검색") {
 			{
 				setLocation(600, 0);
 			}
@@ -23,7 +23,7 @@ public class AssetPanel extends JPanel {
 		
 		setLayout(null);
 		setBounds(300, 100, 760, 500);
-		add(new GoodsTable());
+		//add(new GoodsTable());
 		setVisible(true);
 	}
 }
