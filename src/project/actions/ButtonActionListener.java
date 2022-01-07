@@ -1,13 +1,11 @@
-
 package project.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
 
-import project.frames.receipts_frames.Receipts;
-
+import project.frames.employees_frames.Employees;
+import project.frames.receipts_frames.*;
 
 public class ButtonActionListener implements ActionListener {
 	JFrame main;
@@ -24,11 +22,16 @@ public class ButtonActionListener implements ActionListener {
 		switch (btnName) {
 		case "영수증": 
 			new Receipts();
-			//메인화면 크고 화면전환하기
+			//메인화면 크고 화면전환하기=
+			main.dispose();
+			break;	
+		case "직원":
+			new Employees();
 			main.dispose();
 			break;
 		default:
 			break;
 		}		
 	}
-}	
+}
+

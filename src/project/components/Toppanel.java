@@ -19,7 +19,7 @@ public class Toppanel extends JPanel{
 		label = new JLabel(name);
 		btn = new JButton("°Ë»ö");
 		
-		label.setBounds(0, 20, 150, 40);
+		label.setBounds(0, 20, 300, 40);
 		label.setFont(new Font("µ¸À½", Font.BOLD, 30));
 		textField.setBounds(500, 20, 270, 40);
 		btn.setBounds(800, 20, 70, 40);
