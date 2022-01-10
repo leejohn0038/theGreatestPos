@@ -7,9 +7,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
+import project.actions.employees_actions.SQLs;
+
 //프레임의 상단 레이아웃 (logo / 조회 / 등록 / 편집 버튼)
 public class Top_layout extends JPanel{
-	public Top_layout(JFrame emp) {
+	public Top_layout(JFrame emp, SQLs sql) {
 		int fw = emp.getSize().width, fh = emp.getSize().height;
 		
 		//top_layout
@@ -35,7 +37,7 @@ public class Top_layout extends JPanel{
 		//왼쪽 레이아웃
 		add(left);
 		//오른쪽 레이아웃
-		add(new Nav_layout(layL_width, layR_width, height));
+		add(new Nav_layout(layL_width, layR_width, height, sql));
 		
 		setLayout(null);
 		setBounds(0, 0, fw, height);	//상단 레이아웃은 20%만 먹게

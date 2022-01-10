@@ -7,9 +7,10 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import project.MainFrame;
+import project.actions.employees_actions.SQLs;
 
 public class Bottom_layout extends JPanel{
-	public Bottom_layout(MainFrame main, JFrame emp) {
+	public Bottom_layout(MainFrame main, JFrame emp, SQLs sql) {
 		
 		int fw = emp.getSize().width, fh = emp.getSize().height;
 		
@@ -31,7 +32,7 @@ public class Bottom_layout extends JPanel{
 		
 		side = new SideBar_layout(main, layoutBounds[2], layoutBounds[3]);
 		inner_layout.add(side);
-		inner_layout.add(new Table_layout(side.getSize().width));
+		inner_layout.add(new Table_layout(side.getSize().width, sql, emp));
 		
 		add(inner_layout);
 		

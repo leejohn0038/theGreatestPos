@@ -18,15 +18,16 @@ import javax.swing.border.LineBorder;
 import org.w3c.dom.Text;
 
 import project.actions.employees_actions.AddBtn;
-import project.actions.employees_actions.main.SQLs;
+import project.actions.employees_actions.AddData;
+import project.actions.employees_actions.SQLs;
 
 public class AddEmployees extends JFrame{
 	
 	private int frame_size[] = {700,500}; 
 	
-	public AddEmployees() {
+	public AddEmployees(SQLs sql) {
 		
-		add(inner_lay());
+		add(inner_lay(sql));
 		//add(out_lay());
 		setBounds(500,500,frame_size[0],frame_size[1]);
 		setVisible(false);
@@ -50,8 +51,9 @@ public class AddEmployees extends JFrame{
 		return out;
 	}*/
 	
-	JPanel inner_lay() {
+	JPanel inner_lay(SQLs sql) {
 		
+		AddData addData = null;
 		JPanel inner = new JPanel();
 		JLabel exLab = new JLabel("등록하실 직원 정보를 입력해주세요");
 		JButton btn = new JButton("등록");
@@ -70,6 +72,7 @@ public class AddEmployees extends JFrame{
 		exLab_x = Math.abs((frame_size[0]-exLab.getSize().width)/2);
 		exLab.setLocation(exLab_x,0);
 		exLab.setFont(new Font("consolas|돋움", Font.BOLD, 15));
+		
 		
 		for(int i = 0; i<title_labs.length;i++) {
 			
@@ -90,9 +93,10 @@ public class AddEmployees extends JFrame{
 			
 			labs.add(lab);
 			
+			
 			//아이디 값은 db에 넣은 순서대로 배정할할 예정
 			if(i==0) {
-				idLab.setText("new SQLs(\"검색\")");
+				idLab.setText(Integer.toString(sql.getEmp_id()));
 				idLab.setBounds(txtLoc[0], txtLoc[1], 300, 50);
 				txts.put(title_labs[i], idLab);
 				inner.add(idLab);
@@ -107,7 +111,7 @@ public class AddEmployees extends JFrame{
 		
 		btn.setSize(100,50);
 		btn.setLocation(frame_size[0]-btn.getSize().width-100, frame_size[1]-btn.getSize().height-50);
-		btn.addActionListener(new AddBtn(this,txts, title_labs));
+		btn.addActionListener(new AddBtn(sql, this, txts, title_labs, addData));
 		
 		inner.add(exLab);
 		inner.add(btn);

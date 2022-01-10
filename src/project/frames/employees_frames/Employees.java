@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import project.MainFrame;
+import project.actions.employees_actions.SQLs;
 import project.components.employees_companents.Bottom_layout;
 import project.components.employees_companents.Top_layout;
 
@@ -19,9 +20,9 @@ public class Employees extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		// 0, 1 은 프레임의 크기를 담는다.
-		
-		add(new Top_layout(this));
-		add(new Bottom_layout(main, this));
+		SQLs sql = new SQLs("리셋", this, null);
+		add(new Top_layout(this, sql));
+		add(new Bottom_layout(main, this, sql));
 	}
 	
 }

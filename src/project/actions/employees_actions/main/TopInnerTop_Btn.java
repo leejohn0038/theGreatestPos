@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 
 import project.actions.employees_actions.DelectValue;
 import project.actions.employees_actions.FrameVisible;
+import project.actions.employees_actions.SQLs;
 import project.frames.employees_frames.AddEmployees;
 import project.frames.employees_frames.Guide_manual;
 
@@ -20,14 +21,16 @@ import project.frames.employees_frames.Guide_manual;
 public class TopInnerTop_Btn extends JButton{
 	final private static HashMap<Integer, String> BTN_MAP = new HashMap<>();
 	
-	JFrame addEmp = new AddEmployees();
+	JFrame addEmp;
 	
 	static {
 		BTN_MAP.put(0, "등록");
 		BTN_MAP.put(1, "삭제");
 	}
 
-	public TopInnerTop_Btn(int num, int lh) {
+	public TopInnerTop_Btn(int num, int lh, SQLs sql) {
+		
+		addEmp = new AddEmployees(sql);
 		
 		int btnX = 0;
 		int btnY;
