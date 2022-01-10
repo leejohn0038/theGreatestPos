@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
 import project.components.goods_components.BasicBigButton;
-import project.components.goods_components.BasicTextArea;
+import project.components.goods_components.BasicTextField;
 
 
 public class GnbPanel extends JPanel {

@@ -3,7 +3,7 @@ package project.frames.goods_frames;
 import javax.swing.JPanel;
 
 import project.components.goods_components.BasicSmallButton;
-import project.components.goods_components.BasicTextArea;
+import project.components.goods_components.BasicTextField;
 import project.components.goods_components.GoodsTable;
 
 public class AssetPanel extends JPanel {
@@ -11,7 +11,7 @@ public class AssetPanel extends JPanel {
 	
 	public AssetPanel() {
 		
-		add(new BasicTextArea() {
+		add(new BasicTextField() {
 			{
 				setLocation(400, 0);
 			}

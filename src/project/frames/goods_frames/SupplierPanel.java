@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 import project.actions.goods_actions.GetValues;
 import project.components.goods_components.BasicSmallButton;
-import project.components.goods_components.BasicTextArea;
+import project.components.goods_components.BasicTextField;
 import project.components.goods_components.SupplierTable;
 
 public class SupplierPanel extends JPanel {
@@ -30,7 +30,7 @@ public class SupplierPanel extends JPanel {
 		});
 		add(cb);
 		
-		add(new BasicTextArea() {
+		add(new BasicTextField() {
 			{
 				setLocation(400, 0);
 			}

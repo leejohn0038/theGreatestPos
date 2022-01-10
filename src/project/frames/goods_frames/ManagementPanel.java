@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import project.actions.goods_actions.GetValues;
 import project.components.goods_components.BasicPopupPanel;
 import project.components.goods_components.BasicSmallButton;
-import project.components.goods_components.BasicTextArea;
+import project.components.goods_components.BasicTextField;
 import project.components.goods_components.GoodsTable;
 
 public class ManagementPanel extends JPanel {
@@ -27,12 +27,12 @@ public class ManagementPanel extends JPanel {
 				setFont(new Font("돋움", Font.BOLD, 20));
 			}
 		});
-		store.add(new BasicTextArea("상품의 이름을 입력해주세요") {
+		store.add(new BasicTextField("상품의 이름을 입력해주세요") {
 			{
 				setLocation(20, 75);
 			}
 		});
-		BasicTextArea qtyTxt = new BasicTextArea("수량을 입력해주세요");
+		BasicTextField qtyTxt = new BasicTextField("수량을 입력해주세요");
 		qtyTxt.setLocation(20, 120);
 		store.add(qtyTxt);
 		store.add(new BasicSmallButton("추가") {
@@ -89,7 +89,7 @@ public class ManagementPanel extends JPanel {
 			}
 		});
 		
-		add(new BasicTextArea("검색어를 입력해주세요") {
+		add(new BasicTextField("검색어를 입력해주세요") {
 			{
 				setLocation(400, 0);
 			}
