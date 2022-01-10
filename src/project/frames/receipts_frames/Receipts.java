@@ -15,7 +15,7 @@ public class Receipts extends JFrame {
 	public Receipts(MainFrame main) {
 		add(new Toppanel(main, "영수증"));
 		add(table = new Tables(
-				new String[] {"영수증ID", "구매시기", "가격", "결제수단"}, 
+				new String[] {"영수증ID", "전화번호", "가격", "결제수단", "구매시기"}, 
 				100, 250, 200));
 
 		add(new Button(main, "영수증 조회하기", 100, 150, 150, 50));

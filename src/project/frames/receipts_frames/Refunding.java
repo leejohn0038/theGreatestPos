@@ -4,7 +4,6 @@ import javax.swing.JFrame;
 
 import project.MainFrame;
 import project.components.receipts_components.RefundingPanel;
-import project.components.receipts_components.SubmitBtn;
 import project.components.receipts_components.Tables;
 import project.components.receipts_components.Toppanel;
 
@@ -16,7 +15,7 @@ public class Refunding extends JFrame {
 				new String[] {"영수증ID", "구매시기", "가격", "결제수단"}, 
 				100, 100, 200));
 		add(new RefundingPanel(main));
-		add(new SubmitBtn());
+		//add(new SubmitBtn(450, 500, 100, 50));
 		
 		setLayout(null);
 		setDefaultCloseOperation(HIDE_ON_CLOSE);

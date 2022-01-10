@@ -25,25 +25,32 @@ public class DBConnector {
 		return DriverManager.getConnection(url, user, password);
 	}
 	
-	public static Object[] getData() {
-		String sql = "select rid, eid, gid, qty, price  from receipt";
+	public static Object[] getData(String a, String b) {
+		String sql = "select * from receipts where rid between ? and ?";
 		Object[] result = new Object[5];
 		try (
-			Connection conn = DriverManager.getConnection(url, user, password);
+			Connection conn = getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
 		) {
-			while (rs.next()) {
-				result[0] = rs.getObject("rid");
-				result[1] = rs.getObject("eid");
-				result[2] = rs.getObject("gid");
-				result[3] = rs.getObject("qty");
-				result[4] = rs.getObject("price");
-				break;
+			pstmt.setInt(1, Integer.parseInt(a));
+			pstmt.setInt(2, Integer.parseInt(b));
+			try(ResultSet rs = pstmt.executeQuery();) {
+				while (rs.next()) {
+					result[0] = rs.getObject("rid");
+					result[1] = rs.getObject("phone");
+					result[2] = rs.getObject("price");
+					result[3] = rs.getObject("payment");
+					result[4] = rs.getObject("period");
+					break;
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	public static void makeSql() {
+		
 	}
 }
