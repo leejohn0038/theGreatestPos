@@ -1,4 +1,4 @@
-package project.frames.customers_frames;
+package project.frames.customers_frames.reserve;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

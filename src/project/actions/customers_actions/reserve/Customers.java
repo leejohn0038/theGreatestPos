@@ -1,4 +1,4 @@
-package project.actions.customers_actions;
+package project.actions.customers_actions.reserve;
 
 import javax.swing.JFrame;
 

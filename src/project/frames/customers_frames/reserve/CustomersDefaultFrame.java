@@ -1,9 +1,9 @@
-package project.frames.customers_frames;
+package project.frames.customers_frames.reserve;
 
 import javax.swing.JFrame;
 
-public class DefaultFrame_c extends JFrame {
-	public DefaultFrame_c() {
+public class CustomersDefaultFrame extends JFrame {
+	public CustomersDefaultFrame() {
 		setLayout(null);
 		setTitle("");
 		setBounds(100, 100, 1000, 700);

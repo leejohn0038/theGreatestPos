@@ -1,8 +1,8 @@
-package project.frames.customers_frames;
+package project.frames.customers_frames.reserve;
 
 import javax.swing.JFrame;
 
-import project.components.customers_components.CustomersInputButton;
+
 
 import java.sql.Date;
 
@@ -58,7 +58,7 @@ public class CustomersDTO extends JFrame {
 	    		+ ", membership_point=" + membership_point + "]"; 
 	}
 	public CustomersDTO() {
-		new CustomersInputButton();
+		
 		
 	}
 	public static void main(String[] args) {
