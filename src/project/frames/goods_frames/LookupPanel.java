@@ -19,11 +19,11 @@ import project.components.goods_components.GoodsTable;
 
 public class LookupPanel extends JPanel {
 	String comboVal;
-	String[] combo = {"이름", "카테고리", "거래처"};
+	String[] combo = {"전체", "카테고리", "거래처"};
 	JComboBox<String> searchCb = new JComboBox<>(combo);
 	JComboBox<String> categoryCb = new JComboBox<>(combo);
+	StringBuffer input = new StringBuffer("SELECT * FROM goods WHERE ");
 	String sql = "SELECT * FROM goods";
-	JTextField jtfFilter = new JTextField();
 	public LookupPanel() {
 		
 		// 검색창 생성
@@ -36,7 +36,7 @@ public class LookupPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				comboVal = cv.getComboBoxValue(searchCb);
-				System.out.println(sql);
+				System.out.println(comboVal);
 			}
 		});
 		add(searchCb);
