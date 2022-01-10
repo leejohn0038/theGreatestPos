@@ -14,7 +14,7 @@ public class MainFrame extends JFrame {
 	
 	public MainFrame() {
 		frames = new Frames(this);
-		add(new Toppanel("판매"));
+		add(new Toppanel(this, "판매"));
 		add(new Tables(new String[] {"상품id", "상품이름", "수량", "가격"}));
 		
 		String[] btnNames1 = {"상품", "영수증", "직원", "회원", "업무가이드"};

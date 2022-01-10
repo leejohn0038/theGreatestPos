@@ -20,4 +20,15 @@ public class Toppanel extends JPanel{
 		setBounds(100, 0, 930, 100);
 		setLayout(null);		
 	}
+	
+	public Toppanel (String name) {
+			
+			add(new Label(name, 0, 20, 300, 40) {
+				{
+					setFont(new Font("µ¸À½", Font.BOLD, 30));
+				}
+			});
+			setBounds(100, 0, 930, 100);
+			setLayout(null);		
+		}
 }
