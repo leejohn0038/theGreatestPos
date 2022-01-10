@@ -2,10 +2,9 @@ package project.frames.receipts_frames;
 
 import javax.swing.JFrame;
 
-import project.components.Tables;
-import project.components.Toppanel;
 import project.components.receipts_components.CashReceiptPanel;
 import project.components.receipts_components.SubmitBtn;
+import project.components.receipts_components.Toppanel;
 
 public class CashReceipt extends JFrame {
 

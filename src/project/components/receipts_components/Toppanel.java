@@ -1,15 +1,14 @@
-package project.components;
+package project.components.receipts_components;
 
 import java.awt.Font;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+
+import project.MainFrame;
 
 public class Toppanel extends JPanel{
 	
-	public Toppanel(String name) {
+	public Toppanel(MainFrame main, String name) {
 		
 		add(new Label(name, 0, 20, 300, 40) {
 			{
@@ -17,7 +16,7 @@ public class Toppanel extends JPanel{
 			}
 		});
 		add(new TextField(500, 20, 270, 40));
-		add(new Button("검색", 800, 20, 70, 40));
+		add(new Button(main, "검색", 800, 20, 70, 40));
 		setBounds(100, 0, 930, 100);
 		setLayout(null);		
 	}

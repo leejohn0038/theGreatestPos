@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import project.MainFrame;
+import project.database.DBConnector;
+import project.frames.receipts_frames.Receipts;
 
 
 public class MainButtonAL implements ActionListener {
@@ -18,20 +20,7 @@ public class MainButtonAL implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// 스위치문으로 버튼별 알맞은 기능을 실행
-		switch (btnName) {
-		case "영수증": 
-			main.getFrame(btnName).setVisible(true);
-			break;
-		case "상품":
-			main.getFrame(btnName).setVisible(true);
-			break;
-		case "직원": 
-			main.getFrame(btnName).setVisible(true);
-			break;
-		default:
-			break;
-		}		
+		main.getFrame(btnName).setVisible(true);		
 	}
 }
 

@@ -2,9 +2,9 @@ package project.frames.receipts_frames;
 
 import javax.swing.JFrame;
 
-import project.components.Toppanel;
 import project.components.receipts_components.PointCollectPanel;
 import project.components.receipts_components.SubmitBtn;
+import project.components.receipts_components.Toppanel;
 
 public class PointCollect extends JFrame {
 	

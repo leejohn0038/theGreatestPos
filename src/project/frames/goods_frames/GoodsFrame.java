@@ -3,7 +3,7 @@ package project.frames.goods_frames;
 import javax.swing.JFrame;
 
 import project.MainFrame;
-import project.components.MainButtons;
+import project.components.receipts_components.MainButtons;
 
 
 public class GoodsFrame extends JFrame {

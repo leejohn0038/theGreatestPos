@@ -9,7 +9,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
-import project.components.Tables;
 //
 //static {
 //	CustomerButtonMap.put("ID : ", new Point(300, 100));

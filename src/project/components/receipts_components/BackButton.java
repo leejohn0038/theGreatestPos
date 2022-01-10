@@ -1,5 +1,5 @@
 
-package project.components;
+package project.components.receipts_components;
 
 import javax.swing.JButton;
 

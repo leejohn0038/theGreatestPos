@@ -4,11 +4,6 @@ package project.components.receipts_components;
 
 import javax.swing.JPanel;
 
-import project.components.Button;
-import project.components.Label;
-import project.components.TextField;
-
-
 public class RefundingPanel extends JPanel {
 	
 	public RefundingPanel() {
