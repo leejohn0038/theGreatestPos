@@ -1,25 +1,28 @@
 package project.actions.employees_actions;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.time.LocalDate;
+
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+
 
 import javax.swing.JFrame;
+import javax.xml.crypto.Data;
 
 import project.actions.employees_actions.main.DBConnector;
 import project.actions.employees_actions.main.Employee;
+import project.actions.employees_actions.main.object.AddData;
 
 public class SQLs {
 	
 	ArrayList<Employee> employees = new ArrayList<>();
 	AddData addData;
 	private int row;
+	private int col;
 	private String[] title;
 	
 	public SQLs(String type, JFrame f, AddData addData) {
@@ -36,6 +39,9 @@ public class SQLs {
 				add(ADD_SQL, conn);
 				break;
 			case "검색":
+				break;
+			case "수정":
+				final String UPDATA_SQL = "UPDATE mart_employees ";
 				break;
 			case "리셋":
 				final String RESET_SQL = "select * from mart_employees";
@@ -87,18 +93,13 @@ public class SQLs {
 		String addSql = "(?,?,?,?,?)";
 		PreparedStatement pstmt = conn.prepareStatement(SQL + addSql);
 		ResultSet rs;
+		Object[] datas = addData.getDates();
 		
-		System.out.println(addData.id);
-		System.out.println(addData.name);
-		System.out.println(addData.hire_data);
-		System.out.println(addData.tel);
-		System.out.println(addData.job);
-		
-		pstmt.setInt(1,addData.id);
-		pstmt.setString(2, addData.name);
-		pstmt.setDate(3, addData.hire_data);
-		pstmt.setString(4,addData.tel);
-		pstmt.setString(5,addData.job);
+		pstmt.setInt(1,(int)datas[0]);
+		pstmt.setString(2, (String) datas[1]);
+		pstmt.setDate(3, (Date)datas[2]);
+		pstmt.setString(4,(String) datas[3]);
+		pstmt.setString(5,(String) datas[4]);
 		
 		System.out.println(1);
 		
@@ -128,6 +129,21 @@ public class SQLs {
 		}
 		
 		return rowData;
+	}
+	
+	public void setUpdataRow(int row, int col) {
+		this.row = row;
+		this.col = col;
+	}
+	
+	public int getUpdataEmp_id() {
+		Object[][] rowData = getRowData();
+		return Integer.parseInt(String.valueOf(rowData[row][0]));
+	}
+	
+	public String getUpdataEmp_data(int col) {
+		Object[][] rowData = getRowData();
+		return String.valueOf(rowData[row][col]);
 	}
 	
 	public int getEmp_id() {

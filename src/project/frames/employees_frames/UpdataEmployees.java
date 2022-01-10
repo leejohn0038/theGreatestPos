@@ -1,10 +1,7 @@
 package project.frames.employees_frames;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -15,50 +12,31 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-import org.w3c.dom.Text;
-
 import project.actions.employees_actions.AddBtn;
 import project.actions.employees_actions.SQLs;
 import project.actions.employees_actions.main.object.AddData;
 
-public class AddEmployees extends JFrame{
+public class UpdataEmployees extends JFrame{
 	
 	private int frame_size[] = {700,500}; 
 	
-	public AddEmployees(SQLs sql) {
-		
+	public UpdataEmployees(SQLs sql) {
 		add(inner_lay(sql));
 		//add(out_lay());
 		setBounds(500,500,frame_size[0],frame_size[1]);
 		setVisible(false);
 	}
 	
-	/*
-	// 혹시 모르니 일단 남겨두겠습니다. 더 추가될 때 패널 이용하기위해
-	JPanel out_lay() {
-		String[] locNames = {"East", "West", "South", "North"};
-		JPanel out = new JPanel();
-		
-		out.setLayout(new BorderLayout());
-		
-		for(int i = 0; i<locNames.length; i++) {
-			JPanel sideLay = new JPanel();
-			sideLay.setBorder(new LineBorder(Color.black));
-			out.add(sideLay, locNames[i]);
-		}
-		
-		out.add(inner_lay(), "Center");
-		return out;
-	}*/
+
 	
 	JPanel inner_lay(SQLs sql) {
 		
 		AddData addData = null;
 		JPanel inner = new JPanel();
-		JLabel exLab = new JLabel("등록하실 직원 정보를 입력해주세요");
-		JButton btn = new JButton("등록");
+		JLabel exLab = new JLabel("수정하실 데이터를 작성해주세요");
+		JButton btn = new JButton("수정");
 		
-		String[] title_labs = {"ID", "이름", "전화번호", "직책"}; 
+		String[] title_labs = {"ID", "이름", "전화번호","입사일", "직책"}; 
 		ArrayList<JLabel> labs = new ArrayList<>();
 		HashMap<String,Object> txts = new HashMap<>();
 		
@@ -96,12 +74,13 @@ public class AddEmployees extends JFrame{
 			
 			//아이디 값은 db에 넣은 순서대로 배정할할 예정
 			if(i==0) {
-				idLab.setText(Integer.toString(sql.getEmp_id()));
+				idLab.setText(Integer.toString(sql.getUpdataEmp_id()));
 				idLab.setBounds(txtLoc[0], txtLoc[1], 300, 50);
 				txts.put(title_labs[i], idLab);
 				inner.add(idLab);
 			}else {
 				txt.setBounds(txtLoc[0], txtLoc[1], 300, 50);
+				txt.setText(sql.getUpdataEmp_data(i));
 				txts.put(title_labs[i], txt);
 				inner.add(txt);
 			}
@@ -119,17 +98,3 @@ public class AddEmployees extends JFrame{
 		return inner;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -23,12 +23,16 @@ public class Table_layout extends JPanel{
 		JTable jt;
 		JScrollPane sp;
 		
-		
-		dtm = new DefaultTableModel(rowData, columnNames);
+		//테이블 자체적으로 수정 금지
+		dtm = new DefaultTableModel(rowData, columnNames) {
+			public boolean isCellEditable(int i, int c){ 
+				return false; 
+			}
+		};
 		jt = new JTable(dtm);
 		sp = new JScrollPane(jt);
 		
-		jt.addMouseListener(new TableSelectData(jt));
+		jt.addMouseListener(new TableSelectData(jt, sql));
 		
 		setLayout(new BorderLayout());	
 		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);

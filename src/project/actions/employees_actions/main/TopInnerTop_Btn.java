@@ -10,7 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import project.actions.employees_actions.DelectValue;
+import project.actions.employees_actions.ValueUpDate;
 import project.actions.employees_actions.FrameVisible;
 import project.actions.employees_actions.SQLs;
 import project.frames.employees_frames.AddEmployees;
@@ -52,7 +52,7 @@ public class TopInnerTop_Btn extends JButton{
 			addActionListener(new FrameVisible(addEmp));
 			break;
 		case 1:
-			addActionListener(new DelectValue());
+			//addActionListener(new ValueUpDate());
 			break;
 		default:
 			break;
