@@ -1,18 +1,24 @@
 package project.actions.goods_actions;
 
 import javax.swing.JComboBox;
-import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class GetValues {
-	int val;
+	String stringVal;
+	int numVal;
 	
 	public String getComboBoxValue(JComboBox cb) {
 		return (String)cb.getSelectedItem();
 	}
 	
-	public int getTextNumValue(JTextArea ta) {
-		String tempStr = ta.getText();
-		Object temp = Integer.parseInt(tempStr);
-		return val;
+	public String getTextStringValue(JTextField tf) {
+		stringVal = tf.getText();
+		return stringVal;
+	}
+	
+	public int getTextNumValue(JTextField tf) {
+		String tempStr = tf.getText();
+		numVal = Integer.parseInt(tempStr);
+		return numVal;
 	}
 }
