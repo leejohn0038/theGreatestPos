@@ -24,6 +24,9 @@ import project.components.goods_components.BasicTextField;
 import project.components.goods_components.PosDBConnector;
 
 public class ManagementPanel extends JPanel {
+	static DefaultTableModel model;
+	static String[] column_name = {"상품번호", "이름", "수량", "가격", "유통기한", "입고일"};
+	static Object[][] rowData;
 	static Connection conn;
 	static {
 		try {
@@ -44,6 +47,11 @@ public class ManagementPanel extends JPanel {
 	int gprice;
 	Date expiration;
 	Date storedate;
+	int cnt;
+	
+	String addName;
+	int addQty;
+	Date addStoredate;
 	
 	public ManagementPanel() {
 		GetValues gv = new GetValues();
@@ -76,32 +84,77 @@ public class ManagementPanel extends JPanel {
 						System.out.println("추가수량: " + storeQty);
 						System.out.println("기존 수량: " + gqty);
 						LocalDate now = LocalDate.now();
-						if (gqty == 0 && storedate.toLocalDate().equals(now)) {
-							String sql = "INSERT INTO gstore(gname, gqty) VALUES (?, ?)";
+						
+						try (
+							PreparedStatement cntPs = conn.prepareStatement("SELECT COUNT(*) FROM gstore WHERE gname = ?");
+							PreparedStatement addPs = conn.prepareStatement("SELECT * FROM gstore WHERE gname = ?");
+
+						) {
+							cntPs.setString(1, storeName);
+							addPs.setString(1, storeName);
+							
 							try (
-								PreparedStatement pstmt = conn.prepareStatement(sql);		
+								ResultSet cntRs = cntPs.executeQuery();
+								ResultSet addRs = addPs.executeQuery();
 							) {
-								pstmt.setString(1, storeName);
-								pstmt.setInt(2, storeQty);
-								pstmt.executeUpdate();
-								conn.close();
-								
-							} catch (SQLException e1) {
-								e1.printStackTrace();
+								cntRs.next();
+								cnt = cntRs.getInt("COUNT(*)");
+								while (addRs.next()) {
+									addStoredate = addRs.getDate("storedate");
+									
+									if (cnt == 0) {
+										String sql = "INSERT INTO gstore(gname, gqty) VALUES (?, ?)";
+										try (
+												PreparedStatement pstmt = conn.prepareStatement(sql);		
+												) {
+											pstmt.setString(1, storeName);
+											pstmt.setInt(2, storeQty);
+											pstmt.executeUpdate();
+											conn.close();
+											storePopup.setVisible(false);
+											
+										} catch (SQLException e1) {
+											e1.printStackTrace();
+										}
+										
+									} else if (cnt > 0 && addStoredate.toLocalDate().equals(now)) {
+										String sql = "UPDATE gstore SET gqty = ? WHERE gname = ?";
+										try (
+												PreparedStatement pstmt = conn.prepareStatement(sql);		
+												) {
+											pstmt.setInt(1, storeQty + gqty);
+											pstmt.setString(2, storeName);
+											pstmt.executeUpdate();
+											conn.close();
+											storePopup.setVisible(false);
+											
+										} catch (SQLException e1) {
+											e1.printStackTrace();
+										}
+										
+									} else if (cnt > 0 && !addStoredate.toLocalDate().equals(now)) {
+										String sql = "INSERT INTO gstore(gname, gqty) VALUES (?, ?)";
+										try (
+												PreparedStatement pstmt = conn.prepareStatement(sql);		
+												) {
+											pstmt.setString(1, storeName);
+											pstmt.setInt(2, storeQty);
+											pstmt.executeUpdate();
+											conn.close();
+											storePopup.setVisible(false);
+											
+										} catch (SQLException e1) {
+											e1.printStackTrace();
+										}
+									}
+									
+								}
 							}
-						} else {
-							String sql = "UPDATE gstore SET gqty = ? WHERE gname = ?";
-							try (
-								PreparedStatement pstmt = conn.prepareStatement(sql);		
-							) {
-								pstmt.setInt(1, storeQty + gqty);
-								pstmt.setString(2, storeName);
-								pstmt.executeUpdate();
-								conn.close();
-							} catch (SQLException e1) {
-								e1.printStackTrace();
-							}
+							
+						} catch (SQLException e2) {
+							e2.printStackTrace();
 						}
+						
 					}
 				});
 			}
@@ -176,9 +229,6 @@ public class ManagementPanel extends JPanel {
 //		}
 	}
 	
-	DefaultTableModel model;
-	static String[] column_name = {"상품번호", "이름", "수량", "가격", "유통기한", "입고일"};
-	static Object[][] rowData;
 	String sql = "SELECT goods.gid, goods.gname, gstore.gqty, goods.gprice, gstore.expiration, gstore.storedate "
 			+ "FROM goods, gstore WHERE goods.gname = gstore.gname";
 	
@@ -188,7 +238,6 @@ public class ManagementPanel extends JPanel {
 		sp = new JScrollPane(table);
 		
 		try (
-//			Connection conn = PosDBConnector.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 		) {
 			try (
