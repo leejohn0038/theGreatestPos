@@ -17,7 +17,7 @@ public class CustomersAddBtn implements ActionListener {
 	// 버튼누르면 데이터값 받아와서 저장하고 TABAL 전달
 	public CustomersAddBtn() {
 		//sql문으로
-		sql = "INSERT INTO mart_employees VALUES (?, '?', '?', '?', '?')";
+		sql = "INSERT INTO customers VALUES (?, '?', '?', '?', '?')";
 	}	
 	@Override
 	public void actionPerformed(ActionEvent e) {

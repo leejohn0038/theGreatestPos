@@ -43,6 +43,7 @@ public class CustomersBottomLayout extends JPanel{
 		setBorder(new LineBorder(Color.black));
 	}
 	public static void main(String[] args) {
+		new MainFrame();
 		new CustomersBottomLayout(null, null);
 	}
 }
