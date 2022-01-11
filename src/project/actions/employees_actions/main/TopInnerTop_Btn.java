@@ -6,6 +6,7 @@ import java.util.HashMap;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import project.actions.employees_actions.Delete;
 import project.actions.employees_actions.FrameVisible;
 import project.actions.employees_actions.SQLs;
 import project.components.employees_companents.Table_emp;
@@ -48,7 +49,7 @@ public class TopInnerTop_Btn extends JButton{
 			addActionListener(new FrameVisible(addEmp));
 			break;
 		case 1:
-			//addActionListener(new ValueUpDate());
+			addActionListener(new Delete());
 			break;
 		default:
 			break;

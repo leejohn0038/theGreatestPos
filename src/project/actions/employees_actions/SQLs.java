@@ -37,14 +37,18 @@ public class SQLs {
 				final String ADD_SQL = "INSERT into mart_employees VALUES ";
 				add(ADD_SQL, conn);
 				break;
+			case "삭제":
+				final String DEL_SQL = "DELETE FROM mart_employees WHERE ";
+				delete(DEL_SQL, conn);
+				break;
 			case "검색":
 				break;
 			case "수정":
-				final String UPDATA_SQL = "UPDATE mart_employees ";
+				final String UPDATA_SQL = "UPDATE mart_employees SET ";
 				updata(UPDATA_SQL, conn);
 				break;
 			case "리셋":
-				final String RESET_SQL = "select * from mart_employees";
+				final String RESET_SQL = "select * from mart_employees ";
 				tableReset(RESET_SQL, conn);
 				break;
 			}
@@ -58,7 +62,7 @@ public class SQLs {
 	
 	void tableReset(String SQL, Connection conn) throws SQLException {
 		
-		PreparedStatement pstmt = conn.prepareStatement(SQL + " order by employee_id");
+		PreparedStatement pstmt = conn.prepareStatement(SQL + "order by employee_id");
 		ResultSet rs = pstmt.executeQuery();
 		ResultSetMetaData meta = rs.getMetaData();
 		
@@ -92,8 +96,23 @@ public class SQLs {
 		this.addData = addData;
 	}
 	
+	void delete(String SQL, Connection conn) throws SQLException{
+		final String ADD_SQL = "employee_id = ?";
+		PreparedStatement pstmt = conn.prepareStatement(SQL + ADD_SQL);
+		ResultSet rs;
+		
+		Object[] datas = addData.getDates();
+		
+		pstmt.setInt(1, (int)datas[0]);
+		
+		rs = pstmt.executeQuery();
+		
+		pstmt.close();
+		rs.close();
+	}
+	
 	void updata(String SQL, Connection conn) throws SQLException {
-		final String ADD_SQL = "SET name = ?, hire_date = ?, "
+		final String ADD_SQL = "name = ?, hire_date = ?, "
 				+ "tel = ?, position = ? WHERE employee_id = ?";
 		PreparedStatement pstmt = conn.prepareStatement(SQL + ADD_SQL);
 		ResultSet rs;

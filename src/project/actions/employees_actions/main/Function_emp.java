@@ -20,6 +20,15 @@ public class Function_emp {
 		}
 	}
 	
+	public void updateView(Table_emp jp, int maxRow, int maxCol) {
+		
+		SQLs reset_sql = new SQLs("¸®¼Â", null, null);
+		Object[][] obj = reset_sql.getRowData();
+		
+		//jp.dtm.set
+		
+	}
+	
 	public boolean regex(String title, String obj) {
 		JOptionPane massge = new JOptionPane();
 		
