@@ -24,36 +24,19 @@ import project.actions.employees_actions.main.object.AddData;
 public class AddEmployees extends JFrame{
 	
 	private int frame_size[] = {700,500}; 
+	JFrame emp_f;
 	
-	public AddEmployees(SQLs sql) {
+	public AddEmployees(JFrame emp_f, SQLs sql) {
+		
+		this.emp_f = emp_f;
 		
 		add(inner_lay(sql));
-		//add(out_lay());
 		setBounds(500,500,frame_size[0],frame_size[1]);
 		setVisible(false);
 	}
 	
-	/*
-	// 혹시 모르니 일단 남겨두겠습니다. 더 추가될 때 패널 이용하기위해
-	JPanel out_lay() {
-		String[] locNames = {"East", "West", "South", "North"};
-		JPanel out = new JPanel();
-		
-		out.setLayout(new BorderLayout());
-		
-		for(int i = 0; i<locNames.length; i++) {
-			JPanel sideLay = new JPanel();
-			sideLay.setBorder(new LineBorder(Color.black));
-			out.add(sideLay, locNames[i]);
-		}
-		
-		out.add(inner_lay(), "Center");
-		return out;
-	}*/
-	
 	JPanel inner_lay(SQLs sql) {
 		
-		AddData addData = null;
 		JPanel inner = new JPanel();
 		JLabel exLab = new JLabel("등록하실 직원 정보를 입력해주세요");
 		JButton btn = new JButton("등록");
@@ -111,7 +94,7 @@ public class AddEmployees extends JFrame{
 		
 		btn.setSize(100,50);
 		btn.setLocation(frame_size[0]-btn.getSize().width-100, frame_size[1]-btn.getSize().height-50);
-		btn.addActionListener(new AddBtn(sql, this, txts, title_labs, addData));
+		btn.addActionListener(new AddBtn(emp_f, this, txts, title_labs));
 		
 		inner.add(exLab);
 		inner.add(btn);

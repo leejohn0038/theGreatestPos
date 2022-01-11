@@ -16,11 +16,14 @@ import project.actions.employees_actions.main.TableSelectData;
 public class Table_layout extends JPanel{
 	
 	DefaultTableModel dtm;
+	JFrame emp_f;
 	
-	public Table_layout(int lw, SQLs sql, JFrame f) {
+	public Table_layout(JFrame emp_f, int lw, SQLs sql) {
 		String[] columnNames = {"ID", "이름", "입사일", "전화번호", "직책"};
 		Object[][] rowData = sql.getRowData();
 		JTable jt;
+		this.emp_f = emp_f;
+		
 		JScrollPane sp;
 		
 		//테이블 자체적으로 수정 금지
@@ -32,7 +35,7 @@ public class Table_layout extends JPanel{
 		jt = new JTable(dtm);
 		sp = new JScrollPane(jt);
 		
-		jt.addMouseListener(new TableSelectData(jt, sql));
+		jt.addMouseListener(new TableSelectData(jt, dtm, sql));
 		
 		setLayout(new BorderLayout());	
 		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);

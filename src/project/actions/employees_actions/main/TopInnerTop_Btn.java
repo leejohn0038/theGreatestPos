@@ -1,20 +1,15 @@
 package project.actions.employees_actions.main;
 
 import java.awt.Dimension;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
-import project.actions.employees_actions.ValueUpDate;
 import project.actions.employees_actions.FrameVisible;
 import project.actions.employees_actions.SQLs;
 import project.frames.employees_frames.AddEmployees;
-import project.frames.employees_frames.Guide_manual;
+
 
 //여긴 직원프레임의 상단 버튼입니다.
 
@@ -22,15 +17,17 @@ public class TopInnerTop_Btn extends JButton{
 	final private static HashMap<Integer, String> BTN_MAP = new HashMap<>();
 	
 	JFrame addEmp;
+	JFrame emp_f;
 	
 	static {
 		BTN_MAP.put(0, "등록");
 		BTN_MAP.put(1, "삭제");
 	}
 
-	public TopInnerTop_Btn(int num, int lh, SQLs sql) {
+	public TopInnerTop_Btn(JFrame emp_f, int num, int lh, SQLs sql) {
 		
-		addEmp = new AddEmployees(sql);
+		addEmp = new AddEmployees(emp_f, sql);
+		this.emp_f = emp_f;
 		
 		int btnX = 0;
 		int btnY;

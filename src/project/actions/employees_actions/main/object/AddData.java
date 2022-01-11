@@ -10,11 +10,15 @@ public class AddData {
 	private String tel;
 	private String job;
 	
-	public AddData(int id, String name, String tel, String job) {
+	public AddData(int id, String name, LocalDate hire_data, String tel, String job) {
 		
 		this.id = id;
 		this.name = name;
-		hire_data = Date.valueOf(LocalDate.now());
+		if(hire_data == null) {
+			this.hire_data = Date.valueOf(LocalDate.now());
+		}else {
+			this.hire_data = Date.valueOf(hire_data);
+		}
 		this.tel = tel;
 		this.job = job;
 	}

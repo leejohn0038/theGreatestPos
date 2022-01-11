@@ -42,6 +42,7 @@ public class SQLs {
 				break;
 			case "수정":
 				final String UPDATA_SQL = "UPDATE mart_employees ";
+				updata(UPDATA_SQL, conn);
 				break;
 			case "리셋":
 				final String RESET_SQL = "select * from mart_employees";
@@ -83,14 +84,37 @@ public class SQLs {
 			}
 			employees.add(new Employee(objs));
 		}
+		
+		pstmt.close();
+		rs.close();
 	}
 	
 	void setAddData(AddData addData) {
 		this.addData = addData;
 	}
 	
+	void updata(String SQL, Connection conn) throws SQLException {
+		final String ADD_SQL = "SET name = ?, hire_date = ?, "
+				+ "tel = ?, position = ? WHERE employee_id = ?";
+		PreparedStatement pstmt = conn.prepareStatement(SQL + ADD_SQL);
+		ResultSet rs;
+		Object[] datas = addData.getDates();
+		
+		pstmt.setString(1, (String) datas[1]);
+		pstmt.setDate(2, (Date)datas[2]);
+		pstmt.setString(3,(String) datas[3]);
+		pstmt.setString(4,(String) datas[4]);
+		pstmt.setInt(5,(int)datas[0]);
+		
+		rs = pstmt.executeQuery();
+		
+		pstmt.close();
+		rs.close();
+		
+	}
+	
 	void add(String SQL, Connection conn) throws SQLException {
-		String addSql = "(?,?,?,?,?)";
+		final String addSql = "(?,?,?,?,?)";
 		PreparedStatement pstmt = conn.prepareStatement(SQL + addSql);
 		ResultSet rs;
 		Object[] datas = addData.getDates();
@@ -107,6 +131,9 @@ public class SQLs {
 		
 		//System.out.println(Arrays.toString(addData));
 		System.out.println("수행완료");
+		
+		pstmt.close();
+		rs.close();
 	}
 	
 	/*

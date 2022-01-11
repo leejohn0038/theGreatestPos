@@ -11,39 +11,38 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
 
 import project.actions.employees_actions.AddBtn;
 import project.actions.employees_actions.SQLs;
+import project.actions.employees_actions.Updata;
 import project.actions.employees_actions.main.object.AddData;
 
 public class UpdataEmployees extends JFrame{
 	
-	private int frame_size[] = {700,500}; 
+	private int frame_size[] = {700,500};
+	DefaultTableModel dtm;
 	
-	public UpdataEmployees(SQLs sql) {
+	public UpdataEmployees(DefaultTableModel dtm, SQLs sql) {
+		this.dtm = dtm;
 		add(inner_lay(sql));
-		//add(out_lay());
 		setBounds(500,500,frame_size[0],frame_size[1]);
 		setVisible(false);
 	}
 	
-
-	
 	JPanel inner_lay(SQLs sql) {
 		
-		AddData addData = null;
 		JPanel inner = new JPanel();
 		JLabel exLab = new JLabel("수정하실 데이터를 작성해주세요");
 		JButton btn = new JButton("수정");
 		
-		String[] title_labs = {"ID", "이름", "전화번호","입사일", "직책"}; 
+		String[] title_labs = {"ID", "이름", "입사일", "전화번호", "직책"}; 
 		ArrayList<JLabel> labs = new ArrayList<>();
 		HashMap<String,Object> txts = new HashMap<>();
 		
 		int exLab_x; 
 		
 		inner.setLayout(null);
-		//inner.setSize(100,100);
 		
 		//상단 설명란
 		exLab.setSize(300, 50);
@@ -90,7 +89,7 @@ public class UpdataEmployees extends JFrame{
 		
 		btn.setSize(100,50);
 		btn.setLocation(frame_size[0]-btn.getSize().width-100, frame_size[1]-btn.getSize().height-50);
-		btn.addActionListener(new AddBtn(sql, this, txts, title_labs, addData));
+		btn.addActionListener(new Updata(this, dtm, txts, title_labs));
 		
 		inner.add(exLab);
 		inner.add(btn);

@@ -2,35 +2,41 @@ package project.actions.employees_actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
-import java.util.regex.Pattern;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
 
+import project.actions.employees_actions.main.Function_emp;
 import project.actions.employees_actions.main.object.AddData;
 
-public class AddBtn implements ActionListener {
+public class Updata implements ActionListener{
 	
+	JFrame f;
+	DefaultTableModel dtm;
 	AddData addData;
-	JFrame f, emp_f;
 	String[] title;
 	HashMap<String,Object> txts = new HashMap<>();
-	
 	Object[] data;
-
-	public AddBtn(JFrame emp_f, JFrame f, HashMap<String,Object> txts, String[] title) {
-		this.emp_f = emp_f;
+	
+	public Updata(JFrame f, DefaultTableModel dtm, HashMap<String,Object> txts, String[] title) {
+		this.dtm = dtm;
 		this.f = f;
-		this.title = title;
 		this.txts = txts;
+		this.title = title;
 	}
-	
-	
+
 	AddData getData() {
-		addData = new AddData(Integer.parseInt(String.valueOf(data[0])), (String)data[1], null, (String)data[2], (String)data[3]);
+		addData = new AddData(Integer.parseInt(String.valueOf(data[0])), 
+				(String)data[1], LocalDate.parse((String)data[2], DateTimeFormatter.ISO_DATE), 
+				(String)data[3], (String)data[4]);
 		return addData;
 	}
 	
@@ -38,6 +44,7 @@ public class AddBtn implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		JLabel lab;
 		data = new Object[title.length];
+		
 		boolean stop = true;
 		
 		for(int i = 0; i<title.length; i++) {
@@ -48,25 +55,20 @@ public class AddBtn implements ActionListener {
 				
 				JTextField tempTxt = (JTextField)txts.get(title[i]);
 				
-				if((i == 2 && !(Pattern.matches("010\\-*\\d{4}\\-*\\d{4}", tempTxt.getText()))) ||
-						(i == 3 && !(Pattern.matches("\\W{2,}", tempTxt.getText())))) {
-					JOptionPane massge = new JOptionPane();
-					massge.showMessageDialog(null, title[i] + " 잘못된 값 입력");
-					stop = false;
-				}else if(i == title.length-1 && stop == true) {
-					data[i] = tempTxt.getText();
-					stop = true;
-				}else {
-					data[i] = tempTxt.getText();
+				stop = new Function_emp().regex(title[i], tempTxt.getText());
+				
+				if(stop == false) {
+					break;
 				}
 				
+				data[i] = tempTxt.getText();
 			}
 		}
 		
 		if(stop == true) {
-			new SQLs("등록", f, getData());
+			new SQLs("수정", f, getData());
+			dtm.fireTableDataChanged();
 			f.dispose();
 		}
 	}
-	
 }
