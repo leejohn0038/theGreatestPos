@@ -74,13 +74,8 @@ public class Updata implements ActionListener{
 			
 			new SQLs("수정", f, getData());
 			
-			Object[][] obj = new SQLs("리셋", null, null).getRowData();
+			new Function_emp().updateView(jp, row);
 			
-			System.out.println(jp.dtm.getColumnCount());
-			
-			for(int i = 0; i<jp.dtm.getColumnCount(); i++) {
-				jp.dtm.setValueAt(obj[row][i], row, i);
-			}
 			f.dispose();
 		}
 	}

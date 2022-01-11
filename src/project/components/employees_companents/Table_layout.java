@@ -15,11 +15,10 @@ import project.actions.employees_actions.main.TableSelectData;
 
 public class Table_layout extends JPanel{
 	
+	Table_emp jt;
 	DefaultTableModel dtm;
 	
-	public Table_layout(int lw, SQLs sql) {
-		
-		Table_emp jt;
+	public Table_layout(int lw, SQLs sql) {	
 		
 		jt = new Table_emp(this, sql);
 		dtm = jt.getDtm();
@@ -32,5 +31,9 @@ public class Table_layout extends JPanel{
 	
 	public void addRowData(Object[] obj) {
 		dtm.addRow(obj);
+	}
+	
+	public Table_emp get_table() {
+		return jt;
 	}
 }

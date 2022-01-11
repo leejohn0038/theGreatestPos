@@ -157,6 +157,10 @@ public class SQLs {
 		this.col = col;
 	}
 	
+	public int getMaxRow() {
+		return row;
+	}
+	
 	public int getUpdataEmp_id() {
 		Object[][] rowData = getRowData();
 		return Integer.parseInt(String.valueOf(rowData[row][0]));

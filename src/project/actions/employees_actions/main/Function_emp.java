@@ -4,8 +4,22 @@ import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
+import project.actions.employees_actions.SQLs;
+import project.components.employees_companents.Table_emp;
+
 public class Function_emp {
 	public Function_emp() {}
+	
+	public void updateView(Table_emp jp, int row) {
+		
+		SQLs reset_sql = new SQLs("¸®¼Â", null, null);
+		Object[][] obj = reset_sql.getRowData();
+		
+		for(int i = 0; i<jp.dtm.getColumnCount(); i++) {
+			jp.dtm.setValueAt(obj[row][i], row, i);
+		}
+	}
+	
 	public boolean regex(String title, String obj) {
 		JOptionPane massge = new JOptionPane();
 		

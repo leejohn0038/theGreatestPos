@@ -10,17 +10,20 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import project.actions.employees_actions.main.Function_emp;
 import project.actions.employees_actions.main.object.AddData;
+import project.components.employees_companents.Table_emp;
 
 public class AddBtn implements ActionListener {
-	JFrame f, emp_f;
+	JFrame f;
+	Table_emp jp;
 	String[] title;
 	HashMap<String,Object> txts = new HashMap<>();
 	
 	Object[] data;
 
-	public AddBtn(JFrame emp_f, JFrame f, HashMap<String,Object> txts, String[] title) {
-		this.emp_f = emp_f;
+	public AddBtn(Table_emp jp, JFrame f, HashMap<String,Object> txts, String[] title) {
+		this.jp = jp;
 		this.f = f;
 		this.title = title;
 		this.txts = txts;
@@ -61,7 +64,8 @@ public class AddBtn implements ActionListener {
 		}
 		
 		if(stop == true) {
-			new SQLs("등록", f, getData());
+			SQLs add_sql = new SQLs("등록", f, getData());
+			jp.dtm.addRow(add_sql.addData.getDates());
 			f.dispose();
 		}
 	}

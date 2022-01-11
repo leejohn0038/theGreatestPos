@@ -22,8 +22,9 @@ public class Employees extends JFrame{
 		
 		// 0, 1 은 프레임의 크기를 담는다.
 		SQLs sql = new SQLs("리셋", this, null);
-		add(new Top_layout(this, sql));
-		add(new Bottom_layout(main, this, sql));
+		Bottom_layout bl = new Bottom_layout(main, this, sql);
+		add(bl);
+		add(new Top_layout(this, bl.getTl().get_table(), sql));
 	}
 	
 }

@@ -17,10 +17,10 @@ import project.frames.employees_frames.Guide_manual;
 
 public class Nav_layout extends JPanel{
 	
-	public Nav_layout(JFrame emp_f, int lL_w, int lR_w, int height, SQLs sql) {
+	public Nav_layout(Table_emp jp, int lL_w, int lR_w, int height, SQLs sql) {
 		
 		for(int i = 0; i<2; i++) {
-			add(new TopInnerTop_Btn(emp_f, i, height, sql));
+			add(new TopInnerTop_Btn(jp, i, height, sql));
 		}
 		
 		setLayout(new FlowLayout(FlowLayout.RIGHT));

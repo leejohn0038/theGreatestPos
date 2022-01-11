@@ -20,15 +20,16 @@ import org.w3c.dom.Text;
 import project.actions.employees_actions.AddBtn;
 import project.actions.employees_actions.SQLs;
 import project.actions.employees_actions.main.object.AddData;
+import project.components.employees_companents.Table_emp;
 
 public class AddEmployees extends JFrame{
 	
 	private int frame_size[] = {700,500}; 
-	JFrame emp_f;
+	Table_emp jp;
 	
-	public AddEmployees(JFrame emp_f, SQLs sql) {
+	public AddEmployees(Table_emp jp, SQLs sql) {
 		
-		this.emp_f = emp_f;
+		this.jp = jp;
 		
 		add(inner_lay(sql));
 		setBounds(500,500,frame_size[0],frame_size[1]);
@@ -94,7 +95,7 @@ public class AddEmployees extends JFrame{
 		
 		btn.setSize(100,50);
 		btn.setLocation(frame_size[0]-btn.getSize().width-100, frame_size[1]-btn.getSize().height-50);
-		btn.addActionListener(new AddBtn(emp_f, this, txts, title_labs));
+		btn.addActionListener(new AddBtn(jp, this, txts, title_labs));
 		
 		inner.add(exLab);
 		inner.add(btn);

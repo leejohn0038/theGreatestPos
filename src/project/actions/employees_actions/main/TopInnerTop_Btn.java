@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 
 import project.actions.employees_actions.FrameVisible;
 import project.actions.employees_actions.SQLs;
+import project.components.employees_companents.Table_emp;
 import project.frames.employees_frames.AddEmployees;
 
 
@@ -17,17 +18,15 @@ public class TopInnerTop_Btn extends JButton{
 	final private static HashMap<Integer, String> BTN_MAP = new HashMap<>();
 	
 	JFrame addEmp;
-	JFrame emp_f;
 	
 	static {
 		BTN_MAP.put(0, "등록");
 		BTN_MAP.put(1, "삭제");
 	}
 
-	public TopInnerTop_Btn(JFrame emp_f, int num, int lh, SQLs sql) {
+	public TopInnerTop_Btn(Table_emp jp, int num, int lh, SQLs sql) {
 		
-		addEmp = new AddEmployees(emp_f, sql);
-		this.emp_f = emp_f;
+		addEmp = new AddEmployees(jp, sql);
 		
 		int btnX = 0;
 		int btnY;
