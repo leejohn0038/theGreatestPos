@@ -1,5 +1,5 @@
 
-package project.actions;
+package project.actions.receipts_actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

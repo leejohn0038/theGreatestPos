@@ -24,33 +24,4 @@ public class DBConnector {
 	public static Connection getConnection() throws SQLException {
 		return DriverManager.getConnection(url, user, password);
 	}
-	
-	public static Object[] getData(String a, String b) {
-		String sql = "select * from receipts where rid between ? and ?";
-		Object[] result = new Object[5];
-		try (
-			Connection conn = getConnection();
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-		) {
-			pstmt.setInt(1, Integer.parseInt(a));
-			pstmt.setInt(2, Integer.parseInt(b));
-			try(ResultSet rs = pstmt.executeQuery();) {
-				while (rs.next()) {
-					result[0] = rs.getObject("rid");
-					result[1] = rs.getObject("phone");
-					result[2] = rs.getObject("price");
-					result[3] = rs.getObject("payment");
-					result[4] = rs.getObject("period");
-					break;
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
-	
-	public static void makeSql() {
-		
-	}
 }

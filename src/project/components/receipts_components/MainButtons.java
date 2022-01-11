@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import project.MainFrame;
-import project.actions.MainButtonAL;
+import project.actions.receipts_actions.MainButtonAL;
 
 public class MainButtons extends JButton {
 	
