@@ -3,25 +3,23 @@ package project.actions.employees_actions.main;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 import project.actions.employees_actions.SQLs;
+import project.components.employees_companents.Table_emp;
 import project.frames.employees_frames.UpdataEmployees;
 
 public class TableSelectData implements MouseListener{
 	
+	Table_emp jp;
 	JTable jt;
-	DefaultTableModel dtm;
 	SQLs sql;
 	int row, col;
 	
-	public TableSelectData(JTable jt, DefaultTableModel dtm, SQLs sql) {
+	public TableSelectData(Table_emp jp, JTable jt, SQLs sql) {
+		this.jp = jp;
 		this.sql = sql;
 		this.jt = jt;
-		this.dtm = dtm;
 	}
 	
 	@Override
@@ -32,7 +30,7 @@ public class TableSelectData implements MouseListener{
 			col = jt.getSelectedColumn();
 			System.out.println(row + " " + col);
 			sql.setUpdataRow(row, col);
-			new UpdataEmployees(dtm, sql).setVisible(true);
+			new UpdataEmployees(jp, sql, row).setVisible(true);
 		}
 		//new SQLs();
 	}

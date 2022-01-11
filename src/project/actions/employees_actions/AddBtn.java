@@ -13,8 +13,6 @@ import javax.swing.JTextField;
 import project.actions.employees_actions.main.object.AddData;
 
 public class AddBtn implements ActionListener {
-	
-	AddData addData;
 	JFrame f, emp_f;
 	String[] title;
 	HashMap<String,Object> txts = new HashMap<>();
@@ -28,9 +26,8 @@ public class AddBtn implements ActionListener {
 		this.txts = txts;
 	}
 	
-	
 	AddData getData() {
-		addData = new AddData(Integer.parseInt(String.valueOf(data[0])), (String)data[1], null, (String)data[2], (String)data[3]);
+		AddData addData = new AddData(Integer.parseInt(String.valueOf(data[0])), (String)data[1], null, (String)data[2], (String)data[3]);
 		return addData;
 	}
 	

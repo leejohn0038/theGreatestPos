@@ -9,6 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
@@ -17,14 +19,17 @@ import project.actions.employees_actions.AddBtn;
 import project.actions.employees_actions.SQLs;
 import project.actions.employees_actions.Updata;
 import project.actions.employees_actions.main.object.AddData;
+import project.components.employees_companents.Table_emp;
 
 public class UpdataEmployees extends JFrame{
 	
 	private int frame_size[] = {700,500};
-	DefaultTableModel dtm;
+	Table_emp jp;
+	int row;
 	
-	public UpdataEmployees(DefaultTableModel dtm, SQLs sql) {
-		this.dtm = dtm;
+	public UpdataEmployees(Table_emp jp, SQLs sql, int row) {
+		this.row = row;
+		this.jp = jp;
 		add(inner_lay(sql));
 		setBounds(500,500,frame_size[0],frame_size[1]);
 		setVisible(false);
@@ -89,7 +94,7 @@ public class UpdataEmployees extends JFrame{
 		
 		btn.setSize(100,50);
 		btn.setLocation(frame_size[0]-btn.getSize().width-100, frame_size[1]-btn.getSize().height-50);
-		btn.addActionListener(new Updata(this, dtm, txts, title_labs));
+		btn.addActionListener(new Updata(jp, this, row, txts, title_labs));
 		
 		inner.add(exLab);
 		inner.add(btn);

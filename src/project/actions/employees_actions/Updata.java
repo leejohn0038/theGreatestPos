@@ -4,11 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
@@ -16,19 +18,23 @@ import javax.swing.table.DefaultTableModel;
 
 import project.actions.employees_actions.main.Function_emp;
 import project.actions.employees_actions.main.object.AddData;
+import project.components.employees_companents.Table_emp;
 
 public class Updata implements ActionListener{
 	
+	Table_emp jp;
 	JFrame f;
 	DefaultTableModel dtm;
 	AddData addData;
 	String[] title;
 	HashMap<String,Object> txts = new HashMap<>();
 	Object[] data;
+	int row;
 	
-	public Updata(JFrame f, DefaultTableModel dtm, HashMap<String,Object> txts, String[] title) {
-		this.dtm = dtm;
+	public Updata(Table_emp jp, JFrame f, int row, HashMap<String,Object> txts, String[] title) {
+		this.jp = jp;
 		this.f = f;
+		this.row = row;
 		this.txts = txts;
 		this.title = title;
 	}
@@ -64,10 +70,17 @@ public class Updata implements ActionListener{
 				data[i] = tempTxt.getText();
 			}
 		}
-		
 		if(stop == true) {
+			
 			new SQLs("수정", f, getData());
-			dtm.fireTableDataChanged();
+			
+			Object[][] obj = new SQLs("리셋", null, null).getRowData();
+			
+			System.out.println(jp.dtm.getColumnCount());
+			
+			for(int i = 0; i<jp.dtm.getColumnCount(); i++) {
+				jp.dtm.setValueAt(obj[row][i], row, i);
+			}
 			f.dispose();
 		}
 	}

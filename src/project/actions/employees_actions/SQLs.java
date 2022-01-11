@@ -14,8 +14,8 @@ import javax.swing.JFrame;
 import javax.xml.crypto.Data;
 
 import project.actions.employees_actions.main.DBConnector;
-import project.actions.employees_actions.main.Employee;
 import project.actions.employees_actions.main.object.AddData;
+import project.actions.employees_actions.main.object.Employee;
 
 public class SQLs {
 	
@@ -26,7 +26,6 @@ public class SQLs {
 	private String[] title;
 	
 	public SQLs(String type, JFrame f, AddData addData) {
-		
 		this.addData = addData;
 		
 		try (
@@ -125,12 +124,7 @@ public class SQLs {
 		pstmt.setString(4,(String) datas[3]);
 		pstmt.setString(5,(String) datas[4]);
 		
-		System.out.println(1);
-		
 		rs = pstmt.executeQuery();
-		
-		//System.out.println(Arrays.toString(addData));
-		System.out.println("수행완료");
 		
 		pstmt.close();
 		rs.close();

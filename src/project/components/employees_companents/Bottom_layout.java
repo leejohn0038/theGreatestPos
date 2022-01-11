@@ -32,7 +32,7 @@ public class Bottom_layout extends JPanel{
 		
 		side = new SideBar_layout(main, layoutBounds[2], layoutBounds[3]);
 		inner_layout.add(side);
-		inner_layout.add(new Table_layout(emp, side.getSize().width, sql));
+		inner_layout.add(new Table_layout(side.getSize().width, sql));
 		
 		add(inner_layout);
 		

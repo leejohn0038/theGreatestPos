@@ -1,4 +1,4 @@
-package project.actions.employees_actions.main;
+package project.actions.employees_actions.main.object;
 
 public class Employee {
 	public Object[] obj;
