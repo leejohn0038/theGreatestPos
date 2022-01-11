@@ -6,7 +6,7 @@ import project.components.receipts_components.MainButtons;
 import project.components.receipts_components.ReceiptButtons;
 import project.components.receipts_components.Tables;
 import project.components.receipts_components.Toppanel;
-import project.frames.Frames;
+import project.frames.receipts_frames.Frames;
 
 public class MainFrame extends JFrame {
 	

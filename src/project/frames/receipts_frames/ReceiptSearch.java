@@ -10,7 +10,8 @@ import project.components.receipts_components.TextField;
 
 public class ReceiptSearch extends JFrame {
 	JTextField[] f = new JTextField[9];
-	public ReceiptSearch(Receipts r) {
+	public ReceiptSearch(MainFrame main, Receipts r) {
+		
 		add(new Label("¿µ¼öÁõID", 50, 55, 100, 50));
 		add(f[0] = new TextField(170, 60, 150, 30) {{setName("id1");}}); 
 		add(new Label("~", 330, 60, 30, 30));
@@ -34,7 +35,7 @@ public class ReceiptSearch extends JFrame {
 		add(new Label("~", 330, 310, 30, 30));
 		add(f[8] = new TextField(170, 340, 150, 30) {{setName("period2");}});
 		
-		add(new SearchSubmitBtn(r, f, 200, 400, 100, 50));
+		add(new SearchSubmitBtn(main, r, f, 200, 400, 100, 50));
 
 		setVisible(false);
 		setLayout(null);

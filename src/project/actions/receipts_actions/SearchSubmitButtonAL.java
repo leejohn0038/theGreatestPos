@@ -2,12 +2,11 @@ package project.actions.receipts_actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 import java.util.HashMap;
 
 import javax.swing.JTextField;
 
-import project.database.DBConnector;
+import project.MainFrame;
 import project.database.receipts_DB.ReceiptSearching;
 import project.frames.receipts_frames.Receipts;
 
@@ -28,11 +27,13 @@ public class SearchSubmitButtonAL implements ActionListener {
 	String[] sqls;
 	JTextField[] f;
 	Receipts r;
+	MainFrame main;
 
 	
-	public SearchSubmitButtonAL(Receipts r, JTextField[] f) {
+	public SearchSubmitButtonAL(MainFrame main, Receipts r, JTextField[] f) {
 		this.r = r;
 		this.f = f;
+		this.main = main;
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -48,7 +49,6 @@ public class SearchSubmitButtonAL implements ActionListener {
 				}
 			}
 		}
-		System.out.println(Arrays.toString(sqls));
 		r.table.tableUpdate(ReceiptSearching.getData(sqls));
 	}	
 }
