@@ -65,7 +65,6 @@ public class GoodsTable extends JPanel {
 		setLayout(new BorderLayout());
 		setBounds(0, 50, 650, 400);
 		
-		model.fireTableDataChanged();
 		table.setRowHeight(50);
 		
 		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
