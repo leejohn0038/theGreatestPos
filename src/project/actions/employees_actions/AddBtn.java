@@ -9,20 +9,22 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 import project.actions.employees_actions.main.Function_emp;
 import project.actions.employees_actions.main.object.AddData;
 import project.components.employees_companents.Table_emp;
+import project.frames.employees_frames.AddEmployees;
 
 public class AddBtn implements ActionListener {
-	JFrame f;
+	
+	AddEmployees f;
 	Table_emp jp;
 	String[] title;
 	HashMap<String,Object> txts = new HashMap<>();
-	
 	Object[] data;
 
-	public AddBtn(Table_emp jp, JFrame f, HashMap<String,Object> txts, String[] title) {
+	public AddBtn(Table_emp jp, AddEmployees f, HashMap<String,Object> txts, String[] title) {
 		this.jp = jp;
 		this.f = f;
 		this.title = title;
@@ -66,6 +68,12 @@ public class AddBtn implements ActionListener {
 		if(stop == true) {
 			SQLs add_sql = new SQLs("등록", f, getData());
 			jp.dtm.addRow(add_sql.addData.getDates());
+			JLabel temp_lab = (JLabel) f.txts.get(title[0]);
+			temp_lab.setText(Integer.toString(new SQLs("리셋", null, null).getEmp_id()));
+			for(int i = 1; i<title.length; i++) {
+				JTextField temp_txt = (JTextField) f.txts.get(title[i]);
+				temp_txt.setText("");
+			}
 			f.dispose();
 		}
 	}

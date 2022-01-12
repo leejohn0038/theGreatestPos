@@ -8,8 +8,8 @@ import java.sql.SQLException;
 public class DBConnector {
 	
 	private static String driverName = "oracle.jdbc.driver.OracleDriver";
-	private static String url = "jdbc:oracle:thin:@localhost:1521/XE";
-	private static String user_id = "hr";
+	private static String url = "jdbc:oracle:thin:@59.9.112.194:1521/XE";
+	private static String user_id = "pch";
 	private static String user_pass = "1234";
 	
 	static {

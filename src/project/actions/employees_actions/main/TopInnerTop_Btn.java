@@ -5,6 +5,8 @@ import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import project.actions.employees_actions.Delete;
 import project.actions.employees_actions.FrameVisible;
@@ -18,6 +20,7 @@ import project.frames.employees_frames.AddEmployees;
 public class TopInnerTop_Btn extends JButton{
 	final private static HashMap<Integer, String> BTN_MAP = new HashMap<>();
 	
+	Table_emp jp;
 	JFrame addEmp;
 	
 	static {
@@ -26,6 +29,8 @@ public class TopInnerTop_Btn extends JButton{
 	}
 
 	public TopInnerTop_Btn(Table_emp jp, int num, int lh, SQLs sql) {
+		
+		this.jp = jp;
 		
 		addEmp = new AddEmployees(jp, sql);
 		
@@ -49,7 +54,7 @@ public class TopInnerTop_Btn extends JButton{
 			addActionListener(new FrameVisible(addEmp));
 			break;
 		case 1:
-			addActionListener(new Delete());
+			addActionListener(new Delete(0));
 			break;
 		default:
 			break;

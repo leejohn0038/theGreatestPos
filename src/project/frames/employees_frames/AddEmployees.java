@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 
 import org.w3c.dom.Text;
@@ -26,6 +27,7 @@ public class AddEmployees extends JFrame{
 	
 	private int frame_size[] = {700,500}; 
 	Table_emp jp;
+	public HashMap<String,Object> txts;
 	
 	public AddEmployees(Table_emp jp, SQLs sql) {
 		
@@ -40,11 +42,12 @@ public class AddEmployees extends JFrame{
 		
 		JPanel inner = new JPanel();
 		JLabel exLab = new JLabel("등록하실 직원 정보를 입력해주세요");
+		
 		JButton btn = new JButton("등록");
 		
 		String[] title_labs = {"ID", "이름", "전화번호", "직책"}; 
 		ArrayList<JLabel> labs = new ArrayList<>();
-		HashMap<String,Object> txts = new HashMap<>();
+		txts = new HashMap<>();
 		
 		int exLab_x; 
 		
@@ -76,7 +79,6 @@ public class AddEmployees extends JFrame{
 			txtLoc[1] = lab.getLocation().y;
 			
 			labs.add(lab);
-			
 			
 			//아이디 값은 db에 넣은 순서대로 배정할할 예정
 			if(i==0) {

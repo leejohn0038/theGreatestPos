@@ -9,7 +9,7 @@ public class Delete implements ActionListener{
 	
 	AddData addData;
 	
-	public Delete() {}
+	public Delete(int row) {}
 
 	/*
 	AddData getData() {

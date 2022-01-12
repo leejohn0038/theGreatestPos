@@ -149,21 +149,17 @@ public class SQLs {
 		rs.close();
 	}
 	
-	/*
-	ArrayList<Employee> getEmplotees() {
-		return employees;
-	}*/
-	
 	public String[] getTitle() {
 		return title;
 	}
 	
 	public Object[][] getRowData(){
-		int col = employees.size();
-		Object[][] rowData = new Object[col][row];
+		int row = employees.size();
+		int col = employees.get(0).getObjSize();
+		Object[][] rowData = new Object[row][col];
 		
-		for(int i = 0; i<col; i++) {
-			for(int j=0; j<row; j++) {
+		for(int i = 0; i<row; i++) {
+			for(int j = 0; j<col; j++) {
 				rowData[i] = employees.get(i).getDate();
 			}
 		}
@@ -192,6 +188,11 @@ public class SQLs {
 	
 	public int getEmp_id() {
 		Object[][] rowData = getRowData();
+		
+		if(rowData.length == 0) {
+			return 100;
+		}
+		
 		return Integer.parseInt(String.valueOf(rowData[rowData.length-1][0]))+1;
 	}
 }

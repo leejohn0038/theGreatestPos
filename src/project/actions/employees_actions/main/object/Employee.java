@@ -12,7 +12,7 @@ public class Employee {
 		return obj;
 	}
 	
-	int objSize() {
+	public int getObjSize() {
 		return obj.length;
 	}
 }
