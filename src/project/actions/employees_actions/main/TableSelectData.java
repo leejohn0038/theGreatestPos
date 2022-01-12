@@ -11,7 +11,7 @@ import project.frames.employees_frames.UpdataEmployees;
 
 public class TableSelectData implements MouseListener{
 	
-	Table_emp jp;
+	public Table_emp jp;
 	JTable jt;
 	SQLs sql;
 	int row, col;
@@ -25,10 +25,10 @@ public class TableSelectData implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		
-		if (e.getClickCount() == 2 && !e.isConsumed()) {
-			row = jt.getSelectedRow();
-			col = jt.getSelectedColumn();
-			System.out.println(row + " " + col);
+		row = jt.getSelectedRow();
+		col = jt.getSelectedColumn();
+		
+		if (e.getClickCount() == 2 && !e.isConsumed()) {	
 			sql.setUpdataRow(row, col);
 			new UpdataEmployees(jp, sql, row).setVisible(true);
 		}
@@ -47,9 +47,6 @@ public class TableSelectData implements MouseListener{
 	@Override
 	public void mouseExited(MouseEvent e) {}
 	
-	
-	void upDate() {
-	}
 	
 	public int getColumn() {
 		return col;

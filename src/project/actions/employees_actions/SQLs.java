@@ -100,10 +100,10 @@ public class SQLs {
 		final String ADD_SQL = "employee_id = ?";
 		PreparedStatement pstmt = conn.prepareStatement(SQL + ADD_SQL);
 		ResultSet rs;
+		//ArrayList<int> ids = new
+		int id = addData.getID();
 		
-		Object[] datas = addData.getDates();
-		
-		pstmt.setInt(1, (int)datas[0]);
+		pstmt.setInt(1, id);
 		
 		rs = pstmt.executeQuery();
 		
@@ -186,6 +186,7 @@ public class SQLs {
 		return String.valueOf(rowData[row][col]);
 	}
 	
+	//µî·Ï½Ã
 	public int getEmp_id() {
 		Object[][] rowData = getRowData();
 		

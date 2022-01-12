@@ -10,6 +10,14 @@ public class AddData {
 	private String tel;
 	private String job;
 	
+	public AddData(int id) {
+		this.id = id;
+		name = null;
+		hire_data = null;
+		tel = null;
+		job = null;
+	}
+	
 	public AddData(int id, String name, LocalDate hire_data, String tel, String job) {
 		
 		this.id = id;
@@ -28,5 +36,9 @@ public class AddData {
 		Object[] dates = {id, name, hire_data, tel, job};
 		
 		return dates;
+	}
+	
+	public int getID() {
+		return id;
 	}
 }

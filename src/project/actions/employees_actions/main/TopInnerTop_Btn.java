@@ -54,7 +54,7 @@ public class TopInnerTop_Btn extends JButton{
 			addActionListener(new FrameVisible(addEmp));
 			break;
 		case 1:
-			addActionListener(new Delete(0));
+			addActionListener(new Delete(jp.getTsd()));
 			break;
 		default:
 			break;
