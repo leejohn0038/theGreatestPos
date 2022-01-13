@@ -10,8 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import project.actions.employees_actions.DelectValue;
-import project.actions.employees_actions.FrameVisible;
+import project.actions.customers_actions.CustomersDelectValue;
+import project.actions.customers_actions.CustomersFrameVisible;
 import project.frames.customers_frames.AddCustomers;
 import project.frames.customers_frames.CustomersGuideManual;
 
@@ -46,10 +46,10 @@ public class CustomersTopInnerTopBtn extends JButton{
 		
 		switch (num) {
 		case 0:
-			addActionListener(new FrameVisible(addCtm));
+			addActionListener(new CustomersFrameVisible(addCtm));
 			break;
 		case 1:
-			addActionListener(new DelectValue());
+			addActionListener(new CustomersDelectValue());
 			break;
 		default:
 			break;
