@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-import project.actions.employees_actions.SelectBtn;
+import project.actions.customers_actions.CustomersSelectBtn;
 
 public class CustomersSelectLayout extends JPanel{
 	
@@ -37,7 +37,7 @@ public class CustomersSelectLayout extends JPanel{
 		add(selectTxt);
 		
 		//검색 버튼
-		add(new SelectBtn());
+		add(new CustomersSelectBtn());
 	}
 
 }

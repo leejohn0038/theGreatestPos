@@ -8,7 +8,7 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
-import project.actions.employees_actions.main.TableSelectData;
+import project.actions.customers_actions.main.CustomersTableSelectData;
 
 public class CustomersTableLayout extends JPanel{
 	
@@ -29,7 +29,7 @@ public class CustomersTableLayout extends JPanel{
 		jt = new JTable(dtm);
 		sp = new JScrollPane(jt);
 		
-		jt.addMouseListener(new TableSelectData(jt));
+		jt.addMouseListener(new CustomersTableSelectData(jt));
 		
 		setLayout(new BorderLayout());	
 		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);

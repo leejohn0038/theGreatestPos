@@ -7,21 +7,21 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import project.MainFrame;
-import project.components.employees_companents.Select_layout;
-import project.components.employees_companents.SideBar_layout;
-import project.components.employees_companents.Table_layout;
+import project.components.customers_components.CustomersSelectLayout;
+import project.components.customers_components.CustomersSideBarLayout;
+import project.components.customers_components.CustomersTableLayout;
 
 public class CustomersBottomLayout extends JPanel{
-	public CustomersBottomLayout(MainFrame main, JFrame emp) {
+	public CustomersBottomLayout(MainFrame main, JFrame ctm) {
 		
-		int fw = emp.getSize().width, fh = emp.getSize().height;
+		int fw = ctm.getSize().width, fh = ctm.getSize().height;
 		
 		//레이아웃 초기설정
 		int[] layoutBounds = {0, (int)(fh*0.2), fw, (int)(fh*0.8)};
 		int height;
 		
 		JPanel inner_layout = new JPanel();
-		JPanel select = new Select_layout();
+		JPanel select = new CustomersSelectLayout();
 		JPanel side;
 		
 		add(select);
@@ -32,9 +32,9 @@ public class CustomersBottomLayout extends JPanel{
 		inner_layout.setLayout(null);
 		inner_layout.setBounds(0, 0, layoutBounds[2], layoutBounds[3]-height);
 		
-		side = new SideBar_layout(main, layoutBounds[2], layoutBounds[3]);
+		side = new CustomersSideBarLayout(main, layoutBounds[2], layoutBounds[3]);
 		inner_layout.add(side);
-		inner_layout.add(new Table_layout(side.getSize().width));
+		inner_layout.add(new CustomersTableLayout(side.getSize().width));
 		
 		add(inner_layout);
 		
@@ -43,7 +43,7 @@ public class CustomersBottomLayout extends JPanel{
 		setBorder(new LineBorder(Color.black));
 	}
 	public static void main(String[] args) {
-		MainFrame main = new MainFrame();
-		new CustomersBottomLayout(main, null);
+		//MainFrame main = new MainFrame();
+		new CustomersBottomLayout(null, null);
 	}
 }
