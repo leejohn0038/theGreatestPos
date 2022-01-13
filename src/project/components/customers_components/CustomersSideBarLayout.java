@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import project.MainFrame;
-import project.components.MainButtons;
+import project.components.receipts_components.MainButtons;
 
 
 public class CustomersSideBarLayout extends JPanel{

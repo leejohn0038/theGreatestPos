@@ -19,19 +19,11 @@ public class ReceiptsButtonsAL implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch(btn) {
-		case "포인트 적립" :
-			main.getFrame(btn).setVisible(true);
-			break;
-		case "현금 영수증" :
-			main.getFrame(btn).setVisible(true);
-			break;
 		case "영수증 발급" :
 			JOptionPane.showMessageDialog(null, "영수증 발급이 완료되었습니다.");
 			break;
-		case "반품업무" :
-			main.getFrame(btn).setVisible(true);
-			break;
 		default:
+			main.getFrame(btn).setVisible(true);
 			break;
 		}
 		
