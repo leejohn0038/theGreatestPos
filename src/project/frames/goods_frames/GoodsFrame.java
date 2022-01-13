@@ -24,3 +24,4 @@ public class GoodsFrame extends JFrame {
 		setVisible(false);
 		setResizable(false);
 	}
+}
