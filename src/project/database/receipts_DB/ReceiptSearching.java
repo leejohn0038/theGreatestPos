@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import project.database.DBConnector;
 
@@ -16,11 +15,10 @@ public class ReceiptSearching {
 				+ "AND phone BETWEEN %s AND %s "
 				+ "AND price BETWEEN %d AND %d "
 				+ "AND payment IN ( %s ) "
-				+ "AND period BETWEEN %s AND %s", 
+				+ "AND period BETWEEN %s AND %s or phone is null", 
 				Integer.parseInt(sqls[0]), Integer.parseInt(sqls[1]), sqls[2], sqls[3], 
 				Integer.parseInt(sqls[4]), Integer.parseInt(sqls[5]),
 				sqls[8], sqls[6], sqls[7]);
-		System.out.println(sql);
 		
 		ArrayList<Object[]> results = new ArrayList<>();
 		Object[] result;

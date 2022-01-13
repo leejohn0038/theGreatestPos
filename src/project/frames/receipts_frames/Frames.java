@@ -1,4 +1,4 @@
-package project.frames.receipts_frames;
+ package project.frames.receipts_frames;
 
 import java.util.HashMap;
 
@@ -10,7 +10,7 @@ import project.frames.goods_frames.GoodsFrame;
 
 public class Frames {
 	
-	public HashMap<String, JFrame> FRAMES = new HashMap<String, JFrame>();
+	private HashMap<String, JFrame> FRAMES = new HashMap<String, JFrame>();
 	
 	Receipts r;
 	
@@ -20,8 +20,12 @@ public class Frames {
 		FRAMES.put("직원", new Employees(main));
 		FRAMES.put("포인트 적립", new PointCollect());
 		FRAMES.put("현금 영수증", new CashReceipt());
-		FRAMES.put("반품업무", new Refunding(main));
+		FRAMES.put("반품업무", new Refunding(main, r));
 		FRAMES.put("영수증 조회하기", new ReceiptSearch(main, r));
+	}
+	
+	public JFrame getFrame(String btn) {
+		return FRAMES.get(btn);
 	}
 
 }

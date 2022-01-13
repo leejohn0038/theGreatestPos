@@ -15,7 +15,7 @@ public class MainFrame extends JFrame {
 	public MainFrame() {
 		frames = new Frames(this);
 		add(new Toppanel(this, "판매"));
-		add(new Tables(new String[] {"상품id", "상품이름", "수량", "가격"}));
+		add(new Tables(new String[] {"상품id", "상품이름", "수량", "가격"}, 300, 100, 680, 300));
 		
 		String[] btnNames1 = {"상품", "영수증", "직원", "회원", "업무가이드"};
 		String[] btnNames2 = {"포인트 적립", "현금 영수증", "영수증 발급"};
@@ -25,7 +25,7 @@ public class MainFrame extends JFrame {
 		}
 		
 		for(int i = 0; i < btnNames2.length; ++i) {
-			add(new ReceiptButtons(this, btnNames2[i]));
+			add(new ReceiptButtons(this, btnNames2[i], 0));
 		}
 			
 		setLayout(null);
@@ -36,7 +36,7 @@ public class MainFrame extends JFrame {
 	}
 	
 	public JFrame getFrame(String btn) {
-		return frames.FRAMES.get(btn);
+		return frames.getFrame(btn);
 	}
 	
 	public static void main(String[] args) {

@@ -6,16 +6,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-
 import java.util.ArrayList;
 
-
 import javax.swing.JFrame;
-import javax.xml.crypto.Data;
 
-import project.actions.employees_actions.main.DBConnector;
 import project.actions.employees_actions.main.object.AddData;
 import project.actions.employees_actions.main.object.Employee;
+import project.database.DBConnector;
 
 public class SQLs {
 	
@@ -62,7 +59,7 @@ public class SQLs {
 	
 	void tableReset(String SQL, Connection conn) throws SQLException {
 		
-		PreparedStatement pstmt = conn.prepareStatement(SQL + "order by employee_id");
+		PreparedStatement pstmt = conn.prepareStatement(SQL + "order by 사원번호");
 		ResultSet rs = pstmt.executeQuery();
 		ResultSetMetaData meta = rs.getMetaData();
 		
@@ -97,7 +94,7 @@ public class SQLs {
 	}
 	
 	void delete(String SQL, Connection conn) throws SQLException{
-		final String ADD_SQL = "employee_id = ?";
+		final String ADD_SQL = "사원번호 = ?";
 		PreparedStatement pstmt = conn.prepareStatement(SQL + ADD_SQL);
 		ResultSet rs;
 		//ArrayList<int> ids = new
@@ -112,8 +109,8 @@ public class SQLs {
 	}
 	
 	void updata(String SQL, Connection conn) throws SQLException {
-		final String ADD_SQL = "name = ?, hire_date = ?, "
-				+ "tel = ?, position = ? WHERE employee_id = ?";
+		final String ADD_SQL = "이름 = ?, 입사일 = ?, "
+				+ "전호번호 = ?, 직책 = ? WHERE 사원번호 = ?";
 		PreparedStatement pstmt = conn.prepareStatement(SQL + ADD_SQL);
 		ResultSet rs;
 		Object[] datas = addData.getDates();

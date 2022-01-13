@@ -18,14 +18,14 @@ public class SearchSubmitButtonAL implements ActionListener {
 	private final static HashMap<String, String> COMBO_VALUES = new HashMap<>();
 	
 	static {
-		DEFAULT_VALUES.put("id1", new String[] {"1", "\\d{1,4}"});
-		DEFAULT_VALUES.put("id2", new String[] {"9999", "\\d{1,4}"});
-		DEFAULT_VALUES.put("phone1", new String[] {"'010-0000-0000'", "\\d{3}\\-\\d{4}\\-\\d{4}"});
-		DEFAULT_VALUES.put("phone2", new String[] {"'019-9999-9999'", "\\d{3}\\-\\d{4}\\-\\d{4}"});		
-		DEFAULT_VALUES.put("price1", new String[] {"0", "\\d{1,9}"});		
-		DEFAULT_VALUES.put("price2", new String[] {"999999999", "\\d{1,9}"});
-		DEFAULT_VALUES.put("period1", new String[] {"'2000/01/01'", "\\d{4}/\\d{2}/\\d{2}"});
-		DEFAULT_VALUES.put("period2", new String[] {"'2100/12/31'", "\\d{4}/\\d{2}/\\d{2}"});
+		DEFAULT_VALUES.put("id1", new String[] {"1", Regex.getRegex()[0]});
+		DEFAULT_VALUES.put("id2", new String[] {"9999", Regex.getRegex()[0]});
+		DEFAULT_VALUES.put("phone1", new String[] {"'010-0000-0000'", Regex.getRegex()[1]});
+		DEFAULT_VALUES.put("phone2", new String[] {"'019-9999-9999'", Regex.getRegex()[1]});		
+		DEFAULT_VALUES.put("price1", new String[] {"0", Regex.getRegex()[2]});		
+		DEFAULT_VALUES.put("price2", new String[] {"999999999", Regex.getRegex()[2]});
+		DEFAULT_VALUES.put("period1", new String[] {"'2000/01/01'", Regex.getRegex()[3]});
+		DEFAULT_VALUES.put("period2", new String[] {"'2100/12/31'", Regex.getRegex()[3]});
 		COMBO_VALUES.put("전체", "'카드', '현금'");
 		COMBO_VALUES.put("카드", "'카드'");
 		COMBO_VALUES.put("현금", "'현금'");
@@ -34,9 +34,9 @@ public class SearchSubmitButtonAL implements ActionListener {
 	JTextField[] f;
 	Receipts r;
 	MainFrame main;
-	JComboBox com;
+	JComboBox<String> com;
 	
-	public SearchSubmitButtonAL(MainFrame main, Receipts r, JTextField[] f, JComboBox com) {
+	public SearchSubmitButtonAL(MainFrame main, Receipts r, JTextField[] f, JComboBox<String> com) {
 		this.r = r;
 		this.f = f;
 		this.main = main;
@@ -67,7 +67,7 @@ public class SearchSubmitButtonAL implements ActionListener {
 			if (datas.size() == 0) {
 				JOptionPane.showMessageDialog(main.getFrame("영수증 조회하기"), "조회된 영수증이 없습니다.");				
 			} else {				
-				r.table.tableUpdate(datas);	
+				r.getTable().updateRow(datas);	
 				main.getFrame("영수증 조회하기").setVisible(false);
 			}
 		} else {

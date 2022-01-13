@@ -18,7 +18,7 @@ public class Employees extends JFrame{
 		setVisible(false);
 		setLayout(null);
 		setBounds(100,100,1000,700);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(HIDE_ON_CLOSE);
 		
 		// 0, 1 은 프레임의 크기를 담는다.
 		SQLs sql = new SQLs("리셋", this, null);

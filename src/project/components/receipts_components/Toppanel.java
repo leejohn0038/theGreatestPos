@@ -16,7 +16,8 @@ public class Toppanel extends JPanel{
 			}
 		});
 		add(new TextField(500, 20, 270, 40));
-		add(new Button(main, "검색", 800, 20, 70, 40));
+		//검색 기능 보류
+		//add(new FrameButton(main, "검색", 800, 20, 70, 40));
 		setBounds(100, 0, 930, 100);
 		setLayout(null);		
 	}
