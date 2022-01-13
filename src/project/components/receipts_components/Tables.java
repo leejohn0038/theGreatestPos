@@ -1,6 +1,7 @@
 package project.components.receipts_components;
 
 import java.awt.BorderLayout;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -39,7 +40,13 @@ public class Tables extends JPanel {
 		add(sp);
 	}
 	
-	public void tableUpdate(Object[] result) {
-        model.addRow(result);
+	public void tableUpdate(ArrayList<Object[]> results) {
+		int cnt = model.getRowCount();
+		for (int i = cnt - 1; i >= 0; --i) {
+			model.removeRow(i);
+		}
+        for (int i = 0; i < results.size(); ++i) {
+        	model.addRow(results.get(i));
+        }
 	}
 }
