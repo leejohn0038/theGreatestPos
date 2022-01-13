@@ -2,7 +2,6 @@ package project.actions.customers_actions;
 
 import javax.swing.JFrame;
 
-import project.components.Tables;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
