@@ -15,12 +15,12 @@ public class CustomersTableLayout extends JPanel{
 	DefaultTableModel dtm;
 	
 	public CustomersTableLayout(int lw) {
-		String[] columnNames = {"ID", "이름", "전화번호", "주소", "직책"};
+		String[] columnNames = {"phone", "customers_name", "customers_address", "subscription_date", "membership_point"};
 		Object[][] rowData = {
-				{100, "이요한", "010-0505-2247", "경기도", "팀장"},
-				{101, "장은철", "010-0505-2247", "경기도", "팀원"},
-				{102, "박찬호", "010-0505-2247", "경기도", "팀원"},
-				{103, "이정호", "010-0505-2247", "경기도", "팀원"}
+				{"010-0505-2917", "이요한", "경기도", "2022/01/11", "100"},
+				{"010-0505-2407", "장은철", "경기도", "2022/01/10", "1000"},
+				{"010-0505-2557", "박찬호", "경기도", "2022/01/01", "500"},
+				{"010-0504-2547", "이정호", "경기도", "2022/01/02", "100"}
 				};
 		JTable jt;
 		JScrollPane sp;
