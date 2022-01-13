@@ -62,6 +62,10 @@ public class StoreTable extends JPanel {
 	public DefaultTableModel getTableModel() {
 		return model;
 	}
+	
+	public String[]	getColumnName() {
+		return column_name;
+	}
 }
 
 

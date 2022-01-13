@@ -29,11 +29,6 @@ public class ManagementPanel extends JPanel {
 			e.printStackTrace();
 		}
 	}
-//	static String[] column_name = {"상품번호", "이름", "수량", "가격", "유통기한", "입고일"};
-//	static Object[][] rowData;
-//	static DefaultTableModel tmodel = new DefaultTableModel(rowData, column_name);
-//	static JTable table = new JTable(tmodel);
-//	static JScrollPane sp = new JScrollPane(table);;
 	
 	String sql = "SELECT goods.gid, goods.gname, gstore.gqty, goods.gprice, gstore.expiration, gstore.storedate "
 			+ "FROM goods, gstore WHERE goods.gname(+) = gstore.gname";
@@ -57,10 +52,10 @@ public class ManagementPanel extends JPanel {
 	Date addStoredate;
 	
 	public ManagementPanel() {
+		StoreTable storeTable = new StoreTable();
 		GetValues gv = new GetValues();
 		
 		BasicPopupPanel storePopup = new BasicPopupPanel();
-		// 테스트용 버튼을 만들어 렌덤물품이 추가되게 확인하기
 		storePopup.add(new JLabel("상품추가") {
 			{
 				setBounds(20, 10, 100, 50);
@@ -159,6 +154,7 @@ public class ManagementPanel extends JPanel {
 							e2.printStackTrace();
 						}
 						
+//						storeTable.getTableModel() = new DefaultTableModel(storeTable.getColumnName, 0);
 					}
 				});
 			}
@@ -218,42 +214,13 @@ public class ManagementPanel extends JPanel {
 				setLocation(600, 0);
 			}
 		});
-//		add(sp);
-//		sp.setBounds(0, 50, 650, 400);
-//		sp.setVisible(true);
-		add(new StoreTable());
+		
+		add(storeTable);
 		setLayout(null);
 		setBounds(300, 100, 760, 500);
 		setVisible(true);
 	}
 	
-//	void storeTable() {
-//		try (
-//			PreparedStatement pstmt = conn.prepareStatement(sql);
-//		) {
-//			try (
-//				ResultSet rs = pstmt.executeQuery();
-//			) {
-//				while (rs.next()) {
-//					gid = rs.getInt("gid");
-//					gname = rs.getString("gname");
-//					gqty = rs.getInt("gqty");
-//					gprice = rs.getInt("gprice");
-//					expiration = rs.getDate("expiration");
-//					storedate = rs.getDate("storedate");
-//					
-//					Object[] temp = {gid, gname, gqty, gprice, expiration, storedate};
-//					tmodel.addRow(temp);
-//				}
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} 
-//		table.setRowHeight(50);
-//		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-//		sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-//		
-//	}
 	
 	
 }
