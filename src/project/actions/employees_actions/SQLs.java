@@ -42,6 +42,8 @@ public class SQLs {
 				delete(DEL_SQL, conn);
 				break;
 			case "검색":
+				final String SLE_SQL = "select * from mart_employees WHERE ";
+				select(SLE_SQL, conn);
 				break;
 			case "수정":
 				final String UPDATA_SQL = "UPDATE mart_employees SET ";
@@ -92,8 +94,8 @@ public class SQLs {
 		rs.close();
 	}
 	
-	void setAddData(AddData addData) {
-		this.addData = addData;
+	void select(String SQL, Connection conn) {
+		
 	}
 	
 	void delete(String SQL, Connection conn) throws SQLException{
@@ -149,14 +151,14 @@ public class SQLs {
 		rs.close();
 	}
 	
-	public String[] getTitle() {
-		return title;
-	}
-	
 	public Object[][] getRowData(){
 		int row = employees.size();
 		int col = employees.get(0).getObjSize();
 		Object[][] rowData = new Object[row][col];
+		
+		if(row == 0 || col == 0) {
+			rowData[0][0] = employees.get(0).getDate();
+		}
 		
 		for(int i = 0; i<row; i++) {
 			for(int j = 0; j<col; j++) {
@@ -170,6 +172,14 @@ public class SQLs {
 	public void setUpdataRow(int row, int col) {
 		this.row = row;
 		this.col = col;
+	}
+	
+	void setAddData(AddData addData) {
+		this.addData = addData;
+	}
+	
+	public String[] getTitle() {
+		return title;
 	}
 	
 	public int getMaxRow() {

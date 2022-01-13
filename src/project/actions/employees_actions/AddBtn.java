@@ -51,7 +51,7 @@ public class AddBtn implements ActionListener {
 				JTextField tempTxt = (JTextField)txts.get(title[i]);
 				
 				if((i == 2 && !(Pattern.matches("010\\-*\\d{4}\\-*\\d{4}", tempTxt.getText()))) ||
-						(i == 3 && !(Pattern.matches("\\W{2,}", tempTxt.getText())))) {
+						(i == 3 && (!(Pattern.matches("\\W{2,}", tempTxt.getText()))|| tempTxt.getText() == ""))) {
 					JOptionPane massge = new JOptionPane();
 					massge.showMessageDialog(null, title[i] + " 잘못된 값 입력");
 					stop = false;
