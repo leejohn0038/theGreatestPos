@@ -33,17 +33,19 @@ public class StoreTable extends JPanel {
 		
 		try (
 			Connection conn = PosDBConnector.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM gstore INNER JOIN goods USING (gname)");
+			PreparedStatement pstmt = conn.prepareStatement
+					("SELECT g.gid, gs.gname, gs.gqty, g.gprice, gs.expiration, gs.storedate FROM gstore gs INNER JOIN goods g ON g.gname = gs.gname");
 			ResultSet rs = pstmt.executeQuery();
 		) {
 			while (rs.next()) {
 				strdNum = rs.getInt("gid");
 				strdName = rs.getString("gname");
+				strdQty = rs.getInt("gqty");
 				strdPrice = rs.getInt("gprice");
 				strdExp = rs.getDate("expiration");
 				strdDate = rs.getDate("storedate");
 				
-				Object[] addVal = {strdNum, strdName, strdPrice, strdExp, strdDate};
+				Object[] addVal = {strdNum, strdName, strdQty, strdPrice, strdExp, strdDate};
 				model.addRow(addVal);
 			}
 		} catch (SQLException e) {

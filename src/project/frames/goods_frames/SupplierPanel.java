@@ -9,7 +9,6 @@ import javax.swing.JPanel;
 import project.actions.goods_actions.GetValues;
 import project.components.goods_components.BasicSmallButton;
 import project.components.goods_components.BasicTextField;
-import project.components.goods_components.SupplierTable;
 
 public class SupplierPanel extends JPanel {
 	String val;
@@ -44,7 +43,6 @@ public class SupplierPanel extends JPanel {
 		
 		setLayout(null);
 		setBounds(300, 100, 760, 500);
-		add(new SupplierTable());
 		setVisible(true);
 	}
 	
