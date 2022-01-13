@@ -2,6 +2,7 @@ package project.components.goods_components;
 
 import java.awt.BorderLayout;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,33 +15,37 @@ import javax.swing.table.DefaultTableModel;
 
 public class StoreTable extends JPanel {
 	String[] column_name = {"상품번호", "이름", "수량", "가격", "유통기한", "입고일"};
-	Object[][] rowData;
 	private DefaultTableModel model;
 	private JTable table;
 	private JScrollPane sp;
 	
-	String name;
+	int strdNum;
+	String strdName;
+	int strdQty;
+	int strdPrice;
+	Date strdExp;
+	Date strdDate;
 	
 	public StoreTable() {
+		model = new DefaultTableModel(column_name, 0);
+		table = new JTable(model);
+		sp = new JScrollPane(table);
 		
 		try (
 			Connection conn = PosDBConnector.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM gstore INNER JOIN goods USING (gname)");
 			ResultSet rs = pstmt.executeQuery();
 		) {
-			int i = 0;
 			while (rs.next()) {
+				strdNum = rs.getInt("gid");
+				strdName = rs.getString("gname");
+				strdPrice = rs.getInt("gprice");
+				strdExp = rs.getDate("expiration");
+				strdDate = rs.getDate("storedate");
 				
-				name = rs.getString("gname");
-				rowData[0][i] = name;
-				i++;
+				Object[] addVal = {strdNum, strdName, strdPrice, strdExp, strdDate};
+				model.addRow(addVal);
 			}
-			
-			
-			model = new DefaultTableModel(rowData, column_name);
-			table = new JTable(model);
-			sp = new JScrollPane(table);
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
