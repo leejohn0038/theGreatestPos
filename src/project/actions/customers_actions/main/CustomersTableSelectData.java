@@ -7,7 +7,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JTable;
 
-import project.components.employees_companents.Table_layout;
+import project.components.customers_components.CustomersTableLayout;
 
 public class CustomersTableSelectData implements MouseListener{
 
