@@ -13,16 +13,16 @@ public class CustomersSQLs {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery();
 			) {
-			System.out.println("EMPLOTEE_ID\tNAME\t"
-					+ "HIRE_DATE\t\tTEL\t"
-					+ "POSITION\n");
+			System.out.println("phone\tcustomers_name\t"
+					+ "customers_address\t\tsubscription_date\t"
+					+ "membership_point\n");
 			while (rs.next()) {
-				System.out.printf("%d\t\t%s\t\t%s\t\t%.2f\n",
-						rs.getInt("phone"),
+				System.out.printf("%s\t\t%s\t\t%s\t\t%s\t\t%f\n",
+						rs.getString("phone"),
 						rs.getString("customers_name"),
-						rs.getDate("customers_address"),
+						rs.getString("customers_address"),
 						rs.getString("subscription_date"),
-						rs.getString("membership_point"));
+						rs.getDouble("membership_point"));
 				//System.out.println(rs.getString("first_name"));
 			}
 		} catch (SQLException e) {

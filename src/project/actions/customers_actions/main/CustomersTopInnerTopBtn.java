@@ -12,15 +12,15 @@ import javax.swing.JPanel;
 
 import project.actions.employees_actions.DelectValue;
 import project.actions.employees_actions.FrameVisible;
-import project.frames.employees_frames.AddEmployees;
-import project.frames.employees_frames.Guide_manual;
+import project.frames.customers_frames.AddCustomers;
+import project.frames.customers_frames.CustomersGuideManual;
 
 //여긴 직원프레임의 상단 버튼입니다.
 
 public class CustomersTopInnerTopBtn extends JButton{
 	final private static HashMap<Integer, String> BTN_MAP = new HashMap<>();
 	
-	JFrame addEmp = new AddEmployees();
+	JFrame addCtm = new AddCustomers();
 	
 	static {
 		BTN_MAP.put(0, "등록");
@@ -46,7 +46,7 @@ public class CustomersTopInnerTopBtn extends JButton{
 		
 		switch (num) {
 		case 0:
-			addActionListener(new FrameVisible(addEmp));
+			addActionListener(new FrameVisible(addCtm));
 			break;
 		case 1:
 			addActionListener(new DelectValue());
