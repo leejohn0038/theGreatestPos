@@ -12,9 +12,6 @@ import java.time.LocalDate;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.RowFilter;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 
 import project.actions.SearchTf;
@@ -22,19 +19,20 @@ import project.actions.goods_actions.GetValues;
 import project.components.goods_components.BasicPopupPanel;
 import project.components.goods_components.BasicSmallButton;
 import project.components.goods_components.BasicTextField;
+import project.components.goods_components.GoodsTable;
 import project.components.goods_components.PosDBConnector;
 import project.components.goods_components.StoreTable;
 
 public class ManagementPanel extends JPanel {
 	
-	String updateToGoods, changeName, exportName, gname, addName;
-	int changeQty, exportQty, preGoodsQty, addQty, gid, gqty, gprice, cnt; 
-	Date importExp, expiration, storedate, addStoredate;
-	BasicSmallButton importConfirmBtn, importCancelBtn, importBtn, exportConfirmBtn, exportCancelBtn, exportBtn;
-	BasicTextField importNameTf, importQtyTf, importExpTf, exportNameTf, exportQtyTf, searchTf;
-	BasicPopupPanel importPop, exportPop;
-	DefaultTableModel dtm;
-	
+	private String changeName;
+	private int changeQty, preGoodsQty, gid, gprice, cnt; 
+	private Date importExp, addStoredate;
+	private BasicSmallButton importConfirmBtn, importCancelBtn, importBtn, exportConfirmBtn, exportCancelBtn, exportBtn;
+	private BasicTextField importNameTf, importQtyTf, importExpTf, exportNameTf, exportQtyTf, searchTf;
+	private BasicPopupPanel importPop, exportPop;
+	private DefaultTableModel dtm;
+
 	public ManagementPanel() {
 		
 		StoreTable storeTable = new StoreTable();
@@ -50,9 +48,12 @@ public class ManagementPanel extends JPanel {
 		importConfirmBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				try (
 					Connection conn = PosDBConnector.getConnection();		
 				) {
+					getImportValues();
+					existGoods(conn);
 					addGoods(conn, cnt);
 					
 				} catch (SQLException e1) {
@@ -78,15 +79,6 @@ public class ManagementPanel extends JPanel {
 		importBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				try (
-					Connection conn = PosDBConnector.getConnection();		
-				) {
-					existGoods(conn);
-						
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-				
 				importNameTf.setText("상품명을 입력해주세요");
 				importQtyTf.setText("수량을 입력해주세요");
 				importExpTf.setText("YYYYDDMM");
@@ -109,6 +101,7 @@ public class ManagementPanel extends JPanel {
 						Connection conn = PosDBConnector.getConnection();
 				) {
 					loseGoods(conn);
+					
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
@@ -159,7 +152,7 @@ public class ManagementPanel extends JPanel {
 	
 	
 	
-	JPanel importPopupPanel(BasicPopupPanel importPop) {
+	private JPanel importPopupPanel(BasicPopupPanel importPop) {
 		importPop.add(new JLabel("입고") {
 			{
 				setBounds(20, 10, 100, 50);
@@ -182,7 +175,7 @@ public class ManagementPanel extends JPanel {
 		return importPop;
 	}
 	
-	void insertVal(Connection conn, String addSql) {
+	private void insertVal(Connection conn, String addSql) {
 		try (
 			PreparedStatement addPs = conn.prepareStatement(addSql);		
 		) {
@@ -196,7 +189,7 @@ public class ManagementPanel extends JPanel {
 		}
 	}
 	
-	JPanel exportPopupPanel(BasicPopupPanel exportPop) {
+	private JPanel exportPopupPanel(BasicPopupPanel exportPop) {
 		
 		exportPop.add(new JLabel("출고") {
 			{
@@ -216,20 +209,20 @@ public class ManagementPanel extends JPanel {
 		return exportPop;
 	}
 	
-	void getImportValues() {
+	private void getImportValues() {
 		GetValues gv = new GetValues();
 		changeName = gv.getTextStringValue(importNameTf);
 		changeQty = gv.getTextNumValue(importQtyTf);
 		importExp = gv.getTextDateValue(importExpTf);
 	}
 	
-	void getExportValues() {
+	private void getExportValues() {
 		GetValues gv = new GetValues();
 		changeName = gv.getTextStringValue(exportNameTf);
 		changeQty = gv.getTextNumValue(exportQtyTf);
 	}
 	
-	void existGoods(Connection conn) {
+	private void existGoods(Connection conn) {
 		try (
 			PreparedStatement pstmt = conn.prepareStatement("SELECT COUNT(*) FROM gstore WHERE gname = ?");		
 		) {
@@ -238,13 +231,12 @@ public class ManagementPanel extends JPanel {
 			
 			rs.next();
 			cnt = rs.getInt("COUNT(*)");
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	void getPreGoodsInfo(Connection conn) {
+	private void getPreGoodsInfo(Connection conn) {
 		try (
 			PreparedStatement preGoodsPs = conn.prepareStatement("SELECT * FROM goods WHERE gname = ?");
 		) {
@@ -260,9 +252,8 @@ public class ManagementPanel extends JPanel {
 		}
 	}
 	
-	void addGoods(Connection conn, int cnt) {
+	private void addGoods(Connection conn, int cnt) {
 		LocalDate now = LocalDate.now();
-		getImportValues();
 		getPreGoodsInfo(conn);
 		
 		try (
@@ -273,7 +264,7 @@ public class ManagementPanel extends JPanel {
 			updateToGoods.executeUpdate();
 			
 			String addSql;
-			if (cnt == 0 || !addStoredate.toLocalDate().equals(now)) {
+			if (cnt == 0) {
 				addSql = "INSERT INTO gstore(gname, gqty, expiration) VALUES (?, ?, ?)";
 				insertVal(conn, addSql);
 				Object[] addTemp = 
@@ -281,41 +272,51 @@ public class ManagementPanel extends JPanel {
 				dtm.addRow(addTemp);
 				importPop.setVisible(false);
 				
-			} else if (cnt > 0 && addStoredate.toLocalDate().equals(now)){
-				addSql = "UPDATE gstore SET gqty = ? WHERE gname = ?";
-				try (
+			} else if (cnt > 0) {
+				PreparedStatement addInfoPs = conn.prepareStatement("SELECT * FROM gstore WHERE gname = ?");
+				addInfoPs.setString(1, changeName);
+				ResultSet addInfoRs = addInfoPs.executeQuery();
+				addInfoRs.next();
+				addStoredate = addInfoRs.getDate("storedate");
+				if (addStoredate.toLocalDate().equals(now)){
+					addSql = "UPDATE gstore SET gqty = ? WHERE gname = ?";
+					try (
 						PreparedStatement addPs = conn.prepareStatement(addSql);	
-						PreparedStatement addInfoPs = conn.prepareStatement("SELECT * FROM gstore WHERE gname = ?");
-						) {
-					addInfoPs.setString(1, changeName);
-					ResultSet addInfoRs = addInfoPs.executeQuery();
-					addInfoRs.next();
-					addStoredate = addInfoRs.getDate("storedate");
-					
-					Object addQty = preGoodsQty + changeQty;
-					addPs.setObject(1, addQty);
-					addPs.setString(2, changeName);
-					addPs.executeUpdate();
-					
-					int rowNum;
-					for (int i = 0; i < dtm.getRowCount(); ++i) {
-						if (dtm.getValueAt(i, 1).equals(importNameTf.getText())) {
-							rowNum = i;
-							dtm.setValueAt(addQty, rowNum, 2);
+					) {
+						Object addQty = preGoodsQty + changeQty;
+						addPs.setObject(1, addQty);
+						addPs.setString(2, changeName);
+						addPs.executeUpdate();
+						
+						int rowNum;
+						for (int i = 0; i < dtm.getRowCount(); ++i) {
+							if (dtm.getValueAt(i, 1).equals(importNameTf.getText())) {
+								rowNum = i;
+								dtm.setValueAt(addQty, rowNum, 2);
+							}
 						}
+						importPop.setVisible(false);
+						
+					} catch (SQLException e1) {
+						e1.printStackTrace();
 					}
+				} else if (!addStoredate.toLocalDate().equals(now)) {
+					addSql = "INSERT INTO gstore(gname, gqty, expiration) VALUES (?, ?, ?)";
+					insertVal(conn, addSql);
+					Object[] addTemp = 
+						{gid, changeName, changeQty, gprice, importExp, now};
+					dtm.addRow(addTemp);
 					importPop.setVisible(false);
-					
-				} catch (SQLException e1) {
-					e1.printStackTrace();
 				}
+				
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}	
 	}
 	
-	void loseGoods(Connection conn) {
+	private void loseGoods(Connection conn) {
 		getExportValues();
 		getPreGoodsInfo(conn);
 		
@@ -341,7 +342,8 @@ public class ManagementPanel extends JPanel {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}	
+		}
+		
 	}
 }
 

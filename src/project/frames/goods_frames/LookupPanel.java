@@ -19,16 +19,16 @@ import project.components.goods_components.CancelButton;
 import project.components.goods_components.GoodsTable;
 
 public class LookupPanel extends JPanel {
-	String comboVal;
-	String[] combo = {"전체", "카테고리", "거래처"};
-	JComboBox<String> searchCb = new JComboBox<>(combo);
-	JComboBox<String> categoryCb = new JComboBox<>(combo);
-	GoodsTable goods;
+	private String comboVal;
+	private String[] combo = {"전체", "카테고리", "거래처"};
+	private JComboBox<String> searchCb = new JComboBox<>(combo);
+	private JComboBox<String> categoryCb = new JComboBox<>(combo);
+	private GoodsTable goods;
 	
 	public LookupPanel() {
 		
 		// 검색창 생성
-		goods = new GoodsTable("SELECT * FROM goods");
+		goods = new GoodsTable();
 		GetValues gv = new GetValues();
 		
 		searchCb.setBounds(375, 0, 100, 25);

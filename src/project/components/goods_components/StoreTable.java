@@ -75,6 +75,9 @@ public class StoreTable extends JPanel {
 		return rowSorter;
 	}
 
+	public JTable getTable() {
+		return table;
+	}
 }
 
 

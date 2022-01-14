@@ -23,17 +23,18 @@ public class GoodsTable extends JPanel {
 	
 	DefaultTableModel model;
 	TableRowSorter<TableModel> rowSorter;
+	private JTable table;
 	
-	public GoodsTable(String sql) {
+	public GoodsTable() {
 		model = new DefaultTableModel(COLUMN_NAME, 0);
-		JTable table = new JTable(model);
+		table = new JTable(model);
 		JScrollPane sp = new JScrollPane(table); 
 		rowSorter = new TableRowSorter<>(table.getModel());
 		table.setRowSorter(rowSorter);
 		
 		try (
 			Connection conn = PosDBConnector.getConnection();	
-			PreparedStatement pstmt = conn.prepareStatement(sql);
+			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM goods");
 		) {
 			try (
 				ResultSet rs = pstmt.executeQuery();		
@@ -76,6 +77,10 @@ public class GoodsTable extends JPanel {
 	
 	public DefaultTableModel getTableModel() {
 		return model;
+	}
+	
+	public JTable getTable() {
+		return table;
 	}
 }
 
