@@ -79,13 +79,19 @@ public class UpdataEmployees extends JFrame{
 			
 			//아이디 값은 db에 넣은 순서대로 배정할할 예정
 			if(i==0) {
-				idLab.setText(Integer.toString(sql.getUpdataEmp_id()));
+				idLab.setText(Integer.toString((int)jp.dtm.getValueAt(row, 0)));
 				idLab.setBounds(txtLoc[0], txtLoc[1], 300, 50);
 				txts.put(title_labs[i], idLab);
 				inner.add(idLab);
 			}else {
 				txt.setBounds(txtLoc[0], txtLoc[1], 300, 50);
-				txt.setText(sql.getUpdataEmp_data(i));
+				txt.setText(jp.dtm.getValueAt(row, i).toString());
+				/*
+				try {
+					txt.setText(jp.dtm.getValueAt(row, i).toString());
+				} catch (Exception e) {
+					txt.setText();
+				}*/
 				txts.put(title_labs[i], txt);
 				inner.add(txt);
 			}
