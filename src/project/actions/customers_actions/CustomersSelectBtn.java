@@ -1,21 +1,20 @@
-package project.actions.employees_actions;
+package project.actions.customers_actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
-import project.actions.employees_actions.main.object.AddData;
-import project.components.employees_companents.Select_layout;
-import project.components.employees_companents.Table_emp;
-import project.components.employees_companents.Table_layout;
+import project.actions.customers_actions.CustomersSQLs;
+import project.actions.customers_actions.main.object.CustomersAddData;
+import project.components.customers_components.CustomersSelectLayout;
+import project.components.customers_components.Table_ctm;
+import project.components.customers_components.CustomersTableLayout;
 
 //뷰자체가 작길래 한곳에서 하기로 결정...
-public class SelectBtn extends JButton{
-	public SelectBtn(Select_layout sl, Table_layout tl) {
+public class CustomersSelectBtn extends JButton{
+	public CustomersSelectBtn(CustomersSelectLayout sl, CustomersTableLayout tl) {
 		//view
 		super("검색");
 		setBounds(0,0,100,30);
@@ -28,14 +27,14 @@ public class SelectBtn extends JButton{
 				
 				//System.out.println(sl.getComboBox().getSelectedItem()+ " " + sl.getComboBox().getSelectedIndex() +" " +sl.getSelectTxt().getText());
 				
-				AddData addDate = new AddData();
-				Table_emp jt = tl.get_table();
+				CustomersAddData addDate = new CustomersAddData();
+				Table_ctm jt = tl.get_table();
 				DefaultTableModel dtm = jt.getDtm();
-				SQLs sql;
+				CustomersSQLs sql;
 				Object[][] str;
 				
 				addDate.setSelectValue(sl.getComboBox().getSelectedIndex(), sl.getSelectTxt().getText());
-				sql = new SQLs("검색", null, addDate);
+				sql = new CustomersSQLs("검색", null, addDate);
 				
 				str = sql.getRowData();
 				System.out.println(str.length);

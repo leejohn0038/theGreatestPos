@@ -5,100 +5,80 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.RowFilter;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import project.actions.goods_actions.GetValues;
 import project.components.goods_components.BasicPopupPanel;
 import project.components.goods_components.BasicSmallButton;
-import project.components.goods_components.BasicTextArea;
-import project.components.goods_components.GoodsTable;
+import project.components.goods_components.BasicTextField;
 import project.components.goods_components.CancelButton;
+import project.components.goods_components.GoodsTable;
 
 public class LookupPanel extends JPanel {
 	String comboVal;
 	String[] combo = {"전체", "카테고리", "거래처"};
 	JComboBox<String> searchCb = new JComboBox<>(combo);
 	JComboBox<String> categoryCb = new JComboBox<>(combo);
-	String sql = "";
+	StringBuffer input = new StringBuffer("SELECT * FROM goods WHERE ");
+	String sql = "SELECT * FROM goods";
+	GoodsTable gt;
 	
 	public LookupPanel() {
 		
-		// 카테고리 선택용 팝업창
-		BasicPopupPanel category = new BasicPopupPanel();
-		categoryCb.setSelectedIndex(0);
-		categoryCb.setBounds(20, 20, 200, 50);
-		GetValues cv = new GetValues();
-		categoryCb.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				comboVal = cv.getComboBoxValue(categoryCb);
-				System.out.println(comboVal);
-			}
-		});
-		category.add(categoryCb);
-		category.add(new CancelButton(category, 200, 200));
-		add(category);
-
-		// 상단 버튼 생성
-		add(new BasicSmallButton("전체") {
-			{
-				setLocation(0, 0);
-				
-			}
-		});
-		
-		add(new BasicSmallButton("카테고리") {
-			{
-				setLocation(70, 0);
-				addActionListener(new ActionListener() {
-					
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						category.setVisible(true);
-					}
-				});
-			}
-		});
-		
-		add(new BasicSmallButton("유통기한") {
-			{
-				setLocation(140, 0);
-			}
-		});
-		
-		add(new BasicSmallButton("거래처") {
-			{
-				setLocation(210, 0);
-			}
-		});
-		
 		// 검색창 생성
-		searchCb.setSelectedIndex(0);
-		searchCb.setBounds(325, 0, 100, 25);
+		gt = new GoodsTable(sql);
+		
+		GetValues cv = new GetValues();
+		searchCb.setBounds(375, 0, 100, 25);
 		comboVal = cv.getComboBoxValue(searchCb);
 		searchCb.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				comboVal = cv.getComboBoxValue(searchCb);
+				System.out.println(comboVal);
 			}
 		});
 		add(searchCb);
 		searchCb.setVisible(true);
 		
-		add(new BasicTextArea() {
+		gt.getRowsorter().addRowSorterListener(null);
+		add(new BasicTextField() {
 			{
-				setLocation(425, 0);
+				setLocation(475, 0);
+				
+				getDocument().addDocumentListener(new DocumentListener() {
+					@Override
+					public void removeUpdate(DocumentEvent e) {
+						String keyword = getText();
+						
+						if (keyword.trim().length() == 0) {
+							gt.getRowsorter().setRowFilter(null);
+						} else {
+							gt.getRowsorter().setRowFilter(RowFilter.regexFilter("(?i)" + keyword));
+						}
+					}
+					
+					@Override
+					public void insertUpdate(DocumentEvent e) {
+						String keyword = getText();
+						
+						if (keyword.trim().length() == 0) {
+							gt.getRowsorter().setRowFilter(null);
+						} else {
+							gt.getRowsorter().setRowFilter(RowFilter.regexFilter("(?i)" + keyword));
+						}
+					}
+					
+					@Override
+					public void changedUpdate(DocumentEvent e) {
+						throw new UnsupportedOperationException("Not supported yet.");
+					}
+				});
 			}
 		});
-		
-		add(new BasicSmallButton("검색") {
-			{
-				setLocation(600, 0);
-			}
-		});
-		
-		
-		
-		GoodsTable gt = new GoodsTable(sql);
 		
 		add(gt);
 		setLayout(null);
@@ -110,17 +90,8 @@ public class LookupPanel extends JPanel {
 		return comboVal;
 	}
 	
-	void choicCategory() {
-		switch (comboVal) {
-		case "전체":
-			sql = "SELECT * FROM goods";
-			break;
-		case "카테고리":
-			
-			break;
-		case "거래처":
-			break;
-		}
+	public GoodsTable getLookupTable() {
+		return gt;
 	}
 }
 

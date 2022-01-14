@@ -29,6 +29,11 @@ public class Function_emp {
 		
 	}
 	
+	public String[] getTitle() {
+		
+		return new SQLs("¸®¼Â", null, null).getTitle();
+	}
+	
 	public boolean regex(String title, String obj) {
 		JOptionPane massge = new JOptionPane();
 		

@@ -28,7 +28,7 @@ public class Updata implements ActionListener{
 	AddData addData;
 	String[] title;
 	HashMap<String,Object> txts = new HashMap<>();
-	Object[] data;
+	String[] datas;
 	int row;
 	
 	public Updata(Table_emp jp, JFrame f, int row, HashMap<String,Object> txts, String[] title) {
@@ -40,23 +40,21 @@ public class Updata implements ActionListener{
 	}
 
 	AddData getData() {
-		addData = new AddData(Integer.parseInt(String.valueOf(data[0])), 
-				(String)data[1], LocalDate.parse((String)data[2], DateTimeFormatter.ISO_DATE), 
-				(String)data[3], (String)data[4]);
+		addData = new AddData(datas);
 		return addData;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JLabel lab;
-		data = new Object[title.length];
+		datas = new String[title.length];
 		
 		boolean stop = true;
 		
 		for(int i = 0; i<title.length; i++) {
 			if(i==0) {
 				lab = (JLabel) txts.get(title[i]);
-				data[i] = Integer.parseInt(String.valueOf(lab.getText()));
+				datas[i] = lab.getText();
 			}else {
 				
 				JTextField tempTxt = (JTextField)txts.get(title[i]);
@@ -67,7 +65,7 @@ public class Updata implements ActionListener{
 					break;
 				}
 				
-				data[i] = tempTxt.getText();
+				datas[i] = tempTxt.getText();
 			}
 		}
 		if(stop == true) {

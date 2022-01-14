@@ -1,4 +1,4 @@
-package project.actions.employees_actions;
+package project.actions.customers_actions;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -10,24 +10,23 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-import project.actions.employees_actions.main.object.AddData;
-import project.database.DBConnector;
+import project.actions.customers_actions.main.CustomersDBConnector;
+import project.actions.customers_actions.main.object.CustomersAddData;
 
-
-public class SQLs {
+public class CustomersSQLs {
 	
-	private ArrayList<AddData> addDatas;
-	AddData addData;
+	private ArrayList<CustomersAddData> addDatas;
+	CustomersAddData addData;
 	private int row;
 	private int col;
 	private String[] title;
 	private String title_txt;
 	
-	public SQLs(String type, JFrame f, AddData addData) {
+	public CustomersSQLs(String type, JFrame f, CustomersAddData addData) {
 		this.addData = addData;
 		
 		try (
-				Connection conn = DBConnector.getConnection();
+				Connection conn = CustomersDBConnector.getConnection();
 			) {
 			
 			switch (type) {
@@ -95,7 +94,7 @@ public class SQLs {
 			}
 			
 			System.out.println();
-			addDatas.add(new AddData(objs));
+			addDatas.add(new CustomersAddData(objs));
 		}
 		
 		pstmt.close();
@@ -138,7 +137,7 @@ public class SQLs {
 				}
 			}
 
-			addDatas.add(new AddData(objs));
+			addDatas.add(new CustomersAddData(objs));
 		}
 		
 		for(int i = 0; i<addDatas.size(); i++) {
@@ -230,7 +229,7 @@ public class SQLs {
 		this.col = col;
 	}
 	
-	void setAddData(AddData addData) {
+	void setAddData(CustomersAddData addData) {
 		this.addData = addData;
 	}
 	
@@ -242,18 +241,18 @@ public class SQLs {
 		return row;
 	}
 	
-	public int getUpdataEmp_id() {
+	public int getUpdataCtm_id() {
 		Object[][] rowData = getRowData();
 		return Integer.parseInt(String.valueOf(rowData[row][0]));
 	}
 	
-	public String getUpdataEmp_data(int col) {
+	public String getUpdataCtm_data(int col) {
 		Object[][] rowData = getRowData();
 		return String.valueOf(rowData[row][col]);
 	}
 	
 	//µî·Ï½Ã
-	public int getEmp_id() {
+	public int getCtm_id() {
 		Object[][] rowData = getRowData();
 		
 		if(rowData.length == 0) {

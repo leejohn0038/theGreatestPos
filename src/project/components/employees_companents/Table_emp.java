@@ -26,7 +26,7 @@ public class Table_emp extends JTable{
 	}
 	
 	public void resetTable(SQLs sql) {
-		String[] columnNames = {"ID", "이름", "입사일", "전화번호", "직책"};
+		String[] columnNames = new SQLs("리셋", null, null).getTitle();
 		rowData = sql.getRowData();
 
 		//테이블 자체적으로 수정 금지
