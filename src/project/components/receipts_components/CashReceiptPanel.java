@@ -3,8 +3,6 @@ package project.components.receipts_components;
 
 import javax.swing.JPanel;
 
-import project.components.Label;
-import project.components.TextField;
 
 public class CashReceiptPanel extends JPanel {
 

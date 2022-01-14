@@ -1,14 +1,18 @@
-
-package project.actions;
+package project.actions.customers_actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class BackButtonAL implements ActionListener{
-	// 뒤로가기 버튼은 아직구현안함
+public class CustomersDelectValue implements ActionListener {
+	
+	//DB에 읽어온 데이터를
+	
+	public CustomersDelectValue() {}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 }

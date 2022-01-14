@@ -1,4 +1,4 @@
-package project.components.customers_components;
+package project.components.customers_components.reserve;
 
 import java.awt.Font;
 import java.awt.Panel;
@@ -9,7 +9,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
-import project.components.Tables;
 //
 //static {
 //	CustomerButtonMap.put("ID : ", new Point(300, 100));

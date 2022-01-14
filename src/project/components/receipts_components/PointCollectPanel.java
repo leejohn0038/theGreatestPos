@@ -6,9 +6,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import project.components.Label;
-import project.components.TextField;
-
 public class PointCollectPanel extends JPanel {
 	
 	public PointCollectPanel() {
