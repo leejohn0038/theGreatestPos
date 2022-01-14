@@ -23,36 +23,68 @@ import project.components.goods_components.StoreTable;
 
 public class ManagementPanel extends JPanel {
 	
-	DefaultTableModel dtm;
 	String updateToGoods, importName, exportName, gname, addName;
 	int importQty, exportQty, preGoodsQty, addQty, gid, gqty, gprice, cnt; 
 	Date importExp, expiration, storedate, addStoredate;
-	BasicSmallButton confirmBtn, cancleBtn, importBtn, exportBtn;
+	BasicSmallButton importConfirmBtn, importCancelBtn, importBtn, exportBtn;
 	BasicTextField importNameTf, importQtyTf, importExpTf, exportNameTf, exportQtyTf;
+	BasicPopupPanel importPop, exportPop;
+	DefaultTableModel dtm;
 	
 	public ManagementPanel() {
-		
+		LocalDate now = LocalDate.now();
 		StoreTable storeTable = new StoreTable();
-		GetValues gv = new GetValues();
 		LookupPanel lp = new LookupPanel();
 		dtm = storeTable.getTableModel();
 		
+		
+		importPop = new BasicPopupPanel();
+		importConfirmBtn = new BasicSmallButton("확인");
+		importCancelBtn = new BasicSmallButton("취소");
+		importPopupPanel(importPop);
+		
+		importConfirmBtn.setLocation(140, 240);
+		importConfirmBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		importPop.add(importConfirmBtn);
+		
+		importCancelBtn.setLocation(220, 240);
+		importCancelBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				importPop.setVisible(false);
+			}
+		});
+		importPop.add(importCancelBtn);
+		add(importPop);
+		
+		importBtn = new BasicSmallButton("입고");
+		importBtn.setLocation(0, 0);
+		importBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				importNameTf.setText("상품명을 입력해주세요");
+				importQtyTf.setText("수량을 입력해주세요");
+				importExpTf.setText("YYYYDDMM");
+				importPop.setVisible(true);
+			}
+		});
+		add(importBtn);
+		
 		try {
 			Connection conn = PosDBConnector.getConnection();		
-			BasicPopupPanel importPop = new BasicPopupPanel();
-			importPopupPanel(importPop);
 			
-			importPop.add(new BasicSmallButton("입고") {
+			importPop.add(new BasicSmallButton("확인") {
 				{
 					setLocation(140, 240);
 					addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							importName = gv.getTextStringValue(importNameTf);
-							importQty = gv.getTextNumValue(importQtyTf);
-							importExp = gv.getTextDateValue(importExpTf);
-							
-							LocalDate now = LocalDate.now();
 							
 							try (
 								PreparedStatement cntPs = conn.prepareStatement("SELECT COUNT(*) FROM gstore WHERE gname = ?");
@@ -146,36 +178,7 @@ public class ManagementPanel extends JPanel {
 			});
 			add(importPop);
 			
-			importPop.add(new BasicSmallButton("취소") {
-				{
-					setLocation(220, 240);
-					addActionListener(new ActionListener() {
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							importPop.setVisible(false);
-							
-						}
-					});
-				}
-			});
-			
-			add(new BasicSmallButton("입고") {
-				{
-					setLocation(0, 0);
-					addActionListener(new ActionListener() {
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							importNameTf.setText("상품명을 입력해주세요");
-							importQtyTf.setText("수량을 입력해주세요");
-							importExpTf.setText("YYYYDDMM");
-							importPop.setVisible(true);
-						}
-					});
-				}
-			});
-			
-			
-			BasicPopupPanel exportPop = new BasicPopupPanel();
+			exportPop = new BasicPopupPanel();
 			add(exportPopupPanel(exportPop));
 			
 			add(new BasicSmallButton("출고") {
@@ -237,20 +240,6 @@ public class ManagementPanel extends JPanel {
 		} catch (SQLException e3) {
 			e3.printStackTrace();
 		}
-		
-		
-		
-		add(new BasicSmallButton("폐기") {
-			{
-				setLocation(140, 0);
-			}
-		});
-		
-		add(new BasicSmallButton("반품") {
-			{
-				setLocation(210, 0);
-			}
-		});
 		
 		add(new BasicTextField("검색어를 입력해주세요") {
 			{
@@ -357,20 +346,16 @@ public class ManagementPanel extends JPanel {
 		return exportPop;
 	}
 	
-	void deleteVal(Connection conn, String deleteSql) {
-		try (
-			PreparedStatement delSqlPs = conn.prepareStatement(deleteSql);		
-		) {
-			delSqlPs.setInt(1, exportQty);
-			delSqlPs.setString(2, exportName);
-			delSqlPs.executeUpdate();
-			
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	void getImportValues() {
+		GetValues gv = new GetValues();
+		importName = gv.getTextStringValue(importNameTf);
+		importQty = gv.getTextNumValue(importQtyTf);
+		importExp = gv.getTextDateValue(importExpTf);
 	}
 	
+	void getExportValues() {
+		GetValues gv = new GetValues();
+	}
 }
 
 
