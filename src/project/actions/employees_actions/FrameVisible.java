@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 public class FrameVisible implements ActionListener{
 
@@ -18,6 +19,9 @@ public class FrameVisible implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		
+		
+		
 		f.setVisible(true);
 	}
 	

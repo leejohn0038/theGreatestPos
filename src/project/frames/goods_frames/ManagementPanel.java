@@ -12,9 +12,6 @@ import java.time.LocalDate;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.RowFilter;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 
 import project.actions.SearchTf;

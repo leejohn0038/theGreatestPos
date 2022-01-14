@@ -1,33 +1,38 @@
 package project.actions.employees_actions.main;
 
 import java.awt.Dimension;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
-import project.actions.employees_actions.DelectValue;
+import project.actions.employees_actions.Delete;
 import project.actions.employees_actions.FrameVisible;
+import project.actions.employees_actions.SQLs;
+import project.components.employees_companents.Table_emp;
 import project.frames.employees_frames.AddEmployees;
-import project.frames.employees_frames.Guide_manual;
+
 
 //여긴 직원프레임의 상단 버튼입니다.
 
 public class TopInnerTop_Btn extends JButton{
 	final private static HashMap<Integer, String> BTN_MAP = new HashMap<>();
 	
-	JFrame addEmp = new AddEmployees();
+	Table_emp jp;
+	JFrame addEmp;
 	
 	static {
 		BTN_MAP.put(0, "등록");
 		BTN_MAP.put(1, "삭제");
 	}
 
-	public TopInnerTop_Btn(int num, int lh) {
+	public TopInnerTop_Btn(Table_emp jp, int num, int lh, SQLs sql) {
+		
+		this.jp = jp;
+		
+		addEmp = new AddEmployees(jp, sql);
 		
 		int btnX = 0;
 		int btnY;
@@ -49,7 +54,7 @@ public class TopInnerTop_Btn extends JButton{
 			addActionListener(new FrameVisible(addEmp));
 			break;
 		case 1:
-			addActionListener(new DelectValue());
+			addActionListener(new Delete(jp.getTsd()));
 			break;
 		default:
 			break;

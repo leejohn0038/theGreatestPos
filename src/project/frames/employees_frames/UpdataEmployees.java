@@ -1,10 +1,7 @@
 package project.frames.employees_frames;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -12,27 +9,27 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
-
-import org.w3c.dom.Text;
+import javax.swing.table.DefaultTableModel;
 
 import project.actions.employees_actions.AddBtn;
 import project.actions.employees_actions.SQLs;
+import project.actions.employees_actions.Updata;
 import project.actions.employees_actions.main.object.AddData;
 import project.components.employees_companents.Table_emp;
 
-public class AddEmployees extends JFrame{
+public class UpdataEmployees extends JFrame{
 	
-	private int frame_size[] = {700,500}; 
+	private int frame_size[] = {700,500};
 	Table_emp jp;
-	public HashMap<String,Object> txts;
+	int row;
 	
-	public AddEmployees(Table_emp jp, SQLs sql) {
-		
+	public UpdataEmployees(Table_emp jp, SQLs sql, int row) {
+		this.row = row;
 		this.jp = jp;
-		
 		add(inner_lay(sql));
 		setBounds(500,500,frame_size[0],frame_size[1]);
 		setVisible(false);
@@ -41,18 +38,16 @@ public class AddEmployees extends JFrame{
 	JPanel inner_lay(SQLs sql) {
 		
 		JPanel inner = new JPanel();
-		JLabel exLab = new JLabel("등록하실 직원 정보를 입력해주세요");
+		JLabel exLab = new JLabel("수정하실 데이터를 작성해주세요");
+		JButton btn = new JButton("수정");
 		
-		JButton btn = new JButton("등록");
-		
-		String[] title_labs = {"ID", "이름", "전화번호", "직책"}; 
+		String[] title_labs = {"ID", "이름", "입사일", "전화번호", "직책"}; 
 		ArrayList<JLabel> labs = new ArrayList<>();
-		txts = new HashMap<>();
+		HashMap<String,Object> txts = new HashMap<>();
 		
 		int exLab_x; 
 		
 		inner.setLayout(null);
-		//inner.setSize(100,100);
 		
 		//상단 설명란
 		exLab.setSize(300, 50);
@@ -80,14 +75,16 @@ public class AddEmployees extends JFrame{
 			
 			labs.add(lab);
 			
+			
 			//아이디 값은 db에 넣은 순서대로 배정할할 예정
 			if(i==0) {
-				idLab.setText(Integer.toString(sql.getEmp_id()));
+				idLab.setText(Integer.toString(sql.getUpdataEmp_id()));
 				idLab.setBounds(txtLoc[0], txtLoc[1], 300, 50);
 				txts.put(title_labs[i], idLab);
 				inner.add(idLab);
 			}else {
 				txt.setBounds(txtLoc[0], txtLoc[1], 300, 50);
+				txt.setText(sql.getUpdataEmp_data(i));
 				txts.put(title_labs[i], txt);
 				inner.add(txt);
 			}
@@ -97,7 +94,7 @@ public class AddEmployees extends JFrame{
 		
 		btn.setSize(100,50);
 		btn.setLocation(frame_size[0]-btn.getSize().width-100, frame_size[1]-btn.getSize().height-50);
-		btn.addActionListener(new AddBtn(jp, this, txts, title_labs));
+		btn.addActionListener(new Updata(jp, this, row, txts, title_labs));
 		
 		inner.add(exLab);
 		inner.add(btn);
@@ -105,17 +102,3 @@ public class AddEmployees extends JFrame{
 		return inner;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

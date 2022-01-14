@@ -1,37 +1,40 @@
 package project.actions.employees_actions.main;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JTable;
 
-import project.components.employees_companents.Table_layout;
+import project.actions.employees_actions.SQLs;
+import project.components.employees_companents.Table_emp;
+import project.frames.employees_frames.UpdataEmployees;
 
 public class TableSelectData implements MouseListener{
-
-	JTable jt;
-	int row, column;
 	
-	public TableSelectData(JTable jt) {
+	public Table_emp jp;
+	JTable jt;
+	SQLs sql;
+	int row, col;
+	
+	public TableSelectData(Table_emp jp, JTable jt, SQLs sql) {
+		this.jp = jp;
+		this.sql = sql;
 		this.jt = jt;
 	}
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		
 		row = jt.getSelectedRow();
-		column = jt.getSelectedColumn();
+		col = jt.getSelectedColumn();
+		
+		if (e.getClickCount() == 2 && !e.isConsumed()) {	
+			sql.setUpdataRow(row, col);
+			new UpdataEmployees(jp, sql, row).setVisible(true);
+		}
+		//new SQLs();
 	}
 	
-	public int getColumn() {
-		return column;
-	}
-	
-	public int getRow() {
-		return row;
-	}
-
 	@Override
 	public void mousePressed(MouseEvent e) {}
 
@@ -43,4 +46,13 @@ public class TableSelectData implements MouseListener{
 
 	@Override
 	public void mouseExited(MouseEvent e) {}
+	
+	
+	public int getColumn() {
+		return col;
+	}
+	
+	public int getRow() {
+		return row;
+	}
 }
