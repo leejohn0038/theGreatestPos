@@ -4,12 +4,12 @@ import java.sql.Date;
 import java.time.LocalDate;
 ///////////////////// 내부 emp관련 DB 데이터를 ctm으로 고치기
 public class CustomersAddData {
-	private int id;
-	private String name;
-	private Date hire_data;
-	private String tel;
-	private String job;
-	private Object[] dates = {id, name, hire_data, tel, job};
+	private String phone;
+	private String customers_name;
+	private String customers_address;
+	private Date subscription_date;
+	private int membership_point;
+	private Object[] dates = {phone, customers_name, customers_address, subscription_date, membership_point};
 	
 	
 	public CustomersAddData() {}
@@ -17,11 +17,13 @@ public class CustomersAddData {
 		
 		this.dates = objs;
 		
-		this.id = Integer.parseInt((String) objs[0]);
-		this.name = (String)objs[1];
-		this.hire_data = Date.valueOf(((String)objs[2]).substring(0,10));
-		this.tel = (String)objs[3];
-		this.job = (String)objs[4];
+		//this.phone = Integer.parseString((String) objs[0]);
+		//this.customers_address = Date.valueOf(((String)objs[2]).substring(0,10));
+		this.phone = (String) objs[0];
+		this.customers_name = (String)objs[1];
+		this.customers_address = (String)objs[2];
+		this.subscription_date = Date.valueOf(((String)objs[3]).substring(0,10));
+		this.membership_point = Integer.parseInt((String) objs[4]);
 	}
 	
 	public CustomersAddData(String[] objs) {
@@ -29,7 +31,7 @@ public class CustomersAddData {
 		dates[0] = Integer.parseInt((String) objs[0]);
 		dates[1] = objs[1];
 		
-		if(hire_data == null) {
+		if(customers_address == null) {
 			dates[2] = Date.valueOf(LocalDate.now());
 		}
 		/*else {
@@ -39,15 +41,15 @@ public class CustomersAddData {
 		dates[3] = (String)objs[3];
 		dates[4] = (String)objs[4];
 		
-		//System.out.println(id + " " + name + " " + hire_data + " " + tel + " " + job + " ");
+		//System.out.println(phone + " " + customers_name + " " + customers_address + " " + subscription_date + " " + membership_point + " ");
 	}
 	
-	public CustomersAddData(int id) {
-		this.id = id;
-		name = null;
-		hire_data = null;
-		tel = null;
-		job = null;
+	public CustomersAddData(String phone) {
+		this.phone = phone;
+		customers_name = null;
+		customers_address = null;
+		subscription_date = null;
+		membership_point = 0;
 	}
 	
 	
@@ -68,12 +70,12 @@ public class CustomersAddData {
 		return dates.length;
 	}
 	
-	public int getID() {
-		return id;
+	public String getID() {
+		return phone;
 	}
 	
 	@Override
 	public String toString() {
-		return String.format("%d, %s, %s, %s, %s", id, name, hire_data, tel, job);
+		return String.format("%s, %s, %s, %s, %d", phone, customers_name, customers_address, subscription_date, membership_point);
 	}
 }
