@@ -70,7 +70,7 @@ public class GoodsTable extends JPanel {
 		setVisible(true);
 	}
 	
-	public TableRowSorter getRowsorter() {
+	public TableRowSorter<TableModel> getRowsorter() {
 		return rowSorter;
 	}
 	
