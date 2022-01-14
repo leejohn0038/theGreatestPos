@@ -28,6 +28,7 @@ public class CustomersSelectLayout extends JPanel{
 		com.setBounds(0,0, 500,30);
 		
 		//bottom layout 설정
+		// FlowLayout 버튼을 수평으로 정리하는 레이아웃
 		setLayout(new FlowLayout(FlowLayout.RIGHT));
 		setBounds(0, 0, 1000, 30);
 		setBorder(new LineBorder(Color.black));
