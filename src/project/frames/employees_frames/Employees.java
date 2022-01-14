@@ -1,9 +1,7 @@
 package project.frames.employees_frames;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
-import oracle.net.aso.f;
 import project.MainFrame;
 import project.actions.employees_actions.SQLs;
 import project.components.employees_companents.Bottom_layout;
@@ -22,11 +20,16 @@ public class Employees extends JFrame{
 		
 		// 0, 1 은 프레임의 크기를 담는다.
 		SQLs sql = new SQLs("리셋", this, null);
+		
+		
 		Bottom_layout bl = new Bottom_layout(main, this, sql);
+		bl.getTl().setBounds(50, 0, 784, 501);
+		bl.setBounds(100, 100, 984, 611);
 		add(bl);
-		add(new Top_layout(this, bl.getTl().get_table(), sql));
+		
+		Top_layout top_layout = new Top_layout(this, bl.getTl().get_table(), sql);
+		add(top_layout);
 	}
-	
 }
 
 

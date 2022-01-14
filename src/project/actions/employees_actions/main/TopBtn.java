@@ -1,12 +1,10 @@
 package project.actions.employees_actions.main;
 
-import java.awt.Dimension;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 import project.actions.employees_actions.Delete;
 import project.actions.employees_actions.FrameVisible;
@@ -17,7 +15,8 @@ import project.frames.employees_frames.AddEmployees;
 
 //여긴 직원프레임의 상단 버튼입니다.
 
-public class TopInnerTop_Btn extends JButton{
+public class TopBtn extends JButton{
+	
 	final private static HashMap<Integer, String> BTN_MAP = new HashMap<>();
 	
 	Table_emp jp;
@@ -28,20 +27,24 @@ public class TopInnerTop_Btn extends JButton{
 		BTN_MAP.put(1, "삭제");
 	}
 
-	public TopInnerTop_Btn(Table_emp jp, int num, int lh, SQLs sql) {
+	public TopBtn(Table_emp jp, int num, SQLs sql, int[] lw, int lh) {
+		
+		
+		int wight = 100;
+		int hight = lh/2;
+		int x = lw[1]-(((num+1)*wight)+50);
+		int y = hight/2;
+		
+		System.out.println(x + " " + y);
+		System.out.println(Arrays.toString(lw) + " " + lh);
 		
 		this.jp = jp;
 		
 		addEmp = new AddEmployees(jp, sql);
 		
-		int btnX = 0;
-		int btnY;
-		
 		setText(BTN_MAP.get(num));
-		setPreferredSize(new Dimension(100,30));
-		btnY = (lh-getPreferredSize().height)/2;
-		//x 좌표는 
-		setLocation((btnX+num)*150,btnY);
+		//setBounds(700, hight, wight, hight);
+		setBounds(x, y, wight, hight);
 		
 		btnEvent(num);	
 	}
