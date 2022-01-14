@@ -27,7 +27,7 @@ public class ManagementPanel extends JPanel {
 	String updateToGoods, importName, exportName, gname, addName;
 	int importQty, exportQty, preGoodsQty, addQty, gid, gqty, gprice, cnt; 
 	Date importExp, expiration, storedate, addStoredate;
-	BasicSmallButton importBtn;
+	BasicSmallButton confirmBtn, cancleBtn, importBtn, exportBtn;
 	BasicTextField importNameTf, importQtyTf, importExpTf, exportNameTf, exportQtyTf;
 	
 	public ManagementPanel() {
