@@ -7,12 +7,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
+import project.actions.customers_actions.CustomersSQLs;
 import project.components.customers_components.CustomersNavLayout;
+import project.components.customers_components.Table_ctm;
 
 //프레임의 상단 레이아웃 (logo / 조회 / 등록 / 편집 버튼)
 public class CustomersTopLayout extends JPanel{
-	public CustomersTopLayout(JFrame ctm) {
-		int fw = ctm.getSize().width, fh = ctm.getSize().height;
+	public CustomersTopLayout(JFrame emp_f, Table_ctm jp, CustomersSQLs sql) {
+		int fw = emp_f.getSize().width, fh = emp_f.getSize().height;
 		
 		//top_layout
 		int height = (int)(fh*0.2);
@@ -37,7 +39,7 @@ public class CustomersTopLayout extends JPanel{
 		//왼쪽 레이아웃
 		add(left);
 		//오른쪽 레이아웃
-		add(new CustomersNavLayout(layL_width, layR_width, height));
+		add(new CustomersNavLayout(jp, layL_width, layR_width, height, sql));
 		
 		setLayout(null);
 		setBounds(0, 0, fw, height);	//상단 레이아웃은 20%만 먹게

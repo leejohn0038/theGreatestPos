@@ -1,33 +1,34 @@
 package project.actions.customers_actions.main;
 
 import java.awt.Dimension;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
-import project.actions.customers_actions.CustomersDelectValue;
+import project.actions.customers_actions.CustomersSQLs;
+import project.actions.customers_actions.CustomersDelete;
 import project.actions.customers_actions.CustomersFrameVisible;
+import project.components.customers_components.Table_ctm;
 import project.frames.customers_frames.AddCustomers;
-import project.frames.customers_frames.CustomersGuideManual;
 
 //여긴 직원프레임의 상단 버튼입니다.
-
 public class CustomersTopInnerTopBtn extends JButton{
 	final private static HashMap<Integer, String> BTN_MAP = new HashMap<>();
 	
-	JFrame addCtm = new AddCustomers();
+	Table_ctm jp;
+	JFrame addCtm;
 	
 	static {
 		BTN_MAP.put(0, "등록");
 		BTN_MAP.put(1, "삭제");
 	}
 
-	public CustomersTopInnerTopBtn(int num, int lh) {
+	public CustomersTopInnerTopBtn(Table_ctm jp, int num, int lh, CustomersSQLs sql) {
+		
+		this.jp = jp;
+		
+		addCtm = new AddCustomers(jp, sql);
 		
 		int btnX = 0;
 		int btnY;
@@ -49,7 +50,7 @@ public class CustomersTopInnerTopBtn extends JButton{
 			addActionListener(new CustomersFrameVisible(addCtm));
 			break;
 		case 1:
-			addActionListener(new CustomersDelectValue());
+			addActionListener(new CustomersDelete(jp.getTsd()));
 			break;
 		default:
 			break;

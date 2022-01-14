@@ -1,37 +1,40 @@
 package project.actions.customers_actions.main;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JTable;
 
-import project.components.customers_components.CustomersTableLayout;
+import project.actions.customers_actions.CustomersSQLs;
+import project.components.customers_components.Table_ctm;
+import project.frames.customers_frames.UpdataCustomers;
 
 public class CustomersTableSelectData implements MouseListener{
-
-	JTable jt;
-	int row, column;
 	
-	public CustomersTableSelectData(JTable jt) {
+	public Table_ctm jp;
+	JTable jt;
+	CustomersSQLs sql;
+	int row, col;
+	
+	public CustomersTableSelectData(Table_ctm jp, JTable jt, CustomersSQLs sql) {
+		this.jp = jp;
+		this.sql = sql;
 		this.jt = jt;
 	}
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		
 		row = jt.getSelectedRow();
-		column = jt.getSelectedColumn();
+		col = jt.getSelectedColumn();
+		
+		if (e.getClickCount() == 2 && !e.isConsumed()) {	
+			sql.setUpdataRow(row, col);
+			new UpdataCustomers(jp, sql, row).setVisible(true);
+		}
+		//new SQLs();
 	}
 	
-	public int getColumn() {
-		return column;
-	}
-	
-	public int getRow() {
-		return row;
-	}
-
 	@Override
 	public void mousePressed(MouseEvent e) {}
 
@@ -43,4 +46,13 @@ public class CustomersTableSelectData implements MouseListener{
 
 	@Override
 	public void mouseExited(MouseEvent e) {}
+	
+	
+	public int getColumn() {
+		return col;
+	}
+	
+	public int getRow() {
+		return row;
+	}
 }

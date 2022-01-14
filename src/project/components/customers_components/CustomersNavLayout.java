@@ -6,14 +6,16 @@ import java.awt.FlowLayout;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
-import project.actions.employees_actions.main.TopInnerTop_Btn;
+import project.actions.customers_actions.CustomersSQLs;
+import project.actions.customers_actions.main.CustomersTopInnerTopBtn;
+import project.components.customers_components.Table_ctm;
 
 public class CustomersNavLayout extends JPanel{
 	
-	public CustomersNavLayout(int lL_w, int lR_w, int height) {
+	public CustomersNavLayout(Table_ctm jp, int lL_w, int lR_w, int height, CustomersSQLs sql) {
 		
 		for(int i = 0; i<2; i++) {
-			add(new TopInnerTop_Btn(i, height));
+			add(new CustomersTopInnerTopBtn(jp, i, height, sql));
 		}
 		
 		setLayout(new FlowLayout(FlowLayout.RIGHT));
