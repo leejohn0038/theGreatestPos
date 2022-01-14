@@ -45,7 +45,7 @@ public class AddEmployees extends JFrame{
 		
 		JButton btn = new JButton("등록");
 		
-		String[] title_labs = {"ID", "이름", "전화번호", "직책"}; 
+		String[] title_labs = {"사원번호", "이름", "전화번호", "직책"}; 
 		ArrayList<JLabel> labs = new ArrayList<>();
 		txts = new HashMap<>();
 		
@@ -97,7 +97,7 @@ public class AddEmployees extends JFrame{
 		
 		btn.setSize(100,50);
 		btn.setLocation(frame_size[0]-btn.getSize().width-100, frame_size[1]-btn.getSize().height-50);
-		btn.addActionListener(new AddBtn(jp, this, txts, title_labs));
+		btn.addActionListener(new AddBtn(jp, this, txts));
 		
 		inner.add(exLab);
 		inner.add(btn);

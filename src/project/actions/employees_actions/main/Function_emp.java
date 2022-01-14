@@ -29,7 +29,7 @@ public class Function_emp {
 		
 	}
 	
-	public String[] getTitle(String type) {
+	public String[] getTitle() {
 		
 		return new SQLs("¸®¼Â", null, null).getTitle();
 	}

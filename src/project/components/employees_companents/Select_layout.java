@@ -22,7 +22,7 @@ public class Select_layout extends JPanel{
 	
 	private JTextField selectTxt;				//사용자에게 받는 text	
 	private JComboBox<String> com;				//사용자가 선택한 콤보박스
-	private final String[] COL_NAME = new Function_emp().getTitle(getName());
+	private final String[] COL_NAME = new Function_emp().getTitle();
 	
 	public Select_layout(Table_layout tl) {
 		

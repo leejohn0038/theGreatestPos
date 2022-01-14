@@ -15,11 +15,9 @@ import javax.xml.crypto.Data;
 
 import project.actions.employees_actions.main.DBConnector;
 import project.actions.employees_actions.main.object.AddData;
-import project.actions.employees_actions.main.object.Employee;
 
 public class SQLs {
 	
-	private ArrayList<Employee> employees;
 	private ArrayList<AddData> addDatas;
 	AddData addData;
 	private int row;
@@ -70,9 +68,10 @@ public class SQLs {
 		ResultSet rs = pstmt.executeQuery();
 		ResultSetMetaData meta = rs.getMetaData();
 		
-		employees = new ArrayList<>();
+		addDatas = new ArrayList<>();
 		title = new String[meta.getColumnCount()];
 		
+		System.out.println();
 		for(int i = 0; i<title.length; i++) {
 			title[i] = meta.getColumnName(i+1);
 		}
@@ -82,13 +81,23 @@ public class SQLs {
 			Object[] objs = new Object[meta.getColumnCount()];
 			
 			for(int col = 0; col<meta.getColumnCount(); col++) {
-				if(rs.getString(meta.getColumnName(col+1)) != null) {
-					objs[col] = rs.getObject(meta.getColumnName(col+1));	
+				
+				if(rs.getString(meta.getColumnName(col+1)) != null) { 
+					if(meta.getColumnName(col+1).contains("일")) {
+						objs[col] = (rs.getString(meta.getColumnName(col+1)).substring(0, 10));
+					}else {
+						objs[col] = rs.getString(meta.getColumnName(col+1));
+					}
+					
 				}else {
 					objs[col] = "";
 				}
+				
+				System.out.print(objs[col] + " ");
 			}
-			employees.add(new Employee(objs));
+			
+			System.out.println();
+			addDatas.add(new AddData(objs));
 		}
 		
 		pstmt.close();
@@ -103,7 +112,7 @@ public class SQLs {
 		
 		tableReset("select * from mart_employees ", conn);
 		
-		employees = new ArrayList<>();
+		addDatas = new ArrayList<>();
 		
 		//데이터 위치 찾기
 		for(col = 0; col<objs.length; col++) {
@@ -129,14 +138,13 @@ public class SQLs {
 				}else {
 					objs[col] = "";
 				}
-				
 			}
 
-			employees.add(new Employee(objs));
+			addDatas.add(new AddData(objs));
 		}
 		
-		for(int i = 0; i<employees.size(); i++) {
-			Object[] obj = employees.get(i).getDate();
+		for(int i = 0; i<addDatas.size(); i++) {
+			Object[] obj = addDatas.get(i).getDates();
 			
 			for(Object o : obj) {
 				System.out.print(o + " ");
@@ -152,7 +160,7 @@ public class SQLs {
 		final String ADD_SQL = "사원번호 = ?";
 		PreparedStatement pstmt = conn.prepareStatement(SQL + ADD_SQL);
 		ResultSet rs;
-		//ArrayList<int> ids = new
+		
 		int id = addData.getID();
 		
 		pstmt.setInt(1, id);
@@ -187,6 +195,7 @@ public class SQLs {
 		final String addSql = "(?,?,?,?,?)";
 		PreparedStatement pstmt = conn.prepareStatement(SQL + addSql);
 		ResultSet rs;
+		
 		Object[] datas = addData.getDates();
 		
 		pstmt.setInt(1,(int)datas[0]);
@@ -202,24 +211,20 @@ public class SQLs {
 	}
 	
 	public Object[][] getRowData(){
-		int maxRow = employees.size();
-		int maxCol = employees.get(0).getObjSize();
+		int maxRow = addDatas.size();
+		int maxCol = addDatas.get(0).getDatesSize();
 		Object[][] rowData = new Object[maxRow][maxCol];
 		
 		
 		if(maxRow == 0 || maxCol == 0) {
-			rowData[0][0] = employees.get(0).getDate();
+			rowData[0][0] = addDatas.get(0).getDates();
 		}
 		
 		for(int i = 0; i<maxRow; i++) {
-			rowData[i] = employees.get(i).getDate();
+			rowData[i] = addDatas.get(i).getDates();
 		}
 		
 		return rowData;
-	}
-	
-	public ArrayList<Employee> getEmps(){
-		return employees;
 	}
 	
 	public void setUpdataRow(int row, int col) {
