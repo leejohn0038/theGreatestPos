@@ -9,7 +9,7 @@ import project.components.receipts_components.Toppanel;
 
 public class Refunding extends JFrame {
 
-	public Refunding(MainFrame main, Receipts receipts) {
+	public Refunding(MainFrame main) {
 		add(new Toppanel("반품업무"));
 		add(new Tables(
 				new String[] {"영수증ID", "구매시기", "가격", "결제수단"}, 

@@ -10,10 +10,9 @@ import project.frames.receipts_frames.Receipts;
 
 public class SearchSubmitBtn extends JButton {
 
-	public SearchSubmitBtn(MainFrame main, Receipts r, JTextField[] f, JComboBox<String> com, 
-			int xPos, int yPos, int xSize, int ySize) {
+	public SearchSubmitBtn(MainFrame main, int xPos, int yPos, int xSize, int ySize) {
 		super("°Ë»ö");
-		addActionListener(new SearchSubmitButtonAL(main, r, f, com));
+		addActionListener(new SearchSubmitButtonAL(main));
 		setBounds(xPos, yPos, xSize, ySize);
 	}
 }
