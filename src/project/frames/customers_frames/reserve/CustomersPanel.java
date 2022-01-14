@@ -1,4 +1,4 @@
-package project.frames.customers_frames;
+package project.frames.customers_frames.reserve;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;

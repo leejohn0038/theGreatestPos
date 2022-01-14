@@ -1,4 +1,4 @@
-package project.components.customers_components;
+package project.components.customers_components.reserve;
 
 import java.awt.Font;
 import java.awt.Panel;
