@@ -17,15 +17,9 @@ import javax.swing.table.TableRowSorter;
 
 public class GoodsTable extends JPanel {
 	private static final String[] COLUMN_NAME = {"상품번호", "이름", "수량", "가격", "분류", "유통기한", "거래처", "담당자"};
-	int gid;
-	String gname;
-	int gqty;
-	int gprice;
-	String supplier;
-	String gcategory;
+	String gname, supplier, gcategory, pic_name, pic_tel;
+	int gid, gqty, gprice;
 	Date expiration;
-	String pic_name;
-	String pic_tel;
 	
 	DefaultTableModel model;
 	TableRowSorter<TableModel> rowSorter;
@@ -36,6 +30,7 @@ public class GoodsTable extends JPanel {
 		JScrollPane sp = new JScrollPane(table); 
 		rowSorter = new TableRowSorter<>(table.getModel());
 		table.setRowSorter(rowSorter);
+		
 		try (
 			Connection conn = PosDBConnector.getConnection();	
 			PreparedStatement pstmt = conn.prepareStatement(sql);

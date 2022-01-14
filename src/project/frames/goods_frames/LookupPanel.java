@@ -22,7 +22,6 @@ public class LookupPanel extends JPanel {
 	String[] combo = {"전체", "카테고리", "거래처"};
 	JComboBox<String> searchCb = new JComboBox<>(combo);
 	JComboBox<String> categoryCb = new JComboBox<>(combo);
-	StringBuffer input = new StringBuffer("SELECT * FROM goods WHERE ");
 	String sql = "SELECT * FROM goods";
 	GoodsTable gt;
 	
