@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 
 import project.actions.employees_actions.main.object.AddData;
 import project.actions.employees_actions.main.object.Employee;
-import project.database.DBConnector;
+
 
 public class SQLs {
 	
