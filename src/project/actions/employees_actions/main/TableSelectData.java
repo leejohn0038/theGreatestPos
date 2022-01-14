@@ -26,14 +26,12 @@ public class TableSelectData implements MouseListener{
 		row = jt.getSelectedRow();
 		col = jt.getSelectedColumn();
 		
-		System.out.println(jp.dtm.getValueAt(row, 0));
-		
 		if (e.getClickCount() == 2 && !e.isConsumed()) {
 			SQLs reset = new SQLs("¸®¼Â",null,null);
 			reset.setUpdataRow(row, col);
 			new UpdataEmployees(jp, reset, row).setVisible(true);
 		}
-		//new SQLs();
+
 	}
 	
 	@Override

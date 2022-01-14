@@ -47,7 +47,6 @@ public class Function_emp {
 			if(Pattern.matches("010\\-*\\d{4}\\-*\\d{4}", obj)){ return true; }
 			break;
 		case "Á÷Ã¥":
-			System.out.println(obj);
 			if(Pattern.matches("^[¤¡-¤¾°¡-ÆR]*$", obj)){ return true; }
 			break;
 		}

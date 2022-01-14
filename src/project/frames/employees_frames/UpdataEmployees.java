@@ -86,12 +86,6 @@ public class UpdataEmployees extends JFrame{
 			}else {
 				txt.setBounds(txtLoc[0], txtLoc[1], 300, 50);
 				txt.setText(jp.dtm.getValueAt(row, i).toString());
-				/*
-				try {
-					txt.setText(jp.dtm.getValueAt(row, i).toString());
-				} catch (Exception e) {
-					txt.setText();
-				}*/
 				txts.put(title_labs[i], txt);
 				inner.add(txt);
 			}

@@ -15,9 +15,7 @@ public class DBConnector {
 	static {
 		try {
 			Class.forName(driverName);
-			System.out.println("오라클 JDBC 드라이브 연결 성공");
 		}catch (Exception e) {
-			System.out.println("오라클 JDBC 드라이브 연결 오류");
 		}
 	}
 	

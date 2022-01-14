@@ -22,8 +22,6 @@ public class AddData {
 		this.hire_data = Date.valueOf(((String)objs[2]).substring(0,10));
 		this.tel = (String)objs[3];
 		this.job = (String)objs[4];
-		
-		System.out.println(dates[0] + " " + dates[1]);
 	}
 	
 	public AddData(String[] objs) {
@@ -54,8 +52,6 @@ public class AddData {
 			dates[0] = null;
 		}
 		dates[titleIndex] = selectValue;
-		
-		System.out.println(dates[titleIndex]);
 	}
 	
 	public Object[] getDates() {

@@ -26,8 +26,6 @@ public class SelectBtn extends JButton{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				//System.out.println(sl.getComboBox().getSelectedItem()+ " " + sl.getComboBox().getSelectedIndex() +" " +sl.getSelectTxt().getText());
-				
 				AddData addDate = new AddData();
 				Table_emp jt = tl.get_table();
 				DefaultTableModel dtm = jt.getDtm();
