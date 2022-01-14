@@ -5,7 +5,6 @@ public class Employee {
 	
 	public Employee(Object[] obj) {
 		this.obj = obj;
-		
 	}
 	
 	public Object[] getDate() {

@@ -8,7 +8,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 import java.util.ArrayList;
-
+import java.util.Arrays;
 
 import javax.swing.JFrame;
 import javax.xml.crypto.Data;
@@ -19,11 +19,13 @@ import project.actions.employees_actions.main.object.Employee;
 
 public class SQLs {
 	
-	ArrayList<Employee> employees = new ArrayList<>();
+	private ArrayList<Employee> employees;
+	private ArrayList<AddData> addDatas;
 	AddData addData;
 	private int row;
 	private int col;
 	private String[] title;
+	private String title_txt;
 	
 	public SQLs(String type, JFrame f, AddData addData) {
 		this.addData = addData;
@@ -64,27 +66,26 @@ public class SQLs {
 	
 	void tableReset(String SQL, Connection conn) throws SQLException {
 		
-		PreparedStatement pstmt = conn.prepareStatement(SQL + "order by employee_id");
+		PreparedStatement pstmt = conn.prepareStatement(SQL + "order by 사원번호");
 		ResultSet rs = pstmt.executeQuery();
 		ResultSetMetaData meta = rs.getMetaData();
 		
+		employees = new ArrayList<>();
 		title = new String[meta.getColumnCount()];
 		
 		for(int i = 0; i<title.length; i++) {
-			title[i] =meta.getColumnName(i+1);
-			//System.out.println(title[i]);
+			title[i] = meta.getColumnName(i+1);
 		}
 		
 		while(rs.next()) {		
 			
 			Object[] objs = new Object[meta.getColumnCount()];
-			row = objs.length;
 			
-			for(int col = 1; col<=meta.getColumnCount(); col++) {
-				if(rs.getString(meta.getColumnName(col)) != null) {
-					objs[col - 1] = rs.getObject(meta.getColumnName(col));	
+			for(int col = 0; col<meta.getColumnCount(); col++) {
+				if(rs.getString(meta.getColumnName(col+1)) != null) {
+					objs[col] = rs.getObject(meta.getColumnName(col+1));	
 				}else {
-					objs[col - 1] = "";
+					objs[col] = "";
 				}
 			}
 			employees.add(new Employee(objs));
@@ -94,12 +95,61 @@ public class SQLs {
 		rs.close();
 	}
 	
-	void select(String SQL, Connection conn) {
+	void select(String SQL, Connection conn) throws SQLException {
 		
+		final String ADD_SQL = " like '%'||?||'%'";
+		Object[] objs = addData.getDates();
+		row = 0;
+		
+		tableReset("select * from mart_employees ", conn);
+		
+		employees = new ArrayList<>();
+		
+		//데이터 위치 찾기
+		for(col = 0; col<objs.length; col++) {
+			if(objs[col] != null) {
+				title_txt = title[col];
+				break;
+			}
+		}
+		
+		PreparedStatement pstmt = conn.prepareStatement(SQL + title_txt + ADD_SQL);
+		ResultSet rs;
+		
+		pstmt.setString(1, (String)objs[col]);
+		
+		rs = pstmt.executeQuery();
+		ResultSetMetaData meta = rs.getMetaData();
+		
+		while(rs.next()) {
+			row++;
+			for(int col = 0; col<meta.getColumnCount(); col++) {
+				if(rs.getString(meta.getColumnName(col+1)) != null) {
+					objs[col] = rs.getObject(meta.getColumnName(col+1));
+				}else {
+					objs[col] = "";
+				}
+				
+			}
+
+			employees.add(new Employee(objs));
+		}
+		
+		for(int i = 0; i<employees.size(); i++) {
+			Object[] obj = employees.get(i).getDate();
+			
+			for(Object o : obj) {
+				System.out.print(o + " ");
+			}
+			System.out.println();
+		}
+		
+		pstmt.close();
+		rs.close();
 	}
 	
 	void delete(String SQL, Connection conn) throws SQLException{
-		final String ADD_SQL = "employee_id = ?";
+		final String ADD_SQL = "사원번호 = ?";
 		PreparedStatement pstmt = conn.prepareStatement(SQL + ADD_SQL);
 		ResultSet rs;
 		//ArrayList<int> ids = new
@@ -114,8 +164,8 @@ public class SQLs {
 	}
 	
 	void updata(String SQL, Connection conn) throws SQLException {
-		final String ADD_SQL = "name = ?, hire_date = ?, "
-				+ "tel = ?, position = ? WHERE employee_id = ?";
+		final String ADD_SQL = "이름 = ?, 입사일 = ?, "
+				+ "전화번호 = ?, 직책 = ? WHERE 사원번호 = ?";
 		PreparedStatement pstmt = conn.prepareStatement(SQL + ADD_SQL);
 		ResultSet rs;
 		Object[] datas = addData.getDates();
@@ -152,21 +202,24 @@ public class SQLs {
 	}
 	
 	public Object[][] getRowData(){
-		int row = employees.size();
-		int col = employees.get(0).getObjSize();
-		Object[][] rowData = new Object[row][col];
+		int maxRow = employees.size();
+		int maxCol = employees.get(0).getObjSize();
+		Object[][] rowData = new Object[maxRow][maxCol];
 		
-		if(row == 0 || col == 0) {
+		
+		if(maxRow == 0 || maxCol == 0) {
 			rowData[0][0] = employees.get(0).getDate();
 		}
 		
-		for(int i = 0; i<row; i++) {
-			for(int j = 0; j<col; j++) {
-				rowData[i] = employees.get(i).getDate();
-			}
+		for(int i = 0; i<maxRow; i++) {
+			rowData[i] = employees.get(i).getDate();
 		}
 		
 		return rowData;
+	}
+	
+	public ArrayList<Employee> getEmps(){
+		return employees;
 	}
 	
 	public void setUpdataRow(int row, int col) {

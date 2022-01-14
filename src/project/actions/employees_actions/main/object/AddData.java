@@ -9,6 +9,10 @@ public class AddData {
 	private Date hire_data;
 	private String tel;
 	private String job;
+	private Object[] dates = {id, name, hire_data, tel, job};
+	
+	
+	public AddData() {}
 	
 	public AddData(int id) {
 		this.id = id;
@@ -31,10 +35,15 @@ public class AddData {
 		this.job = job;
 	}
 	
+	public void setSelectValue(int titleIndex, String selectValue) {
+		//System.out.println(titleIndex);
+		if(titleIndex != 0) {
+			dates[0] = null;
+		}
+		dates[titleIndex] = selectValue;
+	}
+	
 	public Object[] getDates() {
-		
-		Object[] dates = {id, name, hire_data, tel, job};
-		
 		return dates;
 	}
 	

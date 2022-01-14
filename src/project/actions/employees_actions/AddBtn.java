@@ -65,6 +65,7 @@ public class AddBtn implements ActionListener {
 			}
 		}
 		
+		//수정 요망
 		if(stop == true) {
 			SQLs add_sql = new SQLs("등록", f, getData());
 			jp.dtm.addRow(add_sql.addData.getDates());

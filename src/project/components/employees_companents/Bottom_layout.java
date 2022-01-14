@@ -21,21 +21,21 @@ public class Bottom_layout extends JPanel{
 		int height;
 		
 		JPanel inner_layout = new JPanel();
-		JPanel select = new Select_layout();
+		JPanel select;
 		JPanel side;
-		
-		add(select);
-		height = select.getSize().height;
-		System.out.println();
-		
-		//select 관련 레이아웃이 한자리 먹고 있음 그거 높이 빼주는 계산 해줘야함!
-		inner_layout.setLayout(null);
-		inner_layout.setBounds(0, 0, layoutBounds[2], layoutBounds[3]-height);
 		
 		side = new SideBar_layout(main, layoutBounds[2], layoutBounds[3]);
 		inner_layout.add(side);
 		inner_layout.add(tl = new Table_layout(side.getSize().width, sql));
 		
+		select = new Select_layout(tl);
+		height = select.getSize().height;
+		
+		//select 관련 레이아웃이 한자리 먹고 있음 그거 높이 빼주는 계산 해줘야함!
+		inner_layout.setLayout(null);
+		inner_layout.setBounds(0, 0, layoutBounds[2], layoutBounds[3]-height);
+		
+		add(select);
 		add(inner_layout);
 		
 		setLayout(null);
