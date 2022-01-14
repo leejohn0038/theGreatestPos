@@ -24,28 +24,11 @@ import project.components.goods_components.StoreTable;
 public class ManagementPanel extends JPanel {
 	
 	DefaultTableModel dtm;
-	
-	String updateToGoods;
-	
-	String importName;
-	int importQty;
-	Date importExp;
-	
-	String exportName;
-	int exportQty;
-	
-	int gid;
-	String gname;
-	int gqty;
-	int gprice;
-	Date expiration;
-	Date storedate;
-	int cnt;
-	int preGoodsQty;
-	
-	String addName;
-	int addQty;
-	Date addStoredate;
+	String updateToGoods, importName, exportName, gname, addName;
+	int importQty, exportQty, preGoodsQty, addQty, gid, gqty, gprice, cnt; 
+	Date importExp, expiration, storedate, addStoredate;
+	BasicSmallButton importBtn;
+	BasicTextField importNameTf, importQtyTf, importExpTf, exportNameTf, exportQtyTf;
 	
 	public ManagementPanel() {
 		
@@ -287,9 +270,7 @@ public class ManagementPanel extends JPanel {
 		setVisible(true);
 	}
 	
-	BasicTextField importNameTf;
-	BasicTextField importQtyTf;
-	BasicTextField importExpTf;
+	
 	
 	JPanel importPopupPanel(BasicPopupPanel importPop) {
 		importPop.add(new JLabel("ют╟М") {
@@ -341,8 +322,7 @@ public class ManagementPanel extends JPanel {
 		}
 	}
 	
-	BasicTextField exportNameTf;
-	BasicTextField exportQtyTf;
+	
 	
 	JPanel exportPopupPanel(BasicPopupPanel exportPop) {
 		
