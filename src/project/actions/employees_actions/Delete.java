@@ -19,8 +19,7 @@ public class Delete implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		Object[][] dates = new SQLs("리셋", null, null).getRowData();
 		
-		
-		addData = new AddData(Integer.parseInt(String.valueOf(dates[tsd.getRow()][0])));
+		addData = new AddData(Integer.parseInt(String.valueOf(tsd.jp.dtm.getValueAt(tsd.getRow(), 0))));
 		new SQLs("삭제", null, addData);
 		tsd.jp.dtm.removeRow(tsd.getRow());
 	}

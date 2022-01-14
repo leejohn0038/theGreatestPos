@@ -38,7 +38,7 @@ public class SelectBtn extends JButton{
 				sql = new SQLs("°Ë»ö", null, addDate);
 				
 				str = sql.getRowData();
-				System.out.println(str.length);
+				
 				dtm.setRowCount(str.length);
 				
 				for(int row = 0; row<str.length; row++) {
@@ -46,9 +46,6 @@ public class SelectBtn extends JButton{
 						dtm.setValueAt(str[row][col], row, col);
 					}
 				}
-				
-				
-				//dtm.addRow();
 			}
 		});
 	}

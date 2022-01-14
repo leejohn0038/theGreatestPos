@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import project.actions.employees_actions.AddBtn;
 import project.actions.employees_actions.SQLs;
 import project.actions.employees_actions.Updata;
+import project.actions.employees_actions.main.Function_emp;
 import project.actions.employees_actions.main.object.AddData;
 import project.components.employees_companents.Table_emp;
 
@@ -41,7 +42,7 @@ public class UpdataEmployees extends JFrame{
 		JLabel exLab = new JLabel("수정하실 데이터를 작성해주세요");
 		JButton btn = new JButton("수정");
 		
-		String[] title_labs = {"ID", "이름", "입사일", "전화번호", "직책"}; 
+		String[] title_labs = new Function_emp().getTitle(); 
 		ArrayList<JLabel> labs = new ArrayList<>();
 		HashMap<String,Object> txts = new HashMap<>();
 		

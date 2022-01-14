@@ -29,8 +29,6 @@ public class AddBtn implements ActionListener {
 		this.txts = txts;
 	}
 	
-	
-	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String[] title = new Function_emp().getTitle();
@@ -45,19 +43,10 @@ public class AddBtn implements ActionListener {
 			}else if(!title[i].contains("입사일")) {
 				
 				JTextField tempTxt = (JTextField)txts.get(title[i]);
-				
-				if((title[i].contains("전화") && !(Pattern.matches("010\\-*\\d{4}\\-*\\d{4}", tempTxt.getText()))) ||
-						(title[i].contains("직책") && (!(Pattern.matches("\\W{2,}", tempTxt.getText()))|| tempTxt.getText() == ""))) {
-					JOptionPane massge = new JOptionPane();
-					massge.showMessageDialog(null, title[i] + " 잘못된 값 입력");
-					stop = false;
-				}else if(i == title.length-1 && stop == true) {
-					datas[i] = tempTxt.getText();
-					stop = true;
-				}else {
+				stop = new Function_emp().regex(title[i], tempTxt.getText());
+				if(stop == true) {
 					datas[i] = tempTxt.getText();
 				}
-				
 			}else {
 				datas[2] = null;
 			}
@@ -68,10 +57,9 @@ public class AddBtn implements ActionListener {
 			SQLs add_sql = new SQLs("등록", f, getData());
 			jp.dtm.addRow(add_sql.addData.getDates());
 			JLabel temp_lab = (JLabel) f.txts.get(title[0]);
-			temp_lab.setText(Integer.toString(new SQLs("리셋", null, null).getEmp_id()));
+			temp_lab.setText(Integer.toString(new SQLs("리셋", null, null).getAddEmp_id()));
 			for(int i = 1; i<title.length; i++) {
 				if(!title[i].contains("입사")) {
-					System.out.println(title[i]);
 					JTextField temp_txt = (JTextField) f.txts.get(title[i]);
 					temp_txt.setText("");
 				}

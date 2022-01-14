@@ -19,7 +19,7 @@ import project.actions.employees_actions.main.object.AddData;
 public class SQLs {
 	
 	private ArrayList<AddData> addDatas;
-	AddData addData;
+	public AddData addData;
 	private int row;
 	private int col;
 	private String[] title;
@@ -70,8 +70,7 @@ public class SQLs {
 		
 		addDatas = new ArrayList<>();
 		title = new String[meta.getColumnCount()];
-		
-		System.out.println();
+
 		for(int i = 0; i<title.length; i++) {
 			title[i] = meta.getColumnName(i+1);
 		}
@@ -93,10 +92,8 @@ public class SQLs {
 					objs[col] = "";
 				}
 				
-				System.out.print(objs[col] + " ");
 			}
 			
-			System.out.println();
 			addDatas.add(new AddData(objs));
 		}
 		
@@ -122,7 +119,7 @@ public class SQLs {
 			}
 		}
 		
-		PreparedStatement pstmt = conn.prepareStatement(SQL + title_txt + ADD_SQL);
+		PreparedStatement pstmt = conn.prepareStatement(SQL + title_txt + ADD_SQL + " order by " + title_txt);
 		ResultSet rs;
 		
 		pstmt.setString(1, (String)objs[col]);
@@ -134,22 +131,12 @@ public class SQLs {
 			row++;
 			for(int col = 0; col<meta.getColumnCount(); col++) {
 				if(rs.getString(meta.getColumnName(col+1)) != null) {
-					objs[col] = rs.getObject(meta.getColumnName(col+1));
+					objs[col] = rs.getString(meta.getColumnName(col+1));
 				}else {
 					objs[col] = "";
-				}
+				}	
 			}
-
 			addDatas.add(new AddData(objs));
-		}
-		
-		for(int i = 0; i<addDatas.size(); i++) {
-			Object[] obj = addDatas.get(i).getDates();
-			
-			for(Object o : obj) {
-				System.out.print(o + " ");
-			}
-			System.out.println();
 		}
 		
 		pstmt.close();
@@ -215,13 +202,12 @@ public class SQLs {
 		int maxCol = addDatas.get(0).getDatesSize();
 		Object[][] rowData = new Object[maxRow][maxCol];
 		
-		
 		if(maxRow == 0 || maxCol == 0) {
 			rowData[0][0] = addDatas.get(0).getDates();
 		}
 		
 		for(int i = 0; i<maxRow; i++) {
-			rowData[i] = addDatas.get(i).getDates();
+			rowData[i] = addDatas.get(i).getUpDates();
 		}
 		
 		return rowData;
@@ -255,7 +241,7 @@ public class SQLs {
 	}
 	
 	//µî·Ï½Ã
-	public int getEmp_id() {
+	public int getAddEmp_id() {
 		Object[][] rowData = getRowData();
 		
 		if(rowData.length == 0) {

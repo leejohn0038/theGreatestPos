@@ -38,7 +38,7 @@ public class Table_emp extends JTable{
 		
 		jt = new JTable(dtm);
 		sp = new JScrollPane(jt);
-		tsd = new TableSelectData(this, jt, sql);
+		tsd = new TableSelectData(this, jt);
 		jt.addMouseListener(tsd);
 		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);

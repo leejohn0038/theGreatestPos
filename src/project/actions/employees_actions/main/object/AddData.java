@@ -22,6 +22,8 @@ public class AddData {
 		this.hire_data = Date.valueOf(((String)objs[2]).substring(0,10));
 		this.tel = (String)objs[3];
 		this.job = (String)objs[4];
+		
+		System.out.println(dates[0] + " " + dates[1]);
 	}
 	
 	public AddData(String[] objs) {
@@ -29,17 +31,13 @@ public class AddData {
 		dates[0] = Integer.parseInt((String) objs[0]);
 		dates[1] = objs[1];
 		
-		if(hire_data == null) {
+		if(objs[2] == null) {
 			dates[2] = Date.valueOf(LocalDate.now());
-		}
-		/*else {
-			
+		}else {
 			dates[2] = Date.valueOf(((String)objs[2]).substring(0,10));
-		}*/
+		}
 		dates[3] = (String)objs[3];
 		dates[4] = (String)objs[4];
-		
-		//System.out.println(id + " " + name + " " + hire_data + " " + tel + " " + job + " ");
 	}
 	
 	public AddData(int id) {
@@ -50,18 +48,23 @@ public class AddData {
 		job = null;
 	}
 	
-	
-	
 	public void setSelectValue(int titleIndex, String selectValue) {
-		//System.out.println(titleIndex);
+		
 		if(titleIndex != 0) {
 			dates[0] = null;
 		}
 		dates[titleIndex] = selectValue;
+		
+		System.out.println(dates[titleIndex]);
 	}
 	
 	public Object[] getDates() {
 		return dates;
+	}
+	
+	public Object[] getUpDates() {
+		Object[] upDates = {id, name, hire_data, tel, job};
+		return upDates;
 	}
 	
 	public int getDatesSize() {
@@ -70,10 +73,5 @@ public class AddData {
 	
 	public int getID() {
 		return id;
-	}
-	
-	@Override
-	public String toString() {
-		return String.format("%d, %s, %s, %s, %s", id, name, hire_data, tel, job);
 	}
 }

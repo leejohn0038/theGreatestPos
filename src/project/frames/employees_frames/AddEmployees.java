@@ -82,7 +82,7 @@ public class AddEmployees extends JFrame{
 			
 			//아이디 값은 db에 넣은 순서대로 배정할할 예정
 			if(i==0) {
-				idLab.setText(Integer.toString(sql.getEmp_id()));
+				idLab.setText(Integer.toString(sql.getAddEmp_id()));
 				idLab.setBounds(txtLoc[0], txtLoc[1], 300, 50);
 				txts.put(title_labs[i], idLab);
 				inner.add(idLab);

@@ -52,19 +52,15 @@ public class Updata implements ActionListener{
 		boolean stop = true;
 		
 		for(int i = 0; i<title.length; i++) {
-			if(i==0) {
+			if(title[i].contains("사원번호")) {
 				lab = (JLabel) txts.get(title[i]);
 				datas[i] = lab.getText();
 			}else {
-				
 				JTextField tempTxt = (JTextField)txts.get(title[i]);
-				
 				stop = new Function_emp().regex(title[i], tempTxt.getText());
-				
 				if(stop == false) {
 					break;
 				}
-				
 				datas[i] = tempTxt.getText();
 			}
 		}

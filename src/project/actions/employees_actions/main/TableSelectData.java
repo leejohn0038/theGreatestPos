@@ -13,12 +13,10 @@ public class TableSelectData implements MouseListener{
 	
 	public Table_emp jp;
 	JTable jt;
-	SQLs sql;
 	int row, col;
 	
-	public TableSelectData(Table_emp jp, JTable jt, SQLs sql) {
+	public TableSelectData(Table_emp jp, JTable jt) {
 		this.jp = jp;
-		this.sql = sql;
 		this.jt = jt;
 	}
 	
@@ -28,9 +26,12 @@ public class TableSelectData implements MouseListener{
 		row = jt.getSelectedRow();
 		col = jt.getSelectedColumn();
 		
-		if (e.getClickCount() == 2 && !e.isConsumed()) {	
-			sql.setUpdataRow(row, col);
-			new UpdataEmployees(jp, sql, row).setVisible(true);
+		System.out.println(jp.dtm.getValueAt(row, 0));
+		
+		if (e.getClickCount() == 2 && !e.isConsumed()) {
+			SQLs reset = new SQLs("¸®¼Â",null,null);
+			reset.setUpdataRow(row, col);
+			new UpdataEmployees(jp, reset, row).setVisible(true);
 		}
 		//new SQLs();
 	}
