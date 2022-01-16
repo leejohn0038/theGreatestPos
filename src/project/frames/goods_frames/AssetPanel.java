@@ -10,12 +10,17 @@ import java.util.Locale;
 
 import javax.swing.JPanel;
 
+import project.components.goods_components.AssetExpTable;
+import project.components.goods_components.AssetShortageTable;
 import project.components.goods_components.BasicLabel;
-import project.components.goods_components.BasicTextField;
 import project.components.goods_components.GoodsTable;
 import project.components.goods_components.PosDBConnector;
 
 public class AssetPanel extends JPanel {
+	GoodsTable goods = new GoodsTable();
+	AssetExpTable aet;
+	AssetShortageTable ast;
+	
 	String totalAssets;
 	
 	public AssetPanel() {
@@ -30,12 +35,25 @@ public class AssetPanel extends JPanel {
 		add(totalAsset);
 		add(assetsLabel);
 		
+		try (
+			Connection conn = PosDBConnector.getConnection();		
+		) {
+			aet = new AssetExpTable(conn);
+			ast = new AssetShortageTable(conn);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		BasicLabel expLabel = new BasicLabel("유통기한 임박상품");
 		expLabel.setLocation(10, 50);
+		aet.setLocation(10, 100);
+		add(aet);
 		add(expLabel);
 		
 		BasicLabel shortage = new BasicLabel("재고부족상품");
-		shortage.setLocation(10, 100);
+		shortage.setLocation(10, 350);
+		ast.setLocation(10, 450);
+		add(ast);
 		add(shortage);
 		
 		setLayout(null);
@@ -44,8 +62,7 @@ public class AssetPanel extends JPanel {
 	}
 	
 	private void getAsset() {
-		GoodsTable goods = new GoodsTable();
-		int rowCnt = goods.getTableModel().getRowCount();
+		
 		int tempAssets = 0;
 		try (
 			Connection conn = PosDBConnector.getConnection();
@@ -62,6 +79,9 @@ public class AssetPanel extends JPanel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void getExpiration() {
 		
 	}
 	

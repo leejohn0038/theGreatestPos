@@ -132,7 +132,7 @@ public class ManagementPanel extends JPanel {
 		add(exportBtn);
 		
 		// 검색 기능
-		searchTf = new BasicTextField("검색어를 입력해주세요");
+		searchTf = new BasicTextField("");
 		searchTf.setLocation(400, 0);
 		storeTable.getRowsorter().addRowSorterListener(null);
 		new SearchTf(storeTable.getRowsorter(), searchTf);

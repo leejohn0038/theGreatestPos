@@ -43,7 +43,7 @@ public class LookupPanel extends JPanel {
 		add(searchCb);
 		searchCb.setVisible(true);
 		
-		BasicTextField searchTf = new BasicTextField("검색어를 입력해주세요");
+		BasicTextField searchTf = new BasicTextField("");
 		searchTf.setLocation(475, 0);
 		goods.getRowsorter().addRowSorterListener(null);
 		new SearchTf(goods.getRowsorter(), searchTf);
