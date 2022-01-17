@@ -42,7 +42,7 @@ public class UpdataEmployees extends JFrame{
 		JLabel exLab = new JLabel("수정하실 데이터를 작성해주세요");
 		JButton btn = new JButton("수정");
 		
-		String[] title_labs = new Function_emp().getTitle(); 
+		String[] title_labs = new Function_emp().getTitle(1); 
 		ArrayList<JLabel> labs = new ArrayList<>();
 		HashMap<String,Object> txts = new HashMap<>();
 		

@@ -20,7 +20,7 @@ public class TopBtn extends JButton{
 	final private static HashMap<Integer, String> BTN_MAP = new HashMap<>();
 	
 	Table jp;
-	JFrame addEmp;
+	JFrame addframe;
 	
 	static {
 		BTN_MAP.put(0, "µî·Ï");
@@ -40,10 +40,9 @@ public class TopBtn extends JButton{
 		
 		this.jp = jp;
 		
-		addEmp = new Adds(jp, sql, type);
+		addframe = new Adds(jp, sql, type);
 		
 		setText(BTN_MAP.get(num));
-		//setBounds(700, hight, wight, hight);
 		setBounds(x, y, wight, hight);
 		
 		btnEvent(num);	
@@ -54,7 +53,7 @@ public class TopBtn extends JButton{
 		
 		switch (num) {
 		case 0:
-			addActionListener(new FrameVisible(addEmp));
+			addActionListener(new FrameVisible(addframe));
 			break;
 		case 1:
 			addActionListener(new Delete(jp.getTsd()));

@@ -248,16 +248,24 @@ public class SQLs {
 		
 		Object[] datas;
 		if(dbName.contains("emp")) {
-			datas = emp_addData.getDates(); 
+			datas = emp_addData.getDates();
+			
+			pstmt.setInt(1,(int)datas[0]);
+			pstmt.setString(2, (String) datas[1]);
+			pstmt.setDate(3, (Date)datas[2]);
+			pstmt.setString(4,(String) datas[3]);
+			pstmt.setString(5,(String) datas[4]);
+			
 		}else {
 			datas = cus_addData.getDates();
+			
+			pstmt.setString(1,(String)datas[0]);
+			pstmt.setString(2, (String) datas[1]);
+			pstmt.setString(3,(String) datas[2]);
+			pstmt.setDate(4, (Date)datas[3]);
+			pstmt.setInt(5,(int) datas[4]);
 		}
-		
-		pstmt.setInt(1,(int)datas[0]);
-		pstmt.setString(2, (String) datas[1]);
-		pstmt.setDate(3, (Date)datas[2]);
-		pstmt.setString(4,(String) datas[3]);
-		pstmt.setString(5,(String) datas[4]);
+			
 		
 		rs = pstmt.executeQuery();
 		

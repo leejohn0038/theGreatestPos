@@ -12,6 +12,7 @@ public class Cus_addData {
 	private Object[] dates = {phone, name, addrees, reg_data, point};
 	
 	public Cus_addData() {}
+	
 	public Cus_addData(Object[] objs) {
 		
 		this.dates = objs;
@@ -25,17 +26,26 @@ public class Cus_addData {
 	
 	public Cus_addData(String[] objs) {
 		
-		dates[0] = Integer.parseInt((String) objs[0]);
+		dates[0] = objs[0];
 		dates[1] = objs[1];
 		dates[2] = objs[2];
+		dates[3] = Date.valueOf(LocalDate.now());
+		dates[4] = 0;
 		
+		/*
 		if(objs[3] == null) {
-			dates[3] = Date.valueOf(LocalDate.now());
+			
 		}else {
 			dates[3] = Date.valueOf(((String)objs[3]).substring(0,10));
 		}
 		
-		dates[4] = (String)objs[4];
+		
+		
+		if(objs[4] == null) {
+			
+		}else {
+			dates[4] = (String) objs[4];
+		}*/
 	}
 	
 	public Cus_addData(String phone) {

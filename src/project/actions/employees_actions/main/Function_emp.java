@@ -25,13 +25,10 @@ public class Function_emp {
 		SQLs reset_sql = new SQLs("府悸",1);
 		Object[][] obj = reset_sql.getRowData();
 		
-		//jp.dtm.set
-		
 	}
 	
-	public String[] getTitle() {
-		
-		return new SQLs("府悸",1).getTitle();
+	public String[] getTitle(int type) {
+		return new SQLs("府悸", type).getTitle();
 	}
 	
 	public boolean regex(String title, String obj) {
@@ -49,6 +46,8 @@ public class Function_emp {
 		case "流氓":
 			if(Pattern.matches("^[ぁ-ぞ啊-芌]*$", obj)){ return true; }
 			break;
+		case "林家":
+			return true;
 		}
 		
 		massge.showMessageDialog(null, title + " 肋给等 蔼 涝仿!!");
