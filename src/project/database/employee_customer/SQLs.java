@@ -1,4 +1,4 @@
-package project.actions.employees_actions;
+package project.database.employee_customer;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -6,49 +6,90 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.JFrame;
+import javax.xml.crypto.Data;
 
-import project.actions.employees_actions.main.object.AddData;
-import project.database.DBConnector;
-
+import project.actions.employees_actions.main.DBConnector;
+import project.actions.employees_actions.main.object.Emp_addData;
+import project.components.customers_components.object.Cus_addData;
 
 public class SQLs {
 	
-	private ArrayList<AddData> addDatas;
-	AddData addData;
+	private ArrayList<Emp_addData> emp_addDatas;
+	private ArrayList<Cus_addData> cus_addDatas;
+	public Emp_addData emp_addData;
+	public Cus_addData cus_addData;
+	//public Cus_addData cus_addData;
 	private int row;
 	private int col;
 	private String[] title;
 	private String title_txt;
+	private String dbName;
+	private String type;
 	
-	public SQLs(String type, JFrame f, AddData addData) {
-		this.addData = addData;
+	public SQLs(String type, int f_type) {
+		this.type = type;
+		if(f_type == 1) {
+			dbName = "mart_employees";
+		}else {
+			dbName = "customers";
+		}
+		selectSqlType();
+	}
+	
+	public SQLs(String type, JFrame f, Cus_addData addData, int f_type) {
+		this.cus_addData = addData;
+		this.type = type;
 		
+		if(f_type == 1) {
+			dbName = "mart_employees";
+		}else {
+			dbName = "customers";
+		}
+		
+		selectSqlType();
+	}
+	
+	public SQLs(String type, JFrame f, Emp_addData addData, int f_type) {
+		this.emp_addData = addData;
+		this.type = type;
+		if(f_type == 1) {
+			dbName = "mart_employees";
+		}else {
+			dbName = "customers";
+		}
+		
+		selectSqlType();
+	}
+	
+	void selectSqlType() {
 		try (
 				Connection conn = DBConnector.getConnection();
 			) {
 			
 			switch (type) {
 			case "등록":
-				final String ADD_SQL = "INSERT into mart_employees VALUES ";
+				final String ADD_SQL = "INSERT into " + dbName + " VALUES ";
 				add(ADD_SQL, conn);
 				break;
 			case "삭제":
-				final String DEL_SQL = "DELETE FROM mart_employees WHERE ";
+				final String DEL_SQL = "DELETE FROM " + dbName + " WHERE ";
 				delete(DEL_SQL, conn);
 				break;
 			case "검색":
-				final String SLE_SQL = "select * from mart_employees WHERE ";
+				final String SLE_SQL = "select * from " + dbName + " WHERE ";
 				select(SLE_SQL, conn);
 				break;
 			case "수정":
-				final String UPDATA_SQL = "UPDATE mart_employees SET ";
+				final String UPDATA_SQL = "UPDATE " + dbName + " SET ";
 				updata(UPDATA_SQL, conn);
 				break;
 			case "리셋":
-				final String RESET_SQL = "select * from mart_employees ";
+				final String RESET_SQL = "select * from " + dbName + " ";
 				tableReset(RESET_SQL, conn);
 				break;
 			}
@@ -62,14 +103,18 @@ public class SQLs {
 	
 	void tableReset(String SQL, Connection conn) throws SQLException {
 		
-		PreparedStatement pstmt = conn.prepareStatement(SQL + "order by 사원번호");
+		PreparedStatement pstmt = conn.prepareStatement(SQL);
 		ResultSet rs = pstmt.executeQuery();
 		ResultSetMetaData meta = rs.getMetaData();
 		
-		addDatas = new ArrayList<>();
-		title = new String[meta.getColumnCount()];
+		if(dbName == "mart_employees") {
+			emp_addDatas = new ArrayList<>();
+		}else {
+			cus_addDatas = new ArrayList<>();
+		}
 		
-		System.out.println();
+		title = new String[meta.getColumnCount()];
+
 		for(int i = 0; i<title.length; i++) {
 			title[i] = meta.getColumnName(i+1);
 		}
@@ -91,11 +136,13 @@ public class SQLs {
 					objs[col] = "";
 				}
 				
-				System.out.print(objs[col] + " ");
 			}
 			
-			System.out.println();
-			addDatas.add(new AddData(objs));
+			if(dbName.contains("emp")) {
+				emp_addDatas.add(new Emp_addData(objs));
+			}else {
+				cus_addDatas.add(new Cus_addData(objs));
+			}
 		}
 		
 		pstmt.close();
@@ -105,12 +152,19 @@ public class SQLs {
 	void select(String SQL, Connection conn) throws SQLException {
 		
 		final String ADD_SQL = " like '%'||?||'%'";
-		Object[] objs = addData.getDates();
+		
+		Object[] objs;
+		if(dbName.contains("emp")) {
+			tableReset("select * from mart_employees ", conn);
+			objs = emp_addData.getDates();
+			emp_addDatas = new ArrayList<>();
+		}else {
+			tableReset("select * from customers ", conn);
+			objs = cus_addData.getDates();
+			cus_addDatas = new ArrayList<>();
+		}
+		
 		row = 0;
-		
-		tableReset("select * from mart_employees ", conn);
-		
-		addDatas = new ArrayList<>();
 		
 		//데이터 위치 찾기
 		for(col = 0; col<objs.length; col++) {
@@ -120,7 +174,7 @@ public class SQLs {
 			}
 		}
 		
-		PreparedStatement pstmt = conn.prepareStatement(SQL + title_txt + ADD_SQL);
+		PreparedStatement pstmt = conn.prepareStatement(SQL + title_txt + ADD_SQL + " order by " + title_txt);
 		ResultSet rs;
 		
 		pstmt.setString(1, (String)objs[col]);
@@ -132,22 +186,14 @@ public class SQLs {
 			row++;
 			for(int col = 0; col<meta.getColumnCount(); col++) {
 				if(rs.getString(meta.getColumnName(col+1)) != null) {
-					objs[col] = rs.getObject(meta.getColumnName(col+1));
+					objs[col] = rs.getString(meta.getColumnName(col+1));
 				}else {
 					objs[col] = "";
-				}
+				}	
 			}
-
-			addDatas.add(new AddData(objs));
-		}
-		
-		for(int i = 0; i<addDatas.size(); i++) {
-			Object[] obj = addDatas.get(i).getDates();
-			
-			for(Object o : obj) {
-				System.out.print(o + " ");
+			if(dbName == "mart_employees") {
+				emp_addDatas.add(new Emp_addData(objs));
 			}
-			System.out.println();
 		}
 		
 		pstmt.close();
@@ -159,7 +205,7 @@ public class SQLs {
 		PreparedStatement pstmt = conn.prepareStatement(SQL + ADD_SQL);
 		ResultSet rs;
 		
-		int id = addData.getID();
+		int id = emp_addData.getID();
 		
 		pstmt.setInt(1, id);
 		
@@ -174,7 +220,13 @@ public class SQLs {
 				+ "전화번호 = ?, 직책 = ? WHERE 사원번호 = ?";
 		PreparedStatement pstmt = conn.prepareStatement(SQL + ADD_SQL);
 		ResultSet rs;
-		Object[] datas = addData.getDates();
+		
+		Object[] datas;
+		if(dbName.contains("emp")) {
+			datas = emp_addData.getDates(); 
+		}else {
+			datas = cus_addData.getDates();
+		}
 		
 		pstmt.setString(1, (String) datas[1]);
 		pstmt.setDate(2, (Date)datas[2]);
@@ -194,13 +246,27 @@ public class SQLs {
 		PreparedStatement pstmt = conn.prepareStatement(SQL + addSql);
 		ResultSet rs;
 		
-		Object[] datas = addData.getDates();
+		Object[] datas;
 		
-		pstmt.setInt(1,(int)datas[0]);
-		pstmt.setString(2, (String) datas[1]);
-		pstmt.setDate(3, (Date)datas[2]);
-		pstmt.setString(4,(String) datas[3]);
-		pstmt.setString(5,(String) datas[4]);
+		if(dbName.contains("emp")) {
+			datas = emp_addData.getDates();
+			
+			pstmt.setInt(1,(int)datas[0]);
+			pstmt.setString(2, (String) datas[1]);
+			pstmt.setDate(3, (Date)datas[2]);
+			pstmt.setString(4,(String) datas[3]);
+			pstmt.setString(5,(String) datas[4]);
+			
+		}else {
+			datas = cus_addData.getDates();
+			
+			pstmt.setString(1,(String)datas[0]);
+			pstmt.setString(2, (String) datas[1]);
+			pstmt.setString(3,(String) datas[2]);
+			pstmt.setDate(4, (Date)datas[3]);
+			pstmt.setInt(5,(int) datas[4]);
+		}
+			
 		
 		rs = pstmt.executeQuery();
 		
@@ -209,17 +275,33 @@ public class SQLs {
 	}
 	
 	public Object[][] getRowData(){
-		int maxRow = addDatas.size();
-		int maxCol = addDatas.get(0).getDatesSize();
+		int maxRow;
+		int maxCol;
+		if(dbName.contains("emp")) {
+			maxRow = emp_addDatas.size();
+			maxCol = emp_addDatas.get(0).getDatesSize();
+		}else {
+			maxRow = cus_addDatas.size();
+			maxCol = cus_addDatas.get(0).getDatesSize();
+		}
+		
 		Object[][] rowData = new Object[maxRow][maxCol];
 		
-		
 		if(maxRow == 0 || maxCol == 0) {
-			rowData[0][0] = addDatas.get(0).getDates();
+			if(dbName.contains("emp")) {
+				rowData[0][0] = emp_addDatas.get(0).getDates();
+			}else {
+				rowData[0][0] = cus_addDatas.get(0).getDates();
+			}
+			
 		}
 		
 		for(int i = 0; i<maxRow; i++) {
-			rowData[i] = addDatas.get(i).getDates();
+			if(dbName.contains("emp")) {
+				rowData[i] = emp_addDatas.get(i).getUpDates();
+			}else {
+				rowData[i] = cus_addDatas.get(i).getUpDates();
+			}
 		}
 		
 		return rowData;
@@ -230,8 +312,9 @@ public class SQLs {
 		this.col = col;
 	}
 	
-	void setAddData(AddData addData) {
-		this.addData = addData;
+	void setAddData(Emp_addData addData) {
+		if(dbName.contains("emp"))
+		this.emp_addData = addData;
 	}
 	
 	public String[] getTitle() {
@@ -243,17 +326,20 @@ public class SQLs {
 	}
 	
 	public int getUpdataEmp_id() {
+		
 		Object[][] rowData = getRowData();
 		return Integer.parseInt(String.valueOf(rowData[row][0]));
 	}
 	
 	public String getUpdataEmp_data(int col) {
+		
 		Object[][] rowData = getRowData();
 		return String.valueOf(rowData[row][col]);
 	}
 	
 	//등록시
-	public int getEmp_id() {
+	public int emp_getAddEmp_id() {
+		
 		Object[][] rowData = getRowData();
 		
 		if(rowData.length == 0) {

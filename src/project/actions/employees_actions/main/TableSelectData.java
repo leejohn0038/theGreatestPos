@@ -5,20 +5,18 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JTable;
 
-import project.actions.employees_actions.SQLs;
-import project.components.employees_companents.Table_emp;
+import project.components.employees_companents.Table;
+import project.database.employee_customer.SQLs;
 import project.frames.employees_frames.UpdataEmployees;
 
 public class TableSelectData implements MouseListener{
 	
-	public Table_emp jp;
+	public Table jp;
 	JTable jt;
-	SQLs sql;
 	int row, col;
 	
-	public TableSelectData(Table_emp jp, JTable jt, SQLs sql) {
+	public TableSelectData(Table jp, JTable jt) {
 		this.jp = jp;
-		this.sql = sql;
 		this.jt = jt;
 	}
 	
@@ -28,11 +26,12 @@ public class TableSelectData implements MouseListener{
 		row = jt.getSelectedRow();
 		col = jt.getSelectedColumn();
 		
-		if (e.getClickCount() == 2 && !e.isConsumed()) {	
-			sql.setUpdataRow(row, col);
-			new UpdataEmployees(jp, sql, row).setVisible(true);
+		if (e.getClickCount() == 2 && !e.isConsumed()) {
+			SQLs reset = new SQLs("¸®¼Â",1);
+			reset.setUpdataRow(row, col);
+			new UpdataEmployees(jp, reset, row).setVisible(true);
 		}
-		//new SQLs();
+
 	}
 	
 	@Override

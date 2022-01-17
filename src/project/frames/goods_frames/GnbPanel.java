@@ -7,14 +7,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
 import project.components.goods_components.BasicBigButton;
-import project.components.goods_components.BasicTextField;
 
 
 public class GnbPanel extends JPanel {
-	BasicBigButton manageBtn;
-	BasicBigButton lookupBtn;
-	BasicBigButton supplierBtn;
-	BasicBigButton assetBtn;
+	BasicBigButton manageBtn, lookupBtn, assetBtn;
 	
 	public GnbPanel(ContentsPanel contents) {
 		
@@ -40,19 +36,8 @@ public class GnbPanel extends JPanel {
 		});
 		add(lookupBtn);
 		
-		supplierBtn = new BasicBigButton("거래처");
-		supplierBtn.setLocation(300, 20);
-		supplierBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				CardLayout layout = (CardLayout)contents.getLayout();
-				layout.show(contents, "Supplier");
-			}
-		});
-		add(supplierBtn);
-		
 		assetBtn = new BasicBigButton("자산관리");
-		assetBtn.setLocation(450, 20);
+		assetBtn.setLocation(300, 20);
 		assetBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

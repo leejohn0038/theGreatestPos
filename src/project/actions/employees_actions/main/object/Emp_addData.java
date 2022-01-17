@@ -3,7 +3,7 @@ package project.actions.employees_actions.main.object;
 import java.sql.Date;
 import java.time.LocalDate;
 
-public class AddData {
+public class Emp_addData {
 	private int id;
 	private String name;
 	private Date hire_data;
@@ -12,8 +12,8 @@ public class AddData {
 	private Object[] dates = {id, name, hire_data, tel, job};
 	
 	
-	public AddData() {}
-	public AddData(Object[] objs) {
+	public Emp_addData() {}
+	public Emp_addData(Object[] objs) {
 		
 		this.dates = objs;
 		
@@ -24,25 +24,21 @@ public class AddData {
 		this.job = (String)objs[4];
 	}
 	
-	public AddData(String[] objs) {
+	public Emp_addData(String[] objs) {
 		
 		dates[0] = Integer.parseInt((String) objs[0]);
 		dates[1] = objs[1];
 		
-		if(hire_data == null) {
+		if(objs[2] == null) {
 			dates[2] = Date.valueOf(LocalDate.now());
-		}
-		/*else {
-			
+		}else {
 			dates[2] = Date.valueOf(((String)objs[2]).substring(0,10));
-		}*/
+		}
 		dates[3] = (String)objs[3];
 		dates[4] = (String)objs[4];
-		
-		//System.out.println(id + " " + name + " " + hire_data + " " + tel + " " + job + " ");
 	}
 	
-	public AddData(int id) {
+	public Emp_addData(int id) {
 		this.id = id;
 		name = null;
 		hire_data = null;
@@ -50,10 +46,8 @@ public class AddData {
 		job = null;
 	}
 	
-	
-	
 	public void setSelectValue(int titleIndex, String selectValue) {
-		//System.out.println(titleIndex);
+		
 		if(titleIndex != 0) {
 			dates[0] = null;
 		}
@@ -64,16 +58,16 @@ public class AddData {
 		return dates;
 	}
 	
+	public Object[] getUpDates() {
+		Object[] upDates = {id, name, hire_data, tel, job};
+		return upDates;
+	}
+	
 	public int getDatesSize() {
 		return dates.length;
 	}
 	
 	public int getID() {
 		return id;
-	}
-	
-	@Override
-	public String toString() {
-		return String.format("%d, %s, %s, %s, %s", id, name, hire_data, tel, job);
 	}
 }

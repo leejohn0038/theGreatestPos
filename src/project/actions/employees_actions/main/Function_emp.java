@@ -4,34 +4,31 @@ import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
-import project.actions.employees_actions.SQLs;
-import project.components.employees_companents.Table_emp;
+import project.actions.employees_actions.main.object.Emp_addData;
+import project.components.employees_companents.Table;
+import project.database.employee_customer.SQLs;
 
 public class Function_emp {
 	public Function_emp() {}
 	
-	public void updateView(Table_emp jp, int row) {
-		
-		SQLs reset_sql = new SQLs("府悸", null, null);
-		Object[][] obj = reset_sql.getRowData();
+	public void updateView(Table jp, int row, Emp_addData data) {
+	
+		Object[] obj = data.getDates();
 		
 		for(int i = 0; i<jp.dtm.getColumnCount(); i++) {
-			jp.dtm.setValueAt(obj[row][i], row, i);
+			jp.dtm.setValueAt(obj[i], row, i);
 		}
 	}
 	
-	public void updateView(Table_emp jp, int maxRow, int maxCol) {
+	public void updateView(Table jp, int maxRow, int maxCol) {
 		
-		SQLs reset_sql = new SQLs("府悸", null, null);
+		SQLs reset_sql = new SQLs("府悸",1);
 		Object[][] obj = reset_sql.getRowData();
-		
-		//jp.dtm.set
 		
 	}
 	
-	public String[] getTitle() {
-		
-		return new SQLs("府悸", null, null).getTitle();
+	public String[] getTitle(int type) {
+		return new SQLs("府悸", type).getTitle();
 	}
 	
 	public boolean regex(String title, String obj) {
@@ -47,9 +44,10 @@ public class Function_emp {
 			if(Pattern.matches("010\\-*\\d{4}\\-*\\d{4}", obj)){ return true; }
 			break;
 		case "流氓":
-			System.out.println(obj);
 			if(Pattern.matches("^[ぁ-ぞ啊-芌]*$", obj)){ return true; }
 			break;
+		case "林家":
+			return true;
 		}
 		
 		massge.showMessageDialog(null, title + " 肋给等 蔼 涝仿!!");

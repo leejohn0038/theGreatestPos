@@ -1,13 +1,11 @@
-package project.actions.customers_actions.main;
+package project.actions.employees_actions.main;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import project.actions.customers_actions.CustomersSQLs;
-
-public class CustomersDBConnector {
+public class DBConnector {
 	
 	private static String driverName = "oracle.jdbc.driver.OracleDriver";
 	private static String url = "jdbc:oracle:thin:@59.9.112.194:1521/XE";
@@ -17,9 +15,7 @@ public class CustomersDBConnector {
 	static {
 		try {
 			Class.forName(driverName);
-			System.out.println("오라클 JDBC 드라이브 연결 성공");
 		}catch (Exception e) {
-			System.out.println("오라클 JDBC 드라이브 연결 오류");
 		}
 	}
 	

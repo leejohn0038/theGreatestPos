@@ -14,251 +14,131 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
+import project.actions.SearchTf;
 import project.actions.goods_actions.GetValues;
 import project.components.goods_components.BasicPopupPanel;
 import project.components.goods_components.BasicSmallButton;
 import project.components.goods_components.BasicTextField;
+import project.components.goods_components.GoodsTable;
 import project.components.goods_components.PosDBConnector;
 import project.components.goods_components.StoreTable;
 
 public class ManagementPanel extends JPanel {
 	
-	DefaultTableModel dtm;
-	String updateToGoods, importName, exportName, gname, addName;
-	int importQty, exportQty, preGoodsQty, addQty, gid, gqty, gprice, cnt; 
-	Date importExp, expiration, storedate, addStoredate;
-	BasicSmallButton confirmBtn, cancleBtn, importBtn, exportBtn;
-	BasicTextField importNameTf, importQtyTf, importExpTf, exportNameTf, exportQtyTf;
-	
+	private String changeName;
+	private int changeQty, preGoodsQty, gid, gprice, cnt; 
+	private Date importExp, addStoredate;
+	private BasicSmallButton importConfirmBtn, importCancelBtn, importBtn, exportConfirmBtn, exportCancelBtn, exportBtn;
+	private BasicTextField importNameTf, importQtyTf, importExpTf, exportNameTf, exportQtyTf, searchTf;
+	private BasicPopupPanel importPop, exportPop;
+	private DefaultTableModel dtm;
+
 	public ManagementPanel() {
 		
 		StoreTable storeTable = new StoreTable();
-		GetValues gv = new GetValues();
-		LookupPanel lp = new LookupPanel();
 		dtm = storeTable.getTableModel();
 		
-		try {
-			Connection conn = PosDBConnector.getConnection();		
-			BasicPopupPanel importPop = new BasicPopupPanel();
-			importPopupPanel(importPop);
-			
-			importPop.add(new BasicSmallButton("입고") {
-				{
-					setLocation(140, 240);
-					addActionListener(new ActionListener() {
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							importName = gv.getTextStringValue(importNameTf);
-							importQty = gv.getTextNumValue(importQtyTf);
-							importExp = gv.getTextDateValue(importExpTf);
-							
-							LocalDate now = LocalDate.now();
-							
-							try (
-								PreparedStatement cntPs = conn.prepareStatement("SELECT COUNT(*) FROM gstore WHERE gname = ?");
-								PreparedStatement updateToGoods = conn.prepareStatement("UPDATE goods SET gqty = ? WHERE gname = ?");	
-								PreparedStatement preGoodsQtyPs = conn.prepareStatement("SELECT gqty FROM goods WHERE gname = ?");
-								PreparedStatement paintManagePs = conn.prepareStatement("SELECT * FROM goods WHERE gname = ?");
-							) {
-								cntPs.setString(1, importName);
-								preGoodsQtyPs.setString(1, importName);
-								paintManagePs.setString(1, importName);
-								try (
-									ResultSet cntRs = cntPs.executeQuery();
-									ResultSet preGQRs = preGoodsQtyPs.executeQuery();
-									ResultSet paintRs = paintManagePs.executeQuery();
-								) {
-									cntRs.next();
-									cnt = cntRs.getInt("COUNT(*)");
-									
-									preGQRs.next();
-									preGoodsQty = preGQRs.getInt("gqty");
-									
-									updateToGoods.setInt(1, preGoodsQty + importQty);
-									updateToGoods.setString(2, importName);
-									updateToGoods.executeUpdate();
-									
-									lp.getLookupTable().getTableModel().fireTableDataChanged();
-
-									// DB에 삽입
-									String addSql;
-									if (cnt == 0) {
-										addSql = "INSERT INTO gstore(gname, gqty, expiration) VALUES (?, ?, ?)";
-										insertVal(conn, addSql);
-										paintRs.next();
-										Object[] addTemp = 
-											{paintRs.getInt("gid"), importName, importQty, paintRs.getInt("gprice"), importExp, now};
-										dtm.addRow(addTemp);
-										importPop.setVisible(false);
-										
-									} else {
-										PreparedStatement addInfoPs = conn.prepareStatement("SELECT * FROM gstore WHERE gname = ?");
-										addInfoPs.setString(1, importName);
-										ResultSet addInfoRs = addInfoPs.executeQuery();
-										
-										addInfoRs.next();
-										addStoredate = addInfoRs.getDate("storedate");
-										
-										if (addStoredate.toLocalDate().equals(now)) {
-											addSql = "UPDATE gstore SET gqty = ? WHERE gname = ?";
-											try (
-													PreparedStatement addPs = conn.prepareStatement(addSql);		
-													) {
-												Object addQty = preGoodsQty + importQty;
-												addPs.setObject(1, addQty);
-												addPs.setString(2, importName);
-												addPs.executeUpdate();
-												
-												paintRs.next();
-												int rowNum;
-												for (int i = 0; i < dtm.getRowCount(); ++i) {
-													if (dtm.getValueAt(i, 1).equals(importNameTf.getText())) {
-														rowNum = i;
-														dtm.setValueAt(addQty, rowNum, 2);
-													}
-												}
-												importPop.setVisible(false);
-												
-											} catch (SQLException e1) {
-												e1.printStackTrace();
-											}
-											
-										} else if (!addStoredate.toLocalDate().equals(now)) {
-											addSql = "INSERT INTO gstore(gname, gqty, expiration) VALUES (?, ?, ?)";
-											insertVal(conn, addSql);
-											paintRs.next();
-											Object[] addTemp = 
-												{paintRs.getInt("gid"), importName, importQty, paintRs.getInt("gprice"), importExp, now};
-											dtm.addRow(addTemp);
-											
-											importPop.setVisible(false);
-										}
-									}
-								}
-								
-							} catch (SQLException e2) {
-								e2.printStackTrace();
-							}
-							
-						}
-					});
-				}
-			});
-			add(importPop);
-			
-			importPop.add(new BasicSmallButton("취소") {
-				{
-					setLocation(220, 240);
-					addActionListener(new ActionListener() {
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							importPop.setVisible(false);
-							
-						}
-					});
-				}
-			});
-			
-			add(new BasicSmallButton("입고") {
-				{
-					setLocation(0, 0);
-					addActionListener(new ActionListener() {
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							importNameTf.setText("상품명을 입력해주세요");
-							importQtyTf.setText("수량을 입력해주세요");
-							importExpTf.setText("YYYYDDMM");
-							importPop.setVisible(true);
-						}
-					});
-				}
-			});
-			
-			
-			BasicPopupPanel exportPop = new BasicPopupPanel();
-			add(exportPopupPanel(exportPop));
-			
-			add(new BasicSmallButton("출고") {
-				{
-					setLocation(70, 0);
-					addActionListener(new ActionListener() {
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							exportPop.setVisible(true);
-							 
-						}
-					});
-				}
-			});
-			
-			exportPop.add(new BasicSmallButton("출고") {
-				{
-					setLocation(140, 240);
-					addActionListener(new ActionListener() {
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							exportName = gv.getTextStringValue(exportNameTf);
-							exportQty = gv.getTextNumValue(exportQtyTf);
-							
-							try (
-								PreparedStatement deleteGstore = conn.prepareStatement("UPDATE gstore SET gqty = ? WHERE gname = ?");		
-								PreparedStatement preGoodsQtyPs = conn.prepareStatement("SELECT gqty FROM goods WHERE gname = ?");
-								PreparedStatement deleteGoods = conn.prepareStatement("UPDATE goods SET gqty = ? WHERE gname = ?");
-								ResultSet preGQRs = preGoodsQtyPs.executeQuery();		
-							) {
-								preGQRs.next();
-								int preGoodsQty = preGQRs.getInt("gqty");
-								
-								deleteGstore.setInt(1, preGoodsQty - exportQty);
-								deleteGstore.setString(2, exportName);
-								deleteGstore.executeUpdate();
-								
-								deleteGoods.setInt(1, preGoodsQty - exportQty);
-								deleteGoods.setString(2, exportName);
-								deleteGoods.executeUpdate();
-								
-								preGoodsQtyPs.setString(1, exportName);
-								
-								int rowNum;
-								for (int i = 0; i < dtm.getRowCount(); ++i) {
-									if (dtm.getValueAt(i, 1).equals(exportNameTf.getText())) {
-										rowNum = i;
-										dtm.setValueAt(preGoodsQty - exportQty, rowNum, 2);
-									}
-								}
-								
-							} catch (SQLException e1) {
-								e1.printStackTrace();
-							}
-						}
-					});
-				}
-			});
-		} catch (SQLException e3) {
-			e3.printStackTrace();
-		}
+		// 입고 기능
+		importPop = new BasicPopupPanel();
+		importConfirmBtn = new BasicSmallButton("확인");
+		importCancelBtn = new BasicSmallButton("취소");
+		importPopupPanel(importPop);
 		
-		
-		
-		add(new BasicSmallButton("폐기") {
-			{
-				setLocation(140, 0);
+		importConfirmBtn.setLocation(140, 240);
+		importConfirmBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				try (
+					Connection conn = PosDBConnector.getConnection();		
+				) {
+					getImportValues();
+					existGoods(conn);
+					addGoods(conn, cnt);
+					
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				importPop.setVisible(false);
 			}
 		});
+		importPop.add(importConfirmBtn);
 		
-		add(new BasicSmallButton("반품") {
-			{
-				setLocation(210, 0);
+		importCancelBtn.setLocation(220, 240);
+		importCancelBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				importPop.setVisible(false);
 			}
 		});
+		importPop.add(importCancelBtn);
+		add(importPop);
 		
-		add(new BasicTextField("검색어를 입력해주세요") {
-			{
-				setLocation(400, 0);
+		importBtn = new BasicSmallButton("입고");
+		importBtn.setLocation(0, 0);
+		importBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				importNameTf.setText("상품명을 입력해주세요");
+				importQtyTf.setText("수량을 입력해주세요");
+				importExpTf.setText("YYYYDDMM");
+				importPop.setVisible(true);
 			}
 		});
+		add(importBtn);
 		
-		add(new BasicSmallButton("검색") {
+		// 출고 기능
+		exportPop = new BasicPopupPanel();
+		exportConfirmBtn = new BasicSmallButton("확인");
+		exportCancelBtn = new BasicSmallButton("취소");
+		add(exportPopupPanel(exportPop));
+		
+		exportConfirmBtn.setLocation(140, 240);
+		exportConfirmBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try (
+						Connection conn = PosDBConnector.getConnection();
+				) {
+					loseGoods(conn);
+					
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				exportPop.setVisible(false);
+			}
+		});
+		exportPop.add(exportConfirmBtn);
+		
+		exportCancelBtn.setLocation(220, 240);
+		exportCancelBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				exportPop.setVisible(false);
+			}
+		});
+		exportPop.add(exportCancelBtn);
+		
+		exportBtn = new BasicSmallButton("출고");
+		exportBtn.setLocation(70, 0);
+		exportBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				exportNameTf.setText("상품명을 입력해주세요");
+				exportQtyTf.setText("수량을 입력해주세요");
+				exportPop.setVisible(true);
+			}
+		});
+		add(exportBtn);
+		
+		// 검색 기능
+		searchTf = new BasicTextField("");
+		searchTf.setLocation(400, 0);
+		storeTable.getRowsorter().addRowSorterListener(null);
+		new SearchTf(storeTable.getRowsorter(), searchTf);
+		add(searchTf);
+		
+		add(new BasicSmallButton("X") {
 			{
 				setLocation(600, 0);
 			}
@@ -272,7 +152,7 @@ public class ManagementPanel extends JPanel {
 	
 	
 	
-	JPanel importPopupPanel(BasicPopupPanel importPop) {
+	private JPanel importPopupPanel(BasicPopupPanel importPop) {
 		importPop.add(new JLabel("입고") {
 			{
 				setBounds(20, 10, 100, 50);
@@ -292,28 +172,15 @@ public class ManagementPanel extends JPanel {
 		importExpTf.setLocation(20, 165);
 		importPop.add(importExpTf);
 		
-		importPop.add(new BasicSmallButton("취소") {
-			{
-				setLocation(220, 240);
-				addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						importPop.setVisible(false);
-						
-					}
-				});
-			}
-		});
-		
 		return importPop;
 	}
 	
-	void insertVal(Connection conn, String addSql) {
+	private void insertVal(Connection conn, String addSql) {
 		try (
 			PreparedStatement addPs = conn.prepareStatement(addSql);		
 		) {
-			addPs.setString(1, importName);
-			addPs.setInt(2, importQty);
+			addPs.setString(1, changeName);
+			addPs.setInt(2, changeQty);
 			addPs.setDate(3, importExp);
 			addPs.executeUpdate();
 			
@@ -322,9 +189,7 @@ public class ManagementPanel extends JPanel {
 		}
 	}
 	
-	
-	
-	JPanel exportPopupPanel(BasicPopupPanel exportPop) {
+	private JPanel exportPopupPanel(BasicPopupPanel exportPop) {
 		
 		exportPop.add(new JLabel("출고") {
 			{
@@ -341,36 +206,145 @@ public class ManagementPanel extends JPanel {
 		exportQtyTf.setLocation(20, 120);
 		exportPop.add(exportQtyTf);
 		
-		exportPop.add(new BasicSmallButton("취소") {
-			{
-				setLocation(220, 240);
-				addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						exportPop.setVisible(false);
-						
-					}
-				});
-			}
-		});
-		
 		return exportPop;
 	}
 	
-	void deleteVal(Connection conn, String deleteSql) {
+	private void getImportValues() {
+		GetValues gv = new GetValues();
+		changeName = gv.getTextStringValue(importNameTf);
+		changeQty = gv.getTextNumValue(importQtyTf);
+		importExp = gv.getTextDateValue(importExpTf);
+	}
+	
+	private void getExportValues() {
+		GetValues gv = new GetValues();
+		changeName = gv.getTextStringValue(exportNameTf);
+		changeQty = gv.getTextNumValue(exportQtyTf);
+	}
+	
+	private void existGoods(Connection conn) {
 		try (
-			PreparedStatement delSqlPs = conn.prepareStatement(deleteSql);		
+			PreparedStatement pstmt = conn.prepareStatement("SELECT COUNT(*) FROM gstore WHERE gname = ?");		
 		) {
-			delSqlPs.setInt(1, exportQty);
-			delSqlPs.setString(2, exportName);
-			delSqlPs.executeUpdate();
+			pstmt.setString(1, changeName);
+			ResultSet rs = pstmt.executeQuery();
 			
+			rs.next();
+			cnt = rs.getInt("COUNT(*)");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void getPreGoodsInfo(Connection conn) {
+		try (
+			PreparedStatement preGoodsPs = conn.prepareStatement("SELECT * FROM goods WHERE gname = ?");
+		) {
+			preGoodsPs.setString(1, changeName);
+			ResultSet preGoodsRs = preGoodsPs.executeQuery();
+			preGoodsRs.next();
+			preGoodsQty = preGoodsRs.getInt("gqty");
+			gid = preGoodsRs.getInt("gid");
+			gprice = preGoodsRs.getInt("gprice");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	private void addGoods(Connection conn, int cnt) {
+		LocalDate now = LocalDate.now();
+		getPreGoodsInfo(conn);
+		
+		try (
+			PreparedStatement updateToGoods = conn.prepareStatement("UPDATE goods SET gqty = ? WHERE gname = ?");
+		) {
+			updateToGoods.setInt(1, preGoodsQty + changeQty);
+			updateToGoods.setString(2, changeName);
+			updateToGoods.executeUpdate();
+			
+			String addSql;
+			if (cnt == 0) {
+				addSql = "INSERT INTO gstore(gname, gqty, expiration) VALUES (?, ?, ?)";
+				insertVal(conn, addSql);
+				Object[] addTemp = 
+					{gid, changeName, changeQty, gprice, importExp, now};
+				dtm.addRow(addTemp);
+				importPop.setVisible(false);
+				
+			} else if (cnt > 0) {
+				PreparedStatement addInfoPs = conn.prepareStatement("SELECT * FROM gstore WHERE gname = ?");
+				addInfoPs.setString(1, changeName);
+				ResultSet addInfoRs = addInfoPs.executeQuery();
+				addInfoRs.next();
+				addStoredate = addInfoRs.getDate("storedate");
+				if (addStoredate.toLocalDate().equals(now)){
+					addSql = "UPDATE gstore SET gqty = ? WHERE gname = ?";
+					try (
+						PreparedStatement addPs = conn.prepareStatement(addSql);	
+					) {
+						Object addQty = preGoodsQty + changeQty;
+						addPs.setObject(1, addQty);
+						addPs.setString(2, changeName);
+						addPs.executeUpdate();
+						
+						int rowNum;
+						for (int i = 0; i < dtm.getRowCount(); ++i) {
+							if (dtm.getValueAt(i, 1).equals(importNameTf.getText())) {
+								rowNum = i;
+								dtm.setValueAt(addQty, rowNum, 2);
+							}
+						}
+						importPop.setVisible(false);
+						
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+				} else if (!addStoredate.toLocalDate().equals(now)) {
+					addSql = "INSERT INTO gstore(gname, gqty, expiration) VALUES (?, ?, ?)";
+					insertVal(conn, addSql);
+					Object[] addTemp = 
+						{gid, changeName, changeQty, gprice, importExp, now};
+					dtm.addRow(addTemp);
+					importPop.setVisible(false);
+				}
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	private void loseGoods(Connection conn) {
+		getExportValues();
+		getPreGoodsInfo(conn);
+		
+		try (
+			PreparedStatement deleteGstore = conn.prepareStatement("UPDATE gstore SET gqty = ? WHERE gname = ?");	
+			PreparedStatement deleteGoods = conn.prepareStatement("UPDATE goods SET gqty = ? WHERE gname = ?");
+		) {
+			deleteGstore.setInt(1, preGoodsQty - changeQty);
+			deleteGstore.setString(2, changeName);
+			deleteGstore.executeUpdate();
+			
+			deleteGoods.setInt(1, preGoodsQty - changeQty);
+			deleteGoods.setString(2, changeName);
+			deleteGoods.executeUpdate();
+			
+			int rowNum;
+			for (int i = 0; i < dtm.getRowCount(); ++i) {
+				if (dtm.getValueAt(i, 1).equals(exportNameTf.getText())) {
+					rowNum = i;
+					dtm.setValueAt(preGoodsQty - changeQty, rowNum, 2);
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 }
 
 

@@ -8,10 +8,10 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
-import project.actions.employees_actions.SQLs;
 import project.actions.employees_actions.main.TableSelectData;
+import project.database.employee_customer.SQLs;
 
-public class Table_emp extends JTable{
+public class Table extends JTable{
 	
 	public DefaultTableModel dtm;
 	JTable jt;
@@ -19,14 +19,17 @@ public class Table_emp extends JTable{
 	JScrollPane sp;
 	Object[][] rowData;
 	TableSelectData tsd;
+	int type;
 	
-	public Table_emp(JPanel jp, SQLs sql) {
+	public Table(JPanel jp, SQLs sql, int type) {
+		this.type = type;
 		this.jp = jp;	
 		resetTable(sql);
 	}
 	
 	public void resetTable(SQLs sql) {
-		String[] columnNames = new SQLs("리셋", null, null).getTitle();
+		
+		String[] columnNames = new SQLs("리셋", type).getTitle();
 		rowData = sql.getRowData();
 
 		//테이블 자체적으로 수정 금지
@@ -38,7 +41,7 @@ public class Table_emp extends JTable{
 		
 		jt = new JTable(dtm);
 		sp = new JScrollPane(jt);
-		tsd = new TableSelectData(this, jt, sql);
+		tsd = new TableSelectData(this, jt);
 		jt.addMouseListener(tsd);
 		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);

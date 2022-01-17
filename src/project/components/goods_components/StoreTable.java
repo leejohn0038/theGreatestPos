@@ -12,24 +12,26 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 public class StoreTable extends JPanel {
 	String[] column_name = {"상품번호", "이름", "수량", "가격", "유통기한", "입고일"};
 	private DefaultTableModel model;
 	private JTable table;
 	private JScrollPane sp;
+	TableRowSorter<TableModel> rowSorter;
 	
-	int strdNum;
 	String strdName;
-	int strdQty;
-	int strdPrice;
-	Date strdExp;
-	Date strdDate;
+	int strdNum, strdQty, strdPrice;
+	Date strdExp, strdDate;
 	
 	public StoreTable() {
 		model = new DefaultTableModel(column_name, 0);
 		table = new JTable(model);
 		sp = new JScrollPane(table);
+		rowSorter = new TableRowSorter<>(table.getModel());
+		table.setRowSorter(rowSorter);
 		
 		try (
 			Connection conn = PosDBConnector.getConnection();
@@ -67,6 +69,14 @@ public class StoreTable extends JPanel {
 	
 	public String[]	getColumnName() {
 		return column_name;
+	}
+	
+	public TableRowSorter<TableModel> getRowsorter() {
+		return rowSorter;
+	}
+
+	public JTable getTable() {
+		return table;
 	}
 }
 

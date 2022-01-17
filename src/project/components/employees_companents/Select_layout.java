@@ -14,15 +14,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-import project.actions.employees_actions.SQLs;
 import project.actions.employees_actions.SelectBtn;
 import project.actions.employees_actions.main.Function_emp;
+import project.database.employee_customer.SQLs;
 
 public class Select_layout extends JPanel{
 	
 	private JTextField selectTxt;				//사용자에게 받는 text	
 	private JComboBox<String> com;				//사용자가 선택한 콤보박스
-	private final String[] COL_NAME = new Function_emp().getTitle();
+	private final String[] COL_NAME = new Function_emp().getTitle(1);
 	
 	public Select_layout(Table_layout tl) {
 		

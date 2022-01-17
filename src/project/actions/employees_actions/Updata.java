@@ -17,21 +17,22 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 import project.actions.employees_actions.main.Function_emp;
-import project.actions.employees_actions.main.object.AddData;
-import project.components.employees_companents.Table_emp;
+import project.actions.employees_actions.main.object.Emp_addData;
+import project.components.employees_companents.Table;
+import project.database.employee_customer.SQLs;
 
 public class Updata implements ActionListener{
 	
-	Table_emp jp;
+	Table jp;
 	JFrame f;
 	DefaultTableModel dtm;
-	AddData addData;
+	Emp_addData addData;
 	String[] title;
 	HashMap<String,Object> txts = new HashMap<>();
 	String[] datas;
 	int row;
 	
-	public Updata(Table_emp jp, JFrame f, int row, HashMap<String,Object> txts, String[] title) {
+	public Updata(Table jp, JFrame f, int row, HashMap<String,Object> txts, String[] title) {
 		this.jp = jp;
 		this.f = f;
 		this.row = row;
@@ -39,8 +40,8 @@ public class Updata implements ActionListener{
 		this.title = title;
 	}
 
-	AddData getData() {
-		addData = new AddData(datas);
+	Emp_addData getData() {
+		addData = new Emp_addData(datas);
 		return addData;
 	}
 	
@@ -52,27 +53,23 @@ public class Updata implements ActionListener{
 		boolean stop = true;
 		
 		for(int i = 0; i<title.length; i++) {
-			if(i==0) {
+			if(title[i].contains("사원번호")) {
 				lab = (JLabel) txts.get(title[i]);
 				datas[i] = lab.getText();
 			}else {
-				
 				JTextField tempTxt = (JTextField)txts.get(title[i]);
-				
 				stop = new Function_emp().regex(title[i], tempTxt.getText());
-				
 				if(stop == false) {
 					break;
 				}
-				
 				datas[i] = tempTxt.getText();
 			}
 		}
 		if(stop == true) {
 			
-			new SQLs("수정", f, getData());
+			new SQLs("수정", f, getData(), 1);
 			
-			new Function_emp().updateView(jp, row);
+			new Function_emp().updateView(jp, row, getData());
 			
 			f.dispose();
 		}

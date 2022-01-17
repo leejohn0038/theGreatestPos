@@ -6,6 +6,7 @@ import project.MainFrame;
 import project.components.receipts_components.MainButtons;
 
 
+
 public class GoodsFrame extends JFrame {
 
 	public GoodsFrame(MainFrame main) {

@@ -8,10 +8,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
-import project.actions.employees_actions.main.object.AddData;
+import project.actions.employees_actions.main.object.Emp_addData;
 import project.components.employees_companents.Select_layout;
-import project.components.employees_companents.Table_emp;
+import project.components.employees_companents.Table;
 import project.components.employees_companents.Table_layout;
+import project.database.employee_customer.SQLs;
 
 //뷰자체가 작길래 한곳에서 하기로 결정...
 public class SelectBtn extends JButton{
@@ -26,19 +27,17 @@ public class SelectBtn extends JButton{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				//System.out.println(sl.getComboBox().getSelectedItem()+ " " + sl.getComboBox().getSelectedIndex() +" " +sl.getSelectTxt().getText());
-				
-				AddData addDate = new AddData();
-				Table_emp jt = tl.get_table();
+				Emp_addData addDate = new Emp_addData();
+				Table jt = tl.get_table();
 				DefaultTableModel dtm = jt.getDtm();
 				SQLs sql;
 				Object[][] str;
 				
 				addDate.setSelectValue(sl.getComboBox().getSelectedIndex(), sl.getSelectTxt().getText());
-				sql = new SQLs("검색", null, addDate);
+				sql = new SQLs("검색", null, addDate, 1);
 				
 				str = sql.getRowData();
-				System.out.println(str.length);
+				
 				dtm.setRowCount(str.length);
 				
 				for(int row = 0; row<str.length; row++) {
@@ -46,9 +45,6 @@ public class SelectBtn extends JButton{
 						dtm.setValueAt(str[row][col], row, col);
 					}
 				}
-				
-				
-				//dtm.addRow();
 			}
 		});
 	}

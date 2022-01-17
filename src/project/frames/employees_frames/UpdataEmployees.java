@@ -16,18 +16,19 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import project.actions.employees_actions.AddBtn;
-import project.actions.employees_actions.SQLs;
 import project.actions.employees_actions.Updata;
-import project.actions.employees_actions.main.object.AddData;
-import project.components.employees_companents.Table_emp;
+import project.actions.employees_actions.main.Function_emp;
+import project.actions.employees_actions.main.object.Emp_addData;
+import project.components.employees_companents.Table;
+import project.database.employee_customer.SQLs;
 
 public class UpdataEmployees extends JFrame{
 	
 	private int frame_size[] = {700,500};
-	Table_emp jp;
+	Table jp;
 	int row;
 	
-	public UpdataEmployees(Table_emp jp, SQLs sql, int row) {
+	public UpdataEmployees(Table jp, SQLs sql, int row) {
 		this.row = row;
 		this.jp = jp;
 		add(inner_lay(sql));
@@ -41,7 +42,7 @@ public class UpdataEmployees extends JFrame{
 		JLabel exLab = new JLabel("수정하실 데이터를 작성해주세요");
 		JButton btn = new JButton("수정");
 		
-		String[] title_labs = {"ID", "이름", "입사일", "전화번호", "직책"}; 
+		String[] title_labs = new Function_emp().getTitle(1); 
 		ArrayList<JLabel> labs = new ArrayList<>();
 		HashMap<String,Object> txts = new HashMap<>();
 		
@@ -78,13 +79,13 @@ public class UpdataEmployees extends JFrame{
 			
 			//아이디 값은 db에 넣은 순서대로 배정할할 예정
 			if(i==0) {
-				idLab.setText(Integer.toString(sql.getUpdataEmp_id()));
+				idLab.setText(Integer.toString((int)jp.dtm.getValueAt(row, 0)));
 				idLab.setBounds(txtLoc[0], txtLoc[1], 300, 50);
 				txts.put(title_labs[i], idLab);
 				inner.add(idLab);
 			}else {
 				txt.setBounds(txtLoc[0], txtLoc[1], 300, 50);
-				txt.setText(sql.getUpdataEmp_data(i));
+				txt.setText(jp.dtm.getValueAt(row, i).toString());
 				txts.put(title_labs[i], txt);
 				inner.add(txt);
 			}
