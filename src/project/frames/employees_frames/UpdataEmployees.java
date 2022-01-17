@@ -16,19 +16,19 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import project.actions.employees_actions.AddBtn;
-import project.actions.employees_actions.SQLs;
 import project.actions.employees_actions.Updata;
 import project.actions.employees_actions.main.Function_emp;
-import project.actions.employees_actions.main.object.AddData;
-import project.components.employees_companents.Table_emp;
+import project.actions.employees_actions.main.object.Emp_addData;
+import project.components.employees_companents.Table;
+import project.database.employee_customer.SQLs;
 
 public class UpdataEmployees extends JFrame{
 	
 	private int frame_size[] = {700,500};
-	Table_emp jp;
+	Table jp;
 	int row;
 	
-	public UpdataEmployees(Table_emp jp, SQLs sql, int row) {
+	public UpdataEmployees(Table jp, SQLs sql, int row) {
 		this.row = row;
 		this.jp = jp;
 		add(inner_lay(sql));

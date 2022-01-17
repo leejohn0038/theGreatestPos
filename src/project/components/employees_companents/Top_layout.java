@@ -8,16 +8,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
-import project.actions.employees_actions.SQLs;
 import project.actions.employees_actions.main.TopBtn;
+import project.database.employee_customer.SQLs;
 
 //프레임의 상단 레이아웃 (logo / 조회 / 등록 / 편집 버튼)
 public class Top_layout extends JPanel{
 	
-	Table_emp jp;
+	Table jp;
 	SQLs sql;
 	
-	public Top_layout(JFrame emp_f, Table_emp jp, SQLs sql) {
+	public Top_layout(JFrame emp_f, Table jp, SQLs sql, int type) {
 		
 		this.jp = jp;
 		this.sql = sql;
@@ -34,7 +34,7 @@ public class Top_layout extends JPanel{
 		setVisible(true);
 		
 		add(left(width[0], height));
-		add(right(width, height));
+		add(right(width, height, type));
 		
 	}
 	
@@ -53,7 +53,7 @@ public class Top_layout extends JPanel{
 	}
 	
 	//오른쪽 레이아웃
-	JPanel right(int[] width, int height) {
+	JPanel right(int[] width, int height, int type) {
 		
 		JPanel right = new JPanel(); // 오른쪽 버튼 레이아웃
 		
@@ -62,7 +62,7 @@ public class Top_layout extends JPanel{
 		right.setBorder(new LineBorder(Color.black));
 		
 		for(int i = 0; i<2; i++) {
-			TopBtn tb = new TopBtn(jp, i, sql, width, height);
+			TopBtn tb = new TopBtn(jp, i, sql, width, height, type);
 			right.add(tb);
 		}
 		

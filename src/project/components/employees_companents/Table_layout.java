@@ -1,26 +1,18 @@
 package project.components.employees_companents;
 
-import java.awt.BorderLayout;
-import java.io.File;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
-import project.actions.employees_actions.SQLs;
-import project.actions.employees_actions.main.TableSelectData;
+import project.database.employee_customer.SQLs;
 
 public class Table_layout extends JPanel{
 	
-	Table_emp jt;
+	Table jt;
 	DefaultTableModel dtm;
 	
-	public Table_layout(int lw, SQLs sql) {	
+	public Table_layout(int lw, SQLs sql, int type) {	
 		
-		jt = new Table_emp(this, sql);
+		jt = new Table(this, sql, type);
 		dtm = jt.getDtm();
 		
 		//add(jt.getSp(), "Center");
@@ -33,7 +25,7 @@ public class Table_layout extends JPanel{
 		dtm.addRow(obj);
 	}
 	
-	public Table_emp get_table() {
+	public Table get_table() {
 		return jt;
 	}
 }

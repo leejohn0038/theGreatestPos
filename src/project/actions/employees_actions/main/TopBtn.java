@@ -8,9 +8,9 @@ import javax.swing.JFrame;
 
 import project.actions.employees_actions.Delete;
 import project.actions.employees_actions.FrameVisible;
-import project.actions.employees_actions.SQLs;
-import project.components.employees_companents.Table_emp;
-import project.frames.employees_frames.AddEmployees;
+import project.components.employees_companents.Table;
+import project.database.employee_customer.SQLs;
+import project.frames.employees_frames.Adds;
 
 
 //여긴 직원프레임의 상단 버튼입니다.
@@ -19,7 +19,7 @@ public class TopBtn extends JButton{
 	
 	final private static HashMap<Integer, String> BTN_MAP = new HashMap<>();
 	
-	Table_emp jp;
+	Table jp;
 	JFrame addEmp;
 	
 	static {
@@ -27,7 +27,7 @@ public class TopBtn extends JButton{
 		BTN_MAP.put(1, "삭제");
 	}
 
-	public TopBtn(Table_emp jp, int num, SQLs sql, int[] lw, int lh) {
+	public TopBtn(Table jp, int num, SQLs sql, int[] lw, int lh, int type) {
 		
 		
 		int wight = 100;
@@ -40,7 +40,7 @@ public class TopBtn extends JButton{
 		
 		this.jp = jp;
 		
-		addEmp = new AddEmployees(jp, sql);
+		addEmp = new Adds(jp, sql, type);
 		
 		setText(BTN_MAP.get(num));
 		//setBounds(700, hight, wight, hight);

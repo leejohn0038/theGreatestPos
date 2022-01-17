@@ -7,26 +7,26 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import project.MainFrame;
-import project.actions.employees_actions.SQLs;
+import project.database.employee_customer.SQLs;
 
 public class Bottom_layout extends JPanel{
 	Table_layout tl;
 	
-	public Bottom_layout(MainFrame main, JFrame emp, SQLs sql) {
+	public Bottom_layout(MainFrame main, JFrame f, SQLs sql, int type) {
 		
-		int fw = emp.getSize().width, fh = emp.getSize().height;
+		int fw = 1000, fh = 700;
 		
 		//레이아웃 초기설정
-		int[] layoutBounds = {0, (int)(fh*0.2), fw, (int)(fh*0.8)};
+		int[] layoutBounds = {0, (int)(fh*0.1), fw, (int)(fh*0.9)};
 		int height;
 		
 		JPanel inner_layout = new JPanel();
 		JPanel select;
 		JPanel side;
 		
-		side = new SideBar_layout(main, layoutBounds[2], layoutBounds[3]);
+		side = new SideBar_layout(main, layoutBounds[2], layoutBounds[3], f.getTitle());
 		inner_layout.add(side);
-		inner_layout.add(tl = new Table_layout(side.getSize().width, sql));
+		inner_layout.add(tl = new Table_layout(side.getSize().width, sql, type));
 		
 		select = new Select_layout(tl);
 		height = select.getSize().height;

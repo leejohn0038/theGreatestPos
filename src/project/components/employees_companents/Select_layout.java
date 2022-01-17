@@ -14,9 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-import project.actions.employees_actions.SQLs;
 import project.actions.employees_actions.SelectBtn;
 import project.actions.employees_actions.main.Function_emp;
+import project.database.employee_customer.SQLs;
 
 public class Select_layout extends JPanel{
 	

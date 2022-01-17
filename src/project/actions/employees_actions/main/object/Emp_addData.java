@@ -3,7 +3,7 @@ package project.actions.employees_actions.main.object;
 import java.sql.Date;
 import java.time.LocalDate;
 
-public class AddData {
+public class Emp_addData {
 	private int id;
 	private String name;
 	private Date hire_data;
@@ -12,8 +12,8 @@ public class AddData {
 	private Object[] dates = {id, name, hire_data, tel, job};
 	
 	
-	public AddData() {}
-	public AddData(Object[] objs) {
+	public Emp_addData() {}
+	public Emp_addData(Object[] objs) {
 		
 		this.dates = objs;
 		
@@ -24,7 +24,7 @@ public class AddData {
 		this.job = (String)objs[4];
 	}
 	
-	public AddData(String[] objs) {
+	public Emp_addData(String[] objs) {
 		
 		dates[0] = Integer.parseInt((String) objs[0]);
 		dates[1] = objs[1];
@@ -38,7 +38,7 @@ public class AddData {
 		dates[4] = (String)objs[4];
 	}
 	
-	public AddData(int id) {
+	public Emp_addData(int id) {
 		this.id = id;
 		name = null;
 		hire_data = null;
