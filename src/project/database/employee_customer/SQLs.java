@@ -57,6 +57,7 @@ public class SQLs {
 	public SQLs(String type, JFrame f, Emp_addData addData, int f_type) {
 		this.emp_addData = addData;
 		this.type = type;
+		
 		if(f_type == 1) {
 			dbName = "mart_employees";
 		}else {
@@ -201,13 +202,23 @@ public class SQLs {
 	}
 	
 	void delete(String SQL, Connection conn) throws SQLException{
-		final String ADD_SQL = "사원번호 = ?";
-		PreparedStatement pstmt = conn.prepareStatement(SQL + ADD_SQL);
+		
+		PreparedStatement pstmt;
+		
+		if(dbName.contains("emp")) {
+			final String EMP_ADD_SQL = "사원번호 = ?";
+			pstmt = conn.prepareStatement(SQL + EMP_ADD_SQL);
+			int id = emp_addData.getID();
+			pstmt.setInt(1, id);
+		}else {
+			final String CUS_ADD_SQL = "전화번호 = ?";	
+			pstmt = conn.prepareStatement(SQL + CUS_ADD_SQL);
+			System.out.println(cus_addData.getID());
+			String phone = cus_addData.getID();
+			pstmt.setString(1, phone);
+		}
+		
 		ResultSet rs;
-		
-		int id = emp_addData.getID();
-		
-		pstmt.setInt(1, id);
 		
 		rs = pstmt.executeQuery();
 		
@@ -275,8 +286,10 @@ public class SQLs {
 	}
 	
 	public Object[][] getRowData(){
+		
 		int maxRow;
 		int maxCol;
+		
 		if(dbName.contains("emp")) {
 			maxRow = emp_addDatas.size();
 			maxCol = emp_addDatas.get(0).getDatesSize();

@@ -21,14 +21,14 @@ public class TopBtn extends JButton{
 	
 	Table jp;
 	JFrame addframe;
+	int type;
 	
 	static {
-		BTN_MAP.put(0, "등록");
-		BTN_MAP.put(1, "삭제");
+		BTN_MAP.put(0, "삭제");
+		BTN_MAP.put(1, "등록");
 	}
 
 	public TopBtn(Table jp, int num, SQLs sql, int[] lw, int lh, int type) {
-		
 		
 		int wight = 100;
 		int hight = lh/2;
@@ -36,6 +36,7 @@ public class TopBtn extends JButton{
 		int y = hight/2;
 		
 		this.jp = jp;
+		this.type = type;
 		
 		addframe = new Adds(jp, sql, type);
 		
@@ -50,10 +51,10 @@ public class TopBtn extends JButton{
 		
 		switch (num) {
 		case 0:
-			addActionListener(new FrameVisible(addframe));
+			addActionListener(new Delete(jp.getTsd(),type));
 			break;
 		case 1:
-			addActionListener(new Delete(jp.getTsd()));
+			addActionListener(new FrameVisible(addframe));
 			break;
 		default:
 			break;
