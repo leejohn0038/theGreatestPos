@@ -8,16 +8,14 @@ import java.sql.SQLException;
 public class DBConnector {
 	
 	private static String driverName = "oracle.jdbc.driver.OracleDriver";
-	private static String url = "jdbc:oracle:thin:@localhost:1521/XE";
-	private static String user_id = "hr";
+	private static String url = "jdbc:oracle:thin:@59.9.112.194:1521/XE";
+	private static String user_id = "pch";
 	private static String user_pass = "1234";
 	
 	static {
 		try {
 			Class.forName(driverName);
-			System.out.println("오라클 JDBC 드라이브 연결 성공");
 		}catch (Exception e) {
-			System.out.println("오라클 JDBC 드라이브 연결 오류");
 		}
 	}
 	
