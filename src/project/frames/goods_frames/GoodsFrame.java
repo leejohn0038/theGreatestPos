@@ -6,6 +6,7 @@ import project.MainFrame;
 import project.components.receipts_components.MainButtons;
 
 
+
 public class GoodsFrame extends JFrame {
 
 	public GoodsFrame(MainFrame main) {
@@ -19,7 +20,7 @@ public class GoodsFrame extends JFrame {
 		}
 		
 		setLayout(null);
-		setDefaultCloseOperation(HIDE_ON_CLOSE);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 700);
 		setVisible(false);
 		setResizable(false);
