@@ -1,7 +1,8 @@
 package project.components.goods_components;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,6 +10,7 @@ import java.sql.SQLException;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
 public class AssetShortageTable extends JPanel {
@@ -40,7 +42,11 @@ public class AssetShortageTable extends JPanel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		setSize(650, 200);
+		setLayout(new BorderLayout());
+		table.setBounds(0, 0, 500, 150);
+		setSize(500, 150);
+		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		add(sp);
 	}
 }

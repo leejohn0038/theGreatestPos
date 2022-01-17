@@ -3,6 +3,8 @@ package project.frames.goods_frames;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -19,7 +21,6 @@ import project.actions.goods_actions.GetValues;
 import project.components.goods_components.BasicPopupPanel;
 import project.components.goods_components.BasicSmallButton;
 import project.components.goods_components.BasicTextField;
-import project.components.goods_components.GoodsTable;
 import project.components.goods_components.PosDBConnector;
 import project.components.goods_components.StoreTable;
 
@@ -27,11 +28,13 @@ public class ManagementPanel extends JPanel {
 	
 	private String changeName;
 	private int changeQty, preGoodsQty, gid, gprice, cnt; 
-	private Date importExp, addStoredate;
-	private BasicSmallButton importConfirmBtn, importCancelBtn, importBtn, exportConfirmBtn, exportCancelBtn, exportBtn;
+	private Date importExp, addStoredate, preGoodsExp;
+	LocalDate compareExp;
+	private BasicSmallButton importConfirmBtn, importCancelBtn, importBtn, exportConfirmBtn, exportCancelBtn, exportBtn, searchClear;
 	private BasicTextField importNameTf, importQtyTf, importExpTf, exportNameTf, exportQtyTf, searchTf;
 	private BasicPopupPanel importPop, exportPop;
 	private DefaultTableModel dtm;
+	GetValues gv;
 
 	public ManagementPanel() {
 		
@@ -133,16 +136,30 @@ public class ManagementPanel extends JPanel {
 		
 		// 검색 기능
 		searchTf = new BasicTextField("");
-		searchTf.setLocation(400, 0);
+		searchTf.setLocation(475, 0);
 		storeTable.getRowsorter().addRowSorterListener(null);
 		new SearchTf(storeTable.getRowsorter(), searchTf);
-		add(searchTf);
-		
-		add(new BasicSmallButton("X") {
-			{
-				setLocation(600, 0);
+		searchTf.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+				if (e.getKeyCode() == 10) {
+					
+				}
 			}
 		});
+		add(searchTf);
+		searchClear = new BasicSmallButton("X");
+		searchClear.setLocation(150, 0);
+		searchClear.setSize(25, 25);
+		searchClear.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				searchTf.setText("");				
+			}
+		});
+		searchTf.add(searchClear);
+		searchTf.setLayout(null);
 		
 		add(storeTable);
 		setLayout(null);
@@ -210,7 +227,7 @@ public class ManagementPanel extends JPanel {
 	}
 	
 	private void getImportValues() {
-		GetValues gv = new GetValues();
+		gv = new GetValues();
 		changeName = gv.getTextStringValue(importNameTf);
 		changeQty = gv.getTextNumValue(importQtyTf);
 		importExp = gv.getTextDateValue(importExpTf);
@@ -246,6 +263,7 @@ public class ManagementPanel extends JPanel {
 			preGoodsQty = preGoodsRs.getInt("gqty");
 			gid = preGoodsRs.getInt("gid");
 			gprice = preGoodsRs.getInt("gprice");
+			preGoodsExp = preGoodsRs.getDate("expiration");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -257,10 +275,21 @@ public class ManagementPanel extends JPanel {
 		getPreGoodsInfo(conn);
 		
 		try (
-			PreparedStatement updateToGoods = conn.prepareStatement("UPDATE goods SET gqty = ? WHERE gname = ?");
+			PreparedStatement updateToGoods = conn.prepareStatement("UPDATE goods SET gqty = ?, expiration = ? WHERE gname = ?");
 		) {
 			updateToGoods.setInt(1, preGoodsQty + changeQty);
-			updateToGoods.setString(2, changeName);
+			System.out.println("저장된 날짜: " + preGoodsExp);
+			System.out.println("입력된 날짜: " + importExp);
+			if (preGoodsExp == null) {
+				updateToGoods.setDate(2, importExp);
+			} else if (preGoodsExp.equals(importExp)) {
+				updateToGoods.setDate(2, importExp);
+			} else if (preGoodsExp.after(importExp)) {
+				updateToGoods.setDate(2, importExp);
+			} else if (preGoodsExp.before(importExp)) {
+				updateToGoods.setDate(2, preGoodsExp);
+			}
+			updateToGoods.setString(3, changeName);
 			updateToGoods.executeUpdate();
 			
 			String addSql;
@@ -321,11 +350,12 @@ public class ManagementPanel extends JPanel {
 		getPreGoodsInfo(conn);
 		
 		try (
-			PreparedStatement deleteGstore = conn.prepareStatement("UPDATE gstore SET gqty = ? WHERE gname = ?");	
+			PreparedStatement deleteGstore = conn.prepareStatement("UPDATE gstore SET gqty = ? WHERE gname = ? AND expiration = ?");	
 			PreparedStatement deleteGoods = conn.prepareStatement("UPDATE goods SET gqty = ? WHERE gname = ?");
 		) {
 			deleteGstore.setInt(1, preGoodsQty - changeQty);
 			deleteGstore.setString(2, changeName);
+			deleteGstore.setDate(3, preGoodsExp);
 			deleteGstore.executeUpdate();
 			
 			deleteGoods.setInt(1, preGoodsQty - changeQty);

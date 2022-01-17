@@ -26,7 +26,7 @@ public class AssetPanel extends JPanel {
 	public AssetPanel() {
 		
 		BasicLabel assetsLabel = new BasicLabel("자산");
-		assetsLabel.setLocation(10, 10);
+		assetsLabel.setLocation(0, 10);
 		BasicLabel totalAsset = new BasicLabel("자산");
 		totalAsset.setLocation(300, 10);
 		getAsset();
@@ -45,14 +45,14 @@ public class AssetPanel extends JPanel {
 			e.printStackTrace();
 		}
 		BasicLabel expLabel = new BasicLabel("유통기한 임박상품");
-		expLabel.setLocation(10, 50);
-		aet.setLocation(10, 100);
+		expLabel.setLocation(0, 50);
+		aet.setLocation(0, 80);
 		add(aet);
 		add(expLabel);
 		
 		BasicLabel shortage = new BasicLabel("재고부족상품");
-		shortage.setLocation(10, 350);
-		ast.setLocation(10, 450);
+		shortage.setLocation(0, 260);
+		ast.setLocation(0, 300);
 		add(ast);
 		add(shortage);
 		

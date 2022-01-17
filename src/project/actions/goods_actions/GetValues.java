@@ -31,9 +31,8 @@ public class GetValues {
 		String tempStr = tf.getText();
 		
 		if (tempStr.equals("YYYYMMDD")) {
-			
 			dateVal = null;
-		} else if (tempStr.equals("YYYYMMDD")) {
+		} else if (!tempStr.equals("YYYYMMDD")) {
 			
 			SimpleDateFormat beforeFormat = new SimpleDateFormat("yyyymmdd");
 			SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy-mm-dd");

@@ -1,5 +1,7 @@
 package project.components.goods_components;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -9,6 +11,7 @@ import java.sql.SQLException;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
 public class AssetExpTable extends JPanel {
@@ -40,7 +43,12 @@ public class AssetExpTable extends JPanel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		setSize(650, 200);
+		
+		setLayout(new BorderLayout());
+		
+		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		setSize(500, 150);
 		add(sp);
 	}
 }
