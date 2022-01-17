@@ -35,9 +35,6 @@ public class TopBtn extends JButton{
 		int x = lw[1]-(((num+1)*wight)+50);
 		int y = hight/2;
 		
-		System.out.println(x + " " + y);
-		System.out.println(Arrays.toString(lw) + " " + lh);
-		
 		this.jp = jp;
 		
 		addframe = new Adds(jp, sql, type);

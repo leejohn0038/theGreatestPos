@@ -31,21 +31,6 @@ public class Cus_addData {
 		dates[2] = objs[2];
 		dates[3] = Date.valueOf(LocalDate.now());
 		dates[4] = 0;
-		
-		/*
-		if(objs[3] == null) {
-			
-		}else {
-			dates[3] = Date.valueOf(((String)objs[3]).substring(0,10));
-		}
-		
-		
-		
-		if(objs[4] == null) {
-			
-		}else {
-			dates[4] = (String) objs[4];
-		}*/
 	}
 	
 	public Cus_addData(String phone) {

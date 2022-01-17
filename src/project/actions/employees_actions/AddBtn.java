@@ -79,8 +79,7 @@ public class AddBtn implements ActionListener {
 				JTextField tempTxt = (JTextField)txts.get(title[i]);
 				
 				stop = new Function_emp().regex(title[i], tempTxt.getText());
-				
-				System.out.println(stop);
+
 				
 				if(stop == true) {
 					
@@ -115,8 +114,6 @@ public class AddBtn implements ActionListener {
 		for(int i = 0; i<title.length; i++) {
 			if(!(title[i].contains("포인트")||(title[i].contains("등록일")))) {
 				JTextField tempTxt = (JTextField)txts.get(title[i]);
-				
-				System.out.println(title[i]);
 				
 				stop = new Function_emp().regex(title[i], tempTxt.getText());
 				

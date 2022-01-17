@@ -247,6 +247,7 @@ public class SQLs {
 		ResultSet rs;
 		
 		Object[] datas;
+		
 		if(dbName.contains("emp")) {
 			datas = emp_addData.getDates();
 			
