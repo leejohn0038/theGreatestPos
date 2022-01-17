@@ -1,29 +1,32 @@
-package project.actions.employees_actions;
+package project.actions.customers_actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Pattern;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 
-import project.actions.employees_actions.main.Function_emp;
-import project.actions.employees_actions.main.object.AddData;
-import project.components.employees_companents.Table_emp;
-import project.frames.employees_frames.AddEmployees;
+import project.actions.customers_actions.CustomersSQLs;
+import project.actions.customers_actions.main.Function_ctm;
+import project.actions.customers_actions.main.object.CustomersAddData;
+import project.components.customers_components.Table_ctm;
+import project.frames.customers_frames.AddCustomers;
 
-public class AddBtn implements ActionListener {
+public class CustomersAddBtn implements ActionListener {
 	
-	AddEmployees f;
-	Table_emp jp;
+	AddCustomers f;
+	Table_ctm jp;
 	HashMap<String,Object> txts = new HashMap<>();
 	String[] datas;
 
-	public AddBtn(Table_emp jp, AddEmployees f, HashMap<String,Object> txts) {
+	public CustomersAddBtn(Table_ctm jp, AddCustomers f, HashMap<String,Object> txts) {
 		this.jp = jp;
 		this.f = f;
 		this.txts = txts;
@@ -33,7 +36,7 @@ public class AddBtn implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String[] title = new Function_emp().getTitle();
+		String[] title = new Function_ctm().getTitle();
 		JLabel lab;
 		datas = new String[title.length];
 		boolean stop = true;
@@ -65,10 +68,10 @@ public class AddBtn implements ActionListener {
 		
 		//수정 요망
 		if(stop == true) {
-			SQLs add_sql = new SQLs("등록", f, getData());
+			CustomersSQLs add_sql = new CustomersSQLs("등록", f, getData());
 			jp.dtm.addRow(add_sql.addData.getDates());
 			JLabel temp_lab = (JLabel) f.txts.get(title[0]);
-			temp_lab.setText(Integer.toString(new SQLs("리셋", null, null).getEmp_id()));
+			temp_lab.setText(Integer.toString(new CustomersSQLs("리셋", null, null).getCtm_id()));
 			for(int i = 1; i<title.length; i++) {
 				if(!title[i].contains("입사")) {
 					System.out.println(title[i]);
@@ -80,9 +83,10 @@ public class AddBtn implements ActionListener {
 		}
 	}
 	
-	AddData getData() {
-		AddData addData = new AddData(datas);
+	CustomersAddData getData() {
+		CustomersAddData addData = new CustomersAddData(datas);
 		return addData;
 	}
 	
 }
+
