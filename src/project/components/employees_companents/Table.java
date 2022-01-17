@@ -41,7 +41,7 @@ public class Table extends JTable{
 		
 		jt = new JTable(dtm);
 		sp = new JScrollPane(jt);
-		tsd = new TableSelectData(this, jt);
+		tsd = new TableSelectData(this, jt, type);
 		jt.addMouseListener(tsd);
 		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);

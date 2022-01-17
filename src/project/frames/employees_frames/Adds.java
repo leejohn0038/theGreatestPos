@@ -88,6 +88,7 @@ public class Adds extends JFrame{
 				emp(title_lab, idLab, i, sql);
 				cnt++;
 			}else if(!(title_labs[i].contains("포인트")||title_labs[i].contains("등록일")) && type == 2) {
+				
 				//라벨로 정보 표시
 				title_lab.setText(title_labs[i]);
 				title_lab.setBounds(50,(cnt+1)*75,200,50);

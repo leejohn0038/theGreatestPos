@@ -227,23 +227,37 @@ public class SQLs {
 	}
 	
 	void updata(String SQL, Connection conn) throws SQLException {
-		final String ADD_SQL = "이름 = ?, 입사일 = ?, "
+		
+		final String EMP_ADD_SQL = "이름 = ?, 입사일 = ?, "
 				+ "전화번호 = ?, 직책 = ? WHERE 사원번호 = ?";
-		PreparedStatement pstmt = conn.prepareStatement(SQL + ADD_SQL);
+		
+		final String CUS_ADD_SQL = "전화번호 = ?, 이름 = ?, "
+				+ "주소 = ?, 등록일 = ?, 포인트 = ? WHERE 전화번호 = ?";
+		
+		PreparedStatement pstmt;
 		ResultSet rs;
 		
 		Object[] datas;
 		if(dbName.contains("emp")) {
+			pstmt = conn.prepareStatement(SQL + EMP_ADD_SQL);
 			datas = emp_addData.getDates(); 
+			
+			pstmt.setString(1, (String) datas[1]);
+			pstmt.setDate(2, (Date)datas[2]);
+			pstmt.setString(3,(String) datas[3]);
+			pstmt.setString(4,(String) datas[4]);
+			pstmt.setInt(5,(int)datas[0]);
 		}else {
+			pstmt = conn.prepareStatement(SQL + CUS_ADD_SQL);
 			datas = cus_addData.getDates();
+			
+			pstmt.setString(1, (String)datas[0]);
+			pstmt.setString(2, (String) datas[1]);
+			pstmt.setString(3,(String) datas[2]);
+			pstmt.setDate(4, (Date)datas[3]);
+			pstmt.setInt(5,(int) datas[4]);
+			pstmt.setString(6, (String)datas[0]);
 		}
-		
-		pstmt.setString(1, (String) datas[1]);
-		pstmt.setDate(2, (Date)datas[2]);
-		pstmt.setString(3,(String) datas[3]);
-		pstmt.setString(4,(String) datas[4]);
-		pstmt.setInt(5,(int)datas[0]);
 		
 		rs = pstmt.executeQuery();
 		

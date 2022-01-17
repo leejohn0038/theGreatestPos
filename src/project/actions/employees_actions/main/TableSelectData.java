@@ -14,10 +14,12 @@ public class TableSelectData implements MouseListener{
 	public Table jp;
 	JTable jt;
 	int row, col;
+	int type;
 	
-	public TableSelectData(Table jp, JTable jt) {
+	public TableSelectData(Table jp, JTable jt, int type) {
 		this.jp = jp;
 		this.jt = jt;
+		this.type = type;
 	}
 	
 	@Override
@@ -29,7 +31,7 @@ public class TableSelectData implements MouseListener{
 		if (e.getClickCount() == 2 && !e.isConsumed()) {
 			SQLs reset = new SQLs("¸®¼Â",1);
 			reset.setUpdataRow(row, col);
-			new UpdataEmployees(jp, reset, row).setVisible(true);
+			new UpdataEmployees(jp, reset, row, type).setVisible(true);
 		}
 
 	}
