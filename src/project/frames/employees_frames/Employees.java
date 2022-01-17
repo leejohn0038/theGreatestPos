@@ -17,18 +17,14 @@ public class Employees extends JFrame{
 		setVisible(false);
 		setLayout(null);
 		setBounds(100,100,1000,700);
-<<<<<<< HEAD
 		//setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		// 0, 1 은 프레임의 크기를 담는다.
 		SQLs sql = new SQLs("리셋", 1);
 		
 		Bottom_layout bl = new Bottom_layout(main, this, sql, 1);
-=======
-		setDefaultCloseOperation(HIDE_ON_CLOSE);
-		SQLs sql = new SQLs("리셋", this, null);
-		Bottom_layout bl = new Bottom_layout(main, this, sql);
->>>>>>> refs/heads/main
+
+
 		add(bl);
 		
 		Top_layout top_layout = new Top_layout(this, bl.getTl().get_table(), sql, 1);

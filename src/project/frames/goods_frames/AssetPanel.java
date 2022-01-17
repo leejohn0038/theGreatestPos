@@ -58,10 +58,6 @@ public class AssetPanel extends JPanel {
 		
 		setLayout(null);
 		setBounds(300, 100, 760, 500);
-<<<<<<< HEAD
-=======
-		add(new GoodsTable(sql));
->>>>>>> refs/heads/main
 		setVisible(true);
 	}
 	
