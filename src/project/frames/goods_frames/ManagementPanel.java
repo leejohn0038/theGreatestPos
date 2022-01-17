@@ -29,7 +29,7 @@ public class ManagementPanel extends JPanel {
 	private String changeName;
 	private int changeQty, preGoodsQty, gid, gprice, cnt; 
 	private Date importExp, addStoredate, preGoodsExp;
-	LocalDate compareExp;
+	private LocalDate compareExp;
 	private BasicSmallButton importConfirmBtn, importCancelBtn, importBtn, exportConfirmBtn, exportCancelBtn, exportBtn, searchClear;
 	private BasicTextField importNameTf, importQtyTf, importExpTf, exportNameTf, exportQtyTf, searchTf;
 	private BasicPopupPanel importPop, exportPop;
@@ -109,6 +109,7 @@ public class ManagementPanel extends JPanel {
 					e1.printStackTrace();
 				}
 				exportPop.setVisible(false);
+				
 			}
 		});
 		exportPop.add(exportConfirmBtn);
@@ -373,7 +374,14 @@ public class ManagementPanel extends JPanel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+	}
+	
+	public BasicSmallButton getExportConfirm() {
+		return exportConfirmBtn;
+	}
+	
+	public BasicSmallButton getImportConfirm() {
+		return importConfirmBtn;
 	}
 }
 

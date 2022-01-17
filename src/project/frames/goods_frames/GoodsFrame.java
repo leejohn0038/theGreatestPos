@@ -1,5 +1,8 @@
 package project.frames.goods_frames;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 
 import project.MainFrame;
@@ -7,9 +10,10 @@ import project.components.MainButtons;
 
 
 public class GoodsFrame extends JFrame {
-
+	ContentsPanel contents;
+	
 	public GoodsFrame(MainFrame main) {
-		ContentsPanel contents = new ContentsPanel();
+		contents = new ContentsPanel();
 		add(contents);
 		add(new GnbPanel(contents));
 		
@@ -18,11 +22,50 @@ public class GoodsFrame extends JFrame {
 			add(new MainButtons(main, snbButtons[i]));
 		}
 		
+		contents.getManagementPanel().getExportConfirm().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				refresh();
+			}
+		});
+		
+		contents.getManagementPanel().getImportConfirm().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				refresh();
+			}
+		});
+		
 		setLayout(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 700);
 		setVisible(false);
 		setResizable(false);
+	}
+	
+	void importRefresh() {
+		contents.getManagementPanel().getImportConfirm().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				refresh();
+			}
+		});
+	}
+	
+	void exportRefresh() {
+		contents.getManagementPanel().getExportConfirm().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				refresh();
+			}
+		});
+	}
+	
+	public void refresh() {
+		contents.getLookupPanel().getLookupTable().getTableModel().fireTableDataChanged();
+		contents.getLookupPanel().getLookupTable().repaint();
 	}
 	
 }
