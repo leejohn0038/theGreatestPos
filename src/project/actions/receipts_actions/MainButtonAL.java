@@ -20,7 +20,7 @@ public class MainButtonAL implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		main.getFrame(btnName).setVisible(true);		
+		main.getFrame(btnName).setVisible(true);
 	}
 }
 

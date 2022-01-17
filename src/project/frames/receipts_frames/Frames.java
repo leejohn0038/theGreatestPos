@@ -1,4 +1,4 @@
-package project.frames.receipts_frames;
+ package project.frames.receipts_frames;
 
 import java.util.HashMap;
 
@@ -11,7 +11,7 @@ import project.frames.goods_frames.GoodsFrame;
 
 public class Frames {
 	
-	public HashMap<String, JFrame> FRAMES = new HashMap<String, JFrame>();
+	private HashMap<String, JFrame> FRAMES = new HashMap<String, JFrame>();
 	
 	Receipts r;
 	
@@ -19,11 +19,19 @@ public class Frames {
 		FRAMES.put("영수증", r = new Receipts(main));
 		FRAMES.put("상품", new GoodsFrame(main));
 		FRAMES.put("직원", new Employees(main));
+<<<<<<< HEAD
 		FRAMES.put("회원", new Customers(main));
 		FRAMES.put("포인트 적립", new PointCollect());
+=======
+		FRAMES.put("포인트 적립", new PointCollect(main));
+>>>>>>> refs/heads/main
 		FRAMES.put("현금 영수증", new CashReceipt());
 		FRAMES.put("반품업무", new Refunding(main));
-		FRAMES.put("영수증 조회하기", new ReceiptSearch(main, r));
+		FRAMES.put("영수증 조회하기", new ReceiptSearch(main));
+	}
+	
+	public JFrame getFrame(String btn) {
+		return FRAMES.get(btn);
 	}
 
 }
