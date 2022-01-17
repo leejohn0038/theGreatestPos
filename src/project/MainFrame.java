@@ -18,18 +18,12 @@ public class MainFrame extends JFrame {
 		add(new Tables(new String[] {"상품id", "상품이름", "수량", "가격"}, 300, 100, 680, 300));
 		
 		String[] btnNames1 = {"상품", "영수증", "직원", "회원", "업무가이드"};
-		String[] btnNames2 = {"포인트 적립", "현금 영수증", "영수증 발급"};
 		
 		for (int i = 0; i < btnNames1.length; ++i) {
 			add(new MainButtons(this, btnNames1[i]));
 		}
-		
-		for(int i = 0; i < btnNames2.length; ++i) {
-			add(new ReceiptButtons(this, btnNames2[i], 0));
-		}
 			
 		setLayout(null);
-		//setDefaultCloseOperation(HIDE_ON_CLOSE);
 		setBounds(100, 100, 1000, 700);
 		setVisible(true);
 		setResizable(false); 

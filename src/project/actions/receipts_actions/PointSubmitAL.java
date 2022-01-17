@@ -35,9 +35,11 @@ public class PointSubmitAL implements ActionListener {
 			table.setValueAt(pPanel.getField().getText(), table.getSelectedRow(), 1);
 		    JOptionPane.showMessageDialog(pointcollect, "포인트 적립이 완료되었습니다.");
 			pointcollect.setVisible(false); 
+		} else if(text.equals("")){
+			JOptionPane.showMessageDialog(main.getFrame("영수증"), "전화번호를 입력하세요.");
 		} else {
-			System.out.println("아직 구현안함(전화번호를 입력하세요 / 입력 형식 잘못됨)");
-		}
+			JOptionPane.showMessageDialog(main.getFrame("포인트 적립하기"), "입력형식이 잘못되었습니다.");
+		}	
 	}
 
 }
