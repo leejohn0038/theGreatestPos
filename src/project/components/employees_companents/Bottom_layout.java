@@ -28,7 +28,7 @@ public class Bottom_layout extends JPanel{
 		inner_layout.add(side);
 		inner_layout.add(tl = new Table_layout(side.getSize().width, sql, type));
 		
-		select = new Select_layout(tl);
+		select = new Select_layout(tl, type);
 		height = select.getSize().height;
 		
 		//select 관련 레이아웃이 한자리 먹고 있음 그거 높이 빼주는 계산 해줘야함!

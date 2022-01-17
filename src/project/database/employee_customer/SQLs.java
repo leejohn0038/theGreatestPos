@@ -192,8 +192,10 @@ public class SQLs {
 					objs[col] = "";
 				}	
 			}
-			if(dbName == "mart_employees") {
+			if(dbName.contains("emp")) {
 				emp_addDatas.add(new Emp_addData(objs));
+			}else {
+				cus_addDatas.add(new Cus_addData(objs));
 			}
 		}
 		

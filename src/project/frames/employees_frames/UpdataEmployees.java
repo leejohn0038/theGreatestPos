@@ -9,16 +9,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
-import javax.swing.table.DefaultTableModel;
 
-import project.actions.employees_actions.AddBtn;
 import project.actions.employees_actions.Updata;
 import project.actions.employees_actions.main.Function_emp;
-import project.actions.employees_actions.main.object.Emp_addData;
 import project.components.employees_companents.Table;
 import project.database.employee_customer.SQLs;
 
