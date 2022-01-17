@@ -25,7 +25,7 @@ public class AssetShortageTable extends JPanel {
 		int gid, gqty;
 		
 		try (
-			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM goods WHERE gqty <= 100");		
+			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM goods WHERE gqty <= 50");		
 			ResultSet rs = pstmt.executeQuery();
 		) {
 			while (rs.next()) {

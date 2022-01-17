@@ -29,7 +29,6 @@ public class GetValues {
 	
 	public Date getTextDateValue(JTextField tf) {
 		String tempStr = tf.getText();
-		
 		if (tempStr.equals("YYYYMMDD")) {
 			dateVal = null;
 		} else if (!tempStr.equals("YYYYMMDD")) {

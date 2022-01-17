@@ -26,7 +26,7 @@ import project.components.goods_components.StoreTable;
 
 public class ManagementPanel extends JPanel {
 	
-	private String changeName;
+	private String changeName, nullExp;
 	private int changeQty, preGoodsQty, gid, gprice, cnt; 
 	private Date importExp, addStoredate, preGoodsExp;
 	private LocalDate compareExp;
@@ -34,6 +34,7 @@ public class ManagementPanel extends JPanel {
 	private BasicTextField importNameTf, importQtyTf, importExpTf, exportNameTf, exportQtyTf, searchTf;
 	private BasicPopupPanel importPop, exportPop;
 	private DefaultTableModel dtm;
+	LocalDate now;
 	GetValues gv;
 
 	public ManagementPanel() {
@@ -84,7 +85,7 @@ public class ManagementPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				importNameTf.setText("상품명을 입력해주세요");
 				importQtyTf.setText("수량을 입력해주세요");
-				importExpTf.setText("YYYYDDMM");
+				importExpTf.setText("YYYYMMDD");
 				importPop.setVisible(true);
 			}
 		});
@@ -266,21 +267,21 @@ public class ManagementPanel extends JPanel {
 			gprice = preGoodsRs.getInt("gprice");
 			preGoodsExp = preGoodsRs.getDate("expiration");
 			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	private void addGoods(Connection conn, int cnt) {
-		LocalDate now = LocalDate.now();
+		now = LocalDate.now();
+		existGoods(conn);
 		getPreGoodsInfo(conn);
-		
+		System.out.println(cnt);
 		try (
 			PreparedStatement updateToGoods = conn.prepareStatement("UPDATE goods SET gqty = ?, expiration = ? WHERE gname = ?");
 		) {
 			updateToGoods.setInt(1, preGoodsQty + changeQty);
-			System.out.println("저장된 날짜: " + preGoodsExp);
-			System.out.println("입력된 날짜: " + importExp);
 			if (preGoodsExp == null) {
 				updateToGoods.setDate(2, importExp);
 			} else if (preGoodsExp.equals(importExp)) {
@@ -353,8 +354,14 @@ public class ManagementPanel extends JPanel {
 		try (
 			PreparedStatement deleteGstore = conn.prepareStatement("UPDATE gstore SET gqty = ? WHERE gname = ? AND expiration = ?");	
 			PreparedStatement deleteGoods = conn.prepareStatement("UPDATE goods SET gqty = ? WHERE gname = ?");
+			PreparedStatement deleteExpPs = conn.prepareStatement("SELECT * FROM gstore WHERE gname = ? AND expiration = ?")
 		) {
-			deleteGstore.setInt(1, preGoodsQty - changeQty);
+			deleteExpPs.setString(1, changeName);
+			deleteExpPs.setDate(2, preGoodsExp);
+			ResultSet rs = deleteExpPs.executeQuery();
+			rs.next();
+			int deletedNum = rs.getInt("gqty");
+			deleteGstore.setInt(1, deletedNum - changeQty);
 			deleteGstore.setString(2, changeName);
 			deleteGstore.setDate(3, preGoodsExp);
 			deleteGstore.executeUpdate();
@@ -363,19 +370,49 @@ public class ManagementPanel extends JPanel {
 			deleteGoods.setString(2, changeName);
 			deleteGoods.executeUpdate();
 			
+			
+			
 			int rowNum;
 			for (int i = 0; i < dtm.getRowCount(); ++i) {
-				if (dtm.getValueAt(i, 1).equals(exportNameTf.getText())) {
+				if (dtm.getValueAt(i, 1).equals(exportNameTf.getText()) && dtm.getValueAt(i, 4).equals(preGoodsExp)) {
 					rowNum = i;
-					dtm.setValueAt(preGoodsQty - changeQty, rowNum, 2);
+					dtm.setValueAt(deletedNum - changeQty, rowNum, 2);
+					break;
 				}
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		deleteData(conn);
 	}
 	
+	void deleteData(Connection conn) {
+		try (
+			PreparedStatement deleteData = conn.prepareStatement("DELETE FROM gstore WHERE gqty <= 0");
+		) {
+			deleteData.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		editGoodsDate(conn);
+	}
+	
+	void editGoodsDate(Connection conn) {
+		try (
+			PreparedStatement editGoodsDate = conn.prepareStatement("UPDATE goods SET expiration = ?");
+			PreparedStatement getGstoreExp = conn.prepareStatement("SELECT * FROM gstore WHERE gname = ?");
+		) {
+			getGstoreExp.setString(1, changeName);
+			ResultSet getGstoreExpRs = getGstoreExp.executeQuery();
+			getGstoreExpRs.next();
+			Date changeDate = getGstoreExpRs.getDate("expiration");
+			editGoodsDate.setDate(1, changeDate);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	public BasicSmallButton getExportConfirm() {
 		return exportConfirmBtn;
 	}

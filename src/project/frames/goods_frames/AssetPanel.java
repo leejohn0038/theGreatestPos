@@ -28,9 +28,8 @@ public class AssetPanel extends JPanel {
 		BasicLabel assetsLabel = new BasicLabel("자산");
 		assetsLabel.setLocation(0, 10);
 		BasicLabel totalAsset = new BasicLabel("자산");
-		totalAsset.setLocation(300, 10);
+		totalAsset.setLocation(425, 10);
 		getAsset();
-		System.out.println(totalAssets);
 		totalAsset.setText(totalAssets);
 		add(totalAsset);
 		add(assetsLabel);
@@ -44,13 +43,13 @@ public class AssetPanel extends JPanel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		BasicLabel expLabel = new BasicLabel("유통기한 임박상품");
+		BasicLabel expLabel = new BasicLabel("유통기한임박");
 		expLabel.setLocation(0, 50);
 		aet.setLocation(0, 80);
 		add(aet);
 		add(expLabel);
 		
-		BasicLabel shortage = new BasicLabel("재고부족상품");
+		BasicLabel shortage = new BasicLabel("재고부족");
 		shortage.setLocation(0, 260);
 		ast.setLocation(0, 300);
 		add(ast);
