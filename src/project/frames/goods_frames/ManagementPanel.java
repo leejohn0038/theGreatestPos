@@ -28,7 +28,7 @@ public class ManagementPanel extends JPanel {
 	
 	private String changeName, nullExp;
 	private int changeQty, preGoodsQty, gid, gprice, cnt; 
-	private Date importExp, addStoredate, preGoodsExp;
+	private Date importExp, addExp, preGoodsExp;
 	private LocalDate compareExp;
 	private BasicSmallButton importConfirmBtn, importCancelBtn, importBtn, exportConfirmBtn, exportCancelBtn, exportBtn, searchClear;
 	private BasicTextField importNameTf, importQtyTf, importExpTf, exportNameTf, exportQtyTf, searchTf;
@@ -308,8 +308,8 @@ public class ManagementPanel extends JPanel {
 				addInfoPs.setString(1, changeName);
 				ResultSet addInfoRs = addInfoPs.executeQuery();
 				addInfoRs.next();
-				addStoredate = addInfoRs.getDate("storedate");
-				if (addStoredate.toLocalDate().equals(now)){
+				addExp = addInfoRs.getDate("expiration");
+				if (addExp.toLocalDate().equals(importExp)){
 					addSql = "UPDATE gstore SET gqty = ? WHERE gname = ?";
 					try (
 						PreparedStatement addPs = conn.prepareStatement(addSql);	
@@ -331,7 +331,7 @@ public class ManagementPanel extends JPanel {
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
-				} else if (!addStoredate.toLocalDate().equals(now)) {
+				} else if (!addExp.toLocalDate().equals(importExp)) {
 					addSql = "INSERT INTO gstore(gname, gqty, expiration) VALUES (?, ?, ?)";
 					insertVal(conn, addSql);
 					Object[] addTemp = 
@@ -339,6 +339,39 @@ public class ManagementPanel extends JPanel {
 					dtm.addRow(addTemp);
 					importPop.setVisible(false);
 				}
+				
+				
+//				addStoredate = addInfoRs.getDate("storedate");
+//				if (addStoredate.toLocalDate().equals(now)){
+//					addSql = "UPDATE gstore SET gqty = ? WHERE gname = ?";
+//					try (
+//						PreparedStatement addPs = conn.prepareStatement(addSql);	
+//					) {
+//						Object addQty = preGoodsQty + changeQty;
+//						addPs.setObject(1, addQty);
+//						addPs.setString(2, changeName);
+//						addPs.executeUpdate();
+//						
+//						int rowNum;
+//						for (int i = 0; i < dtm.getRowCount(); ++i) {
+//							if (dtm.getValueAt(i, 1).equals(importNameTf.getText())) {
+//								rowNum = i;
+//								dtm.setValueAt(addQty, rowNum, 2);
+//							}
+//						}
+//						importPop.setVisible(false);
+//						
+//					} catch (SQLException e1) {
+//						e1.printStackTrace();
+//					}
+//				} else if (!addStoredate.toLocalDate().equals(now)) {
+//					addSql = "INSERT INTO gstore(gname, gqty, expiration) VALUES (?, ?, ?)";
+//					insertVal(conn, addSql);
+//					Object[] addTemp = 
+//						{gid, changeName, changeQty, gprice, importExp, now};
+//					dtm.addRow(addTemp);
+//					importPop.setVisible(false);
+//				}
 				
 			}
 			
