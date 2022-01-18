@@ -13,11 +13,12 @@ import javax.swing.JPanel;
 import project.components.goods_components.AssetExpTable;
 import project.components.goods_components.AssetShortageTable;
 import project.components.goods_components.BasicLabel;
-import project.components.goods_components.GoodsTable;
+import project.components.goods_components.BasicSmallButton;
+import project.components.goods_components.BasicTextField;
+import project.components.goods_components.GoodsColor;
 import project.components.goods_components.PosDBConnector;
 
 public class AssetPanel extends JPanel {
-	private GoodsTable goods = new GoodsTable();
 	private AssetExpTable aet;
 	private AssetShortageTable ast;
 	
@@ -49,12 +50,23 @@ public class AssetPanel extends JPanel {
 		add(aet);
 		add(expLabel);
 		
+		BasicTextField editExpTf = new BasicTextField("기준일 변경");
+		BasicSmallButton editExpBtn = new BasicSmallButton("O");
+		editExpBtn.setBounds(150, 0, 25, 25);
+		editExpTf.add(editExpBtn);
+		editExpTf.setLayout(null);
+		editExpTf.setLocation(325, 50);
+		add(editExpTf);
+		
+		// 모델을 다시 불러와
+		
 		BasicLabel shortage = new BasicLabel("재고부족");
 		shortage.setLocation(0, 260);
 		ast.setLocation(0, 300);
 		add(ast);
 		add(shortage);
 		
+		setBackground(new GoodsColor().white());
 		setLayout(null);
 		setBounds(300, 100, 760, 500);
 		setVisible(true);
@@ -88,32 +100,3 @@ public class AssetPanel extends JPanel {
 		return ast;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

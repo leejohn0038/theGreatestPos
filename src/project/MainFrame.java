@@ -29,7 +29,6 @@ public class MainFrame extends JFrame {
 		}
 			
 		setLayout(null);
-		//setDefaultCloseOperation(HIDE_ON_CLOSE);
 		setBounds(100, 100, 1000, 700);
 		setVisible(true);
 		setResizable(false); 

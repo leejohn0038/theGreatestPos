@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import project.actions.SearchTf;
 import project.components.goods_components.BasicSmallButton;
 import project.components.goods_components.BasicTextField;
+import project.components.goods_components.GoodsColor;
 import project.components.goods_components.GoodsTable;
 
 public class LookupPanel extends JPanel {
@@ -47,6 +48,7 @@ public class LookupPanel extends JPanel {
 		searchTf.add(searchClear);
 		searchTf.setLayout(null);
 		
+		setBackground(new GoodsColor().white());
 		add(goods);
 		setLayout(null);
 		setBounds(300, 100, 760, 500);

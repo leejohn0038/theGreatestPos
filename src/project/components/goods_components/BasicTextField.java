@@ -50,7 +50,7 @@ public class BasicTextField extends JTextField {
 	
 	public BasicTextField(String str) {
 		super(str);
-		setSize(175, 25);
+		setSize(200, 25);
 		setFont(Font.getFont("µ¸¿ò"));
 		setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createLineBorder(Color.BLACK, 0),

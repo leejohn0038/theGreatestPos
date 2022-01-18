@@ -16,6 +16,9 @@ import javax.swing.table.DefaultTableModel;
 
 public class AssetExpTable extends JPanel {
 	private DefaultTableModel model;
+	int gid, gqty, expStandard;
+	String gname;
+	Date expiration;
 	
 	public AssetExpTable(Connection conn) {
 		String[] column_name = {"번호", "이름", "수량", "유통기한"};
@@ -23,14 +26,11 @@ public class AssetExpTable extends JPanel {
 		JTable table = new JTable(model);
 		JScrollPane sp = new JScrollPane(table);
 		
-		String gname;
-		int gid, gqty;
-		Date expiration;
-		
 		try (
-			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM goods WHERE expiration - sysdate <= 10");		
-			ResultSet rs = pstmt.executeQuery();
+			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM goods WHERE expiration - sysdate <= ?");		
 		) {
+			pstmt.setInt(1, 10);
+			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				gid = rs.getInt("gid");
 				gname = rs.getString("gname");
@@ -51,6 +51,11 @@ public class AssetExpTable extends JPanel {
 		sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		setSize(500, 150);
 		add(sp);
+	}
+	
+	public int editExp(int val) {
+		expStandard = val;
+		return expStandard;
 	}
 	
 	public DefaultTableModel getTableModel() {

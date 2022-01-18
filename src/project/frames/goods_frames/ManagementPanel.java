@@ -1,6 +1,9 @@
 package project.frames.goods_frames;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -34,25 +37,32 @@ public class ManagementPanel extends JPanel {
 	private BasicTextField importNameTf, importQtyTf, importExpTf, exportNameTf, exportQtyTf, searchTf;
 	private BasicPopupPanel importPop, exportPop;
 	private DefaultTableModel dtm;
+	private JPanel bottomContents;
 	LocalDate now;
 	GetValues gv;
 
 	public ManagementPanel() {
 		
+//		setLayout(new BorderLayout());
+		setLayout(null);
+		
+		// 하단 컨텐츠 영역
+		bottomContents = new JPanel();
 		StoreTable storeTable = new StoreTable();
 		dtm = storeTable.getTableModel();
+		add(storeTable);
 		
 		// 입고 기능
 		importPop = new BasicPopupPanel();
 		importConfirmBtn = new BasicSmallButton("확인");
 		importCancelBtn = new BasicSmallButton("취소");
-		importPopupPanel(importPop);
+//		importPop.setVisible(true);
+		bottomContents.add(importPopupPanel(importPop));
 		
 		importConfirmBtn.setLocation(140, 240);
 		importConfirmBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("버튼2");
 				try (
 					Connection conn = PosDBConnector.getConnection();		
 				) {
@@ -67,6 +77,7 @@ public class ManagementPanel extends JPanel {
 			}
 		});
 		importPop.add(importConfirmBtn);
+		importPop.setLayout(null);
 		
 		importCancelBtn.setLocation(220, 240);
 		importCancelBtn.addActionListener(new ActionListener() {
@@ -76,10 +87,9 @@ public class ManagementPanel extends JPanel {
 			}
 		});
 		importPop.add(importCancelBtn);
-		add(importPop);
 		
 		importBtn = new BasicSmallButton("입고");
-		importBtn.setLocation(0, 0);
+		importBtn.setBounds(450, 100, 90, 50);
 		importBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -89,7 +99,7 @@ public class ManagementPanel extends JPanel {
 				importPop.setVisible(true);
 			}
 		});
-		add(importBtn);
+		bottomContents.add(importBtn);
 		
 		// 출고 기능
 		exportPop = new BasicPopupPanel();
@@ -125,7 +135,7 @@ public class ManagementPanel extends JPanel {
 		exportPop.add(exportCancelBtn);
 		
 		exportBtn = new BasicSmallButton("출고");
-		exportBtn.setLocation(70, 0);
+		exportBtn.setBounds(560, 100, 90, 50);
 		exportBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -134,11 +144,11 @@ public class ManagementPanel extends JPanel {
 				exportPop.setVisible(true);
 			}
 		});
-		add(exportBtn);
+		bottomContents.add(exportBtn);
 		
 		// 검색 기능
 		searchTf = new BasicTextField("");
-		searchTf.setLocation(475, 0);
+		searchTf.setLocation(450, 20);
 		storeTable.getRowsorter().addRowSorterListener(null);
 		new SearchTf(storeTable.getRowsorter(), searchTf);
 		searchTf.addKeyListener(new KeyAdapter() {
@@ -150,9 +160,9 @@ public class ManagementPanel extends JPanel {
 				}
 			}
 		});
-		add(searchTf);
+		bottomContents.add(searchTf);
 		searchClear = new BasicSmallButton("X");
-		searchClear.setLocation(150, 0);
+		searchClear.setLocation(175, 0);
 		searchClear.setSize(25, 25);
 		searchClear.addActionListener(new ActionListener() {
 			@Override
@@ -163,15 +173,18 @@ public class ManagementPanel extends JPanel {
 		searchTf.add(searchClear);
 		searchTf.setLayout(null);
 		
-		add(storeTable);
-		setLayout(null);
-		setBounds(300, 100, 760, 500);
+		bottomContents.setSize(660, 170);
+		bottomContents.setLocation(0, 450);
+		add(bottomContents);
+		bottomContents.setLayout(null);
+		
+		setBackground(Color.WHITE);
+		setOpaque(false);
+		setBounds(300, 20, 660, 620);
 		setVisible(true);
 	}
 	
-	
-	
-	private JPanel importPopupPanel(BasicPopupPanel importPop) {
+	private BasicPopupPanel importPopupPanel(BasicPopupPanel importPop) {
 		importPop.add(new JLabel("입고") {
 			{
 				setBounds(20, 10, 100, 50);
@@ -180,17 +193,19 @@ public class ManagementPanel extends JPanel {
 		});
 		
 		importNameTf = new BasicTextField("상품의 이름을 입력해주세요");
-		importNameTf.setLocation(20, 75);
+		importNameTf.setLocation(100, 25);
 		importPop.add(importNameTf);
 		
 		importQtyTf = new BasicTextField("수량을 입력해주세요");
-		importQtyTf.setLocation(20, 120);
+		importQtyTf.setLocation(100, 75);
 		importPop.add(importQtyTf);
 		
 		importExpTf = new BasicTextField("YYYYMMDD");
-		importExpTf.setLocation(20, 165);
+		importExpTf.setLocation(100, 125);
 		importPop.add(importExpTf);
 		
+		importPop.setSize(440, 170);
+		importPop.setLocation(0, 0);
 		return importPop;
 	}
 	
@@ -401,11 +416,9 @@ public class ManagementPanel extends JPanel {
 			deleteGoods.setString(2, changeName);
 			deleteGoods.executeUpdate();
 			
-			
-			
 			int rowNum;
 			for (int i = 0; i < dtm.getRowCount(); ++i) {
-				if (dtm.getValueAt(i, 1).equals(exportNameTf.getText()) && dtm.getValueAt(i, 4).equals(preGoodsExp)) {
+				if (dtm.getValueAt(i, 1).equals(exportNameTf.getText()) && dtm.getValueAt(i, 4).equals(deleteExp)) {
 					rowNum = i;
 					dtm.setValueAt(deletedNum - changeQty, rowNum, 2);
 					break;

@@ -1,12 +1,16 @@
 package project.frames.goods_frames;
 
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import project.components.goods_components.BasicBigButton;
+import project.components.goods_components.GoodsColor;
 
 
 public class GnbPanel extends JPanel {
@@ -47,8 +51,10 @@ public class GnbPanel extends JPanel {
 		});
 		add(assetBtn);
 		
-		setBounds(300, 0, 750, 200);
-		setLayout(null);
+//		setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		setBounds(20, 20, 260, 620);
+		setLayout(new GridLayout(5, 1, 0, 50));
+		setBackground(Color.WHITE);
 		setVisible(true);
 		
 	}

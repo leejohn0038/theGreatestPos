@@ -18,6 +18,7 @@ public class BasicBigButton extends JButton {
 				BorderFactory.createLineBorder(Color.BLACK, 1)
 				));
 		setMargin(new Insets(0, 0, 0, 0));
+		
 		setVisible(true);
 	}
 }

@@ -1,16 +1,18 @@
 package project.frames.goods_frames;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 import project.MainFrame;
+import project.components.goods_components.GoodsColor;
 import project.components.goods_components.PosDBConnector;
-import project.components.receipts_components.MainButtons;
 
 
 
@@ -21,11 +23,6 @@ public class GoodsFrame extends JFrame {
 	public GoodsFrame(MainFrame main) {
 		add(contents);
 		add(new GnbPanel(contents));
-		
-		String[] snbButtons = {"상품", "영수증", "직원", "회원", "업무가이드"};
-		for (int i = 0; i < snbButtons.length; ++i) {
-			add(new MainButtons(main, snbButtons[i]));
-		}
 		
 		contents.getManagementPanel().getExportConfirm().addActionListener(new ActionListener() {
 			@Override
@@ -56,9 +53,17 @@ public class GoodsFrame extends JFrame {
 			}
 		});
 		
+		
 		setLayout(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 700);
+		// 프레임 백그라운드용 패널
+		add(new JPanel() {
+			{
+				setBounds(0, 0, 1000, 700);
+//				setBackground(Color.CYAN);
+				setBackground(Color.WHITE);
+			}
+		});
 		setVisible(false);
 		setResizable(false);
 	}

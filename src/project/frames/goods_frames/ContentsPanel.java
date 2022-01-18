@@ -3,7 +3,10 @@ package project.frames.goods_frames;
 import java.awt.CardLayout;
 import java.awt.Color;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+
+import project.components.goods_components.GoodsColor;
 
 public class ContentsPanel extends JPanel {
 	private ManagementPanel manage = new ManagementPanel();
@@ -15,8 +18,10 @@ public class ContentsPanel extends JPanel {
 		add("Management", manage);
 		add("Lookup", lookup);
 		add("Asset", asset);
-		setBounds(300, 100, 760, 500);
-		
+		setBounds(300, 20, 660, 620);
+//		setBackground(Color.ORANGE);
+		setBackground(Color.WHITE);
+		setOpaque(false);
 		setVisible(true);
 	}
 	
