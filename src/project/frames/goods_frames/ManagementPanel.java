@@ -52,7 +52,7 @@ public class ManagementPanel extends JPanel {
 		importConfirmBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				System.out.println("¹öÆ°2");
 				try (
 					Connection conn = PosDBConnector.getConnection();		
 				) {
@@ -228,14 +228,14 @@ public class ManagementPanel extends JPanel {
 		return exportPop;
 	}
 	
-	private void getImportValues() {
+	public void getImportValues() {
 		gv = new GetValues();
 		changeName = gv.getTextStringValue(importNameTf);
 		changeQty = gv.getTextNumValue(importQtyTf);
 		importExp = gv.getTextDateValue(importExpTf);
 	}
 	
-	private void getExportValues() {
+	public void getExportValues() {
 		GetValues gv = new GetValues();
 		changeName = gv.getTextStringValue(exportNameTf);
 		changeQty = gv.getTextNumValue(exportQtyTf);
@@ -255,7 +255,7 @@ public class ManagementPanel extends JPanel {
 		}
 	}
 	
-	private void getPreGoodsInfo(Connection conn) {
+	public void getPreGoodsInfo(Connection conn) {
 		try (
 			PreparedStatement preGoodsPs = conn.prepareStatement("SELECT * FROM goods WHERE gname = ?");
 		) {
@@ -309,11 +309,11 @@ public class ManagementPanel extends JPanel {
 				ResultSet addInfoRs = addInfoPs.executeQuery();
 				addInfoRs.next();
 				addExp = addInfoRs.getDate("expiration");
-				if (addExp.toLocalDate().equals(importExp)){
+				if (addExp == null) {
 					addSql = "UPDATE gstore SET gqty = ? WHERE gname = ?";
 					try (
-						PreparedStatement addPs = conn.prepareStatement(addSql);	
-					) {
+							PreparedStatement addPs = conn.prepareStatement(addSql);	
+							) {
 						Object addQty = preGoodsQty + changeQty;
 						addPs.setObject(1, addQty);
 						addPs.setString(2, changeName);
@@ -331,48 +331,39 @@ public class ManagementPanel extends JPanel {
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
-				} else if (!addExp.toLocalDate().equals(importExp)) {
-					addSql = "INSERT INTO gstore(gname, gqty, expiration) VALUES (?, ?, ?)";
-					insertVal(conn, addSql);
-					Object[] addTemp = 
-						{gid, changeName, changeQty, gprice, importExp, now};
-					dtm.addRow(addTemp);
-					importPop.setVisible(false);
+					
+				} else {
+					if (addExp.toLocalDate().equals(importExp)){
+						addSql = "UPDATE gstore SET gqty = ? WHERE gname = ?";
+						try (
+								PreparedStatement addPs = conn.prepareStatement(addSql);	
+								) {
+							Object addQty = preGoodsQty + changeQty;
+							addPs.setObject(1, addQty);
+							addPs.setString(2, changeName);
+							addPs.executeUpdate();
+							
+							int rowNum;
+							for (int i = 0; i < dtm.getRowCount(); ++i) {
+								if (dtm.getValueAt(i, 1).equals(importNameTf.getText())) {
+									rowNum = i;
+									dtm.setValueAt(addQty, rowNum, 2);
+								}
+							}
+							importPop.setVisible(false);
+							
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+					} else if (!addExp.toLocalDate().equals(importExp)) {
+						addSql = "INSERT INTO gstore(gname, gqty, expiration) VALUES (?, ?, ?)";
+						insertVal(conn, addSql);
+						Object[] addTemp = 
+							{gid, changeName, changeQty, gprice, importExp, now};
+						dtm.addRow(addTemp);
+						importPop.setVisible(false);
+					}
 				}
-				
-				
-//				addStoredate = addInfoRs.getDate("storedate");
-//				if (addStoredate.toLocalDate().equals(now)){
-//					addSql = "UPDATE gstore SET gqty = ? WHERE gname = ?";
-//					try (
-//						PreparedStatement addPs = conn.prepareStatement(addSql);	
-//					) {
-//						Object addQty = preGoodsQty + changeQty;
-//						addPs.setObject(1, addQty);
-//						addPs.setString(2, changeName);
-//						addPs.executeUpdate();
-//						
-//						int rowNum;
-//						for (int i = 0; i < dtm.getRowCount(); ++i) {
-//							if (dtm.getValueAt(i, 1).equals(importNameTf.getText())) {
-//								rowNum = i;
-//								dtm.setValueAt(addQty, rowNum, 2);
-//							}
-//						}
-//						importPop.setVisible(false);
-//						
-//					} catch (SQLException e1) {
-//						e1.printStackTrace();
-//					}
-//				} else if (!addStoredate.toLocalDate().equals(now)) {
-//					addSql = "INSERT INTO gstore(gname, gqty, expiration) VALUES (?, ?, ?)";
-//					insertVal(conn, addSql);
-//					Object[] addTemp = 
-//						{gid, changeName, changeQty, gprice, importExp, now};
-//					dtm.addRow(addTemp);
-//					importPop.setVisible(false);
-//				}
-				
 			}
 			
 		} catch (SQLException e) {
@@ -387,13 +378,20 @@ public class ManagementPanel extends JPanel {
 		try (
 			PreparedStatement deleteGstore = conn.prepareStatement("UPDATE gstore SET gqty = ? WHERE gname = ? AND expiration = ?");	
 			PreparedStatement deleteGoods = conn.prepareStatement("UPDATE goods SET gqty = ? WHERE gname = ?");
-			PreparedStatement deleteExpPs = conn.prepareStatement("SELECT * FROM gstore WHERE gname = ? AND expiration = ?")
+			PreparedStatement deleteExpPs = conn.prepareStatement("SELECT MIN(expiration) AS minexp FROM gstore WHERE gname = ?");
+			PreparedStatement deleteQtyPs = conn.prepareStatement("SELECT * FROM gstore WHERE gname = ? AND expiration = ?");
 		) {
 			deleteExpPs.setString(1, changeName);
-			deleteExpPs.setDate(2, preGoodsExp);
 			ResultSet rs = deleteExpPs.executeQuery();
 			rs.next();
-			int deletedNum = rs.getInt("gqty");
+			Date deleteExp = rs.getDate("minexp");
+			
+			deleteQtyPs.setString(1, changeName);
+			deleteQtyPs.setDate(2, deleteExp);
+			ResultSet deleteQtyRs = deleteQtyPs.executeQuery();
+			deleteQtyRs.next();
+			int deletedNum = deleteQtyRs.getInt("gqty");
+			
 			deleteGstore.setInt(1, deletedNum - changeQty);
 			deleteGstore.setString(2, changeName);
 			deleteGstore.setDate(3, preGoodsExp);
@@ -452,6 +450,14 @@ public class ManagementPanel extends JPanel {
 	
 	public BasicSmallButton getImportConfirm() {
 		return importConfirmBtn;
+	}
+	
+	public String getChangeName() {
+		return changeName;
+	}
+	
+	public int getChangeQty() {
+		return changeQty;
 	}
 }
 

@@ -15,10 +15,11 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
 public class AssetExpTable extends JPanel {
+	private DefaultTableModel model;
 	
 	public AssetExpTable(Connection conn) {
 		String[] column_name = {"번호", "이름", "수량", "유통기한"};
-		DefaultTableModel model = new DefaultTableModel(column_name, 0);
+		model = new DefaultTableModel(column_name, 0);
 		JTable table = new JTable(model);
 		JScrollPane sp = new JScrollPane(table);
 		
@@ -50,6 +51,10 @@ public class AssetExpTable extends JPanel {
 		sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		setSize(500, 150);
 		add(sp);
+	}
+	
+	public DefaultTableModel getTableModel() {
+		return model;
 	}
 }
 

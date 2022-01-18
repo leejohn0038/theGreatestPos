@@ -17,9 +17,9 @@ import project.components.goods_components.GoodsTable;
 import project.components.goods_components.PosDBConnector;
 
 public class AssetPanel extends JPanel {
-	GoodsTable goods = new GoodsTable();
-	AssetExpTable aet;
-	AssetShortageTable ast;
+	private GoodsTable goods = new GoodsTable();
+	private AssetExpTable aet;
+	private AssetShortageTable ast;
 	
 	String totalAssets;
 	
@@ -80,10 +80,13 @@ public class AssetPanel extends JPanel {
 		}
 	}
 	
-	private void getExpiration() {
-		
+	public AssetExpTable getAssetExpTable() {
+		return aet;
 	}
 	
+	public AssetShortageTable getAssetShortageTable() {
+		return ast;
+	}
 }
 
 

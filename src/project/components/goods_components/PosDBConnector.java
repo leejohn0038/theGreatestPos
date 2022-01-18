@@ -7,8 +7,8 @@ import java.sql.SQLException;
 public class PosDBConnector {
 
 	private static String driverName = "oracle.jdbc.driver.OracleDriver";
-	private static String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	private static String user = "goods";
+	private static String url = "jdbc:oracle:thin:@59.9.112.194:1521:XE";
+	private static String user = "pch";
 	private static String password = "1234";
 	
 	static {

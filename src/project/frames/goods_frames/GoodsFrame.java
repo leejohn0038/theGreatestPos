@@ -2,19 +2,23 @@ package project.frames.goods_frames;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 import project.MainFrame;
+import project.components.goods_components.PosDBConnector;
 import project.components.receipts_components.MainButtons;
 
 
 
 public class GoodsFrame extends JFrame {
-	ContentsPanel contents;
+	private ContentsPanel contents = new ContentsPanel();
+	private ManagementPanel mp = contents.getManagementPanel();; 
 	
 	public GoodsFrame(MainFrame main) {
-		contents = new ContentsPanel();
 		add(contents);
 		add(new GnbPanel(contents));
 		
@@ -26,7 +30,14 @@ public class GoodsFrame extends JFrame {
 		contents.getManagementPanel().getExportConfirm().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				refresh();
+				try (
+					Connection conn = PosDBConnector.getConnection();
+				) {
+					editLookupPanelLose(conn);
+					editAssetPanelLose(conn);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		
@@ -34,7 +45,14 @@ public class GoodsFrame extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				refresh();
+				try (
+					Connection conn = PosDBConnector.getConnection();		
+				) {
+					editLookupPanelAdd(conn);
+					editAssetPanelAdd(conn);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		
@@ -45,28 +63,100 @@ public class GoodsFrame extends JFrame {
 		setResizable(false);
 	}
 	
-	void importRefresh() {
-		contents.getManagementPanel().getImportConfirm().addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				refresh();
+	private void editLookupPanelAdd(Connection conn) {
+		ManagementPanel mp = contents.getManagementPanel();
+		LookupPanel lp = contents.getLookupPanel();
+		DefaultTableModel lookupDtm = lp.getLookupTable().getTableModel();
+		mp.getPreGoodsInfo(conn);
+		mp.getImportValues();
+		
+		Object num;
+		for (int i = 0; i < lp.getLookupTable().getTableModel().getRowCount(); ++i) {
+			if (lookupDtm.getValueAt(i, 1).equals(mp.getChangeName())) {
+				num = (int)lookupDtm.getValueAt(i, 2) + mp.getChangeQty();
+				lookupDtm.setValueAt(num, i, 2);
 			}
-		});
+		}
 	}
 	
-	void exportRefresh() {
-		contents.getManagementPanel().getExportConfirm().addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				refresh();
+	private void editLookupPanelLose(Connection conn) {
+		LookupPanel lp = contents.getLookupPanel();
+		DefaultTableModel lookupDtm = lp.getLookupTable().getTableModel();
+		mp.getPreGoodsInfo(conn);
+		mp.getExportValues();
+		
+		Object num;
+		for (int i = 0; i < lp.getLookupTable().getTableModel().getRowCount(); ++i) {
+			if (lookupDtm.getValueAt(i, 1).equals(mp.getChangeName())) {
+				num = (int)lookupDtm.getValueAt(i, 2) - mp.getChangeQty();
+				lookupDtm.setValueAt(num, i, 2);
 			}
-		});
+		}
 	}
 	
-	public void refresh() {
-		contents.getLookupPanel().getLookupTable().getTableModel().fireTableDataChanged();
-		contents.getLookupPanel().getLookupTable().repaint();
+	private void editAssetPanelAdd(Connection conn) {
+		AssetPanel ap = contents.getAssetPanel();
+		DefaultTableModel assetExpModel = ap.getAssetExpTable().getTableModel();
+		DefaultTableModel assetShortageModel = ap.getAssetShortageTable().getTableModel();
+		mp.getPreGoodsInfo(conn);
+		mp.getImportValues();
+		
+		Object num;
+		for (int i = 0; i < assetExpModel.getRowCount(); ++i) {
+			if (assetExpModel.getValueAt(i, 1).equals(mp.getChangeName())) {
+				num = (int)assetExpModel.getValueAt(i, 2) - mp.getChangeQty();
+				assetExpModel.setValueAt(num, i, 2);
+			}
+		}
+		
+		for (int i = 0; i < assetShortageModel.getRowCount(); ++i) {
+			if (assetShortageModel.getValueAt(i, 1).equals(mp.getChangeName())) {
+				num = (int)assetShortageModel.getValueAt(i, 2) - mp.getChangeQty();
+				assetShortageModel.setValueAt(num, i, 2);
+			}
+		}
 	}
 	
+	private void editAssetPanelLose(Connection conn) {
+		AssetPanel ap = contents.getAssetPanel();
+		DefaultTableModel assetExpModel = ap.getAssetExpTable().getTableModel();
+		DefaultTableModel assetShortageModel = ap.getAssetShortageTable().getTableModel();
+		mp.getPreGoodsInfo(conn);
+		mp.getExportValues();
+		
+		Object num;
+		for (int i = 0; i < assetExpModel.getRowCount(); ++i) {
+			if (assetExpModel.getValueAt(i, 1).equals(mp.getChangeName())) {
+				num = (int)assetExpModel.getValueAt(i, 2) - mp.getChangeQty();
+				assetExpModel.setValueAt(num, i, 2);
+			}
+		}
+		
+		for (int i = 0; i < assetShortageModel.getRowCount(); ++i) {
+			if (assetShortageModel.getValueAt(i, 1).equals(mp.getChangeName())) {
+				num = (int)assetShortageModel.getValueAt(i, 2) - mp.getChangeQty();
+				assetShortageModel.setValueAt(num, i, 2);
+			}
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -8,13 +8,13 @@ import javax.swing.JPanel;
 public class ContentsPanel extends JPanel {
 	private ManagementPanel manage = new ManagementPanel();
 	private LookupPanel lookup = new LookupPanel();
+	private AssetPanel asset = new AssetPanel();
 	
 	public ContentsPanel() {
 		setLayout(new CardLayout());
 		add("Management", manage);
 		add("Lookup", lookup);
-		add("Supplier", new SupplierPanel());
-		add("Asset", new AssetPanel());
+		add("Asset", asset);
 		setBounds(300, 100, 760, 500);
 		
 		setVisible(true);
@@ -26,5 +26,9 @@ public class ContentsPanel extends JPanel {
 	
 	public LookupPanel getLookupPanel() {
 		return lookup;
+	}
+	
+	public AssetPanel getAssetPanel() {
+		return asset;
 	}
 }

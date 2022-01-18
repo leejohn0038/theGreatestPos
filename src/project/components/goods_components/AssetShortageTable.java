@@ -14,10 +14,11 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
 public class AssetShortageTable extends JPanel {
-
+	DefaultTableModel model;
+	
 	public AssetShortageTable(Connection conn) {
 		String[] column_name = {"번호", "이름", "수량", "담당자", "전화번호"};
-		DefaultTableModel model = new DefaultTableModel(column_name, 0);
+		model = new DefaultTableModel(column_name, 0);
 		JTable table = new JTable(model);
 		JScrollPane sp = new JScrollPane(table);
 		
@@ -48,5 +49,9 @@ public class AssetShortageTable extends JPanel {
 		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		add(sp);
+	}
+	
+	public DefaultTableModel getTableModel() {
+		return model;
 	}
 }

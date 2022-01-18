@@ -1,6 +1,7 @@
 package project.components.goods_components;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -60,6 +61,8 @@ public class StoreTable extends JPanel {
 		sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		add(sp);
 		setBounds(0, 50, 650, 400);
+		sp.setBackground(Color.WHITE);
+		sp.setOpaque(true);
 		setVisible(true);
 	}
 	
