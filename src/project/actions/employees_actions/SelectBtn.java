@@ -23,7 +23,7 @@ public class SelectBtn extends JButton{
 	public SelectBtn(Select_layout sl, Table_layout tl, int type) {
 		//view
 		super("°Ë»ö");
-		setBounds(0,0,100,30);
+		setBounds(900,0,100,30);
 		
 		this.type = type;
 		

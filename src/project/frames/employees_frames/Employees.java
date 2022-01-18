@@ -23,12 +23,7 @@ public class Employees extends JFrame{
 		SQLs sql = new SQLs("¸®¼Â", 1);
 		
 		Bottom_layout bl = new Bottom_layout(main, this, sql, 1);
-
-
 		add(bl);
-		
-		Top_layout top_layout = new Top_layout(this, bl.getTl().get_table(), sql, 1);
-		add(top_layout);
 	}
 }
 

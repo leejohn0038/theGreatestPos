@@ -32,11 +32,11 @@ public class Select_layout extends JPanel{
 		
 		//콤보박스
 		com = new JComboBox<>(COL_NAME);
-		com.setBounds(0,0, 500,30); //comboBox 설정
+		com.setBounds(600,0, 100,30); //comboBox 설정
 		
 		//텍스트 박스
 		selectTxt = new JTextField("검색어 입력");
-		selectTxt.setSize(1000,20);
+		selectTxt.setBounds(700, 0, 200, 30);;
 		
 		selectTxt.addMouseListener(new MouseAdapter() {
 			@Override
@@ -46,9 +46,8 @@ public class Select_layout extends JPanel{
 		});
 
 		//bottom layout 설정
-		setLayout(new FlowLayout(FlowLayout.RIGHT));
+		setLayout(null);
 		setBounds(0, 0, 1000, 30);
-		setBorder(new LineBorder(Color.black));
 		
 		add(txtLab);
 		add(com);

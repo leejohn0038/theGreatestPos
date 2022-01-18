@@ -16,24 +16,27 @@ public class Top_layout extends JPanel{
 	
 	Table jp;
 	SQLs sql;
+	JFrame f;
 	
-	public Top_layout(JFrame emp_f, Table jp, SQLs sql, int type) {
+	public Top_layout(JFrame f, Table jp, SQLs sql, int type) {
 		
 		this.jp = jp;
 		this.sql = sql;
+		this.f = f;
 		
-		int fw = emp_f.getSize().width, fh = emp_f.getSize().height;
+		int fw = f.getSize().width, fh = f.getSize().height;
 		
 		//사이즈 계산
 		int[] width = {(int)(fw*0.2), (int)(fw*0.8)};
 		int height = (int)((double)fh*0.1);
 		
+		System.out.println(height);
+		
 		setLayout(null);
-		setBounds(0, 0, fw, height);	//상단 레이아웃은 20%만 먹게
-		setBorder(new LineBorder(Color.black));
+		setBounds(0, f.getSize().height-200, fw, 100);	//상단 레이아웃은 20%만 먹게
 		setVisible(true);
 		
-		add(left(width[0], height));
+		//add(left(width[0], height));
 		add(right(width, height, type));
 		
 	}
@@ -46,8 +49,7 @@ public class Top_layout extends JPanel{
 		
 		//로고 추가
 		left.setBounds(0,0, width, height);
-		left.setBorder(new LineBorder(Color.black));
-		left.add(new JLabel("logo"));
+		left.add(new JLabel(f.getTitle()));
 		
 		return left;
 	}
@@ -59,7 +61,6 @@ public class Top_layout extends JPanel{
 		
 		right.setLayout(null);
 		right.setBounds(width[0], 0, width[1], height);
-		right.setBorder(new LineBorder(Color.black));
 		
 		for(int i = 0; i<2; i++) {
 			TopBtn tb = new TopBtn(jp, i, sql, width, height, type);
