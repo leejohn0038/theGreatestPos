@@ -9,6 +9,9 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
+import project.MainFrame;
+import project.actions.receipts_actions.TableAL;
+
 public class Tables extends JPanel { 
 
 	JTable table;
@@ -16,7 +19,7 @@ public class Tables extends JPanel {
 	DefaultTableModel model;
 	String[][] rowData = {};
 	
-	public Tables(String[] columnName, int xPos, int yPos, int xSize, int ySize) {
+	public Tables(MainFrame main, String[] columnName, int xPos, int yPos, int xSize, int ySize) {
 		setLayout(new BorderLayout());
 		setBounds(xPos, yPos, xSize, ySize);
 		
@@ -29,23 +32,27 @@ public class Tables extends JPanel {
 		add(sp);
 	}
 	
-	public void updateRow (ArrayList<Object[]> results) {
-		removeRow();
+	public void updateRows (ArrayList<Object[]> results) {
+		removeRows();
         for (int i = 0; i < results.size(); ++i) {
         	model.addRow(results.get(i));
         }
   
 	}
 	
-	public void removeRow() {
+	public void removeRows() {
 		int cnt = model.getRowCount();
 		for (int i = cnt - 1; i >= 0; --i) {
 			model.removeRow(i);
 		}
 	}
 	
-	public void getSelected() {
-		table.getSelectedRow();
+	public void removeRow(int index) {
+		model.removeRow(index);
+	}
+	
+	public void addRow(Object[] result) {
+		model.addRow(result);
 	}
 	
 	public JTable getTable() {

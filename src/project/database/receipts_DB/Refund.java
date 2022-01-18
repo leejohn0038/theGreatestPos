@@ -11,16 +11,24 @@ import project.database.DBConnector;
 
 public class Refund {
 	
-	private static final String SQL = "select sid, sal.rid, sal.price, gname, qty, payment from sales sal "
-									+ "inner join goods using(gid) inner join receipts r on sal.rid = r.rid "
-									+ "where r.rid = ?";
+	private final static String[] SQLS = {
+			"update goods set gqty = gqty - ? where gname = ?",
+   		    "update customers set 포인트 = 포인트 - ? where 전화번호 = ?",
+   		    "update receipts set price = price - ? where rid = ?",
+   		    "delete from sales where sid = ?",
+   		    "delete from receipts where rid = ?",
+   		    "select sid, sal.rid, sal.price, gname, qty, payment from sales sal "
+			+ "inner join goods using(gid) inner join receipts r on sal.rid = r.rid "
+			+ "where r.rid = ?"
+			};
 	
 	public static ArrayList<Object[]> getData(int rid) {
+		
 		ArrayList<Object[]> results = new ArrayList<>();
 		Object[] result;
 		try (
 			Connection conn = DBConnector.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			PreparedStatement pstmt = conn.prepareStatement(SQLS[5]);
 		) {
 				pstmt.setInt(1, rid);
 			
@@ -41,4 +49,35 @@ public class Refund {
 		}
 		return results;
 	}
+	
+	public static void deleteSalesRows(int id, int index) {
+		try (
+				Connection conn = DBConnector.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(SQLS[index]);
+			) {
+					pstmt.setInt(1, id);
+					pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+	}
+	
+	
+	public static void updateData(int index, int number, String varchar, boolean isNumber) {
+		try (
+				Connection conn = DBConnector.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(SQLS[index]);
+			) {
+				if (isNumber) {
+					pstmt.setInt(1, number);
+					pstmt.setInt(2, Integer.parseInt(varchar));
+				} else {						
+					pstmt.setInt(1, number);
+					pstmt.setString(2, varchar);
+				}
+				pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	} 
 }

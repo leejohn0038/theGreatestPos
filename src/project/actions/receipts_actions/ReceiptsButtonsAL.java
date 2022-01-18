@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 import project.MainFrame;
+import project.database.receipts_DB.ReceiptSearching;
 import project.database.receipts_DB.Refund;
 import project.frames.receipts_frames.PointCollect;
 import project.frames.receipts_frames.Receipts;
@@ -65,8 +66,18 @@ public class ReceiptsButtonsAL implements ActionListener {
 		if (index > -1) {
 			int rid = Integer.parseInt(String.valueOf(jT.getValueAt(index, 0)));
 			String payment = String.valueOf(jT.getValueAt(index, 3));
+			String phone = String.valueOf(jT.getValueAt(index, 1));
+			String info = ReceiptSearching.getData(0, rid);
+			System.out.println(info);
 			refunding.setPayment(payment);
-			refunding.getTable().updateRow(Refund.getData(rid));
+			refunding.setPhone(phone);
+			refunding.getTable().updateRows(Refund.getData(rid));
+			if (payment.equals("현금")) {
+				refunding.getCardinfoBtn().setVisible(false);
+			} else {
+				refunding.setCardinfo(info);
+				refunding.getCardinfoBtn().setVisible(true);
+			}
 			main.getFrame(btn).setVisible(true);			
 		} else {
 			JOptionPane.showMessageDialog(main.getFrame("영수증"), "영수증을 선택해 주세요.");

@@ -17,6 +17,7 @@ public class PointSubmitAL implements ActionListener {
 	PointCollect pointcollect;
 	PointCollectPanel pPanel;
 	JTable table;
+	boolean state;
 	
 	public PointSubmitAL(MainFrame main) {
 		this.main = main;
@@ -31,14 +32,17 @@ public class PointSubmitAL implements ActionListener {
 		String point = pPanel.getLabel2().getText();
 		int rid = pointcollect.getRid();
 		if (FieldRegexLimit.isValid(Regex.getRegex()[1], text)) {
-			PointCollecting.getData(Integer.parseInt(point), rid, text);
-			table.setValueAt(pPanel.getField().getText(), table.getSelectedRow(), 1);
-		    JOptionPane.showMessageDialog(pointcollect, "포인트 적립이 완료되었습니다.");
-			pointcollect.setVisible(false); 
+			if(PointCollecting.updateData(Integer.parseInt(point), rid, text)) {				
+				table.setValueAt(pPanel.getField().getText(), table.getSelectedRow(), 1);
+				JOptionPane.showMessageDialog(pointcollect, "포인트 적립이 완료되었습니다.");
+				pointcollect.setVisible(false); 
+			} else {				
+				JOptionPane.showConfirmDialog(pointcollect, "존재하지 않는 회원입니다.\n회원가입 하시겠습니까?","confirm", JOptionPane.YES_NO_OPTION);
+			}
 		} else if(text.equals("")){
 			JOptionPane.showMessageDialog(main.getFrame("영수증"), "전화번호를 입력하세요.");
 		} else {
-			JOptionPane.showMessageDialog(main.getFrame("포인트 적립하기"), "입력형식이 잘못되었습니다.");
+			JOptionPane.showMessageDialog(pointcollect, "입력형식이 잘못되었습니다.");
 		}	
 	}
 
