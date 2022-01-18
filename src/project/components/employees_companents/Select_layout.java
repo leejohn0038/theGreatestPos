@@ -22,13 +22,13 @@ public class Select_layout extends JPanel{
 	
 	private JTextField selectTxt;				//사용자에게 받는 text	
 	private JComboBox<String> com;				//사용자가 선택한 콤보박스
-	private final String[] COL_NAME = new Function_emp().getTitle(1);
+	private final String[] COL_NAME;
 	
-	public Select_layout(Table_layout tl) {
-		
+	public Select_layout(Table_layout tl, int type) {
 		
 		//간단한 설명 라벨
 		JLabel txtLab = new JLabel("원하시는 항목으로 조회하세요");
+		COL_NAME = new Function_emp().getTitle(type);
 		
 		//콤보박스
 		com = new JComboBox<>(COL_NAME);
@@ -37,7 +37,7 @@ public class Select_layout extends JPanel{
 		//텍스트 박스
 		selectTxt = new JTextField("검색어 입력");
 		selectTxt.setSize(1000,20);
-		//Txt
+		
 		selectTxt.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -50,13 +50,12 @@ public class Select_layout extends JPanel{
 		setBounds(0, 0, 1000, 30);
 		setBorder(new LineBorder(Color.black));
 		
-		
 		add(txtLab);
 		add(com);
 		add(selectTxt);
 		
 		//검색 버튼
-		add(new SelectBtn(this, tl));
+		add(new SelectBtn(this, tl, type));
 	}
 	
 	public JTextField getSelectTxt() {

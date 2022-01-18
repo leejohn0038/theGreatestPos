@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 import project.actions.employees_actions.main.object.Emp_addData;
+import project.components.customers_components.object.Cus_addData;
 import project.components.employees_companents.Select_layout;
 import project.components.employees_companents.Table;
 import project.components.employees_companents.Table_layout;
@@ -16,10 +17,15 @@ import project.database.employee_customer.SQLs;
 
 //뷰자체가 작길래 한곳에서 하기로 결정...
 public class SelectBtn extends JButton{
-	public SelectBtn(Select_layout sl, Table_layout tl) {
+	
+	int type;
+	
+	public SelectBtn(Select_layout sl, Table_layout tl, int type) {
 		//view
 		super("검색");
 		setBounds(0,0,100,30);
+		
+		this.type = type;
 		
 		//action
 		addActionListener(new ActionListener() {
@@ -27,14 +33,16 @@ public class SelectBtn extends JButton{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				Emp_addData addDate = new Emp_addData();
 				Table jt = tl.get_table();
 				DefaultTableModel dtm = jt.getDtm();
 				SQLs sql;
 				Object[][] str;
 				
-				addDate.setSelectValue(sl.getComboBox().getSelectedIndex(), sl.getSelectTxt().getText());
-				sql = new SQLs("검색", null, addDate, 1);
+				if(type == 1) {
+					sql = emp(sl);
+				}else {
+					sql = cus(sl);	
+				}
 				
 				str = sql.getRowData();
 				
@@ -47,5 +55,21 @@ public class SelectBtn extends JButton{
 				}
 			}
 		});
+	}
+	
+	SQLs emp(Select_layout sl) {
+		Emp_addData addDate = new Emp_addData();
+		addDate.setSelectValue(sl.getComboBox().getSelectedIndex(), sl.getSelectTxt().getText());
+		SQLs sql = new SQLs("검색", null, addDate, type);
+		
+		return sql;
+	}
+	
+	SQLs cus(Select_layout sl) {
+		Cus_addData addDate = new Cus_addData();
+		addDate.setSelectValue(sl.getComboBox().getSelectedIndex(), sl.getSelectTxt().getText());
+		SQLs sql = new SQLs("검색", null, addDate, type);
+		
+		return sql;
 	}
 }
