@@ -234,7 +234,6 @@ public class SQLs {
 		}else {
 			final String CUS_ADD_SQL = "전화번호 = ?";	
 			pstmt = conn.prepareStatement(SQL + CUS_ADD_SQL);
-			System.out.println(cus_addData.getID());
 			String phone = cus_addData.getID();
 			pstmt.setString(1, phone);
 		}

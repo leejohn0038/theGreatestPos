@@ -2,9 +2,7 @@ package project.actions.obj;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
-import project.actions.employees_actions.main.object.Emp_addData;
 import project.database.employee_customer.SQLs;
 
 public class User_Data {
@@ -13,8 +11,12 @@ public class User_Data {
 	private String name;
 	private String pass;
 	private String startTime;
-	
-	public User_Data(String amount, String name, String pass) {
+
+	public User_Data() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public void setUser(String amount, String name, String pass) {
 		
 		String temp = amount.replace(" ", "");
 		temp = amount.replace(",", "");

@@ -2,6 +2,7 @@ package project;
 
 import javax.swing.JFrame;
 
+import project.actions.obj.User_Data;
 import project.components.receipts_components.MainButtons;
 import project.components.receipts_components.ReceiptButtons;
 import project.components.receipts_components.Tables;
@@ -11,6 +12,7 @@ import project.frames.receipts_frames.Frames;
 public class MainFrame extends JFrame {
 	
 	private Frames frames;
+	private static User_Data user;
 	
 	public MainFrame() {
 		frames = new Frames(this);
@@ -27,7 +29,7 @@ public class MainFrame extends JFrame {
 		for(int i = 0; i < btnNames2.length; ++i) {
 			add(new ReceiptButtons(this, btnNames2[i], 0));
 		}
-			
+		
 		setLayout(null);
 		//setDefaultCloseOperation(HIDE_ON_CLOSE);
 		setBounds(100, 100, 1000, 700);
@@ -41,7 +43,8 @@ public class MainFrame extends JFrame {
 	}
 	
 	public static void main(String[] args) {
-		new Login(new MainFrame());
+		
+		user = new Login(new MainFrame()).getUserData();
 	}
 }
 

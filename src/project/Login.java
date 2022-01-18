@@ -15,14 +15,16 @@ public class Login extends JFrame{
 	
 	boolean start = false;
 	ArrayList<JTextField> txts;
+	
 	User_Data user;
 	
 	JFrame f;
 	
 	public Login(JFrame f) {
-		
 		this.f = f;
 		txts = new ArrayList<>();
+		
+		user = new User_Data();
 		
 		String[] txtData = {"시작금액", "직원이름", "비밀번호"};
 		
@@ -82,11 +84,10 @@ public class Login extends JFrame{
 		
 		btn.addActionListener(new ActionListener() {
 			
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(txts.get(2).getText().length() > 3 && txts.get(2).getText().length() < 5) {
-					user = new User_Data(txts.get(0).getText(), txts.get(1).getText(), txts.get(2).getText());
+					user.setUser(txts.get(0).getText(), txts.get(1).getText(), txts.get(2).getText());
 					
 					if(user.test()) {
 						f.setVisible(true);
@@ -98,4 +99,9 @@ public class Login extends JFrame{
 		
 		return btn;
 	}
+	
+	User_Data getUserData() {
+		return user;
+	}
+
 }
