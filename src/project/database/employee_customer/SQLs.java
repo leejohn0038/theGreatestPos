@@ -19,8 +19,8 @@ import project.components.customers_components.object.Cus_addData;
 
 public class SQLs {
 	
-	private ArrayList<Emp_addData> emp_addDatas;
-	private ArrayList<Cus_addData> cus_addDatas;
+	private ArrayList<Emp_addData> emp_addDatas  = new ArrayList<>();
+	private ArrayList<Cus_addData> cus_addDatas  = new ArrayList<>();
 	public Emp_addData emp_addData;
 	public Cus_addData cus_addData;
 	//public Cus_addData cus_addData;
@@ -30,6 +30,14 @@ public class SQLs {
 	private String title_txt;
 	private String dbName;
 	private String type;
+	private String[] target;
+	
+	public SQLs(String type, String[] target) {
+		this.type = type;
+		this.target = target;
+		dbName = "mart_employees";
+		selectSqlType();
+	}
 	
 	public SQLs(String type, int f_type) {
 		this.type = type;
@@ -93,6 +101,9 @@ public class SQLs {
 				final String RESET_SQL = "select * from " + dbName + " ";
 				tableReset(RESET_SQL, conn);
 				break;
+			case "유저":
+				final String DATA_SQL = "select * from " + dbName + " WHERE ";
+				selectData(DATA_SQL, conn, target);
 			}
 			
 		} catch (SQLException e) {
@@ -309,6 +320,43 @@ public class SQLs {
 		rs.close();
 	}
 	
+	void selectData(String SQL, Connection conn, String[] target) throws SQLException {
+		
+		final String ADD_SQL = "\"이름\" = ? and \"전화번호\" like ?";
+	
+		PreparedStatement pstmt = conn.prepareStatement(SQL + ADD_SQL);
+			
+		pstmt.setString(1, target[0]);
+		pstmt.setString(2, "%"+target[1]);
+		
+		ResultSet rs = pstmt.executeQuery();;
+		ResultSetMetaData meta = rs.getMetaData();
+		
+		Object[] objs = new Object[meta.getColumnCount()];
+		
+		while(rs.next()) {			
+			
+			for(int col = 0; col<meta.getColumnCount(); col++) {
+				
+				if(rs.getString(meta.getColumnName(col+1)) != null) { 
+					if(meta.getColumnName(col+1).contains("일")) {
+						objs[col] = (rs.getString(meta.getColumnName(col+1)).substring(0, 10));
+					}else {
+						objs[col] = rs.getString(meta.getColumnName(col+1));
+					}
+					
+				}else {
+					objs[col] = "";
+				}
+				
+			}
+			emp_addDatas.add(new Emp_addData(objs));
+		}
+		
+		pstmt.close();
+		rs.close();
+	}
+	
 	public Object[][] getRowData(){
 		
 		int maxRow;
@@ -344,6 +392,8 @@ public class SQLs {
 		return rowData;
 	}
 	
+	
+	
 	public void setUpdataRow(int row, int col) {
 		this.row = row;
 		this.col = col;
@@ -352,6 +402,11 @@ public class SQLs {
 	void setAddData(Emp_addData addData) {
 		if(dbName.contains("emp"))
 		this.emp_addData = addData;
+	}
+	
+	
+	public ArrayList<Emp_addData> getEmpArr(){
+		return emp_addDatas;
 	}
 	
 	public String[] getTitle() {

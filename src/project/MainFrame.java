@@ -31,7 +31,7 @@ public class MainFrame extends JFrame {
 		setLayout(null);
 		//setDefaultCloseOperation(HIDE_ON_CLOSE);
 		setBounds(100, 100, 1000, 700);
-		setVisible(true);
+		setVisible(false);
 		setResizable(false); 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
@@ -41,7 +41,7 @@ public class MainFrame extends JFrame {
 	}
 	
 	public static void main(String[] args) {
-		new MainFrame();
+		new Login(new MainFrame());
 	}
 }
 
