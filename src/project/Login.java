@@ -82,9 +82,10 @@ public class Login extends JFrame{
 		
 		btn.addActionListener(new ActionListener() {
 			
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(txts.get(2).getText().length() > 3) {
+				if(txts.get(2).getText().length() > 3 && txts.get(2).getText().length() < 5) {
 					user = new User_Data(txts.get(0).getText(), txts.get(1).getText(), txts.get(2).getText());
 					
 					if(user.test()) {

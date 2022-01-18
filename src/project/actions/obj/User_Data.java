@@ -1,5 +1,7 @@
 package project.actions.obj;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import project.actions.employees_actions.main.object.Emp_addData;
@@ -10,23 +12,24 @@ public class User_Data {
 	private int amount;
 	private String name;
 	private String pass;
-	
+	private String startTime;
 	
 	public User_Data(String amount, String name, String pass) {
+		
 		String temp = amount.replace(" ", "");
 		temp = amount.replace(",", "");
 		
 		this.amount = Integer.parseInt(temp);
 		this.name = name;
 		this.pass = pass;
+		startTime = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
 	}
 	
 	public boolean test() {
 
 		String[] datas = {name, pass};
 		SQLs sql = new SQLs("À¯Àú", datas);
-
-		System.out.println(sql.getEmpArr().size());
+		
 		if(sql.getEmpArr().size() != 0) {
 			return true;
 		}else {
