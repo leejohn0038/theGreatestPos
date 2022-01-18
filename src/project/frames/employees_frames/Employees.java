@@ -31,7 +31,3 @@ public class Employees extends JFrame{
 		add(top_layout);
 	}
 }
-
-
-
-
