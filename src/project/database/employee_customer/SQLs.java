@@ -104,7 +104,15 @@ public class SQLs {
 	
 	void tableReset(String SQL, Connection conn) throws SQLException {
 		
-		PreparedStatement pstmt = conn.prepareStatement(SQL);
+		String addStr;
+		
+		if(dbName == "mart_employees") {
+			addStr = "order by 사원번호";
+		}else {
+			addStr = "order by 전화번호";
+		}
+		
+		PreparedStatement pstmt = conn.prepareStatement(SQL + addStr);
 		ResultSet rs = pstmt.executeQuery();
 		ResultSetMetaData meta = rs.getMetaData();
 		
@@ -231,7 +239,7 @@ public class SQLs {
 	void updata(String SQL, Connection conn) throws SQLException {
 		
 		final String EMP_ADD_SQL = "이름 = ?, 입사일 = ?, "
-				+ "전화번호 = ?, 직책 = ? WHERE 사원번호 = ?";
+				+ "전화번호 = ?, 직책 = ? WHERE 사원번호 = ? ";
 		
 		final String CUS_ADD_SQL = "전화번호 = ?, 이름 = ?, "
 				+ "주소 = ?, 등록일 = ?, 포인트 = ? WHERE 전화번호 = ?";
