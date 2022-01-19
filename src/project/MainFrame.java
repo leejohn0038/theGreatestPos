@@ -42,13 +42,13 @@ public class MainFrame extends JFrame {
 		return frames.getFrame(btn);
 	}
 	
-	int loginID() {
+	public int loginID() {
 		return user.getUserId();  
 	}
 	
 	public static void main(String[] args) {
-		
-		user = new Login(new MainFrame()).getUserData();
+		MainFrame main;
+		user = new Login(main = new MainFrame()).getUserData();
 	}
 }
 
