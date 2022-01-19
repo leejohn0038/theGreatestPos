@@ -44,8 +44,10 @@ public class AssetShortageTable extends JPanel {
 			e.printStackTrace();
 		}
 		setLayout(new BorderLayout());
-//		table.setBounds(0, 0, 500, 150);
-		setSize(650, 230);
+		setSize(720, 230);
+		table.getTableHeader().setBackground(Color.BLACK);
+		table.getTableHeader().setForeground(Color.WHITE);	
+		
 		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		sp.getViewport().setBackground(Color.WHITE);

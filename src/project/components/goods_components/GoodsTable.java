@@ -64,9 +64,10 @@ public class GoodsTable extends JPanel {
 		
 		table.setEnabled(false);
 		setLayout(new BorderLayout());
-		setBounds(0, 0, 720, 550);
-		setBackground(Color.RED);
+		setBounds(0, 60, 720, 550);
 		table.setRowHeight(50);
+		table.getTableHeader().setBackground(Color.BLACK);
+		table.getTableHeader().setForeground(Color.WHITE);	
 		
 		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);

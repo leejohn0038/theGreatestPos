@@ -1,5 +1,6 @@
 package project.frames.goods_frames;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -10,7 +11,6 @@ import javax.swing.JPanel;
 import project.actions.SearchTf;
 import project.components.goods_components.BasicSmallButton;
 import project.components.goods_components.BasicTextField;
-import project.components.goods_components.GoodsColor;
 import project.components.goods_components.GoodsTable;
 
 public class LookupPanel extends JPanel {
@@ -23,7 +23,7 @@ public class LookupPanel extends JPanel {
 		// 검색창 생성
 		goods = new GoodsTable();
 		searchTf = new BasicTextField("");
-		searchTf.setLocation(520, 570);
+		searchTf.setLocation(0, 20);
 		goods.getRowsorter().addRowSorterListener(null);
 		new SearchTf(goods.getRowsorter(), searchTf);
 		searchTf.addKeyListener(new KeyAdapter() {
@@ -48,7 +48,7 @@ public class LookupPanel extends JPanel {
 		searchTf.add(searchClear);
 		searchTf.setLayout(null);
 		
-		setBackground(new GoodsColor().white());
+		setBackground(Color.WHITE);
 		add(goods);
 		setLayout(null);
 		setBounds(300, 100, 760, 500);
