@@ -33,8 +33,7 @@ public class Cus_addData {
 		}else {
 			dates[3] = Date.valueOf(((String)objs[3]).substring(0,10));
 		}
-		
-		dates[4] = Integer.parseInt((String) objs[4]);
+		dates[4] = 0;
 	}
 	
 	public Cus_addData(String phone) {
