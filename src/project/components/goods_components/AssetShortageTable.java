@@ -48,6 +48,7 @@ public class AssetShortageTable extends JPanel {
 		setSize(650, 230);
 		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		sp.getViewport().setBackground(Color.WHITE);
 		add(sp);
 	}
 	
