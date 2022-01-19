@@ -16,7 +16,7 @@ public class Employees extends JFrame{
 		SQLs sql = new SQLs("리셋", 1);
 		
 		setUndecorated(true); //타이틀바 없애기
-		setBounds(100,100,1000,700);
+		setBounds(main.getLocation().x,main.getLocation().y,1000,700);
 		setTitle("직원");
 		setVisible(false);
 		setLayout(null);

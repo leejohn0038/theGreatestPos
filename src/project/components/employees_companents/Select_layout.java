@@ -27,24 +27,29 @@ public class Select_layout extends JPanel{
 	public Select_layout(Table_layout tl, int locX, int locY, int type) {
 		
 		int padding = 10;
-		int[] selectSize = {tl.getSize().width, 50};
+		int[] selectSize = {tl.getSize().width-150, 50};
 		
 		//패널 setting
 		setLayout(null);
-		setBounds(locX, locY,selectSize[0], selectSize[1]);
-		setBorder(new LineBorder(Color.black));
+		setBounds(locX, locY-selectSize[1],selectSize[0], selectSize[1]);
 		
 		//간단한 설명 라벨
 		JLabel txtLab = new JLabel("원하시는 항목으로 조회하세요");
-		COL_NAME = new Function_emp().getTitle(type);
+		txtLab.setBounds(padding,0,200,50);
 		
 		//콤보박스
+		int[] comSize = {80, 30};
+		COL_NAME = new Function_emp().getTitle(type);
 		com = new JComboBox<>(COL_NAME);
-		com.setBounds(600,0, 100,30); //comboBox 설정
+		com.setBounds(txtLab.getSize().width + txtLab.getLocation().x, (selectSize[1] - comSize[1])/2, comSize[0],comSize[1]); //comboBox 설정
+		
+		//검색 사이즈
+		int[] btnSize = {70, 30};
 		
 		//텍스트 박스
+		int[] txtSize = {250 - btnSize[0], 30};
 		selectTxt = new JTextField("검색어 입력");
-		selectTxt.setBounds(700, 0, 200, 30);;
+		selectTxt.setBounds(com.getSize().width + com.getLocation().x, (selectSize[1] - txtSize[1])/2, txtSize[0], txtSize[1]);;
 		
 		selectTxt.addMouseListener(new MouseAdapter() {
 			@Override
@@ -52,14 +57,15 @@ public class Select_layout extends JPanel{
 				selectTxt.setText("");
 			}
 		});
-		
 
 		add(txtLab);
 		add(com);
 		add(selectTxt);
 		
 		//검색 버튼
-		add(new SelectBtn(this, tl, type));
+		int[] loc = {selectTxt.getSize().width + selectTxt.getLocation().x, 
+				(selectSize[1] - btnSize[1])/2};
+		add(new SelectBtn(this, tl, btnSize, loc, type));
 	}
 	
 	public JTextField getSelectTxt() {

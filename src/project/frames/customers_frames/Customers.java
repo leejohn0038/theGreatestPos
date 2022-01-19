@@ -12,6 +12,7 @@ public class Customers extends JFrame {
 	public Customers(MainFrame main) {
 		
 		setTitle("È¸¿ø");
+		setUndecorated(true);
 		setVisible(false);
 		setLayout(null);
 		setBounds(100,100,1000,700);

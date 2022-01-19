@@ -44,7 +44,7 @@ public class MainContants extends JPanel{
 		NavBar btns = new NavBar(layViewData, tl.get_table(), sql, type);
 		
 		//검색기능//
-		Select_layout select = new Select_layout(tl, side.getSideWidth(), tl.getSize().height + tl.getLocation().y, type);
+		Select_layout select = new Select_layout(tl, side.getSideWidth(), tl.getLocation().y, type);
 		
 		add(select);
 		add(tl);
