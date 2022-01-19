@@ -1,5 +1,6 @@
 package project;
 
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -18,6 +19,7 @@ public class MainFrame extends JFrame {
 	private JTextField field;
 	private Tables table;
 	private int totalPrice;
+	private JComboBox<String> combo;
 	
 	public MainFrame() {
 		frames = new Frames(this);
@@ -25,6 +27,7 @@ public class MainFrame extends JFrame {
 		add(table = new Tables(this, new String[] {"상품id", "상품이름", "수량", "가격"}, 300, 100, 680, 300));
 		
 		String[] btnNames1 = {"상품", "영수증", "직원", "회원", "업무가이드"};
+		String[] items = {"현금", "카드"};
 		
 		for (int i = 0; i < btnNames1.length; ++i) {
 			add(new MainButtons(this, btnNames1[i]));
@@ -32,6 +35,7 @@ public class MainFrame extends JFrame {
 		add(field = new TextField(300, 450, 200, 30));
 		add(new SaleSubmitBtn(this, 520, 450, 70, 30));
 		add(new BuySubmitBtn(this, 450, 550, 100, 50));
+		add(combo = new JComboBox<String>(items) {{setBounds(600, 450, 70, 30);}});
 		
 		setLayout(null);
 		setBounds(100, 100, 1000, 700);
@@ -62,6 +66,10 @@ public class MainFrame extends JFrame {
 			totalPrice += Integer.parseInt(String.valueOf(getJTable().getValueAt(i, 3)));
 		}
 		return totalPrice;
+	}
+	
+	public String getCombo() {
+		return combo.getSelectedItem().toString();
 	}
 	
 	public static void main(String[] args) {

@@ -40,7 +40,7 @@ public class PointSubmitAL implements ActionListener {
 				int result = JOptionPane.showConfirmDialog(
 					pointcollect, "존재하지 않는 회원입니다.\n회원가입 하시겠습니까?","confirm", JOptionPane.YES_NO_OPTION);
 				if (result == JOptionPane.YES_OPTION) {
-					
+					System.out.println("helloS");
 				}
 			}
 		} else if(text.equals("")){
