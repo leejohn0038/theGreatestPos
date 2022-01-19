@@ -2,18 +2,20 @@ package project.components.employees_companents;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Point;
+import java.util.Arrays;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import project.MainFrame;
+import project.actions.QuitBtn;
 import project.actions.employees_actions.main.TopBtn;
 import project.database.employee_customer.SQLs;
 
 public class MainContants extends JPanel{
 	
-	Table_layout tl;
 	JFrame f;
 	SQLs sql;
 	
@@ -22,77 +24,49 @@ public class MainContants extends JPanel{
 		this.sql = sql;
 		this.f = f;
 		
-		//레이아웃 초기설정
-		setPreferredSize(new Dimension(1000-8,700-36));
-		setBorder(new LineBorder(Color.black));
-		System.out.println(f.getInsets().top);
-		
-		int[] layoutBounds = {0, 0, 1000, 700};
-		int height;
-		
-		JPanel inner_layout = new JPanel();
-		JPanel select;
-		JPanel side;
-		
-		NavBar top_layout = new NavBar(f, tl.get_table(), sql, type);
-		add(top_layout);
-		
-		select = new Select_layout(tl, type);
-		height = select.getSize().height;
-		
-		side = new SideBar_layout(main, f.getTitle());
-		side.setBorder(new LineBorder(Color.black));
-		inner_layout.add(side);
-		inner_layout.add(tl = new Table_layout(side.getSize().width, sql, type));
-		
-		//select 관련 레이아웃이 한자리 먹고 있음 그거 높이 빼주는 계산 해줘야함!
-		inner_layout.setLayout(null);
-		inner_layout.setBounds(0, 50, layoutBounds[2], layoutBounds[3]-height);
-		
-		setBorder(new LineBorder(Color.black));
-		
-		add(select);
-		add(inner_layout);
-		add(right(type));
+		//Jpanel 기본 사이즈
+		int[] layViewData = viewCalculate(f);
 		
 		setLayout(null);
-		setBounds(layoutBounds[0], layoutBounds[1], layoutBounds[2], layoutBounds[3]);
+		setBorder(new LineBorder(Color.black));
+		setBounds(layViewData[0], layViewData[1], layViewData[2], layViewData[3]);
+		
+		//SIDE_BAR//
+		SideBar_layout side = new SideBar_layout(main, layViewData, f.getTitle());
+		
+		//종료버튼//
+		QuitBtn quitBtn = new QuitBtn(f, main);
+		
+		//TBALE//
+		Table_layout tl = new Table_layout(side.getSize().width, quitBtn.getHight(), sql, type);
+		
+		//버튼모음//
+		NavBar btns = new NavBar(layViewData, tl.get_table(), sql, type);
+		
+		//검색기능//
+		Select_layout select = new Select_layout(tl, side.getSideWidth(), tl.getSize().height + tl.getLocation().y, type);
+		
+		add(select);
+		add(tl);
+		add(side);
+		add(quitBtn);
+		add(btns);
 	}
 	
-	//오른쪽 레이아웃
-	JPanel right(int type) {
-		
-		JPanel right = new JPanel(); // 오른쪽 버튼 레이아웃
-		
-		int[] width = {(int)(f.getSize().width*0.2), (int)(f.getSize().width*0.8)};
-		int height = (int)((double)f.getSize().height*0.1);
-		
-		right.setLayout(null);
-		right.setBounds(0, 500, 300, 100);
-		right.setBorder(new LineBorder(Color.black));
-		
-		for(int i = 0; i<2; i++) {
-			TopBtn tb = new TopBtn(tl.get_table(), i, sql, width, height, type);
-			right.add(tb);
-		}
-		
-		return right;
-	}
-	
-	public Table_layout getTl() {
-		return tl;
-	}
-	
-	/*
-	int[][] viewCalculate(JFrame f){
+	int[] viewCalculate(JFrame f){
 		//0_row : title bar
 		//1_row : frame 계산값
-		int[][] total = new int[2][4];
+		int[] total = new int[4];
 		
-		total[0][0] = f.getInsets().top;
-		total[0][1] = f.getInsets().right;
-		total[0][2] = f.getInsets().bottom;
-		total[0][3] = f.getInsets().left;
+		//위치
+		total[0] = f.getInsets().left;
+		total[1] = f.getInsets().top;
+		//사이즈
+		total[2] = f.getSize().width - (f.getInsets().left + f.getInsets().right);
+		total[3] = f.getSize().height - (f.getInsets().top + f.getInsets().bottom);
 		
-	}*/
+		//System.out.println(Arrays.toString(total));
+		
+		return total;	
+	}
 }

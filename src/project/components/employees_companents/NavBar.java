@@ -1,6 +1,8 @@
 package project.components.employees_companents;
 
 import java.awt.Color;
+import java.awt.Point;
+import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,59 +16,36 @@ import project.database.employee_customer.SQLs;
 //프레임의 상단 레이아웃 (logo / 조회 / 등록 / 편집 버튼)
 public class NavBar extends JPanel{
 	
-	Table jp;
+	Table jt;
 	SQLs sql;
-	JFrame f;
+	int[] loc;
+	int[] size;
+	int padding;
 	
-	public NavBar(JFrame f, Table jp, SQLs sql, int type) {
+	public NavBar(int[] viewData, Table jt, SQLs sql, int type) {
 		
-		this.jp = jp;
+		this.jt = jt;
 		this.sql = sql;
-		this.f = f;
 		
-		int fw = f.getSize().width, fh = f.getSize().height;
-		
-		//사이즈 계산
-		int[] width = {(int)(fw*0.2), (int)(fw*0.8)};
-		int height = (int)((double)fh*0.1);
-		
-		System.out.println(height);
+		size = new int[] {250,50};
+		loc = new int[] {viewData[2]-size[0], viewData[3]-size[1]};
+		padding = 10;
 		
 		setLayout(null);
-		setBounds(0, 0, fw, 100);	//상단 레이아웃은 20%만 먹게
+		setBounds(loc[0]-padding, loc[1]-padding, size[0], size[1]);
 		setVisible(true);
 		
-		//add(left(width[0], height));
-		add(right(width, height, type));
-		
-	}
-	
-	//레이아웃
-	
-	//왼쪽은 로고 레이아웃
-	JPanel left(int width, int height) {
-		JPanel left = new JPanel();
-		
-		//로고 추가
-		left.setBounds(0,0, width, height);
-		left.add(new JLabel(f.getTitle()));
-		
-		return left;
-	}
-	
-	//오른쪽 레이아웃
-	JPanel right(int[] width, int height, int type) {
-		
-		JPanel right = new JPanel(); // 오른쪽 버튼 레이아웃
-		
-		right.setLayout(null);
-		right.setBounds(width[0], 0, width[1], height);
-		
 		for(int i = 0; i<2; i++) {
-			TopBtn tb = new TopBtn(jp, i, sql, width, height, type);
-			right.add(tb);
-		}
-		
-		return right;
+			TopBtn tb = new TopBtn(jt, i, sql, size, type);
+			add(tb);
+		}		
+	}
+	
+	int getLocX() {
+		return loc[0]-padding;
+	}
+	
+	int getLocY() {
+		return ((loc[1]-padding) - size[1]) - padding;
 	}
 }

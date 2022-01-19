@@ -24,7 +24,15 @@ public class Select_layout extends JPanel{
 	private JComboBox<String> com;				//사용자가 선택한 콤보박스
 	private final String[] COL_NAME;
 	
-	public Select_layout(Table_layout tl, int type) {
+	public Select_layout(Table_layout tl, int locX, int locY, int type) {
+		
+		int padding = 10;
+		int[] selectSize = {tl.getSize().width, 50};
+		
+		//패널 setting
+		setLayout(null);
+		setBounds(locX, locY,selectSize[0], selectSize[1]);
+		setBorder(new LineBorder(Color.black));
 		
 		//간단한 설명 라벨
 		JLabel txtLab = new JLabel("원하시는 항목으로 조회하세요");
@@ -44,11 +52,8 @@ public class Select_layout extends JPanel{
 				selectTxt.setText("");
 			}
 		});
-
-		//bottom layout 설정
-		setLayout(null);
-		setBounds(0, 50, 1000, 30);
 		
+
 		add(txtLab);
 		add(com);
 		add(selectTxt);

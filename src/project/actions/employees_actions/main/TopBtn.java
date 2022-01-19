@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import project.actions.employees_actions.Delete;
 import project.actions.employees_actions.FrameVisible;
@@ -19,29 +20,29 @@ public class TopBtn extends JButton{
 	
 	final private static HashMap<Integer, String> BTN_MAP = new HashMap<>();
 	
-	Table jp;
+	Table jt;
 	JFrame addframe;
 	int type;
 	
 	static {
-		BTN_MAP.put(0, "삭제");
-		BTN_MAP.put(1, "등록");
+		BTN_MAP.put(0, "등록");
+		BTN_MAP.put(1, "삭제");
 	}
 
-	public TopBtn(Table jp, int num, SQLs sql, int[] lw, int lh, int type) {
+	public TopBtn(Table jt, int num, SQLs sql, int[] size, int type) {
 		
-		int wight = 100;
-		int hight = lh/2;
-		int x = lw[1]-(((num+1)*wight)+50);
-		int y = hight/2;
+		int padding = 20;
 		
-		this.jp = jp;
+		int wight = (size[0]/2) - padding;
+		int hight = size[1] - (padding/2);
+		
+		this.jt = jt;
 		this.type = type;
 		
-		addframe = new Adds(jp, sql, type);
+		addframe = new Adds(jt, sql, type);
 		
 		setText(BTN_MAP.get(num));
-		setBounds(x, y, wight, hight);
+		setBounds((wight+10)*num, 0, wight, hight);
 		
 		btnEvent(num);	
 	}
@@ -51,10 +52,10 @@ public class TopBtn extends JButton{
 		
 		switch (num) {
 		case 0:
-			addActionListener(new Delete(jp.getTsd(),type));
+			addActionListener(new FrameVisible(addframe));
 			break;
 		case 1:
-			addActionListener(new FrameVisible(addframe));
+			addActionListener(new Delete(jt.getTsd(),type));
 			break;
 		default:
 			break;
