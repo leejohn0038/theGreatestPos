@@ -1,6 +1,7 @@
 package project.frames.goods_frames;
 
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,8 +14,6 @@ import javax.swing.JPanel;
 import project.components.goods_components.AssetExpTable;
 import project.components.goods_components.AssetShortageTable;
 import project.components.goods_components.BasicLabel;
-import project.components.goods_components.BasicSmallButton;
-import project.components.goods_components.BasicTextField;
 import project.components.goods_components.GoodsColor;
 import project.components.goods_components.PosDBConnector;
 
@@ -29,7 +28,7 @@ public class AssetPanel extends JPanel {
 		BasicLabel assetsLabel = new BasicLabel("자산");
 		assetsLabel.setLocation(0, 10);
 		BasicLabel totalAsset = new BasicLabel("자산");
-		totalAsset.setLocation(425, 10);
+		totalAsset.setLocation(550, 10);
 		getAsset();
 		totalAsset.setText(totalAssets);
 		add(totalAsset);
@@ -45,30 +44,31 @@ public class AssetPanel extends JPanel {
 			e.printStackTrace();
 		}
 		BasicLabel expLabel = new BasicLabel("유통기한임박");
-		expLabel.setLocation(0, 50);
-		aet.setLocation(0, 80);
+		expLabel.setLocation(0, 60);
+		aet.setLocation(0, 100);
 		add(aet);
 		add(expLabel);
 		
-		BasicTextField editExpTf = new BasicTextField("기준일 변경");
-		BasicSmallButton editExpBtn = new BasicSmallButton("O");
-		editExpBtn.setBounds(150, 0, 25, 25);
-		editExpTf.add(editExpBtn);
-		editExpTf.setLayout(null);
-		editExpTf.setLocation(325, 50);
-		add(editExpTf);
+//		BasicTextField editExpTf = new BasicTextField("기준일 변경");
+//		BasicSmallButton editExpBtn = new BasicSmallButton("O");
+//		editExpBtn.setBounds(150, 0, 25, 25);
+//		editExpTf.add(editExpBtn);
+//		editExpTf.setLayout(null);
+//		editExpTf.setLocation(325, 50);
+//		add(editExpTf);
 		
 		// 모델을 다시 불러와
 		
 		BasicLabel shortage = new BasicLabel("재고부족");
-		shortage.setLocation(0, 260);
-		ast.setLocation(0, 300);
+		shortage.setLocation(0, 360);
+		ast.setLocation(0, 400);
 		add(ast);
 		add(shortage);
 		
-		setBackground(new GoodsColor().white());
+		setBackground(Color.WHITE);
 		setLayout(null);
 		setBounds(300, 100, 760, 500);
+//		setBackground(Color.RED);
 		setVisible(true);
 	}
 	

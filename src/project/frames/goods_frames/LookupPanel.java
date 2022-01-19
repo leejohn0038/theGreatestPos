@@ -23,7 +23,7 @@ public class LookupPanel extends JPanel {
 		// 검색창 생성
 		goods = new GoodsTable();
 		searchTf = new BasicTextField("");
-		searchTf.setLocation(475, 0);
+		searchTf.setLocation(520, 570);
 		goods.getRowsorter().addRowSorterListener(null);
 		new SearchTf(goods.getRowsorter(), searchTf);
 		searchTf.addKeyListener(new KeyAdapter() {
@@ -37,7 +37,7 @@ public class LookupPanel extends JPanel {
 		});
 		add(searchTf);
 		searchClear = new BasicSmallButton("X");
-		searchClear.setLocation(150, 0);
+		searchClear.setLocation(175, 0);
 		searchClear.setSize(25, 25);
 		searchClear.addActionListener(new ActionListener() {
 			@Override

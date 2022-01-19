@@ -18,7 +18,7 @@ public class ContentsPanel extends JPanel {
 		add("Management", manage);
 		add("Lookup", lookup);
 		add("Asset", asset);
-		setBounds(300, 20, 660, 620);
+		setBounds(240, 10, 720, 640);
 //		setBackground(Color.ORANGE);
 		setBackground(Color.WHITE);
 		setOpaque(false);

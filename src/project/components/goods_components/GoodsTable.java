@@ -1,6 +1,7 @@
 package project.components.goods_components;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -11,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -24,6 +26,7 @@ public class GoodsTable extends JPanel {
 	DefaultTableModel model;
 	TableRowSorter<TableModel> rowSorter;
 	private JTable table;
+	DefaultTableCellRenderer renderer;
 	
 	public GoodsTable() {
 		model = new DefaultTableModel(COLUMN_NAME, 0);
@@ -31,6 +34,7 @@ public class GoodsTable extends JPanel {
 		JScrollPane sp = new JScrollPane(table); 
 		rowSorter = new TableRowSorter<>(table.getModel());
 		table.setRowSorter(rowSorter);
+		renderer = new DefaultTableCellRenderer();
 		
 		try (
 			Connection conn = PosDBConnector.getConnection();	
@@ -60,8 +64,8 @@ public class GoodsTable extends JPanel {
 		
 		table.setEnabled(false);
 		setLayout(new BorderLayout());
-		setBounds(0, 50, 650, 400);
-		
+		setBounds(0, 0, 720, 550);
+		setBackground(Color.RED);
 		table.setRowHeight(50);
 		
 		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);

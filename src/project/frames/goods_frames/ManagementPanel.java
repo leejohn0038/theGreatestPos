@@ -45,6 +45,8 @@ public class ManagementPanel extends JPanel {
 		
 //		setLayout(new BorderLayout());
 		setLayout(null);
+		setBackground(Color.WHITE);
+		setOpaque(true);
 		
 		// 하단 컨텐츠 영역
 		bottomContents = new JPanel();
@@ -59,7 +61,7 @@ public class ManagementPanel extends JPanel {
 //		importPop.setVisible(true);
 		bottomContents.add(importPopupPanel(importPop));
 		
-		importConfirmBtn.setLocation(140, 240);
+		importConfirmBtn.setLocation(350, 50);
 		importConfirmBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -79,7 +81,7 @@ public class ManagementPanel extends JPanel {
 		importPop.add(importConfirmBtn);
 		importPop.setLayout(null);
 		
-		importCancelBtn.setLocation(220, 240);
+		importCancelBtn.setLocation(350, 100);
 		importCancelBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -89,7 +91,7 @@ public class ManagementPanel extends JPanel {
 		importPop.add(importCancelBtn);
 		
 		importBtn = new BasicSmallButton("입고");
-		importBtn.setBounds(450, 100, 90, 50);
+		importBtn.setBounds(520, 100, 90, 50);
 		importBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -105,9 +107,9 @@ public class ManagementPanel extends JPanel {
 		exportPop = new BasicPopupPanel();
 		exportConfirmBtn = new BasicSmallButton("확인");
 		exportCancelBtn = new BasicSmallButton("취소");
-		add(exportPopupPanel(exportPop));
+		bottomContents.add(exportPopupPanel(exportPop));
 		
-		exportConfirmBtn.setLocation(140, 240);
+		exportConfirmBtn.setLocation(350, 50);
 		exportConfirmBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -125,7 +127,7 @@ public class ManagementPanel extends JPanel {
 		});
 		exportPop.add(exportConfirmBtn);
 		
-		exportCancelBtn.setLocation(220, 240);
+		exportCancelBtn.setLocation(350, 100);
 		exportCancelBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -135,7 +137,7 @@ public class ManagementPanel extends JPanel {
 		exportPop.add(exportCancelBtn);
 		
 		exportBtn = new BasicSmallButton("출고");
-		exportBtn.setBounds(560, 100, 90, 50);
+		exportBtn.setBounds(630, 100, 90, 50);
 		exportBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -148,7 +150,7 @@ public class ManagementPanel extends JPanel {
 		
 		// 검색 기능
 		searchTf = new BasicTextField("");
-		searchTf.setLocation(450, 20);
+		searchTf.setLocation(520, 20);
 		storeTable.getRowsorter().addRowSorterListener(null);
 		new SearchTf(storeTable.getRowsorter(), searchTf);
 		searchTf.addKeyListener(new KeyAdapter() {
@@ -173,14 +175,13 @@ public class ManagementPanel extends JPanel {
 		searchTf.add(searchClear);
 		searchTf.setLayout(null);
 		
-		bottomContents.setSize(660, 170);
+		bottomContents.setSize(720, 170);
 		bottomContents.setLocation(0, 450);
+		bottomContents.setBackground(Color.WHITE);
 		add(bottomContents);
 		bottomContents.setLayout(null);
 		
-		setBackground(Color.WHITE);
-		setOpaque(false);
-		setBounds(300, 20, 660, 620);
+		setBounds(240, 20, 720, 620);
 		setVisible(true);
 	}
 	
@@ -240,6 +241,8 @@ public class ManagementPanel extends JPanel {
 		exportQtyTf.setLocation(20, 120);
 		exportPop.add(exportQtyTf);
 		
+		exportPop.setSize(440, 170);
+		exportPop.setLocation(0, 0);
 		return exportPop;
 	}
 	
