@@ -36,6 +36,7 @@ public class Cus_addData {
 		dates[4] = 0;
 	}
 	
+	
 	public Cus_addData(String phone) {
 		this.phone = phone;
 		name = null;
