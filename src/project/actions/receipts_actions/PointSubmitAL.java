@@ -37,7 +37,11 @@ public class PointSubmitAL implements ActionListener {
 				JOptionPane.showMessageDialog(pointcollect, "포인트 적립이 완료되었습니다.");
 				pointcollect.setVisible(false); 
 			} else {				
-				JOptionPane.showConfirmDialog(pointcollect, "존재하지 않는 회원입니다.\n회원가입 하시겠습니까?","confirm", JOptionPane.YES_NO_OPTION);
+				int result = JOptionPane.showConfirmDialog(
+					pointcollect, "존재하지 않는 회원입니다.\n회원가입 하시겠습니까?","confirm", JOptionPane.YES_NO_OPTION);
+				if (result == JOptionPane.YES_OPTION) {
+					
+				}
 			}
 		} else if(text.equals("")){
 			JOptionPane.showMessageDialog(main.getFrame("영수증"), "전화번호를 입력하세요.");
