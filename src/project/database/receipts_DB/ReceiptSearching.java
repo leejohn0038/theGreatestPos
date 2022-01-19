@@ -18,8 +18,13 @@ public class ReceiptSearching {
 	private static final String PHONE_QUERY = "AND phone BETWEEN ? AND ? ";
 	private static final String PAYMENT_QUERY = "AND payment = ?";
 	
+	private static final String[] SQLS = {
+			"select card_info from receipts where rid = ?",
+			"select cashrcp from receipts where rid = ?"
+	};
 	
-	public static ArrayList<Object[]> getData(String[] sqls, boolean isEmpty) {
+	
+	public static ArrayList<Object[]> getDatas(String[] sqls, boolean isEmpty) {
 		
 		ArrayList<Object[]> results = new ArrayList<>();
 		Object[] result;
@@ -64,5 +69,24 @@ public class ReceiptSearching {
 		}
 		sql = SQL;
 		return results;
+	}
+	
+	public static String getData(int index, int rid) {
+		String value = "";
+		try (
+				Connection conn = DBConnector.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(SQLS[index]);
+			) {	
+					pstmt.setInt(1, rid);
+				
+			try(ResultSet rs = pstmt.executeQuery();) {	
+				while (rs.next()) {
+					value = String.valueOf(rs.getObject(1));
+				}	
+			}			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return value;
 	}
 }
