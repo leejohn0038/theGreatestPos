@@ -20,10 +20,10 @@ public class SelectBtn extends JButton{
 	
 	int type;
 	
-	public SelectBtn(Select_layout sl, Table_layout tl, int type) {
+	public SelectBtn(Select_layout sl, Table_layout tl, int[] size, int[] loc, int type) {
 		//view
 		super("°Ë»ö");
-		setBounds(0,0,100,30);
+		setBounds(loc[0],loc[1],size[0],size[1]);
 		
 		this.type = type;
 		
