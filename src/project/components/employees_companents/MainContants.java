@@ -11,7 +11,7 @@ import javax.swing.border.LineBorder;
 
 import project.MainFrame;
 import project.actions.QuitBtn;
-import project.actions.employees_actions.main.TopBtn;
+import project.actions.employees_actions.main.NavBtn;
 import project.database.employee_customer.SQLs;
 
 public class MainContants extends JPanel{
@@ -41,9 +41,9 @@ public class MainContants extends JPanel{
 		Table_layout tl = new Table_layout(side.getSize().width, quitBtn.getHight(), sql, type);
 		
 		//버튼모음//
-		NavBar btns = new NavBar(layViewData, tl.get_table(), sql, type);
+		NavBar btns = new NavBar(f, layViewData, tl, tl.get_table(), sql, type);
 		
-		//검색기능//
+		//검색기능 + 검색버튼//
 		Select_layout select = new Select_layout(tl, side.getSideWidth(), tl.getLocation().y, type);
 		
 		add(select);

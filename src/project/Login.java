@@ -92,7 +92,6 @@ public class Login extends JFrame{
 					
 					if(user.test()) {
 						user_id = user.getUserId();
-						System.out.println(user.getUserId());
 						f.setVisible(true);
 						dispose();
 					}

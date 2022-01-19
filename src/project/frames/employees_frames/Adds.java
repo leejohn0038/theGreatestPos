@@ -18,6 +18,7 @@ import javax.swing.border.LineBorder;
 
 import org.w3c.dom.Text;
 
+import project.actions.QuitBtn;
 import project.actions.employees_actions.AddBtn;
 import project.actions.employees_actions.main.object.Emp_addData;
 import project.components.employees_companents.Table;
@@ -34,13 +35,15 @@ public class Adds extends JFrame{
 	JTextField txt;
 	int[] txtLoc = new int[2];
 	
-	public Adds(Table jp, SQLs sql, int type) {
-		
+	public Adds(JFrame f, Table jp, SQLs sql, int type, int[] size) {
 		this.jp = jp;
 		
 		add(inner_lay(sql, type));
+		//JButton quit = new QuitBtn(this, f);
 		
-		setBounds(500,500,frame_size[0],frame_size[1]);
+		setUndecorated(true);
+		setBounds(f.getLocation().x+(f.getSize().width-size[0])+1,f.getLocation().y+(f.getSize().height-size[1])+1,
+				(int)(size[0]/1.5),size[1]-5);
 		setVisible(false);
 	}
 	
@@ -114,6 +117,7 @@ public class Adds extends JFrame{
 		
 		return inner;
 	}
+	
 	
 	void emp(JLabel title_lab, JLabel idLab, int i, SQLs sql) {
 

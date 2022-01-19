@@ -15,7 +15,11 @@ public class MainFrame extends JFrame {
 	private static User_Data user;
 	
 	public MainFrame() {
+		
+		setBounds(500, 100, 1000, 700);
+		
 		frames = new Frames(this);
+		
 		add(new Toppanel(this, "판매"));
 		add(new Tables(new String[] {"상품id", "상품이름", "수량", "가격"}, 300, 100, 680, 300));
 		
@@ -32,7 +36,6 @@ public class MainFrame extends JFrame {
 		
 		setLayout(null);
 		//setDefaultCloseOperation(HIDE_ON_CLOSE);
-		setBounds(100, 100, 1000, 700);
 		setVisible(false);
 		setResizable(false); 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
