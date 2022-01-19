@@ -36,7 +36,6 @@ public class MainFrame extends JFrame {
 		add(new SaleSubmitBtn(this, 520, 450, 70, 30));
 		add(new BuySubmitBtn(this, 450, 550, 100, 50));
 		add(combo = new JComboBox<String>(items) {{setBounds(600, 450, 70, 30);}});
-		
 		setLayout(null);
 		setBounds(100, 100, 1000, 700);
 		setVisible(true);

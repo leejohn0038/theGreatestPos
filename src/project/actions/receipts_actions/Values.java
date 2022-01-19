@@ -7,4 +7,5 @@ public class Values {
 	public int price;
 	public String date;
 	public String cardinfo;
+	public String cashrcp;
 }
