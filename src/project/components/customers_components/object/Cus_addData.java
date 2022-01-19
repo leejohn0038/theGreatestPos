@@ -25,12 +25,16 @@ public class Cus_addData {
 	}
 	
 	public Cus_addData(String[] objs) {
-		
 		dates[0] = objs[0];
 		dates[1] = objs[1];
 		dates[2] = objs[2];
-		dates[3] = Date.valueOf(LocalDate.now());
-		dates[4] = 0;
+		if(objs[3] == null) {
+			dates[3] = Date.valueOf(LocalDate.now());
+		}else {
+			dates[3] = Date.valueOf(((String)objs[3]).substring(0,10));
+		}
+		
+		dates[4] = Integer.parseInt((String) objs[4]);
 	}
 	
 	public Cus_addData(String phone) {

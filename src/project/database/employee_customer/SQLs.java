@@ -57,6 +57,7 @@ public class SQLs {
 	public SQLs(String type, JFrame f, Emp_addData addData, int f_type) {
 		this.emp_addData = addData;
 		this.type = type;
+		
 		if(f_type == 1) {
 			dbName = "mart_employees";
 		}else {
@@ -103,7 +104,15 @@ public class SQLs {
 	
 	void tableReset(String SQL, Connection conn) throws SQLException {
 		
-		PreparedStatement pstmt = conn.prepareStatement(SQL);
+		String addStr;
+		
+		if(dbName == "mart_employees") {
+			addStr = "order by 사원번호";
+		}else {
+			addStr = "order by 전화번호";
+		}
+		
+		PreparedStatement pstmt = conn.prepareStatement(SQL + addStr);
 		ResultSet rs = pstmt.executeQuery();
 		ResultSetMetaData meta = rs.getMetaData();
 		
@@ -191,8 +200,10 @@ public class SQLs {
 					objs[col] = "";
 				}	
 			}
-			if(dbName == "mart_employees") {
+			if(dbName.contains("emp")) {
 				emp_addDatas.add(new Emp_addData(objs));
+			}else {
+				cus_addDatas.add(new Cus_addData(objs));
 			}
 		}
 		
@@ -201,13 +212,23 @@ public class SQLs {
 	}
 	
 	void delete(String SQL, Connection conn) throws SQLException{
-		final String ADD_SQL = "사원번호 = ?";
-		PreparedStatement pstmt = conn.prepareStatement(SQL + ADD_SQL);
+		
+		PreparedStatement pstmt;
+		
+		if(dbName.contains("emp")) {
+			final String EMP_ADD_SQL = "사원번호 = ?";
+			pstmt = conn.prepareStatement(SQL + EMP_ADD_SQL);
+			int id = emp_addData.getID();
+			pstmt.setInt(1, id);
+		}else {
+			final String CUS_ADD_SQL = "전화번호 = ?";	
+			pstmt = conn.prepareStatement(SQL + CUS_ADD_SQL);
+			System.out.println(cus_addData.getID());
+			String phone = cus_addData.getID();
+			pstmt.setString(1, phone);
+		}
+		
 		ResultSet rs;
-		
-		int id = emp_addData.getID();
-		
-		pstmt.setInt(1, id);
 		
 		rs = pstmt.executeQuery();
 		
@@ -216,23 +237,37 @@ public class SQLs {
 	}
 	
 	void updata(String SQL, Connection conn) throws SQLException {
-		final String ADD_SQL = "이름 = ?, 입사일 = ?, "
-				+ "전화번호 = ?, 직책 = ? WHERE 사원번호 = ?";
-		PreparedStatement pstmt = conn.prepareStatement(SQL + ADD_SQL);
+		
+		final String EMP_ADD_SQL = "이름 = ?, 입사일 = ?, "
+				+ "전화번호 = ?, 직책 = ? WHERE 사원번호 = ? ";
+		
+		final String CUS_ADD_SQL = "전화번호 = ?, 이름 = ?, "
+				+ "주소 = ?, 등록일 = ?, 포인트 = ? WHERE 전화번호 = ?";
+		
+		PreparedStatement pstmt;
 		ResultSet rs;
 		
 		Object[] datas;
 		if(dbName.contains("emp")) {
+			pstmt = conn.prepareStatement(SQL + EMP_ADD_SQL);
 			datas = emp_addData.getDates(); 
+			
+			pstmt.setString(1, (String) datas[1]);
+			pstmt.setDate(2, (Date)datas[2]);
+			pstmt.setString(3,(String) datas[3]);
+			pstmt.setString(4,(String) datas[4]);
+			pstmt.setInt(5,(int)datas[0]);
 		}else {
+			pstmt = conn.prepareStatement(SQL + CUS_ADD_SQL);
 			datas = cus_addData.getDates();
+			
+			pstmt.setString(1, (String)datas[0]);
+			pstmt.setString(2, (String) datas[1]);
+			pstmt.setString(3,(String) datas[2]);
+			pstmt.setDate(4, (Date)datas[3]);
+			pstmt.setInt(5,(int) datas[4]);
+			pstmt.setString(6, (String)datas[0]);
 		}
-		
-		pstmt.setString(1, (String) datas[1]);
-		pstmt.setDate(2, (Date)datas[2]);
-		pstmt.setString(3,(String) datas[3]);
-		pstmt.setString(4,(String) datas[4]);
-		pstmt.setInt(5,(int)datas[0]);
 		
 		rs = pstmt.executeQuery();
 		
@@ -275,8 +310,10 @@ public class SQLs {
 	}
 	
 	public Object[][] getRowData(){
+		
 		int maxRow;
 		int maxCol;
+		
 		if(dbName.contains("emp")) {
 			maxRow = emp_addDatas.size();
 			maxCol = emp_addDatas.get(0).getDatesSize();

@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 import project.actions.employees_actions.main.object.Emp_addData;
+import project.components.customers_components.object.Cus_addData;
 import project.components.employees_companents.Table;
 import project.database.employee_customer.SQLs;
 
@@ -20,11 +21,13 @@ public class Function_emp {
 		}
 	}
 	
-	public void updateView(Table jp, int maxRow, int maxCol) {
+	public void updateView(Table jp, int row, Cus_addData data) {
 		
-		SQLs reset_sql = new SQLs("¸®¼Â",1);
-		Object[][] obj = reset_sql.getRowData();
+		Object[] obj = data.getDates();
 		
+		for(int i = 0; i<jp.dtm.getColumnCount(); i++) {
+			jp.dtm.setValueAt(obj[i], row, i);
+		}
 	}
 	
 	public String[] getTitle(int type) {
@@ -37,7 +40,7 @@ public class Function_emp {
 		switch (title) {
 		case "ÀÌ¸§":
 			return true;
-		case "ÀÔ»çÀÏ":
+		case "ÀÔ»çÀÏ", "µî·ÏÀÏ":
 			if(Pattern.matches("\\d{2,}.*\\d{2}.*\\d{2}", obj)){ return true; }
 			break;
 		case "ÀüÈ­¹øÈ£":
@@ -47,6 +50,8 @@ public class Function_emp {
 			if(Pattern.matches("^[¤¡-¤¾°¡-ÆR]*$", obj)){ return true; }
 			break;
 		case "ÁÖ¼Ò":
+			return true;
+		case "Æ÷ÀÎÆ®":
 			return true;
 		}
 		
