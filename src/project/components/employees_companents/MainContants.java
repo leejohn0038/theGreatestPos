@@ -27,15 +27,15 @@ public class MainContants extends JPanel{
 		setBorder(new LineBorder(Color.black));
 		System.out.println(f.getInsets().top);
 		
-		int[] layoutBounds = {0, 0, 0, 0};
+		int[] layoutBounds = {0, 0, 1000, 700};
 		int height;
 		
 		JPanel inner_layout = new JPanel();
 		JPanel select;
 		JPanel side;
 		
-		//Top_layout top_layout = new Top_layout(f, tl.get_table(), sql, type);
-		//add(top_layout);
+		NavBar top_layout = new NavBar(f, tl.get_table(), sql, type);
+		add(top_layout);
 		
 		select = new Select_layout(tl, type);
 		height = select.getSize().height;
@@ -47,7 +47,7 @@ public class MainContants extends JPanel{
 		
 		//select 관련 레이아웃이 한자리 먹고 있음 그거 높이 빼주는 계산 해줘야함!
 		inner_layout.setLayout(null);
-		inner_layout.setBounds(0, 0, layoutBounds[2], layoutBounds[3]-height);
+		inner_layout.setBounds(0, 50, layoutBounds[2], layoutBounds[3]-height);
 		
 		setBorder(new LineBorder(Color.black));
 		
@@ -83,9 +83,16 @@ public class MainContants extends JPanel{
 		return tl;
 	}
 	
+	/*
 	int[][] viewCalculate(JFrame f){
-		//0_row : 
+		//0_row : title bar
+		//1_row : frame 계산값
 		int[][] total = new int[2][4];
 		
-	}
+		total[0][0] = f.getInsets().top;
+		total[0][1] = f.getInsets().right;
+		total[0][2] = f.getInsets().bottom;
+		total[0][3] = f.getInsets().left;
+		
+	}*/
 }

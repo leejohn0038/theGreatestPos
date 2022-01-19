@@ -33,7 +33,7 @@ public class NavBar extends JPanel{
 		System.out.println(height);
 		
 		setLayout(null);
-		setBounds(0, f.getSize().height-200, fw, 100);	//상단 레이아웃은 20%만 먹게
+		setBounds(0, 0, fw, 100);	//상단 레이아웃은 20%만 먹게
 		setVisible(true);
 		
 		//add(left(width[0], height));

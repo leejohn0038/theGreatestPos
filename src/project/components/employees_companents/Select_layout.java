@@ -47,7 +47,7 @@ public class Select_layout extends JPanel{
 
 		//bottom layout ¼³Á¤
 		setLayout(null);
-		setBounds(0, 0, 1000, 30);
+		setBounds(0, 50, 1000, 30);
 		
 		add(txtLab);
 		add(com);
