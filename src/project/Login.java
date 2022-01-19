@@ -17,6 +17,7 @@ public class Login extends JFrame{
 	ArrayList<JTextField> txts;
 	
 	User_Data user;
+	int user_id;
 	
 	JFrame f;
 	
@@ -90,6 +91,8 @@ public class Login extends JFrame{
 					user.setUser(txts.get(0).getText(), txts.get(1).getText(), txts.get(2).getText());
 					
 					if(user.test()) {
+						user_id = user.getUserId();
+						System.out.println(user.getUserId());
 						f.setVisible(true);
 						dispose();
 					}
@@ -102,6 +105,10 @@ public class Login extends JFrame{
 	
 	User_Data getUserData() {
 		return user;
+	}
+	
+	int getUserID() {
+		return user_id;
 	}
 
 }
