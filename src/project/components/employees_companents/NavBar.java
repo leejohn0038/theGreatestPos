@@ -12,13 +12,13 @@ import project.actions.employees_actions.main.TopBtn;
 import project.database.employee_customer.SQLs;
 
 //프레임의 상단 레이아웃 (logo / 조회 / 등록 / 편집 버튼)
-public class Top_layout extends JPanel{
+public class NavBar extends JPanel{
 	
 	Table jp;
 	SQLs sql;
 	JFrame f;
 	
-	public Top_layout(JFrame f, Table jp, SQLs sql, int type) {
+	public NavBar(JFrame f, Table jp, SQLs sql, int type) {
 		
 		this.jp = jp;
 		this.sql = sql;

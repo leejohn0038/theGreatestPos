@@ -1,6 +1,7 @@
 package project.components.employees_companents;
 
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,21 +11,23 @@ import project.MainFrame;
 import project.actions.employees_actions.main.TopBtn;
 import project.database.employee_customer.SQLs;
 
-public class Bottom_layout extends JPanel{
+public class MainContants extends JPanel{
 	
 	Table_layout tl;
 	JFrame f;
 	SQLs sql;
 	
-	public Bottom_layout(MainFrame main, JFrame f, SQLs sql, int type) {
+	public MainContants(MainFrame main, JFrame f, SQLs sql, int type) {
 		
 		this.sql = sql;
 		this.f = f;
 		
-		int fw = 1000, fh = 700;
-		
 		//레이아웃 초기설정
-		int[] layoutBounds = {0, 0, fw, fh};
+		setPreferredSize(new Dimension(1000-8,700-36));
+		setBorder(new LineBorder(Color.black));
+		System.out.println(f.getInsets().top);
+		
+		int[] layoutBounds = {0, 0, 0, 0};
 		int height;
 		
 		JPanel inner_layout = new JPanel();
@@ -45,6 +48,8 @@ public class Bottom_layout extends JPanel{
 		//select 관련 레이아웃이 한자리 먹고 있음 그거 높이 빼주는 계산 해줘야함!
 		inner_layout.setLayout(null);
 		inner_layout.setBounds(0, 0, layoutBounds[2], layoutBounds[3]-height);
+		
+		setBorder(new LineBorder(Color.black));
 		
 		add(select);
 		add(inner_layout);
@@ -76,5 +81,11 @@ public class Bottom_layout extends JPanel{
 	
 	public Table_layout getTl() {
 		return tl;
+	}
+	
+	int[][] viewCalculate(JFrame f){
+		//0_row : 
+		int[][] total = new int[2][4];
+		
 	}
 }
