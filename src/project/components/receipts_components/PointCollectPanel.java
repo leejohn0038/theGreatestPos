@@ -36,4 +36,9 @@ public class PointCollectPanel extends JPanel {
 	public JLabel getLabel2() {
 		return pLabel2;
 	}
+	
+	public void setLabelText(int price) {
+		pLabel1.setText(String.valueOf(price));
+		pLabel2.setText(String.valueOf((int)(price * 0.01)));
+	}
 }

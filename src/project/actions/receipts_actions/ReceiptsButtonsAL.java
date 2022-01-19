@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 import project.MainFrame;
+import project.components.receipts_components.PointCollectPanel;
 import project.database.receipts_DB.ReceiptSearching;
 import project.database.receipts_DB.Refund;
 import project.frames.receipts_frames.PointCollect;
@@ -39,9 +40,8 @@ public class ReceiptsButtonsAL implements ActionListener {
 	}
 	
 	public void pointAL(JTable jT, int index) {
-		PointCollect collect = (PointCollect)main.getFrame("포인트 적립");		
-		JLabel pLabel1 = collect.getLabel1();
-		JLabel pLabel2 = collect.getLabel2();
+		PointCollect collect = (PointCollect)main.getFrame("포인트 적립");	
+		PointCollectPanel pPanel = collect.getPanel();
 		
 		if (index > -1) {
 			int rid = Integer.parseInt(String.valueOf(jT.getValueAt(index, 0)));
@@ -49,8 +49,7 @@ public class ReceiptsButtonsAL implements ActionListener {
 			String phone = String.valueOf(jT.getValueAt(index, 1));
 			if (phone.equals("null")) {		
 				collect.setRid(rid);
-				pLabel1.setText(String.format("%d", cash));
-				pLabel2.setText(String.format("%.0f", cash * 0.01));
+				pPanel.setLabelText(cash);
 				main.getFrame(btn).setVisible(true);
 			} else {
 				JOptionPane.showMessageDialog(main.getFrame("영수증"), "이미 적립된 영수증 입니다.");
