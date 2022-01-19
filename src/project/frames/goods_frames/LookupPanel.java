@@ -1,11 +1,13 @@
 package project.frames.goods_frames;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import project.actions.SearchTf;
@@ -17,6 +19,7 @@ public class LookupPanel extends JPanel {
 	private GoodsTable goods;
 	private BasicSmallButton searchClear;
 	private BasicTextField searchTf;
+	private JPanel addCategory;
 	
 	public LookupPanel() {
 		
@@ -48,6 +51,13 @@ public class LookupPanel extends JPanel {
 		searchTf.add(searchClear);
 		searchTf.setLayout(null);
 		
+		addCategory = new JPanel();
+		addCategory.setSize(720, 130);
+		addCategory.setLocation(0, 510);
+		addCategory.setBackground(Color.WHITE);
+		addCategoryPanel(addCategory);
+		add(addCategory);
+		
 		setBackground(Color.WHITE);
 		add(goods);
 		setLayout(null);
@@ -58,7 +68,58 @@ public class LookupPanel extends JPanel {
 	public GoodsTable getLookupTable() {
 		return goods;
 	}
+	
+	void addCategoryPanel(JPanel panel) {
+		panel.setLayout(null);
+		panel.add(new JLabel("상품추가") {
+			{
+				setBounds(0, 0, 100, 50);
+				setFont(new Font("돋움", Font.BOLD, 20));
+			}
+		});
+		
+		BasicTextField goodsNameTf = new BasicTextField();
+		goodsNameTf.setLocation(0, 40);
+		panel.add(goodsNameTf);
+		
+		BasicTextField goodsPriceTf = new BasicTextField();
+		goodsPriceTf.setLocation(0, 70);
+		panel.add(goodsPriceTf);
+		
+		BasicTextField goodsCategoryTf = new BasicTextField();
+		goodsCategoryTf.setLocation(0, 100);
+		panel.add(goodsCategoryTf);
+		
+		BasicTextField goodsSupplierTf = new BasicTextField();
+		goodsSupplierTf.setLocation(200, 40);
+		panel.add(goodsSupplierTf);
+		
+		BasicTextField goodsPicNameTf = new BasicTextField();
+		goodsPicNameTf.setLocation(200, 70);
+		panel.add(goodsPicNameTf);
+		
+		BasicTextField goodsPicTelTf = new BasicTextField();
+		goodsPicTelTf.setLocation(200, 100);
+		panel.add(goodsPicTelTf);
+		
+		
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
