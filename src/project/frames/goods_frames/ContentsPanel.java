@@ -6,8 +6,6 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-import project.components.goods_components.GoodsColor;
-
 public class ContentsPanel extends JPanel {
 	private ManagementPanel manage = new ManagementPanel();
 	private LookupPanel lookup = new LookupPanel();
@@ -19,8 +17,8 @@ public class ContentsPanel extends JPanel {
 		add("Lookup", lookup);
 		add("Asset", asset);
 		setBounds(240, 10, 720, 640);
-//		setBackground(Color.ORANGE);
-		setBackground(Color.WHITE);
+		setBackground(Color.ORANGE);
+//		setBackground(Color.WHITE);
 		setOpaque(false);
 		setVisible(true);
 	}

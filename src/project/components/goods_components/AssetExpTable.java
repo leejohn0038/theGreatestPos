@@ -46,10 +46,12 @@ public class AssetExpTable extends JPanel {
 		}
 		
 		setLayout(new BorderLayout());
+		table.getTableHeader().setBackground(Color.BLACK);
+		table.getTableHeader().setForeground(Color.WHITE);	
 		
 		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		setSize(650, 230);
+		setSize(720, 230);
 		sp.getViewport().setBackground(Color.WHITE);
 		add(sp);
 	}

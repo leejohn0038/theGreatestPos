@@ -14,7 +14,6 @@ import javax.swing.JPanel;
 import project.components.goods_components.AssetExpTable;
 import project.components.goods_components.AssetShortageTable;
 import project.components.goods_components.BasicLabel;
-import project.components.goods_components.GoodsColor;
 import project.components.goods_components.PosDBConnector;
 
 public class AssetPanel extends JPanel {
@@ -28,7 +27,7 @@ public class AssetPanel extends JPanel {
 		BasicLabel assetsLabel = new BasicLabel("자산");
 		assetsLabel.setLocation(0, 10);
 		BasicLabel totalAsset = new BasicLabel("자산");
-		totalAsset.setLocation(550, 10);
+		totalAsset.setLocation(250, 10);
 		getAsset();
 		totalAsset.setText(totalAssets);
 		add(totalAsset);
@@ -68,7 +67,6 @@ public class AssetPanel extends JPanel {
 		setBackground(Color.WHITE);
 		setLayout(null);
 		setBounds(300, 100, 760, 500);
-//		setBackground(Color.RED);
 		setVisible(true);
 	}
 	

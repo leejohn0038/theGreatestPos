@@ -11,18 +11,22 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 import project.MainFrame;
-import project.components.goods_components.GoodsColor;
+import project.components.goods_components.BasicSmallButton;
+import project.components.goods_components.HomeBtn;
 import project.components.goods_components.PosDBConnector;
 
 
 
 public class GoodsFrame extends JFrame {
 	private ContentsPanel contents = new ContentsPanel();
-	private ManagementPanel mp = contents.getManagementPanel();; 
+	private ManagementPanel mp = contents.getManagementPanel();
 	
 	public GoodsFrame(MainFrame main) {
+		
 		add(contents);
 		add(new GnbPanel(contents));
+		
+		contents.getManagementPanel().add(new HomeBtn(this));
 		
 		contents.getManagementPanel().getExportConfirm().addActionListener(new ActionListener() {
 			@Override
@@ -56,14 +60,16 @@ public class GoodsFrame extends JFrame {
 		
 		setLayout(null);
 		setBounds(100, 100, 1000, 700);
+		
 		// 프레임 백그라운드용 패널
 		add(new JPanel() {
 			{
 				setBounds(0, 0, 1000, 700);
-//				setBackground(Color.CYAN);
 				setBackground(Color.WHITE);
+//				setBackground(Color.CYAN);
 			}
 		});
+		setUndecorated(true);
 		setVisible(false);
 		setResizable(false);
 	}
