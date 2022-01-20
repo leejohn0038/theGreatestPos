@@ -12,11 +12,12 @@ import project.components.receipts_components.Toppanel;
 public class PointCollect extends JFrame {
 	PointCollectPanel pPanel;
 	int rid;
+	PointSubmitBtn pBtn;
 	
 	public PointCollect(MainFrame main) {
 		add(new Toppanel("포인트 적립"));
 		add(pPanel = new PointCollectPanel());
-		add(new PointSubmitBtn(main, 450, 500, 100, 50));
+		add(pBtn = new PointSubmitBtn(main, 450, 500, 100, 50));
 		
 		setLayout(null);
 		setDefaultCloseOperation(HIDE_ON_CLOSE);
@@ -44,7 +45,7 @@ public class PointCollect extends JFrame {
 	public void setRid(int rid) {
 		this.rid = rid;
 	} 
-	
+
 	public int getRid() {
 		return rid;
 	}

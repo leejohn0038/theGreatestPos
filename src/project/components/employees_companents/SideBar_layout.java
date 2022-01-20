@@ -12,25 +12,32 @@ import project.components.receipts_components.MainButtons;
 
 
 public class SideBar_layout extends JPanel{
+
+	int width;
 	
-	public SideBar_layout(MainFrame main, int lw, int lh, String name) {
+	public SideBar_layout(MainFrame main, int[] viewData, String name) {
 
 		String[] btnNames = {"상품", "영수증", "직원", "회원", "업무가이드"};
 		int cnt = 0;
 		
+		setBounds(0, 0, (int)(viewData[2] * 0.3), viewData[3]);
 		setLayout(null);
-		setBounds(0, 30, (int)(lw*0.2), lh);
 		setBorder(new LineBorder(Color.black));
 		
+		width = this.getBounds().width;
+	
 		for (int i = 0; i < btnNames.length; ++i) {
 			if(btnNames[i] != name) {
-				cnt++;
 				JButton btn = new MainButtons(main, btnNames[i]);
-				btn.setBounds((int)((getBounds().width-100)/2), ((cnt+1)*80), 100,50);
+				btn.setSize(100,50);
+				btn.setLocation((this.getSize().width-btn.getSize().width)/2, (cnt*100)+50);
 				add(btn);
+				cnt++;
 			}
 		}
-		
-		
+	}
+	
+	int getSideWidth() {
+		return width;
 	}
 }

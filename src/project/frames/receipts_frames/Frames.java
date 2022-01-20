@@ -24,6 +24,8 @@ public class Frames {
 		FRAMES.put("현금 영수증", new CashReceipt());
 		FRAMES.put("반품업무", new Refunding(main));
 		FRAMES.put("영수증 조회하기", new ReceiptSearch(main));
+		FRAMES.put("카드정보입력", new CardInfo(main));
+		FRAMES.put("고객등록", new AddCustomer(main));
 	}
 	
 	public JFrame getFrame(String btn) {
