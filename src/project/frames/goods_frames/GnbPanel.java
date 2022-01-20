@@ -11,10 +11,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import project.components.goods_components.BasicBigButton;
+import project.components.goods_components.ButtonImage;
 
 
 public class GnbPanel extends JPanel {
-	BasicBigButton manageBtn, lookupBtn, assetBtn;
+	private BasicBigButton manageBtn, lookupBtn, assetBtn;
+	private ButtonImage img = new ButtonImage();
 	
 	public GnbPanel(ContentsPanel contents) {
 		add(new JLabel("Team 2nd") {
@@ -24,8 +26,7 @@ public class GnbPanel extends JPanel {
 			}
 		});
 		
-		ImageIcon goods_img = new ImageIcon("./image/manage_goods.png");
-		manageBtn = new BasicBigButton(goods_img);
+		manageBtn = new BasicBigButton(img.gnbManage());
 		manageBtn.setBounds(30, 100, 150, 50);
 		manageBtn.addActionListener(new ActionListener() {
 			@Override
@@ -36,8 +37,7 @@ public class GnbPanel extends JPanel {
 		});
 		add(manageBtn);
 		
-		ImageIcon lookup_img = new ImageIcon("./image/manage_lookup.png");
-		lookupBtn = new BasicBigButton(lookup_img);
+		lookupBtn = new BasicBigButton(img.gnbLookup());
 		lookupBtn.setBounds(30, 200, 150, 50);
 		lookupBtn.addActionListener(new ActionListener() {
 			@Override
@@ -47,8 +47,7 @@ public class GnbPanel extends JPanel {
 			}
 		});
 		add(lookupBtn);
-		ImageIcon asset_img = new ImageIcon("./image/manage_asset.png");
-		assetBtn = new BasicBigButton(asset_img);
+		assetBtn = new BasicBigButton(img.gnbAsset());
 		assetBtn.setBounds(30, 300, 150, 50);
 		assetBtn.addActionListener(new ActionListener() {
 			@Override

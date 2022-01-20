@@ -1,12 +1,8 @@
 package project.frames.employees_frames;
 
-import java.awt.Font;
-
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 import project.MainFrame;
-import project.actions.QuitBtn;
 import project.components.employees_companents.MainContants;
 
 import project.database.employee_customer.SQLs;

@@ -18,7 +18,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 public class GoodsTable extends JPanel {
-	private static final String[] COLUMN_NAME = {"상품번호", "이름", "수량", "가격", "분류", "유통기한", "거래처", "담당자"};
+	private static final String[] COLUMN_NAME = {"상품번호", "이름", "수량", "가격", "분류", "유통기한", "거래처", "담당자", "전화번호"};
 	String gname, supplier, gcategory, pic_name, pic_tel;
 	int gid, gqty, gprice;
 	Date expiration;
@@ -38,7 +38,7 @@ public class GoodsTable extends JPanel {
 		
 		try (
 			Connection conn = PosDBConnector.getConnection();	
-			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM goods");
+			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM goods ORDER BY gid");
 		) {
 			try (
 				ResultSet rs = pstmt.executeQuery();		
@@ -54,7 +54,7 @@ public class GoodsTable extends JPanel {
 					pic_name = rs.getString("pic_name");
 					pic_tel = rs.getString("pic_tel");
 					
-					Object[] temp = {gid, gname, gqty, gprice, gcategory, expiration, supplier, pic_name};
+					Object[] temp = {gid, gname, gqty, gprice, gcategory, expiration, supplier, pic_name, pic_tel};
 					model.addRow(temp);
 				}
 			}
