@@ -16,7 +16,7 @@ public class Buying {
 				Connection conn = DBConnector.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 			) {
-				pstmt.setInt(1, values.id);
+				pstmt.setInt(1, values.rid);
 				pstmt.setInt(2, values.price);
 				pstmt.setString(3, values.payment);
 				pstmt.setString(4, values.date);
@@ -29,7 +29,7 @@ public class Buying {
 	}
 	
 	public static void updateSaleDatas(HashMap<Integer, String[]> sales, Values values) {
-		String[] sqls = {"insert into sales values (?, ?, ? , 117, ?, ?)",
+		String[] sqls = {"insert into sales values (?, ?, ? , ?, ?, ?)",
 						 "update goods set gqty = gqty - ? where gname = ?"};
 		
 		try (
@@ -40,10 +40,11 @@ public class Buying {
 				for (int i = 0; i < sales.size(); ++i) {					
 					int sid = getMaxId(1) > 0 ? getMaxId(1) + 1 : 1;
 					pstmt1.setInt(1, sid);
-					pstmt1.setInt(2, values.id);
+					pstmt1.setInt(2, values.rid);
 					pstmt1.setInt(3, getGid(sales.get(i)[0]));
-					pstmt1.setInt(4, Integer.parseInt(sales.get(i)[1]));
-					pstmt1.setInt(5, Integer.parseInt(sales.get(i)[2]));
+					pstmt1.setInt(4, values.eid);
+					pstmt1.setInt(5, Integer.parseInt(sales.get(i)[1]));
+					pstmt1.setInt(6, Integer.parseInt(sales.get(i)[2]));
 					pstmt2.setInt(1 , Integer.parseInt(sales.get(i)[1]));
 					pstmt2.setString(2, sales.get(i)[0]);
 					pstmt1.executeUpdate();				

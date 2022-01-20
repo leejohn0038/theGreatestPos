@@ -43,8 +43,9 @@ public class BuySubmitAL implements ActionListener{
 			if (isEnough) {
 				values.date = LocalDate.now().toString();
 				values.payment = main.getCombo();
-				values.id = Buying.getMaxId(0) > 0 ? Buying.getMaxId(0) + 1 : 1;
+				values.rid = Buying.getMaxId(0) > 0 ? Buying.getMaxId(0) + 1 : 1;
 				values.price = main.getTotalPrice();
+				values.eid = main.loginID();
 				values.cardinfo = null;
 				values.cashrcp = null;
 				if(values.payment.equals("카드")) {
@@ -61,7 +62,8 @@ public class BuySubmitAL implements ActionListener{
 				}
 				Buying.insertReceiptDatas(values);
 				Buying.updateSaleDatas(sales, values);
-				Buying.updateGqty(sales);
+				// oracle에서 오류도 없고 응답이 없음
+//				Buying.updateGqty(sales);
 				
 			} 
 		} else {
@@ -75,7 +77,7 @@ public class BuySubmitAL implements ActionListener{
 		if (point == JOptionPane.YES_OPTION) {
 			collect.getPanel().setLabelText(values.price);
 			collect.setVisible(true);
-			collect.setRid(values.id);
+			collect.setRid(values.rid);
 		}
 	}
 }

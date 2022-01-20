@@ -6,6 +6,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import project.actions.obj.User_Data;
+import project.components.receipts_components.BuySubmitBtn;
 import project.components.receipts_components.MainButtons;
 import project.components.receipts_components.SaleSubmitBtn;
 import project.components.receipts_components.Tables;
@@ -77,8 +78,7 @@ public class MainFrame extends JFrame {
 	}
 	
 	public static void main(String[] args) {
-		MainFrame main;
-		user = new Login(main = new MainFrame()).getUserData();
+		user = new Login(new MainFrame()).getUserData();
 	}
 	
 }
