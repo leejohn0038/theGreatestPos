@@ -26,6 +26,6 @@ public class ReceiptButtons extends JButton{
 		setText(btn);
 		setFont(Font.getFont("µ¸¿ò"));
 		setSize(100, 50);
-		setLocation(BUTTON_MAP.get(btn).x - minusX, BUTTON_MAP.get(btn).y);
+		setLocation(BUTTON_MAP.get(btn).x + minusX, BUTTON_MAP.get(btn).y);
 	}
 }

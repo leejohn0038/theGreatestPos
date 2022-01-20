@@ -1,15 +1,17 @@
 package project.frames.receipts_frames;
 
+import java.awt.Font;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 
 import project.MainFrame;
 import project.components.receipts_components.FrameButton;
+import project.components.receipts_components.Label;
 import project.components.receipts_components.RefundingPanel;
 import project.components.receipts_components.RefundingSubmitBtn;
 import project.components.receipts_components.Tables;
-import project.components.receipts_components.Toppanel;
 
 public class Refunding extends JFrame {
 	private Tables table;
@@ -21,16 +23,16 @@ public class Refunding extends JFrame {
 	private boolean cardrefund;
 	
 	public Refunding(MainFrame main) {
-		add(new Toppanel("반품업무"));
-		add(table = new Tables(main,
+		add(new Label("반품", 50, 0, 150, 50) {{setFont(new Font("기본", Font.BOLD, 30));}});
+		add(table = new Tables(
 				new String[] {"판매ID","영수증ID", "상품", "가격", "수량", "결제수단"}, 
-				100, 100, 680, 200));
-		add(refundPanel = new RefundingPanel(main));
-		add(cardinfoBtn = new FrameButton(main, "카드정보입력", 650, 400, 130, 50));
-		add(new RefundingSubmitBtn(main, 450, 550, 100, 50));
+				5, 100, 680, 200));
+//		add(refundPanel = new RefundingPanel(main));
+		add(cardinfoBtn = new FrameButton(main, "카드정보입력", 500, 350, 130, 50));
+		add(new RefundingSubmitBtn(main, 300, 350, 100, 50));
 		setLayout(null);
 		setDefaultCloseOperation(HIDE_ON_CLOSE);
-		setBounds(100, 100, 1000, 700);
+		setBounds(100, 100, 700, 500);
 		setVisible(false);
 		setResizable(false);
 	}

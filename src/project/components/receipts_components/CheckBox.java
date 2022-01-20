@@ -4,8 +4,9 @@ import javax.swing.JCheckBox;
 
 public class CheckBox extends JCheckBox {
 	
-	public CheckBox(String name, int xPos) {
-		super(name);
-		setBounds(xPos, 150, 100, 50);
+	public CheckBox(String name, boolean isCheck, int xPos, int yPos) {
+		super(name, isCheck);
+		addItemListener(itemListener);
+		setBounds(xPos, yPos, 100, 50);
 	}
 }

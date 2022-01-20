@@ -7,6 +7,7 @@ import javax.swing.JTextField;
 
 import project.actions.obj.User_Data;
 import project.components.receipts_components.BuySubmitBtn;
+import project.components.receipts_components.DeleteBtn;
 import project.components.receipts_components.MainButtons;
 import project.components.receipts_components.SaleSubmitBtn;
 import project.components.receipts_components.Tables;
@@ -22,10 +23,13 @@ public class MainFrame extends JFrame {
 	private Tables table;
 	private int totalPrice;
 	private JComboBox<String> combo;
+	private boolean print;
+	private int rid;
+	
 	public MainFrame() {
 		frames = new Frames(this);
-		add(new Toppanel(this, "판매"));
-		add(table = new Tables(this, new String[] {"상품id", "상품이름", "수량", "가격"}, 300, 100, 680, 300));
+		add(new Toppanel("판매"));
+		add(table = new Tables(new String[] {"상품id", "상품이름", "수량", "가격"}, 300, 100, 680, 300));
 		
 		String[] btnNames1 = {"상품", "영수증", "직원", "회원", "업무가이드"};
 		String[] items = {"현금", "카드"};
@@ -33,10 +37,11 @@ public class MainFrame extends JFrame {
 		for (int i = 0; i < btnNames1.length; ++i) {
 			add(new MainButtons(this, btnNames1[i]));
 		}
-		add(field = new TextField(300, 450, 200, 30));
-		add(new SaleSubmitBtn(this, 520, 450, 70, 30));
+		add(field = new TextField(610, 450, 200, 30));
+		add(new SaleSubmitBtn(this, 830, 450, 70, 30));
+		add(combo = new JComboBox<String>(items) {{setBounds(910, 450, 70, 30);}});
 		add(new BuySubmitBtn(this, 450, 550, 100, 50));
-		add(combo = new JComboBox<String>(items) {{setBounds(600, 450, 70, 30);}});
+		add(new DeleteBtn(this));
 		setLayout(null);
 		setBounds(100, 100, 1000, 700);
 		setVisible(false);
@@ -75,6 +80,22 @@ public class MainFrame extends JFrame {
 	
 	public int loginID() {
 		return user.getUserId();  
+	}
+	
+	public void setPrint(boolean print) {
+		this.print = print;
+	}
+	
+	public boolean getPrint() {
+		return print;
+	}
+	
+	public void setRid(int rid) {
+		this.rid = rid;
+	}
+	 
+	public int getRid() {
+		return rid;
 	}
 	
 	public static void main(String[] args) {

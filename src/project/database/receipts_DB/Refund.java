@@ -19,7 +19,8 @@ public class Refund {
    		    "delete from receipts where rid = ?",
    		    "select sid, sal.rid, sal.price, gname, qty, payment from sales sal "
 			+ "inner join goods using(gid) inner join receipts r on sal.rid = r.rid "
-			+ "where r.rid = ?"
+			+ "where r.rid = ?",
+			"select gname, qty, price from sales inner join goods using (gid) where rid = ?"
 			};
 	
 	public static ArrayList<Object[]> getData(int rid) {
@@ -41,6 +42,31 @@ public class Refund {
 					result[3] = rs.getObject("price");
 					result[4] = rs.getObject("qty");
 					result[5] = rs.getObject("payment");
+					results.add(result);
+				}	
+			}			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return results;
+	}
+	
+public static ArrayList<Object[]> getSalesData(int rid) {
+		
+		ArrayList<Object[]> results = new ArrayList<>();
+		Object[] result;
+		try (
+			Connection conn = DBConnector.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(SQLS[6]);
+		) {
+				pstmt.setInt(1, rid);
+			
+			try(ResultSet rs = pstmt.executeQuery();) {	
+				while (rs.next()) {
+					result = new Object[3];
+					result[0] = rs.getObject("gname");
+					result[1] = rs.getObject("qty");
+					result[2] = rs.getObject("price");
 					results.add(result);
 				}	
 			}			

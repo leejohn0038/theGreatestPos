@@ -21,7 +21,7 @@ public class Frames {
 		FRAMES.put("직원", new Employees(main));
 		FRAMES.put("회원", new Customers(main));
 		FRAMES.put("포인트 적립", new PointCollect(main));
-		FRAMES.put("현금 영수증", new CashReceipt());
+		FRAMES.put("현금 영수증", new CashReceipt(main));
 		FRAMES.put("반품업무", new Refunding(main));
 		FRAMES.put("영수증 조회하기", new ReceiptSearch(main));
 		FRAMES.put("카드정보입력", new CardInfo(main));

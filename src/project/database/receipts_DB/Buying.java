@@ -48,28 +48,8 @@ public class Buying {
 					pstmt2.setInt(1 , Integer.parseInt(sales.get(i)[1]));
 					pstmt2.setString(2, sales.get(i)[0]);
 					pstmt1.executeUpdate();				
+					pstmt2.executeUpdate();				
 				}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public static void updateGqty(HashMap<Integer, String[]> sales) {
-		String sql = "update goods set gqty = gqty - ? where gname = ?";
-		
-		try (
-				Connection conn = DBConnector.getConnection();
-				PreparedStatement pstmt = conn.prepareStatement(sql);
-			) {
-				for (int i = 0; i < sales.size(); ++i) {	
-					int gqty = Integer.parseInt(sales.get(i)[1]);
-					String gname = sales.get(i)[0];
-					pstmt.setInt(1 , gqty);
-					pstmt.setString(2, gname);
-									
-					System.out.println(pstmt.executeUpdate());
-				}
-				pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -10,12 +10,15 @@ import javax.swing.JTable;
 
 import project.MainFrame;
 import project.database.receipts_DB.Buying;
+import project.database.receipts_DB.Refund;
 import project.frames.receipts_frames.PointCollect;
+import project.frames.receipts_frames.PrintedRcp;
 
 public class BuySubmitAL implements ActionListener{
 	
 	MainFrame main; 
 	Values values = new Values();
+	boolean collected;
 	
 	public BuySubmitAL(MainFrame main) {
 		this.main = main;
@@ -54,17 +57,17 @@ public class BuySubmitAL implements ActionListener{
 						JOptionPane.showMessageDialog(main, "카드번호가 입력되지 않았습니다.");
 					} else {
 						values.cardinfo = cardinfo;
+						printRcp();
 						collecting(collect);
 					}
 				} else {
-					System.out.println("현금");
+					printRcp(); 
 					collecting(collect);
 				}
+				
+				
 				Buying.insertReceiptDatas(values);
 				Buying.updateSaleDatas(sales, values);
-				// oracle에서 오류도 없고 응답이 없음
-//				Buying.updateGqty(sales);
-				
 			} 
 		} else {
 			JOptionPane.showMessageDialog(main, "구매할 물건이 없습니다.");
@@ -73,11 +76,29 @@ public class BuySubmitAL implements ActionListener{
 	
 	public void collecting(PointCollect collect) {
 		int point = JOptionPane.showConfirmDialog(
-				main, "포인트를 적립하겠습니까?", "confirm", JOptionPane.YES_NO_OPTION);
+				main, "포인트를 적립하겠습니까?", "point", JOptionPane.YES_NO_OPTION);
 		if (point == JOptionPane.YES_OPTION) {
-			collect.getPanel().setLabelText(values.price);
+			collect.setLabelText(values.price);
 			collect.setVisible(true);
 			collect.setRid(values.rid);
+		} else {
+			JOptionPane.showMessageDialog(main, "결제가 완료되었습니다.");
+			main.getTable().removeRows();
+			if (main.getPrint() ) {
+				new PrintedRcp(Refund.getSalesData(values.rid));
+			}
 		}
+	}
+	
+	public void printRcp() {
+		int rcp = JOptionPane.showConfirmDialog(
+				main, "영수증을 출력하겠습니까?", "receipt", JOptionPane.YES_NO_OPTION);
+		if (rcp == JOptionPane.YES_OPTION) {
+			main.setPrint(true);
+			main.setRid(values.rid);
+		} else {
+			main.setPrint(false);
+		}
+		
 	}
 }

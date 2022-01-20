@@ -19,7 +19,7 @@ public class Tables extends JPanel {
 	DefaultTableModel model;
 	String[][] rowData = {};
 	
-	public Tables(MainFrame main, String[] columnName, int xPos, int yPos, int xSize, int ySize) {
+	public Tables(String[] columnName, int xPos, int yPos, int xSize, int ySize) {
 		setLayout(new BorderLayout());
 		setBounds(xPos, yPos, xSize, ySize);
 		

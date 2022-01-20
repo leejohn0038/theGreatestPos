@@ -12,8 +12,36 @@ import org.w3c.dom.views.AbstractView;
 
 public class ButtonMouseOver implements MouseListener {
 
-	public ButtonMouseOver(JButton btn) {
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
 		
-		});
 	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	
 }
