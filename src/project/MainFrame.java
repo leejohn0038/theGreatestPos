@@ -23,7 +23,11 @@ public class MainFrame extends JFrame {
 	private int totalPrice;
 	private JComboBox<String> combo;
 	public MainFrame() {
+		
+		setBounds(500, 100, 1000, 700);
+		
 		frames = new Frames(this);
+		
 		add(new Toppanel(this, "판매"));
 		add(table = new Tables(this, new String[] {"상품id", "상품이름", "수량", "가격"}, 300, 100, 680, 300));
 		
@@ -38,7 +42,7 @@ public class MainFrame extends JFrame {
 		add(new BuySubmitBtn(this, 450, 550, 100, 50));
 		add(combo = new JComboBox<String>(items) {{setBounds(600, 450, 70, 30);}});
 		setLayout(null);
-		setBounds(100, 100, 1000, 700);
+
 		setVisible(false);
 		setResizable(false); 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

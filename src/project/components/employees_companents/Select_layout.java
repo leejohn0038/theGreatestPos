@@ -57,6 +57,7 @@ public class Select_layout extends JPanel{
 				selectTxt.setText("");
 			}
 		});
+		
 
 		add(txtLab);
 		add(com);
