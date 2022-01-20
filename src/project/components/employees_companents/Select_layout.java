@@ -47,7 +47,7 @@ public class Select_layout extends JPanel{
 		int[] btnSize = {70, 30};
 		
 		//텍스트 박스
-		int[] txtSize = {250 - btnSize[0], 30};
+		int[] txtSize = {220, 30};
 		selectTxt = new JTextField("검색어 입력");
 		selectTxt.setBounds(com.getSize().width + com.getLocation().x, (selectSize[1] - txtSize[1])/2, txtSize[0], txtSize[1]);;
 		
@@ -61,12 +61,12 @@ public class Select_layout extends JPanel{
 
 		add(txtLab);
 		add(com);
-		add(selectTxt);
 		
 		//검색 버튼
 		int[] loc = {selectTxt.getSize().width + selectTxt.getLocation().x, 
 				(selectSize[1] - btnSize[1])/2};
 		add(new SelectBtn(this, tl, btnSize, loc, type));
+		add(selectTxt);
 	}
 	
 	public JTextField getSelectTxt() {

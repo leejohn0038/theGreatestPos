@@ -37,7 +37,6 @@ public class NavBar extends JPanel{
 		padding = 10;
 		
 		setLayout(null);
-		setBorder(new LineBorder(Color.black));
 		setBounds(loc[0]-padding, loc[1]-padding, size[0], size[1]);
 		setVisible(true);
 		

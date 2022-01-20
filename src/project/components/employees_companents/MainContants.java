@@ -1,9 +1,12 @@
 package project.components.employees_companents;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
@@ -37,9 +40,15 @@ public class MainContants extends JPanel{
 		//SIDE_BAR//
 		SideBar_layout side = new SideBar_layout(main, layViewData, f.getTitle());
 		side.setBackground(Color.white);
+		side.setSize(0,0);
 		
 		//종료버튼//
 		QuitBtn quitBtn = new QuitBtn(fs, main); //fs 쓰는 이유는 기초 공사가 잘못되어 시간상 프레임으로 뷰를 설계할 수 밖에 없기에..
+		quitBtn.setBackground(null);
+		quitBtn.setBorderPainted(false);
+		quitBtn.setSize(64,64);
+		quitBtn.setText("");
+		quitBtn.setIcon(new ImageIcon("image/all_home.png"));
 		
 		//TBALE//
 		Table_layout tl = new Table_layout(side.getSize().width, quitBtn.getHight(), sql, type, fs);
@@ -55,9 +64,16 @@ public class MainContants extends JPanel{
 		
 		add(select);
 		add(tl);
-		add(side);
+		//add(side);
 		add(quitBtn);
 		add(btns);
+		
+		add(new JLabel("Team 2nd") {
+			{
+				setBounds(40, 0, 150, 50);
+				setFont(new Font("Serif", Font.BOLD, 40));
+			}
+		});
 	}
 	
 	int[] viewCalculate(JFrame f){

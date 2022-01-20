@@ -1,5 +1,7 @@
 package project;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -31,6 +33,7 @@ public class Login extends JFrame{
 		String[] txtData = {"시작금액", "직원이름", "비밀번호"};
 		
 		setLayout(null);
+		getContentPane().setBackground( Color.white );
 		setSize(300,300);
 		setLocationRelativeTo(null);
 		setVisible(true);
@@ -53,7 +56,7 @@ public class Login extends JFrame{
 			txt.setText("200,000");
 		}
 		
-		txt.setBounds(70+10,((num*70)+10),100,30);
+		txt.setBounds(this.getSize().width/2,30+(num*(30+20)),100,30);
 		
 		txts.add(txt);
 		return txt;
@@ -64,7 +67,7 @@ public class Login extends JFrame{
 	JLabel tLab(int num, String title) {
 		
 		JLabel tLab = new JLabel(title + " : ");
-		tLab.setBounds(10,((num*60)+10),70,50);
+		tLab.setBounds(this.getSize().width/2-100,30+(num*(30+20)),100,30);
 		
 		return tLab;
 	}
@@ -77,8 +80,8 @@ public class Login extends JFrame{
 		int[] loc = {
 				//프레임별 위치
 				//프레임 크기 - 타이틀바 - 자기크기
-				this.getSize().width - this.getPreferredSize().width - size[0],
-				this.getSize().height - this.getPreferredSize().height - size[1]
+				(this.getSize().width - this.getPreferredSize().width - size[0])/2,
+				this.getSize().height - this.getPreferredSize().height - size[1]-10
 				};
 		
 		JButton btn = new JButton("시작");

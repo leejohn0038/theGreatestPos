@@ -22,7 +22,6 @@ public class SideBar_layout extends JPanel{
 		
 		setBounds(0, 0, (int)(viewData[2] * 0.3), viewData[3]);
 		setLayout(null);
-		setBorder(new LineBorder(Color.black));
 		
 		width = this.getBounds().width;
 	

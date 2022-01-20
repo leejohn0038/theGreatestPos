@@ -22,6 +22,7 @@ public class QuitBtn extends JButton{
 	}
 	
 	public QuitBtn(JFrame now_f, JFrame past_f) {
+		fs = new ArrayList<>();
 		fs.add(now_f);
 		this.past_f = past_f;
 		
@@ -40,7 +41,6 @@ public class QuitBtn extends JButton{
 		setBounds(x, y, width, hight);
 		
 		addActionListener(new ActionListener() {
-			
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {

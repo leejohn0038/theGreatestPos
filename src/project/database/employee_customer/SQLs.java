@@ -10,9 +10,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.xml.crypto.Data;
 
+import oracle.net.aso.f;
 import project.actions.employees_actions.main.DBConnector;
 import project.actions.employees_actions.main.object.Emp_addData;
 import project.components.customers_components.object.Cus_addData;
@@ -23,7 +27,6 @@ public class SQLs {
 	private ArrayList<Cus_addData> cus_addDatas  = new ArrayList<>();
 	public Emp_addData emp_addData;
 	public Cus_addData cus_addData;
-	//public Cus_addData cus_addData;
 	private int row;
 	private int col;
 	private String[] title;
@@ -258,6 +261,7 @@ public class SQLs {
 		ResultSet rs;
 		
 		Object[] datas;
+		
 		if(dbName.contains("emp")) {
 			pstmt = conn.prepareStatement(SQL + EMP_ADD_SQL);
 			datas = emp_addData.getDates(); 
@@ -289,7 +293,7 @@ public class SQLs {
 	void add(String SQL, Connection conn) throws SQLException {
 		final String addSql = "(?,?,?,?,?)";
 		PreparedStatement pstmt = conn.prepareStatement(SQL + addSql);
-		ResultSet rs;
+		ResultSet rs = null;
 		
 		Object[] datas;
 		
@@ -312,11 +316,22 @@ public class SQLs {
 			pstmt.setInt(5,(int) datas[4]);
 		}
 			
+		try {
+			rs = pstmt.executeQuery();
+		} catch (Exception e) {
+			cus_addData.setDates();
+			JOptionPane mb = new JOptionPane("전화번호가 중첩됩니다. 다시 등록해주세요!");
+			JDialog mbDialog = mb.createDialog((JFrame)null, "Error");
+			mbDialog.setLocation(700,300);
+			mbDialog.setVisible(true);
+			//mb.showConfirmDialog(null, "전화번호가 중복됩니다.","ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+			return;
+		}finally {
+			pstmt.close();
+		}
 		
-		rs = pstmt.executeQuery();
-		
-		pstmt.close();
 		rs.close();
+		
 	}
 	
 	void selectData(String SQL, Connection conn, String[] target) throws SQLException {

@@ -17,8 +17,8 @@ public class Table_layout extends JPanel{
 	
 	public Table_layout(int lw, int lh, SQLs sql, int type, ArrayList<JFrame> fs) {	
 		
-		setBorder(new LineBorder(Color.black));
-		setBounds(lw, lh, 1000-lw, 300);
+		lw = lw+30;
+		setBounds(lw, lh, 1000-lw-30, 300);
 		setVisible(true);
 		
 		jt = new Table(this, sql, type, fs);

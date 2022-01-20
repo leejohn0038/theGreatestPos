@@ -22,7 +22,7 @@ public class NavBtn extends JButton{
 	final private static HashMap<Integer, String> BTN_MAP = new HashMap<>();
 	
 	Table jt;
-	JFrame addframe;
+	Adds addframe;
 	int type;
 	
 	static {

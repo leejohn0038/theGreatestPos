@@ -63,6 +63,10 @@ public class Cus_addData {
 		dates[titleIndex] = selectValue;
 	}
 	
+	public void setDates() {
+		dates = null;
+	}
+	
 	public Object[] getDates() {
 		return dates;
 	}
