@@ -17,7 +17,7 @@ public class SideBar_layout extends JPanel{
 	
 	public SideBar_layout(MainFrame main, int[] viewData, String name) {
 
-		String[] btnNames = {"상품", "영수증", "직원", "회원", "업무가이드"};
+		String[] btnNames = {"상품", "영수증", "직원", "회원"};
 		int cnt = 0;
 		
 		setBounds(0, 0, (int)(viewData[2] * 0.3), viewData[3]);

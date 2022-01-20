@@ -31,7 +31,7 @@ public class MainFrame extends JFrame {
 		add(new Toppanel("판매"));
 		add(table = new Tables(new String[] {"상품id", "상품이름", "수량", "가격"}, 300, 100, 680, 300));
 		
-		String[] btnNames1 = {"상품", "영수증", "직원", "회원", "업무가이드"};
+		String[] btnNames1 = {"상품", "영수증", "직원", "회원"};
 		String[] items = {"현금", "카드"};
 		
 		for (int i = 0; i < btnNames1.length; ++i) {
