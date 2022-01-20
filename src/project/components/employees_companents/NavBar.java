@@ -2,6 +2,7 @@ package project.components.employees_companents;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.swing.JButton;
@@ -23,7 +24,7 @@ public class NavBar extends JPanel{
 	int[] size;
 	int padding;
 	
-	public NavBar(JFrame f, int[] viewData, Table_layout tl, Table jt, SQLs sql, int type) {
+	public NavBar(JFrame f, int[] viewData, Table_layout tl, Table jt, SQLs sql, int type, ArrayList<JFrame> fs) {
 		
 		this.jt = jt;
 		this.sql = sql;
@@ -33,7 +34,6 @@ public class NavBar extends JPanel{
 		size = new int[] {tl.getSize().width,f.getSize().height - deletValueY + 10};
 		loc = new int[] {tl.getLocation().x+10, deletValueY};
 		
-		System.out.println(Arrays.toString(size) + " " + Arrays.toString(loc));
 		padding = 10;
 		
 		setLayout(null);
@@ -42,7 +42,7 @@ public class NavBar extends JPanel{
 		setVisible(true);
 		
 		for(int i = 0; i<2; i++) {
-			NavBtn tb = new NavBtn(f, jt, i, sql, size, type);
+			NavBtn tb = new NavBtn(f, jt, i, sql, size, type, fs);
 			add(tb);
 		}		
 	}

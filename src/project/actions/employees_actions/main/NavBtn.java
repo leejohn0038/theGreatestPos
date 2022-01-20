@@ -1,5 +1,6 @@
 package project.actions.employees_actions.main;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -29,7 +30,7 @@ public class NavBtn extends JButton{
 		BTN_MAP.put(1, "µî·Ï");
 	}
 
-	public NavBtn(JFrame f, Table jt, int num, SQLs sql, int[] size, int type) {
+	public NavBtn(JFrame f, Table jt, int num, SQLs sql, int[] size, int type, ArrayList<JFrame> fs) {
 		
 		int padding = 20;
 		
@@ -39,7 +40,7 @@ public class NavBtn extends JButton{
 		this.jt = jt;
 		this.type = type;
 		
-		addframe = new Adds(f, jt, sql, type, size);
+		addframe = new Adds(f, jt, sql, type, size, fs);
 		
 		setText(BTN_MAP.get(num));
 		setBounds(size[0]-(((wight+10)*(num+1))+10), size[1] - (hight+30), wight, hight);

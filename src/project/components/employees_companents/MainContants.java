@@ -3,6 +3,7 @@ package project.components.employees_companents;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.swing.JFrame;
@@ -27,6 +28,9 @@ public class MainContants extends JPanel{
 		//Jpanel 기본 사이즈
 		int[] layViewData = viewCalculate(f);
 		
+		ArrayList<JFrame> fs = new ArrayList<>();
+		fs.add(f);
+		
 		setLayout(null);
 		setBorder(new LineBorder(Color.black));
 		setBounds(layViewData[0], layViewData[1], layViewData[2], layViewData[3]);
@@ -35,13 +39,13 @@ public class MainContants extends JPanel{
 		SideBar_layout side = new SideBar_layout(main, layViewData, f.getTitle());
 		
 		//종료버튼//
-		QuitBtn quitBtn = new QuitBtn(f, main);
+		QuitBtn quitBtn = new QuitBtn(fs, main); //fs 쓰는 이유는 기초 공사가 잘못되어 시간상 프레임으로 뷰를 설계할 수 밖에 없기에..
 		
 		//TBALE//
-		Table_layout tl = new Table_layout(side.getSize().width, quitBtn.getHight(), sql, type);
+		Table_layout tl = new Table_layout(side.getSize().width, quitBtn.getHight(), sql, type, fs);
 		
 		//버튼모음//
-		NavBar btns = new NavBar(f, layViewData, tl, tl.get_table(), sql, type);
+		NavBar btns = new NavBar(f, layViewData, tl, tl.get_table(), sql, type, fs);
 		
 		//검색기능 + 검색버튼//
 		Select_layout select = new Select_layout(tl, side.getSideWidth(), tl.getLocation().y, type);

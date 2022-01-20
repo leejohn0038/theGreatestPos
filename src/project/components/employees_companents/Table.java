@@ -1,7 +1,9 @@
 package project.components.employees_companents;
 
 import java.awt.BorderLayout;
+import java.util.ArrayList;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -18,15 +20,20 @@ public class Table extends JTable{
 	
 	public DefaultTableModel dtm;
 	JTable jt;
-	JPanel jp;
+	Table_layout jp;
 	JScrollPane sp;
 	Object[][] rowData;
 	TableSelectData tsd;
+	
+	int[] size;
+	ArrayList<JFrame> fs;
 	int type;
 	
-	public Table(JPanel jp, SQLs sql, int type) {
+	public Table(Table_layout tl, SQLs sql, int type, ArrayList<JFrame> fs) {
 		this.type = type;
-		this.jp = jp;	
+		this.jp = tl;	
+		this.fs = fs;
+		
 		resetTable(sql);
 	}
 	
@@ -44,7 +51,7 @@ public class Table extends JTable{
 		
 		jt = new JTable(dtm);
 		sp = new JScrollPane(jt);
-		tsd = new TableSelectData(this, jt, type);
+		tsd = new TableSelectData(jp, this, jt, type, size, fs);
 		jt.addMouseListener(tsd);
 		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
