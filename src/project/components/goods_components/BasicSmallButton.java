@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Insets;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class BasicSmallButton extends JButton {
@@ -18,5 +19,14 @@ public class BasicSmallButton extends JButton {
 				BorderFactory.createLineBorder(Color.BLACK, 1)
 				));
 		setMargin(new Insets(0, 0, 0, 0));
+	}
+	
+	public BasicSmallButton(ImageIcon img) {
+		super(img);
+		setContentAreaFilled(false);
+		setBorderPainted(false);
+		setSize(35, 35);
+		setMargin(new Insets(0, 0, 0, 0));
+		setVisible(true);
 	}
 }

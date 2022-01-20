@@ -11,11 +11,11 @@ public class BasicPopupPanel extends JPanel {
 		setLayout(null);
 //		setBackground(Color.BLACK);
 		setBackground(Color.WHITE);
-		setBounds(0, 0, 530, 170);
-		setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createLineBorder(Color.BLACK, 0),
-				BorderFactory.createLineBorder(Color.BLACK, 1)
-				));
+		setBounds(0, 510, 570, 130);
+//		setBorder(BorderFactory.createCompoundBorder(
+//				BorderFactory.createLineBorder(Color.BLACK, 0),
+//				BorderFactory.createLineBorder(Color.BLACK, 1)
+//				));
 		setVisible(false);
 	}
 }

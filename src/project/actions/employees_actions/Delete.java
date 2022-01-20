@@ -3,6 +3,8 @@ package project.actions.employees_actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 import project.actions.employees_actions.main.TableSelectData;
 import project.actions.employees_actions.main.object.Emp_addData;
 import project.components.customers_components.object.Cus_addData;
@@ -23,9 +25,14 @@ public class Delete implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		if(new  JOptionPane().showConfirmDialog(null, "삭제하시겠습니까?") >= 1) {
+			return;
+		}
+		
 		Object[][] dates = new SQLs("리셋", type).getRowData();
 		
 		if(dates.length == 1) {
+			new JOptionPane().showMessageDialog(null, "삭제 불가능합니다.");
 			return;
 		}
 		

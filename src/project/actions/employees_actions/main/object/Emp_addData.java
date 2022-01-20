@@ -51,6 +51,11 @@ public class Emp_addData {
 		if(titleIndex != 0) {
 			dates[0] = null;
 		}
+		
+		if(selectValue.contains("°Ë»ö¾î") == true) {
+			selectValue = "";
+		}
+		
 		dates[titleIndex] = selectValue;
 	}
 	

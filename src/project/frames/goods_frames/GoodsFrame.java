@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 import project.MainFrame;
-import project.components.goods_components.BasicSmallButton;
+import project.components.goods_components.ButtonImage;
 import project.components.goods_components.HomeBtn;
 import project.components.goods_components.PosDBConnector;
 
@@ -20,13 +20,21 @@ import project.components.goods_components.PosDBConnector;
 public class GoodsFrame extends JFrame {
 	private ContentsPanel contents = new ContentsPanel();
 	private ManagementPanel mp = contents.getManagementPanel();
+	private HomeBtn manageHomeBtn, lookupHomeBtn, assetHomeBtn;
+	private ButtonImage img = new ButtonImage();
 	
 	public GoodsFrame(MainFrame main) {
-		
 		add(contents);
 		add(new GnbPanel(contents));
 		
-		contents.getManagementPanel().add(new HomeBtn(this));
+		manageHomeBtn= new HomeBtn(this, img.homeBtn());
+		contents.getManagementPanel().add(manageHomeBtn);
+		
+		lookupHomeBtn= new HomeBtn(this, img.homeBtn());
+		contents.getLookupPanel().add(lookupHomeBtn);
+		
+		assetHomeBtn= new HomeBtn(this, img.homeBtn());
+		contents.getAssetPanel().add(assetHomeBtn);
 		
 		contents.getManagementPanel().getExportConfirm().addActionListener(new ActionListener() {
 			@Override
@@ -59,7 +67,7 @@ public class GoodsFrame extends JFrame {
 		
 		
 		setLayout(null);
-		setBounds(100, 100, 1000, 700);
+		setBounds(500, 100, 1000, 700);
 		
 		// 프레임 백그라운드용 패널
 		add(new JPanel() {

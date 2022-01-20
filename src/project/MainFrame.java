@@ -27,10 +27,12 @@ public class MainFrame extends JFrame {
 	private int rid;
 	
 	public MainFrame() {
+		
+		setBounds(500, 100, 1000, 700);
+		
 		frames = new Frames(this);
 		add(new Toppanel("판매"));
 		add(table = new Tables(new String[] {"상품id", "상품이름", "수량", "가격"}, 300, 100, 680, 300));
-		
 		String[] btnNames1 = {"상품", "영수증", "직원", "회원"};
 		String[] items = {"현금", "카드"};
 		
@@ -43,7 +45,7 @@ public class MainFrame extends JFrame {
 		add(new BuySubmitBtn(this, 450, 550, 100, 50));
 		add(new DeleteBtn(this));
 		setLayout(null);
-		setBounds(100, 100, 1000, 700);
+
 		setVisible(false);
 		setResizable(false); 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

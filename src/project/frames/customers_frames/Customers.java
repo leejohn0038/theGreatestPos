@@ -15,8 +15,7 @@ public class Customers extends JFrame {
 		setUndecorated(true);
 		setVisible(false);
 		setLayout(null);
-		setBounds(100,100,1000,700);
-		//setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setBounds(main.getLocation().x, main.getLocation().y,1000,700);
 		
 		// 0, 1 은 프레임의 크기를 담는다.
 		SQLs sql = new SQLs("리셋", 2);
