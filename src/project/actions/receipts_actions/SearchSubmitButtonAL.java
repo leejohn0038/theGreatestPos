@@ -61,11 +61,11 @@ public class SearchSubmitButtonAL implements ActionListener {
 		}
 		if (state) {
 			sqls[8] = combo.getSelectedItem().toString();
-			ArrayList<Object[]> datas = ReceiptSearching.getData(sqls, isEmpty);
+			ArrayList<Object[]> datas = ReceiptSearching.getDatas(sqls, isEmpty);
 			if (datas.size() == 0) {
 				JOptionPane.showMessageDialog(main.getFrame("영수증 조회하기"), "조회된 영수증이 없습니다.");				
 			} else {				
-				receipts.getTable().updateRow(datas);	
+				receipts.getTable().updateRows(datas);	
 				main.getFrame("영수증 조회하기").setVisible(false);
 			}
 		} else {

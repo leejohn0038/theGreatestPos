@@ -3,25 +3,47 @@ package project.actions.employees_actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 import project.actions.employees_actions.main.TableSelectData;
 import project.actions.employees_actions.main.object.Emp_addData;
+import project.components.customers_components.object.Cus_addData;
 import project.database.employee_customer.SQLs;
 
 public class Delete implements ActionListener{
 	
-	Emp_addData addData;
 	TableSelectData tsd;
+	Emp_addData emp_addData;
+	Cus_addData cus_addData;
+	int type;
 	
-	public Delete(TableSelectData tsd) {
+	public Delete(TableSelectData tsd, int type) {
 		this.tsd = tsd;
+		this.type = type;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Object[][] dates = new SQLs("리셋", 1).getRowData();
 		
-		addData = new Emp_addData(Integer.parseInt(String.valueOf(tsd.jp.dtm.getValueAt(tsd.getRow(), 0))));
-		new SQLs("삭제", null, addData, 1);
+		if(new  JOptionPane().showConfirmDialog(null, "삭제하시겠습니까?") >= 1) {
+			return;
+		}
+		
+		Object[][] dates = new SQLs("리셋", type).getRowData();
+		
+		if(dates.length == 1) {
+			new JOptionPane().showMessageDialog(null, "삭제 불가능합니다.");
+			return;
+		}
+		
+		if(type == 1) {
+			emp_addData = new Emp_addData(Integer.parseInt(String.valueOf(tsd.jp.dtm.getValueAt(tsd.getRow(), 0))));
+			new SQLs("삭제", null, emp_addData, type);
+		}else {
+			cus_addData = new Cus_addData(String.valueOf(tsd.jp.dtm.getValueAt(tsd.getRow(), 0)));
+			new SQLs("삭제", null, cus_addData, type);
+		}
+		
 		tsd.jp.dtm.removeRow(tsd.getRow());
 	}
 }

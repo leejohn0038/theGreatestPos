@@ -7,9 +7,12 @@ import project.actions.receipts_actions.PointSubmitAL;
 
 public class PointSubmitBtn extends JButton {
 	
+	PointSubmitAL pAL;
+	
 	public PointSubmitBtn(MainFrame main, int xPos, int yPos, int xSize, int ySize) {
 		super("Àû¸³");
-		addActionListener(new PointSubmitAL(main));
+		addActionListener(pAL = new PointSubmitAL(main));
 		setBounds(xPos, yPos, xSize, ySize);
 	}
+	
 }
