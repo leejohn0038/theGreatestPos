@@ -67,7 +67,7 @@ public class GoodsFrame extends JFrame {
 		
 		
 		setLayout(null);
-		setBounds(100, 100, 1000, 700);
+		setBounds(500, 100, 1000, 700);
 		
 		// 프레임 백그라운드용 패널
 		add(new JPanel() {
