@@ -34,7 +34,12 @@ public class Cus_addData {
 			dates[3] = Date.valueOf(((String)objs[3]).substring(0,10));
 		}
 		
-		dates[4] = Integer.parseInt((String) objs[4]);
+		if(objs[4] == null) {
+			dates[4] = 0;
+		}else {
+			dates[4] = Integer.parseInt((String) objs[4]);
+		}
+		
 	}
 	
 	public Cus_addData(String phone) {
@@ -50,6 +55,11 @@ public class Cus_addData {
 		if(titleIndex != 0) {
 			dates[0] = null;
 		}
+		
+		if(selectValue.contains("°Ë»ö¾î") == true) {
+			selectValue = "";
+		}
+		
 		dates[titleIndex] = selectValue;
 	}
 	
