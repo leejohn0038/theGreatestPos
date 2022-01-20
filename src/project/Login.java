@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import project.actions.obj.User_Data;
@@ -30,7 +31,8 @@ public class Login extends JFrame{
 		String[] txtData = {"시작금액", "직원이름", "비밀번호"};
 		
 		setLayout(null);
-		setBounds(100,100,300,300);
+		setSize(300,300);
+		setLocationRelativeTo(null);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
@@ -95,7 +97,9 @@ public class Login extends JFrame{
 						f.setVisible(true);
 						dispose();
 					}
-				}	
+				}else {
+					new JOptionPane().showMessageDialog(null,"로그인 정보가 잘못되었습니다.", "Login_ERR", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		

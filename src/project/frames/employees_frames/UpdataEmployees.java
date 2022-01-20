@@ -1,6 +1,5 @@
 package project.frames.employees_frames;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,7 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.LineBorder;
 
 import project.actions.employees_actions.Updata;
 import project.actions.employees_actions.main.Function_emp;
