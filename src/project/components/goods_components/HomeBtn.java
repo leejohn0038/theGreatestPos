@@ -3,13 +3,15 @@ package project.components.goods_components;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 public class HomeBtn extends BasicSmallButton {
 
-	public HomeBtn(JFrame frame) {
-		super("X");
-		setLocation(600, 20);
+	public HomeBtn(JFrame frame, ImageIcon img) {
+		super(img);
+		setLocation(660, 20);
+		setSize(60, 25);
 		addActionListener(new ActionListener() {
 			
 			@Override
