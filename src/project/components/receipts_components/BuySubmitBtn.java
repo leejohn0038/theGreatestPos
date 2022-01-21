@@ -9,7 +9,7 @@ import project.actions.receipts_actions.BuySubmitAL;
 public class BuySubmitBtn extends JButton {
 	
 	public BuySubmitBtn(MainFrame main, int xPos, int yPos, int xSize, int ySize) {
-		setIcon(new ImageIcon("./image/main/quantify.png"));
+		setIcon(new ImageIcon("./image/main/quantify120.png"));
 		addActionListener(new BuySubmitAL(main));
 		setContentAreaFilled(false);
 		setBorderPainted(false);

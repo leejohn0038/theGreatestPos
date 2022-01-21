@@ -50,10 +50,10 @@ public class MainFrame extends JFrame {
 		for (int i = 0; i < btnNames1.length; ++i) {
 			add(new MainButtons(this, btnNames1[i], btnImage[i]));
 		}
-		add(field = new TextField(530, 540, 200, 30));
-		add(new SaleSubmitBtn(this, 530, 590, 270, 100));
-		add(combo = new JComboBox<String>(items) {{setBounds(730, 540, 70, 30);}});
-		add(new BuySubmitBtn(this, 840, 540, 150, 150));
+		add(field = new TextField(530, 570, 200, 30));
+		add(new SaleSubmitBtn(this, 530, 620, 240, 70));
+		add(combo = new JComboBox<String>(items) {{setBounds(730, 570, 70, 30);}});
+		add(new BuySubmitBtn(this, 840, 570, 120, 120));
 		add(new DeleteBtn(this));
 		
 		add(new JLabel() {{

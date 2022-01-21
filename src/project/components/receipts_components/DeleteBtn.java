@@ -9,10 +9,10 @@ import project.actions.receipts_actions.DeleteAL;
 public class DeleteBtn extends JButton {
 	
 	public DeleteBtn(MainFrame main) {
-		setIcon(new ImageIcon("./image/main/delete_goods.png"));
+		setIcon(new ImageIcon("./image/main/delete_goods70.png"));
 		addActionListener(new DeleteAL(main));
 		setContentAreaFilled(false);
 		setBorderPainted(false);
-		setBounds(230, 590, 100, 100);
+		setBounds(230, 620, 70, 70);
 	}
 }
