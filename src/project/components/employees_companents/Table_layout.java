@@ -19,7 +19,6 @@ public class Table_layout extends JPanel{
 		
 		lw = lw+30;
 		setBounds(lw, lh+10, 1000-lw-30, 300);
-		System.out.println(lh);
 		setVisible(true);
 		
 		jt = new Table(this, sql, type, fs);
