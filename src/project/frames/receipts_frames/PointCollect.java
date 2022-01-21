@@ -1,5 +1,6 @@
 package project.frames.receipts_frames;
 
+import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JFrame;
@@ -10,6 +11,7 @@ import project.MainFrame;
 import project.components.receipts_components.Label;
 import project.components.receipts_components.PointCollectPanel;
 import project.components.receipts_components.PointSubmitBtn;
+import project.components.receipts_components.ReceiptsBtnImg;
 import project.components.receipts_components.TextField;
 
 public class PointCollect extends JFrame {
@@ -28,10 +30,10 @@ public class PointCollect extends JFrame {
 		add(pLabel2 = new Label("", 120, 110, 150, 30));
 		add(new Label("전화번호:", 50, 160, 70, 30));
 		add(pField = new TextField(120, 160, 200, 30));
-		add(pBtn = new PointSubmitBtn(main, 200, 300, 100, 50));
-		
+		add(pBtn = new PointSubmitBtn(main, ReceiptsBtnImg.getIcon("포인트 적립", 75, 20),212, 250, 75, 20));
+		getContentPane().setBackground(Color.WHITE);
 		setLayout(null);
-		setBounds(300, 300, 500, 400);
+		setBounds(600, 200, 499, 350);
 		setVisible(false);
 		setResizable(false);
 	}

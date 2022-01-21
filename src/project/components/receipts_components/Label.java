@@ -1,6 +1,7 @@
 package project.components.receipts_components;
 
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class Label extends JLabel {
 	

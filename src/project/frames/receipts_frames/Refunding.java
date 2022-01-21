@@ -1,5 +1,6 @@
 package project.frames.receipts_frames;
 
+import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JFrame;
@@ -9,6 +10,7 @@ import javax.swing.JTable;
 import project.MainFrame;
 import project.components.receipts_components.FrameButton;
 import project.components.receipts_components.Label;
+import project.components.receipts_components.ReceiptsBtnImg;
 import project.components.receipts_components.RefundingPanel;
 import project.components.receipts_components.RefundingSubmitBtn;
 import project.components.receipts_components.Tables;
@@ -23,16 +25,17 @@ public class Refunding extends JFrame {
 	private boolean cardrefund;
 	
 	public Refunding(MainFrame main) {
-		add(new Label("반품", 50, 0, 150, 50) {{setFont(new Font("기본", Font.BOLD, 30));}});
+		add(new Label("반품", 50, 0, 150, 50) {{setFont(new Font("기본", Font.BOLD, 20));}});
 		add(table = new Tables(
 				new String[] {"판매ID","영수증ID", "상품", "가격", "수량", "결제수단"}, 
-				5, 100, 680, 200));
+				50, 100, 680, 200));
 //		add(refundPanel = new RefundingPanel(main));
-		add(cardinfoBtn = new FrameButton(main, "카드정보입력", 500, 350, 130, 50));
-		add(new RefundingSubmitBtn(main, 300, 350, 100, 50));
-		setLayout(null);
+		add(cardinfoBtn = new FrameButton(main, ReceiptsBtnImg.getIcon("카드", 75, 20),"카드정보입력", 500, 350, 75, 20));
+		add(new RefundingSubmitBtn(main, ReceiptsBtnImg.getIcon("반품업무", 75, 20), 312, 350, 75, 20));
+		getContentPane().setBackground(Color.WHITE); 
+		setLayout(null); 
 		setDefaultCloseOperation(HIDE_ON_CLOSE);
-		setBounds(100, 100, 700, 500);
+		setBounds(600, 200, 799, 450);
 		setVisible(false);
 		setResizable(false);
 	}

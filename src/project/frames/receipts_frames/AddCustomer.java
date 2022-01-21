@@ -1,11 +1,14 @@
 package project.frames.receipts_frames;
 
+import java.awt.Color;
+
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 import project.MainFrame;
 import project.components.receipts_components.AddSubmitBtn;
 import project.components.receipts_components.Label;
+import project.components.receipts_components.ReceiptsBtnImg;
 import project.components.receipts_components.TextField;
 
 public class AddCustomer extends JFrame{
@@ -19,11 +22,12 @@ public class AddCustomer extends JFrame{
 		add(fields[1] = new TextField(90, 60, 150, 30));
 		add(new Label("¡÷º“:", 20, 100, 70, 30));
 		add(fields[2] = new TextField(90, 100, 200, 30));
-		add(new AddSubmitBtn(main, 150, 200, 100, 50));
+		add(new AddSubmitBtn(main, ReceiptsBtnImg.getIcon("Ω¬¿Œ", 75, 20), 162, 150, 75, 20));
 		
+		getContentPane().setBackground(Color.WHITE);
 		setLayout(null);
 		setVisible(false);
-		setBounds(200, 200, 400, 300);
+		setBounds(600, 200, 399, 230);
 		setResizable(false);
 	}
 	
