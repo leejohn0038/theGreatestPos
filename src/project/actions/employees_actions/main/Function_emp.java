@@ -2,6 +2,8 @@ package project.actions.employees_actions.main;
 
 import java.util.regex.Pattern;
 
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import project.actions.employees_actions.main.object.Emp_addData;
@@ -35,7 +37,6 @@ public class Function_emp {
 	}
 	
 	public boolean regex(String title, String obj) {
-		JOptionPane massge = new JOptionPane();
 		
 		switch (title) {
 		case "이름":
@@ -55,7 +56,10 @@ public class Function_emp {
 			return true;
 		}
 		
-		massge.showMessageDialog(null, title + " 잘못된 값 입력!!");
+		JOptionPane mb = new JOptionPane("잘못된 값 입력되었습니다. 다시 등록해주세요!");
+		JDialog mbDialog = mb.createDialog((JFrame)null, "Error");
+		mbDialog.setLocation(700,300);
+		mbDialog.setVisible(true);
 		return false;
 			
 	}
