@@ -12,7 +12,7 @@ public class homeBtn extends BasicSmallButton {
 
 	public homeBtn(JFrame frame, ImageIcon img) {
 		super(img);
-		setBounds(900, 20, 60, 25);
+		setBounds(930, 10, 60, 25);
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
