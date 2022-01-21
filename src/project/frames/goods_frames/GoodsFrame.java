@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -73,6 +74,7 @@ public class GoodsFrame extends JFrame {
 		add(new JPanel() {
 			{
 				setBounds(0, 0, 1000, 700);
+				setBorder(BorderFactory.createLineBorder(Color.black));
 				setBackground(Color.WHITE);
 //				setBackground(Color.CYAN);
 			}

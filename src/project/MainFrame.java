@@ -2,6 +2,7 @@ package project;
 
 import java.awt.Color;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -68,8 +69,13 @@ public class MainFrame extends JFrame {
 		add(closeBtn);
 		
 		//백그라운드 색깔용 패널
-		add(new JPanel() {{setBounds(0, 0, 1000, 700); setBackground(Color.WHITE);}});
-		
+		add(new JPanel() {
+			{
+				setBounds(0, 0, 1000, 700); 
+				setBackground(Color.WHITE);
+				setBorder(BorderFactory.createLineBorder(Color.black));
+			}
+		});
 		setLayout(null);
 		setVisible(false);
 		setResizable(false); 
