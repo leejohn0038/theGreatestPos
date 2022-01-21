@@ -27,7 +27,7 @@ public class SelectBtn extends JButton{
 		setBorderPainted(false);
 		setSize(28,28);
 		setText("");
-		setIcon(new ImageIcon("image/emp_search.png"));
+		setIcon(new ImageIcon("image/employees/emp_search.png"));
 		
 		this.type = type;
 		

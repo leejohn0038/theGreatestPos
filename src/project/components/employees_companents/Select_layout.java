@@ -27,11 +27,11 @@ public class Select_layout extends JPanel{
 	public Select_layout(Table_layout tl, int locX, int locY, int type) {
 		
 		int padding = 10;
-		int[] selectSize = {tl.getSize().width-150, 50};
+		int[] selectSize = {tl.getSize().width-400, 50};
 		
 		//패널 setting
 		setLayout(null);
-		setBounds(locX, locY-selectSize[1],selectSize[0], selectSize[1]);
+		setBounds(locX+130, locY-selectSize[1],selectSize[0], selectSize[1]);
 		
 		//간단한 설명 라벨
 		JLabel txtLab = new JLabel("원하시는 항목으로 조회하세요");
