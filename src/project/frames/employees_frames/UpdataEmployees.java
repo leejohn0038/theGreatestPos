@@ -1,9 +1,11 @@
 package project.frames.employees_frames;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -44,7 +46,7 @@ public class UpdataEmployees extends JFrame{
 		setAlwaysOnTop(true);
 		setUndecorated(true);
 		setBounds(fs.get(0).getLocation().x+(fs.get(0).getSize().width-size[0])+1,fs.get(0).getLocation().y+(fs.get(0).getSize().height-size[1])+1,
-		(int)(size[0]/1.23),size[1]-5);
+				(int)(size[0]/1.2),size[1]-5);
 		setVisible(false);
 		
 		add(inner_lay(sql, type));
@@ -65,6 +67,7 @@ public class UpdataEmployees extends JFrame{
 		title_labs = new Function_emp().getTitle(type); 
 		
 		inner.setLayout(null);
+		inner.setBackground(Color.white);
 		
 		//상단 설명란
 		exLab.setSize(300, 50);
@@ -94,7 +97,11 @@ public class UpdataEmployees extends JFrame{
 			}
 		}
 		
-		btn.setSize(100,30);
+		btn.setText("");
+		btn.setIcon(new ImageIcon("./image/employees/modify.png"));
+		btn.setBackground(null);
+		btn.setBorderPainted(false);
+		btn.setSize(100,50);
 		btn.setLocation(this.getSize().width-btn.getSize().width, this.getSize().height-btn.getSize().height-26);
 		btn.addActionListener(new Updata(jp, this, row, txts, title_labs, type));
 		

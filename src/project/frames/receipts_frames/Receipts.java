@@ -27,7 +27,7 @@ public class Receipts extends JFrame {
 		
 		setLayout(null);
 		setDefaultCloseOperation(HIDE_ON_CLOSE);
-		setBounds(100, 100, 1000, 700);
+		setBounds(main.getLocation().x, main.getLocation().y, 1000, 700);
 		setVisible(false);
 		setResizable(false);
 	}

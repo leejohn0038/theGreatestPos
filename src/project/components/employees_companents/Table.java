@@ -1,6 +1,8 @@
 package project.components.employees_companents;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -34,6 +36,7 @@ public class Table extends JTable{
 		this.jp = tl;	
 		this.fs = fs;
 		
+		setBackground(Color.white);
 		resetTable(sql);
 	}
 	
@@ -53,8 +56,15 @@ public class Table extends JTable{
 		sp = new JScrollPane(jt);
 		tsd = new TableSelectData(jp, this, jt, type, size, fs);
 		jt.addMouseListener(tsd);
+		jt.getTableHeader().setOpaque(false);
+		jt.getTableHeader().setBackground(Color.black);
+		jt.getTableHeader().setForeground(Color.white);
+		sp.getViewport().setBackground(Color.white);
 		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		sp.getHorizontalScrollBar().setBackground(Color.lightGray);
 		sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		sp.getVerticalScrollBar().setBackground(Color.lightGray);
+		sp.setPreferredSize(new Dimension(jp.getSize().width, jp.getSize().height));
 		
 		// DefaultTableCellHeaderRenderer 생성 (가운데 정렬을 위한)
 		DefaultTableCellRenderer tScheduleCellRenderer = new DefaultTableCellRenderer();
