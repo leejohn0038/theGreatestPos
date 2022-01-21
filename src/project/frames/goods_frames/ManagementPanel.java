@@ -50,14 +50,20 @@ public class ManagementPanel extends JPanel {
 //		setBackground(Color.RED);
 		setOpaque(true);
 		
-		// 하단 컨텐츠 영역
 		StoreTable storeTable = new StoreTable();
 		dtm = storeTable.getTableModel();
 		add(storeTable);
 		
+		add(new JLabel("상품관리") {
+			{
+				setBounds(0, 0, 150, 50);
+				setFont(new Font("기본", Font.BOLD, 30));
+			}
+		});
+		
 		// 입고 기능
 		importBtn = new BasicBigButton(img.addBtn());
-		importBtn.setLocation(590, 520);
+		importBtn.setLocation(620, 560);
 		importBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -140,7 +146,7 @@ public class ManagementPanel extends JPanel {
 		exportPop.add(exportCancelBtn);
 		
 		exportBtn = new BasicBigButton(img.deleteBtn());
-		exportBtn.setLocation(590, 590);
+		exportBtn.setLocation(620, 630);
 		exportBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -154,7 +160,7 @@ public class ManagementPanel extends JPanel {
 		
 		// 검색 기능
 		searchTf = new BasicTextField("");
-		searchTf.setLocation(0, 20);
+		searchTf.setLocation(550, 30);
 		storeTable.getRowsorter().addRowSorterListener(null);
 		new SearchTf(storeTable.getRowsorter(), searchTf);
 		searchTf.addKeyListener(new KeyAdapter() {
@@ -180,7 +186,7 @@ public class ManagementPanel extends JPanel {
 		searchTf.add(searchClear);
 		searchTf.setLayout(null);
 		
-		setBounds(240, 20, 720, 620);
+		setBounds(240, 20, 750, 680);
 		setVisible(true);
 	}
 	

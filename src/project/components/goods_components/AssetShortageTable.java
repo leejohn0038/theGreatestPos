@@ -44,7 +44,7 @@ public class AssetShortageTable extends JPanel {
 			e.printStackTrace();
 		}
 		setLayout(new BorderLayout());
-		setSize(720, 230);
+		setSize(750, 230);
 		table.getTableHeader().setBackground(Color.BLACK);
 		table.getTableHeader().setForeground(Color.WHITE);	
 		

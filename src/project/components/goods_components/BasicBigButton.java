@@ -27,10 +27,6 @@ public class BasicBigButton extends JButton {
 		super(img);
 		setFont(Font.getFont("µ¸¿ò"));
 		setSize(100, 50);
-//		setBorder(BorderFactory.createCompoundBorder(
-//				BorderFactory.createLineBorder(Color.BLACK, 0),
-//				BorderFactory.createLineBorder(Color.BLACK, 1)
-//				));
 		setMargin(new Insets(0, 0, 0, 0));
 		setContentAreaFilled(false);
 		setBorderPainted(false);

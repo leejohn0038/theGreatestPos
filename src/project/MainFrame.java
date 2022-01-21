@@ -1,11 +1,19 @@
 package project;
 
+import java.awt.Color;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import project.actions.goods_actions.CloseWindow;
 import project.actions.obj.User_Data;
+import project.components.goods_components.ButtonImage;
 import project.components.receipts_components.BuySubmitBtn;
 import project.components.receipts_components.DeleteBtn;
 import project.components.receipts_components.MainButtons;
@@ -25,6 +33,8 @@ public class MainFrame extends JFrame {
 	private JComboBox<String> combo;
 	private boolean print;
 	private int rid;
+	private JButton closeBtn;
+	private ButtonImage img = new ButtonImage();
 	
 	public MainFrame() {
 		
@@ -32,22 +42,38 @@ public class MainFrame extends JFrame {
 		
 		frames = new Frames(this);
 		add(new Toppanel("판매"));
-		add(table = new Tables(new String[] {"상품id", "상품이름", "수량", "가격"}, 300, 100, 680, 300));
+		add(table = new Tables(new String[] {"상품id", "상품이름", "수량", "가격"}, 230, 70, 760, 460));
 		String[] btnNames1 = {"상품", "영수증", "직원", "회원"};
 		String[] items = {"현금", "카드"};
+		ImageIcon[] btnImage = {img.mainGoods(), img.mainReceipt(), img.mainEmployee(), img.mainCustomer()};
 		
 		for (int i = 0; i < btnNames1.length; ++i) {
-			add(new MainButtons(this, btnNames1[i]));
+			add(new MainButtons(this, btnNames1[i], btnImage[i]));
 		}
-		add(field = new TextField(610, 450, 200, 30));
-		add(new SaleSubmitBtn(this, 830, 450, 70, 30));
-		add(combo = new JComboBox<String>(items) {{setBounds(910, 450, 70, 30);}});
-		add(new BuySubmitBtn(this, 450, 550, 100, 50));
+		add(field = new TextField(530, 540, 200, 30));
+		add(new SaleSubmitBtn(this, 530, 590, 270, 100));
+		add(combo = new JComboBox<String>(items) {{setBounds(730, 540, 70, 30);}});
+		add(new BuySubmitBtn(this, 840, 540, 150, 150));
 		add(new DeleteBtn(this));
+		
+		add(new JLabel() {{
+			setBounds(0, 0, 200, 150);
+			setIcon(new ImageIcon("./image/logo.png"));
+		}});
+		closeBtn = new JButton(new ImageIcon("./image/home.png"));
+		closeBtn.setContentAreaFilled(false);
+		closeBtn.setBorderPainted(false);
+		closeBtn.setBounds(930, 10, 60, 25);
+		closeBtn.addActionListener(new CloseWindow(this));
+		add(closeBtn);
+		
+		//백그라운드 색깔용 패널
+		add(new JPanel() {{setBounds(0, 0, 1000, 700); setBackground(Color.WHITE);}});
+		
 		setLayout(null);
-
 		setVisible(false);
 		setResizable(false); 
+		setUndecorated(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	

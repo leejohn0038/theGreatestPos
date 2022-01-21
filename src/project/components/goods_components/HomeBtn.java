@@ -10,10 +10,9 @@ public class HomeBtn extends BasicSmallButton {
 
 	public HomeBtn(JFrame frame, ImageIcon img) {
 		super(img);
-		setLocation(660, 20);
+		setLocation(690, 0);
 		setSize(60, 25);
 		addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();

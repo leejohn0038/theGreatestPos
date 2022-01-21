@@ -2,11 +2,11 @@ package project.frames.goods_frames;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -19,15 +19,13 @@ public class GnbPanel extends JPanel {
 	private ButtonImage img = new ButtonImage();
 	
 	public GnbPanel(ContentsPanel contents) {
-		add(new JLabel("Team 2nd") {
-			{
-				setBounds(40, 0, 150, 50);
-				setFont(new Font("Serif", Font.BOLD, 40));
-			}
-		});
 		
+		add(new JLabel() {{
+			setBounds(0, 0, 200, 150);
+			setIcon(new ImageIcon("./image/logo.png"));
+		}});
 		manageBtn = new BasicBigButton(img.gnbManage());
-		manageBtn.setBounds(30, 100, 150, 50);
+		manageBtn.setBounds(0, 170, 150, 40);
 		manageBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -35,10 +33,11 @@ public class GnbPanel extends JPanel {
 				layout.show(contents, "Management");
 			}
 		});
+		
 		add(manageBtn);
 		
 		lookupBtn = new BasicBigButton(img.gnbLookup());
-		lookupBtn.setBounds(30, 200, 150, 50);
+		lookupBtn.setBounds(0, 230, 150, 40);
 		lookupBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -48,7 +47,7 @@ public class GnbPanel extends JPanel {
 		});
 		add(lookupBtn);
 		assetBtn = new BasicBigButton(img.gnbAsset());
-		assetBtn.setBounds(30, 300, 150, 50);
+		assetBtn.setBounds(0, 290, 150, 40);
 		assetBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

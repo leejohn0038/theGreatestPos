@@ -1,6 +1,7 @@
 package project.components.receipts_components;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -29,6 +30,9 @@ public class Tables extends JPanel {
 		sp = new JScrollPane(table);
 		sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		table.getTableHeader().setBackground(Color.BLACK);
+		table.getTableHeader().setForeground(Color.WHITE);
+		sp.getViewport().setBackground(Color.WHITE);
 		add(sp);
 	}
 	

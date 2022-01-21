@@ -61,7 +61,7 @@ public class StoreTable extends JPanel {
 		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		add(sp);
-		setBounds(0, 60, 720, 450);
+		setBounds(0, 60, 750, 490);
 //		sp.getViewport().setBackground(Color.YELLOW);
 		sp.getViewport().setBackground(Color.WHITE);
 		setVisible(true);

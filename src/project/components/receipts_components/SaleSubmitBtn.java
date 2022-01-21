@@ -1,5 +1,6 @@
 package project.components.receipts_components;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import project.MainFrame;
@@ -8,8 +9,10 @@ import project.actions.receipts_actions.SaleSubmitAL;
 public class SaleSubmitBtn extends JButton {
 	
 	public SaleSubmitBtn(MainFrame main, int xPos, int yPos, int xSize, int ySize) {
-		super("±¸¸Å");
+		setIcon(new ImageIcon("./image/main/add_goods.png"));
 		addActionListener(new SaleSubmitAL(main));
+		setContentAreaFilled(false);
+		setBorderPainted(false);
 		setBounds(xPos, yPos, xSize, ySize);
 	}
 }

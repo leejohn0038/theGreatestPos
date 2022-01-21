@@ -15,7 +15,7 @@ public class ButtonImage {
 	}
 	
 	public ImageIcon homeBtn() {
-		ImageIcon img = new ImageIcon("./image/goods/home.png");
+		ImageIcon img = new ImageIcon("./image/home.png");
 		return img;
 	}
 	
@@ -35,7 +35,7 @@ public class ButtonImage {
 	}
 	
 	public ImageIcon gnbManage() {
-		ImageIcon img = new ImageIcon("./image/goods/goods.png");
+		ImageIcon img = new ImageIcon("./image/goods/manage.png");
 		return img;
 	}
 	
@@ -46,6 +46,31 @@ public class ButtonImage {
 	
 	public ImageIcon gnbAsset() {
 		ImageIcon img = new ImageIcon("./image/goods/asset.png");
+		return img;
+	}
+	
+	public ImageIcon mainGoods() {
+		ImageIcon img = new ImageIcon("./image/main/merchandise.png");
+		return img;
+	}
+	
+//	public ImageIcon () {
+//		ImageIcon img = new ImageIcon();
+//		return img;
+//	}
+	
+	public ImageIcon mainReceipt() {
+		ImageIcon img = new ImageIcon("./image/main/receipt.png");
+		return img;
+	}
+	
+	public ImageIcon mainEmployee() {
+		ImageIcon img = new ImageIcon("./image/main/employee.png");
+		return img;
+	}
+	
+	public ImageIcon mainCustomer() {
+		ImageIcon img = new ImageIcon("./image/main/customer.png");
 		return img;
 	}
 }

@@ -51,7 +51,7 @@ public class AssetExpTable extends JPanel {
 		
 		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		setSize(720, 230);
+		setSize(750, 230);
 		sp.getViewport().setBackground(Color.WHITE);
 		add(sp);
 	}

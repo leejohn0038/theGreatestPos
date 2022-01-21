@@ -38,10 +38,17 @@ public class LookupPanel extends JPanel {
 	
 	public LookupPanel() {
 		
+		add(new JLabel("상품조회") {
+			{
+				setBounds(0, 0, 150, 50);
+				setFont(new Font("기본", Font.BOLD, 30));
+			}
+		});
+		
 		// 검색창 생성
 		goods = new GoodsTable();
 		searchTf = new BasicTextField("");
-		searchTf.setLocation(0, 20);
+		searchTf.setLocation(550, 30);
 		goods.getRowsorter().addRowSorterListener(null);
 		new SearchTf(goods.getRowsorter(), searchTf);
 		searchTf.addKeyListener(new KeyAdapter() {
@@ -68,7 +75,7 @@ public class LookupPanel extends JPanel {
 		
 		// 상품추가
 		addGoodsBtn = new BasicBigButton(img.addBtn());
-		addGoodsBtn.setLocation(590, 520);
+		addGoodsBtn.setLocation(590, 560);
 		addGoodsBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -79,7 +86,7 @@ public class LookupPanel extends JPanel {
 		
 		addGoods = new JPanel();
 		addGoods.setSize(570, 130);
-		addGoods.setLocation(0, 510);
+		addGoods.setLocation(0, 550);
 		addGoods.setBackground(Color.WHITE);
 //		addGoods.setBackground(Color.RED);
 		addGoodsPanel(addGoods);
@@ -118,7 +125,7 @@ public class LookupPanel extends JPanel {
 		
 		// 상품 삭제
 		deleteGoodsBtn = new BasicBigButton(img.deleteBtn());
-		deleteGoodsBtn.setLocation(590, 590);
+		deleteGoodsBtn.setLocation(590, 630);
 		deleteGoodsBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -130,7 +137,7 @@ public class LookupPanel extends JPanel {
 		
 		deleteGoods = new JPanel();
 		deleteGoods.setSize(570, 130);
-		deleteGoods.setLocation(0, 510);
+		deleteGoods.setLocation(0, 550);
 		deleteGoods.setBackground(Color.WHITE);
 		deleteGoodsPanel(deleteGoods);
 		deleteConfirm.addActionListener(new ActionListener() {
@@ -158,9 +165,10 @@ public class LookupPanel extends JPanel {
 		add(deleteGoods);
 		
 		setBackground(Color.WHITE);
+//		setBackground(Color.RED);
 		add(goods);
 		setLayout(null);
-		setBounds(300, 100, 760, 500);
+		setBounds(240, 20, 750, 680);
 		setVisible(true);
 		
 	}

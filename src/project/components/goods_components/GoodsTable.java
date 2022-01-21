@@ -64,7 +64,7 @@ public class GoodsTable extends JPanel {
 		
 		table.setEnabled(false);
 		setLayout(new BorderLayout());
-		setBounds(0, 60, 720, 450);
+		setBounds(0, 60, 750, 490);
 		table.setRowHeight(50);
 		table.getTableHeader().setBackground(Color.BLACK);
 		table.getTableHeader().setForeground(Color.WHITE);	

@@ -2,6 +2,7 @@ package project.frames.goods_frames;
 
 
 import java.awt.Color;
+import java.awt.Font;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,6 +10,7 @@ import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import project.components.goods_components.AssetExpTable;
@@ -24,10 +26,17 @@ public class AssetPanel extends JPanel {
 	
 	public AssetPanel() {
 		
+		add(new JLabel("자산관리") {
+			{
+				setBounds(0, 0, 150, 50);
+				setFont(new Font("기본", Font.BOLD, 30));
+			}
+		});
+		
 		BasicLabel assetsLabel = new BasicLabel("자산");
-		assetsLabel.setLocation(0, 10);
+		assetsLabel.setLocation(0, 60);
 		BasicLabel totalAsset = new BasicLabel("자산");
-		totalAsset.setLocation(250, 10);
+		totalAsset.setLocation(250, 60);
 		getAsset();
 		totalAsset.setText(totalAssets);
 		add(totalAsset);
@@ -43,8 +52,8 @@ public class AssetPanel extends JPanel {
 			e.printStackTrace();
 		}
 		BasicLabel expLabel = new BasicLabel("유통기한임박");
-		expLabel.setLocation(0, 60);
-		aet.setLocation(0, 100);
+		expLabel.setLocation(0, 110);
+		aet.setLocation(0, 150);
 		add(aet);
 		add(expLabel);
 		
@@ -59,14 +68,15 @@ public class AssetPanel extends JPanel {
 		// 모델을 다시 불러와
 		
 		BasicLabel shortage = new BasicLabel("재고부족");
-		shortage.setLocation(0, 360);
-		ast.setLocation(0, 400);
+		shortage.setLocation(0, 410);
+		ast.setLocation(0, 450);
 		add(ast);
 		add(shortage);
 		
 		setBackground(Color.WHITE);
+//		setBackground(Color.RED);
 		setLayout(null);
-		setBounds(300, 100, 760, 500);
+		setBounds(240, 20, 750, 680);
 		setVisible(true);
 	}
 	
