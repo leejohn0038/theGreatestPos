@@ -2,11 +2,9 @@ package project.actions.employees_actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 import project.actions.employees_actions.main.object.Emp_addData;

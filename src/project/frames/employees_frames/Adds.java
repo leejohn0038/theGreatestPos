@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -62,7 +63,6 @@ public class Adds extends JFrame{
 		inner = new JPanel();
 		
 		JLabel exLab = new JLabel("등록하실 정보를 입력해주세요");
-		JButton btn = new JButton("등록");
 		
 		title_labs = sql.getTitle(); 
 		txts = new HashMap<>();
@@ -111,9 +111,7 @@ public class Adds extends JFrame{
 			
 		}
 		
-		btn.setSize(100,30);
-		btn.setLocation(this.getSize().width-(btn.getSize().width*2), this.getSize().height-btn.getSize().height-26);
-		btn.addActionListener(new AddBtn(jp, this, txts, type));
+		JButton btn = add(type);
 		
 		inner.setLayout(null);
 		inner.setBackground(Color.white);
@@ -124,13 +122,29 @@ public class Adds extends JFrame{
 		return inner;
 	}
 	
+	JButton add(int type) {
+		JButton addBtn = new JButton();
+
+		addBtn.setSize(100,50);
+		addBtn.setLocation(this.getSize().width-addBtn.getSize().width, (this.getSize().height-(addBtn.getSize().height*2)-26)-10);
+		addBtn.setBackground(null);
+		addBtn.setBorderPainted(false);
+		addBtn.setText("");
+		addBtn.setIcon(new ImageIcon("./image/employees/add.png"));
+		addBtn.addActionListener(new AddBtn(jp, this, txts, type));
+
+		return addBtn; 
+	}
 	
 	QuitBtn quit(JButton btn) {
 		QuitBtn quitBtn = new QuitBtn(this, f);
 		
-		quitBtn.setText("등록취소");
+		quitBtn.setIcon(new ImageIcon("./image/employees/cancelar.png"));
+		quitBtn.setText("");
+		quitBtn.setBackground(null);
+		quitBtn.setBorderPainted(false);
 		quitBtn.setSize(btn.getSize().width, btn.getSize().height);
-		quitBtn.setLocation(btn.getLocation().x+quitBtn.getSize().width, btn.getLocation().y);
+		quitBtn.setLocation(btn.getLocation().x, btn.getLocation().y+quitBtn.getSize().height+10);
 		
 		return quitBtn;
 	}

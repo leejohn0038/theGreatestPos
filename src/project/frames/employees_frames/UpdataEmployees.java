@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -96,7 +97,11 @@ public class UpdataEmployees extends JFrame{
 			}
 		}
 		
-		btn.setSize(100,30);
+		btn.setText("");
+		btn.setIcon(new ImageIcon("./image/employees/modify.png"));
+		btn.setBackground(null);
+		btn.setBorderPainted(false);
+		btn.setSize(100,50);
 		btn.setLocation(this.getSize().width-btn.getSize().width, this.getSize().height-btn.getSize().height-26);
 		btn.addActionListener(new Updata(jp, this, row, txts, title_labs, type));
 		

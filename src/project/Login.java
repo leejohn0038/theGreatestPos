@@ -4,8 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -76,7 +79,7 @@ public class Login extends JFrame{
 	JButton assBtn() {
 		
 		// x, y
-		int[] size = {100, 50};
+		int[] size = {100, 40};
 		int[] loc = {
 				//프레임별 위치
 				//프레임 크기 - 타이틀바 - 자기크기
@@ -84,9 +87,26 @@ public class Login extends JFrame{
 				this.getSize().height - this.getPreferredSize().height - size[1]-10
 				};
 		
-		JButton btn = new JButton("시작");
+		JButton btn = new JButton();
 		
+		btn.setIcon(new ImageIcon("./image/employees/startBtn.png"));
+		btn.setBackground(null);
+		btn.setBorderPainted(false);
 		btn.setBounds(loc[0], loc[1], size[0], size[1]);
+		
+		btn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btn.setBounds(loc[0], loc[1]-40, 120, 80);
+				btn.setIcon(new ImageIcon("./image/employees/startBtn2.png"));
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btn.setBounds(loc[0], loc[1], size[0], size[1]);
+				btn.setIcon(new ImageIcon("./image/employees/startBtn.png"));
+			}
+		});
 		
 		btn.addActionListener(new ActionListener() {
 			
