@@ -1,11 +1,15 @@
 package project.frames.receipts_frames;
 
+import java.awt.Color;
+import java.awt.Font;
+
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 import project.MainFrame;
 import project.components.receipts_components.Label;
+import project.components.receipts_components.ReceiptsBtnImg;
 import project.components.receipts_components.SearchSubmitBtn;
 import project.components.receipts_components.TextField;
 
@@ -34,19 +38,24 @@ public class ReceiptSearch extends JFrame {
 		add(fields[5] = new TextField(170, 230, 150, 30) {{setName("price2");}});
 				
 		add(new Label("결제수단", 50, 265, 100, 50));
-		add(combo = new JComboBox(items) {{setBounds(170, 270, 150, 30);}});		
+		add(combo = new JComboBox(items) 
+		{{
+			setBounds(170, 270, 150, 30); 
+			setEditable(true);
+			getEditor().getEditorComponent().setBackground(Color.WHITE);
+		}});		
 
 		add(new Label("구매시기", 50, 305, 100, 50));
 		add(fields[6] = new TextField(170, 310, 150, 30) {{setName("period1");}});
 		add(new Label("~", 330, 310, 30, 30));
 		add(fields[7] = new TextField(170, 340, 150, 30) {{setName("period2");}});
 		
-		add(new SearchSubmitBtn(main, 200, 400, 100, 50));
-
+		add(new SearchSubmitBtn(main, ReceiptsBtnImg.search(75, 20), 212, 400, 75, 20));
+		getContentPane().setBackground(Color.WHITE);
 		setVisible(false);
 		setLayout(null);
 		setDefaultCloseOperation(HIDE_ON_CLOSE);
-		setBounds(200, 200, 500, 550);
+		setBounds(600, 200, 499, 550);
 	}
 	
 	public JTextField[] getField() {
@@ -56,4 +65,5 @@ public class ReceiptSearch extends JFrame {
 	public JComboBox<String> getCombo() {
 		return combo;
 	}
+	
 }

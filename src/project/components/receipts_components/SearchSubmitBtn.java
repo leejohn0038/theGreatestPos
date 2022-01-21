@@ -1,17 +1,16 @@
 package project.components.receipts_components;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
 
 import project.MainFrame;
 import project.actions.receipts_actions.SearchSubmitButtonAL;
-import project.frames.receipts_frames.Receipts;
+import project.components.goods_components.BasicSmallButton;
 
-public class SearchSubmitBtn extends JButton {
+public class SearchSubmitBtn extends BasicSmallButton {
 
-	public SearchSubmitBtn(MainFrame main, int xPos, int yPos, int xSize, int ySize) {
-		super("°Ë»ö");
+	public SearchSubmitBtn(MainFrame main, ImageIcon img, int xPos, int yPos, int xSize, int ySize) {
+		super(img);
 		addActionListener(new SearchSubmitButtonAL(main));
 		setBounds(xPos, yPos, xSize, ySize);
 	}

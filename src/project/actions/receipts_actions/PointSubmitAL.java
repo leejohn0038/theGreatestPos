@@ -17,7 +17,6 @@ import project.frames.receipts_frames.Receipts;
 public class PointSubmitAL implements ActionListener {
 	MainFrame main;
 	PointCollect pointcollect;
-	PointCollectPanel pPanel;
 	JTable table;
 	boolean state;
 	
@@ -33,8 +32,8 @@ public class PointSubmitAL implements ActionListener {
 		pointcollect = (PointCollect)main.getFrame("포인트 적립");
 		table = ((Receipts)main.getFrame("영수증")).getJTable();
 		
-		String text = pPanel.getField().getText();
-		String point = pPanel.getLabel2().getText();
+		String text = pointcollect.getField().getText();
+		String point = pointcollect.getLabel2().getText();
 		int rid = pointcollect.getRid();
 		if (FieldRegexLimit.isValid(Regex.getRegex()[1], text)) {
 			if(PointCollecting.updateData(Integer.parseInt(point), rid, text)) {		
@@ -57,7 +56,7 @@ public class PointSubmitAL implements ActionListener {
 				}
 			}
 		} else if(text.equals("")){
-			JOptionPane.showMessageDialog(main.getFrame("영수증"), "전화번호를 입력하세요.");
+			JOptionPane.showMessageDialog(pointcollect, "전화번호를 입력하세요.");
 		} else {
 			JOptionPane.showMessageDialog(pointcollect, "입력형식이 잘못되었습니다.");
 		}

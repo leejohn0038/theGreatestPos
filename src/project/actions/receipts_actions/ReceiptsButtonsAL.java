@@ -71,7 +71,6 @@ public class ReceiptsButtonsAL implements ActionListener {
 		String payment = String.valueOf(jT.getValueAt(index, 3));
 		String phone = String.valueOf(jT.getValueAt(index, 1));
 		String info = ReceiptSearching.getData(0, rid);
-		System.out.println(info);
 		refunding.setPayment(payment);
 		refunding.setPhone(phone);
 		refunding.getTable().updateRows(Refund.getData(rid));

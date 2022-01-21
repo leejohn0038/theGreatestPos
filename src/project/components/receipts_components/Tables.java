@@ -10,9 +10,6 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
-import project.MainFrame;
-import project.actions.receipts_actions.TableAL;
-
 public class Tables extends JPanel { 
 
 	JTable table;
@@ -27,11 +24,16 @@ public class Tables extends JPanel {
 		model = new DefaultTableModel(rowData, columnName);
 		table = new JTable(model);
 		table.setRowSelectionAllowed(true);
+		table.getTableHeader().setBackground(Color.BLACK);
+		table.getTableHeader().setForeground(Color.WHITE);
 		sp = new JScrollPane(table);
 		sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+<<<<<<< HEAD
 		table.getTableHeader().setBackground(Color.BLACK);
 		table.getTableHeader().setForeground(Color.WHITE);
+=======
+>>>>>>> refs/heads/main
 		sp.getViewport().setBackground(Color.WHITE);
 		add(sp);
 	}
