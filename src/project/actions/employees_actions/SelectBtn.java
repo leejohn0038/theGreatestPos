@@ -2,10 +2,9 @@ package project.actions.employees_actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 import project.actions.employees_actions.main.object.Emp_addData;
@@ -23,7 +22,12 @@ public class SelectBtn extends JButton{
 	public SelectBtn(Select_layout sl, Table_layout tl, int[] size, int[] loc, int type) {
 		//view
 		super("°Ë»ö");
-		setBounds(loc[0],loc[1],size[0],size[1]);
+		setLocation(loc[0],loc[1]);
+		setBackground(null);
+		setBorderPainted(false);
+		setSize(28,28);
+		setText("");
+		setIcon(new ImageIcon("image/employees/emp_search.png"));
 		
 		this.type = type;
 		

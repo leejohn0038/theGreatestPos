@@ -1,9 +1,13 @@
 package project.components.employees_companents;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.Label;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
@@ -15,8 +19,8 @@ import project.database.employee_customer.SQLs;
 //프레임 안에 모든 것이 모인 패널
 public class MainContants extends JPanel{
 	
-	JFrame f;
-	SQLs sql;
+	private JFrame f;
+	private SQLs sql;
 	
 	public MainContants(MainFrame main, JFrame f, SQLs sql, int type) {
 		
@@ -37,9 +41,17 @@ public class MainContants extends JPanel{
 		//SIDE_BAR//
 		SideBar_layout side = new SideBar_layout(main, layViewData, f.getTitle());
 		side.setBackground(Color.white);
+		side.setSize(0,0);
+		
+		
 		
 		//종료버튼//
 		QuitBtn quitBtn = new QuitBtn(fs, main); //fs 쓰는 이유는 기초 공사가 잘못되어 시간상 프레임으로 뷰를 설계할 수 밖에 없기에..
+		quitBtn.setBackground(null);
+		quitBtn.setBorderPainted(false);
+		quitBtn.setSize(40,25);
+		quitBtn.setText("");
+		quitBtn.setIcon(new ImageIcon("image/employees/new_home.png"));
 		
 		//TBALE//
 		Table_layout tl = new Table_layout(side.getSize().width, quitBtn.getHight(), sql, type, fs);
@@ -52,12 +64,43 @@ public class MainContants extends JPanel{
 		//검색기능 + 검색버튼//
 		Select_layout select = new Select_layout(tl, side.getSideWidth(), tl.getLocation().y, type);
 		select.setBackground(Color.white);
+		//select.setBorder(new LineBorder(Color.black));
 		
 		add(select);
 		add(tl);
-		add(side);
+		//add(side);
 		add(quitBtn);
 		add(btns);
+		
+		JLabel logo = logo();
+		
+		add(logo);
+		add(frameName(logo));
+		
+	}
+	
+	//프레임명
+	JLabel frameName(JLabel logo) {
+		
+		JLabel title = new JLabel(f.getTitle());
+		
+		title.setBounds(logo.getLocation().x + logo.getSize().width + 50, 10, 
+				50, 100);
+		title.setFont(new Font("돋움", Font.BOLD, 20));
+		//title.setBorder(new LineBorder(Color.black));
+		
+		return title;
+	}
+	
+	//로고
+	JLabel logo() {
+		int[] logoSize = new int[] {200,100};
+		
+		JLabel logo = new JLabel("Team 2nd");
+		
+		logo.setBounds(50, 10, logoSize[0], logoSize[1]);
+		logo.setFont(new Font("Serif", Font.BOLD, 40));
+		return logo;
 	}
 	
 	int[] viewCalculate(JFrame f){

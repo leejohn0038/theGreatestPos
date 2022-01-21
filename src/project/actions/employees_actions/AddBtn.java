@@ -80,9 +80,7 @@ public class AddBtn implements ActionListener {
 				
 				stop = new Function_emp().regex(title[i], tempTxt.getText());
 
-				
-				if(stop == true) {
-					
+				if(stop == true) {					
 					datas[i] = tempTxt.getText();
 				}else {
 					break;
@@ -129,7 +127,9 @@ public class AddBtn implements ActionListener {
 		//수정 요망
 		if(stop == true) {
 			SQLs add_sql = new SQLs("등록", f, getCusData(), type);
-			jp.dtm.addRow(add_sql.cus_addData.getDates());
+			if(add_sql.cus_addData.getDates() != null) {
+				jp.dtm.addRow(add_sql.cus_addData.getDates());
+			}
 			
 			for(int i = 1; i<title.length; i++) {
 				if(!(title[i].contains("등록일")||title[i].contains("포인트"))) {
