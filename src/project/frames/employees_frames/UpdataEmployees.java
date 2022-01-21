@@ -117,11 +117,11 @@ public class UpdataEmployees extends JFrame{
 		
 		if(i==0) {
 			idLab.setText(Integer.toString((int)jp.dtm.getValueAt(row, 0)));
-			idLab.setBounds(txtLoc[0], txtLoc[1], 200, 30);
+			idLab.setBounds(txtLoc[0], txtLoc[1], 300, 30);
 			txts.put(title_labs[i], idLab);
 			inner.add(idLab);
 		}else {
-			txt.setBounds(txtLoc[0], txtLoc[1], 200, 30);
+			txt.setBounds(txtLoc[0], txtLoc[1], 300, 30);
 			txt.setText(jp.dtm.getValueAt(row, i).toString());
 			txts.put(title_labs[i], txt);
 			inner.add(txt);
@@ -133,7 +133,7 @@ public class UpdataEmployees extends JFrame{
 		
 		labs.add(title_lab);
 		
-		txt.setBounds(txtLoc[0], txtLoc[1], 200, 30);
+		txt.setBounds(txtLoc[0], txtLoc[1], 300, 30);
 		txt.setText(jp.dtm.getValueAt(row, i).toString());
 		txts.put(title_labs[i], txt);
 		inner.add(txt);
