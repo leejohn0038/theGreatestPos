@@ -38,15 +38,14 @@ public class MainContants extends JPanel{
 		setBorder(new LineBorder(Color.black));
 		setBounds(layViewData[0], layViewData[1], layViewData[2], layViewData[3]);
 		
-		//SIDE_BAR//
+		//SIDE_BAR// (현재 사용은 안하지만 / 밑에 변수들이 공유해서 하나 빠지면 계산하기 불편해지기에 살려뒀습니다.)
 		SideBar_layout side = new SideBar_layout(main, layViewData, f.getTitle());
 		side.setBackground(Color.white);
 		side.setSize(0,0);
 		
-		
-		
 		//종료버튼//
-		QuitBtn quitBtn = new QuitBtn(fs, main); //fs 쓰는 이유는 기초 공사가 잘못되어 시간상 프레임으로 뷰를 설계할 수 밖에 없기에..
+		//arr_list를 사용한 이유는 사원, 회원에 등록이랑 수정이 현재 프레임으로 설계가되서
+		QuitBtn quitBtn = new QuitBtn(fs, main); 
 		quitBtn.setBackground(null);
 		quitBtn.setBorderPainted(false);
 		quitBtn.setSize(40,25);
@@ -64,14 +63,14 @@ public class MainContants extends JPanel{
 		//검색기능 + 검색버튼//
 		Select_layout select = new Select_layout(tl, side.getSideWidth(), tl.getLocation().y, type);
 		select.setBackground(Color.white);
-		//select.setBorder(new LineBorder(Color.black));
 		
 		add(select);
 		add(tl);
-		//add(side);
 		add(quitBtn);
 		add(btns);
 		
+		
+		//로고 및 타이틀 JLable
 		JLabel logo = logo();
 		
 		add(logo);
@@ -82,11 +81,17 @@ public class MainContants extends JPanel{
 	//프레임명
 	JLabel frameName(JLabel logo) {
 		
-		JLabel title = new JLabel(f.getTitle());
+		JLabel title = new JLabel();
 		
-		title.setBounds(logo.getLocation().x + logo.getSize().width + 50, 10, 
-				50, 100);
-		title.setFont(new Font("돋움", Font.BOLD, 20));
+		if(f.getTitle() == "직원") {
+			title.setText("Employees");
+		}else {
+			title.setText("Customers");
+		}
+		
+		//로고랑 같이 붙어있길바래서 위치를 공유받았습니다.
+		title.setBounds(logo.getLocation().x + logo.getSize().width + 50, 10, 200, 100);
+		title.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		//title.setBorder(new LineBorder(Color.black));
 		
 		return title;
@@ -96,8 +101,9 @@ public class MainContants extends JPanel{
 	JLabel logo() {
 		int[] logoSize = new int[] {200,100};
 		
-		JLabel logo = new JLabel("Team 2nd");
+		JLabel logo = new JLabel();
 		
+		logo.setIcon(new ImageIcon("./image/logo_hori.png"));
 		logo.setBounds(50, 10, logoSize[0], logoSize[1]);
 		logo.setFont(new Font("Serif", Font.BOLD, 40));
 		return logo;
