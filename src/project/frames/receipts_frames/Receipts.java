@@ -33,11 +33,7 @@ public class Receipts extends JFrame {
 		getContentPane().setBackground(Color.WHITE);
 		setLayout(null);
 		setDefaultCloseOperation(HIDE_ON_CLOSE);
-<<<<<<< HEAD
 		setBounds(main.getLocation().x, main.getLocation().y, 1000, 700);
-=======
-		setBounds(500, 100, 1000, 700);
->>>>>>> refs/heads/main
 		setVisible(false);
 		setUndecorated(true);
 		setResizable(false);

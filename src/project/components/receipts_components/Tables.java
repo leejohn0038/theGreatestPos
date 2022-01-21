@@ -29,11 +29,6 @@ public class Tables extends JPanel {
 		sp = new JScrollPane(table);
 		sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-<<<<<<< HEAD
-		table.getTableHeader().setBackground(Color.BLACK);
-		table.getTableHeader().setForeground(Color.WHITE);
-=======
->>>>>>> refs/heads/main
 		sp.getViewport().setBackground(Color.WHITE);
 		add(sp);
 	}
