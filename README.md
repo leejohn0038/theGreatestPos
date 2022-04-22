@@ -6,7 +6,7 @@
 > 자바 SWING을 이용한 마트 포스기 프로그램
 
 ## Description
-<img src="https://user-images.githubusercontent.com/70336674/164682727-b27a154f-3949-4a97-98c7-f71a3a9216bb.png" width="50%">
+<img src="https://user-images.githubusercontent.com/70336674/164714664-3dede0f7-1c72-41f4-acad-3ebf408205dd.png" width="50%">
 
 * 우측 상단에 있는 모드버튼으로 일반/다크모드 변겅 가능
 * 원하는 캠핑장 조건을 통해 검색가능
@@ -58,14 +58,6 @@
 
 <a href="https://github.com/hanilang">
   <img src="https://github.com/hanilang.png" width="50px">
-</a>
-
-<a href="https://github.com/noohJ">
-  <img src="https://github.com/noohJ.png" width="50px">
-</a>
-
-<a href="https://github.com/sasgajo">
-  <img src="https://github.com/sasgajo.png" width="50px">
 </a>
 
 ## LICENSE
